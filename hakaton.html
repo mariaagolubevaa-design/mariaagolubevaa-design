@@ -7,7 +7,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Gilroy','Montserrat','Inter',Arial,sans-serif; background:#fff; color:#1e1e1c; overflow-x:hidden; }
+    body { font-family: 'Gilroy','Montserrat','Inter',Arial,sans-serif; background:#fff; color:#1e1e1c; overflow-x:hidden; margin-bottom:0; padding-bottom:0; }
     :root { --black:#1e1e1c; --grey1:#d2d2d2; --grey2:#a5a5a4; --footer-bg:#ece6d6; --page-w:1200px; }
 
     .nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--grey1); padding:18px 80px; display:flex; align-items:center; justify-content:space-between; }
@@ -63,8 +63,8 @@
     .pagination__btn { display:flex; align-items:center; gap:12px; font-size:24px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:inherit; }
     .pagination__btn:hover { opacity:.6; }
 
-    footer { background:var(--footer-bg); border-radius:32px 32px 0 0; padding:32px 80px; }
-    .footer-inner { max-width:var(--page-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    footer { background:var(--footer-bg); border-radius:32px 32px 0 0; margin:0; }
+    .footer-inner { max-width:var(--page-w); margin:0 auto; padding:32px 40px; display:flex; align-items:center; justify-content:space-between; }
     .footer__logo { font-size:20px; font-weight:700; color:var(--black); text-decoration:none; }
     .footer__nav { display:flex; gap:132px; list-style:none; }
     .footer__nav a { font-size:20px; font-weight:700; color:var(--black); text-decoration:none; }

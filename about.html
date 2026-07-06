@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Обо мне — Мария Голубева</title>
+  <style>
+    @font-face {
+      font-family: 'Soyuz Grotesk';
+      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
+           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Gilroy', 'Montserrat', Arial, sans-serif;
+      background: #fffefb;
+      color: #1e1e1c;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    :root {
+      --black: #1e1e1c;
+      --grey1: #d2d2d2;
+      --grey2: #a5a5a4;
+      --grey3: #787877;
+      --footer-bg: #ece6d6;
+      --pad: 40px;
+      --max-w: 1280px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,254,251,.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 50px var(--pad) 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative;
+    }
+    .nav__logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--grey1); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav__logo-icon { width: 24px; height: 24px; }
+    .nav__logo:hover { color: var(--black); }
+    .nav__active {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--black); text-decoration: none;
+    }
+    .nav__active img { width: 24px; height: 24px; }
+    .nav__link {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--grey1); text-decoration: none;
+      transition: color .2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__link img { width: 24px; height: 24px; }
+    .nav__link:hover { color: var(--black); }
+
+    /* ── TABS ── */
+    .tabs {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 20px var(--pad) 0;
+      display: flex; gap: 8px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .tab {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--black);
+      padding: 10px;
+      text-decoration: none;
+      background: none; border: none; cursor: pointer;
+    }
+    .tab--inactive {
+      font-weight: 500;
+      color: var(--grey2);
+    }
+
+    /* ── TAB PANELS ── */
+    .tab-panel { display: block; }
+    .tab-panel--hidden { display: none; }
+
+    /* ── PAGE HEADING ── */
+    .page-heading {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 130px var(--pad) 0;
+      display: flex;
+      align-items: center; gap: 16px;
+      position: relative; z-index: 1;
+    }
+    .page-heading img { width: 40px; height: 40px; flex-shrink: 0; }
+    .page-heading h1 {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 50px; font-weight: 700;
+      color: var(--black); text-transform: uppercase;
+      line-height: normal;
+    }
+
+    /* ── EDUCATION LAYOUT ── */
+    .edu-layout {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 32px var(--pad) 80px;
+      display: flex; gap: 38px; align-items: center;
+      min-height: calc(100vh - 400px);
+    }
+    .edu-photo {
+      width: 607px; height: 452px;
+      border-radius: 24px; overflow: hidden;
+      flex-shrink: 0; position: relative;
+    }
+    .edu-photo img {
+      position: absolute;
+      height: 106.86%; left: -4%; top: -2.43%; width: 119.36%;
+      max-width: none;
+    }
+    .edu-content {
+      flex: 1;
+      display: flex; flex-direction: column; gap: 32px;
+    }
+    .edu-section {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .edu-section h3 {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--black);
+    }
+    .edu-group {
+      display: flex; flex-direction: column; gap: 5px;
+      margin-top: 8px;
+    }
+    .edu-group + .edu-group { margin-top: 24px; }
+    .edu-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .edu-item img { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+    .edu-item p {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 20px; font-weight: 500;
+      color: var(--black); line-height: normal;
+    }
+
+    /* ── FORMAL SECTION ── */
+    .formal {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 32px var(--pad) 0;
+      display: flex; gap: 24px; align-items: flex-start;
+    }
+
+    /* Left text */
+    .formal__text {
+      width: 592px; flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 32px;
+      padding-top: 24px;
+    }
+    .formal__text-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .formal__text-item img {
+      width: 24px; height: 24px; flex-shrink: 0; margin-top: 6px;
+    }
+    .formal__text-item p {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 24px; font-weight: 500;
+      line-height: 36px; color: var(--black);
+    }
+    .formal__text-item p strong { font-weight: 700; }
+
+    /* Right photo — carousel */
+    .formal__photos {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px;
+      margin-top: -105px;
+    }
+    .formal__photo-wrap {
+      width: 556px; height: 423px;
+      border-radius: 24px; overflow: hidden;
+      position: relative; flex-shrink: 0;
+    }
+    .formal__photo-wrap img {
+      position: absolute; top: 0; left: 0;
+      height: 100%; width: 105.26%;
+      max-width: none; object-fit: cover;
+      opacity: 0;
+      transition: opacity .6s ease;
+    }
+    .formal__photo-wrap img.slide-active { opacity: 1; }
+
+    /* Dot pagination */
+    .dots {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .dot {
+      height: 12px; border-radius: 6px;
+      background: #d2d2d2;
+      transition: width .4s ease, background .4s ease;
+      width: 12px;
+    }
+    .dot.active {
+      width: 36px;
+      background: #1e1e1c;
+    }
+
+    /* ── INFORMAL SECTION ── */
+    .informal {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 80px var(--pad) 0;
+    }
+    .informal__heading {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 40px;
+    }
+    .informal__heading img { width: 40px; height: 40px; }
+    .informal__heading h2 {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 50px; font-weight: 700;
+      color: var(--black);
+    }
+
+    /* Informal slider — each slide shows 3 photos at once */
+    .informal__slider-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px;
+    }
+    .informal__slides {
+      position: relative;
+      width: 1200px; height: 590px;
+    }
+    .informal__slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity .6s ease;
+      pointer-events: none;
+    }
+    .informal__slide.slide-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Three-photo layout inside each slide */
+    .slide-photo-left {
+      position: absolute; left: 0; top: 22px;
+      width: 370px; height: 518px;
+      border-radius: 32px; overflow: hidden;
+    }
+    .slide-photo-left img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; max-width: none;
+    }
+    .slide-photo-center {
+      position: absolute; left: 50%; top: 0;
+      transform: translateX(-50%);
+      width: 420px; height: 540px;
+      border-radius: 32px; overflow: hidden;
+    }
+    .slide-photo-center img {
+      position: absolute;
+      height: 106.7%; left: -0.03%; top: -6.7%; width: 100.03%;
+      max-width: none;
+    }
+    .slide-photo-right {
+      position: absolute; right: 0; top: 22px;
+      width: 370px; height: 518px;
+      border-radius: 32px; overflow: hidden;
+    }
+    .slide-photo-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; max-width: none;
+    }
+
+    /* Hobbies text */
+    .hobbies {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 48px var(--pad) 80px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .hobbies__item {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hobbies__item img { width: 24px; height: 24px; flex-shrink: 0; }
+    .hobbies p, .hobbies__item p {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 24px; font-weight: 500;
+      line-height: normal; color: var(--black);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      border-radius: 32px 32px 0 0;
+      margin: 0;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 32px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer__logo {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--black); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer__logo:hover { color: #B03C39; }
+    .footer__nav { display: flex; gap: 132px; list-style: none; }
+    .footer__nav a {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--black); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer__nav a:hover { color: #B03C39; }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal--delay-1 { transition-delay: .15s; }
+    .reveal--delay-2 { transition-delay: .30s; }
+    /* .visible comes after delay rules — same specificity, later wins → resets delay */
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0s;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav__logo" href="index.html">мария голубева</a>
+      <a class="nav__active" href="about.html">
+        <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
+        обо мне
+      </a>
+      <a class="nav__link" href="contacts.html">контакты</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADING (образование) -->
+  <div class="page-heading" id="pageHeading">
+    <img src="icons/logo-star.svg" alt="">
+    <h1>Обо мне</h1>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs" id="mainTabs">
+    <button class="tab" id="tabFormal" onclick="switchTab('formal')">Формально</button>
+    <button class="tab tab--inactive" id="tabEdu" onclick="switchTab('edu')">Образование</button>
+  </div>
+
+  <!-- ── TAB PANEL: ФОРМАЛЬНО ── -->
+  <div id="panelFormal" class="tab-panel">
+
+  <!-- FORMAL SECTION -->
+  <section class="formal">
+    <div class="formal__text">
+      <div class="formal__text-item reveal">
+        <img src="icons/star.svg" alt="">
+        <p>Работаю в <strong>Figma (components, variants, auto-layouts, styles)</strong>, аккуратна в макетах и внимательна к деталям. Использую нейросети для генерации графики (Nano Banana).</p>
+      </div>
+      <div class="formal__text-item reveal">
+        <img src="icons/star.svg" alt="">
+        <p>Готова к быстро реагировать на изменения, умею грамотно распределять время и соблюдать сроки, стремлюсь инициативно работать в команде и постоянно развиваться.</p>
+      </div>
+    </div>
+
+    <div class="formal__photos reveal">
+      <div class="formal__photo-wrap" id="formalSlider">
+        <img class="slide-active" src="photos/Picture%201%20About.png" alt="Фото 1">
+        <img src="photos/02.png" alt="Фото 2" style="left:-18.33%;width:118.36%;">
+        <img src="photos/03.png" alt="Фото 3" style="width:100%;height:100%;left:0;object-fit:cover;">
+        <img src="photos/04.png" alt="Фото 4" style="left:0.03%;width:114.1%;">
+        <img src="photos/05.png" alt="Фото 5" style="left:-20.3%;top:-1.37%;width:121.87%;height:103.04%;">
+      </div>
+      <div class="dots" id="formalDots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMAL SECTION -->
+  <section class="informal">
+    <div class="informal__heading reveal">
+      <img src="icons/logo-star.svg" alt="">
+      <h2>Неформально</h2>
+    </div>
+
+    <div class="informal__slider-wrap reveal">
+      <div class="informal__slides" id="informalSlider">
+        <!-- Slide 1: 1,2,3 -->
+        <div class="informal__slide slide-active">
+          <div class="slide-photo-left">
+            <img src="photos/1.png" alt="Фото 1">
+          </div>
+          <div class="slide-photo-center">
+            <img src="photos/2.png" alt="Фото 2">
+          </div>
+          <div class="slide-photo-right">
+            <img src="photos/3.png" alt="Фото 3">
+          </div>
+        </div>
+        <!-- Slide 2: 2,3,4 -->
+        <div class="informal__slide">
+          <div class="slide-photo-left">
+            <img src="photos/2.png" alt="Фото 2">
+          </div>
+          <div class="slide-photo-center">
+            <img src="photos/3.png" alt="Фото 3">
+          </div>
+          <div class="slide-photo-right">
+            <img src="photos/4.png" alt="Фото 4">
+          </div>
+        </div>
+        <!-- Slide 3: 3,4,5 -->
+        <div class="informal__slide">
+          <div class="slide-photo-left">
+            <img src="photos/3.png" alt="Фото 3">
+          </div>
+          <div class="slide-photo-center">
+            <img src="photos/4.png" alt="Фото 4">
+          </div>
+          <div class="slide-photo-right">
+            <img src="photos/5.png" alt="Фото 5">
+          </div>
+        </div>
+        <!-- Slide 4: 4,5,1 -->
+        <div class="informal__slide">
+          <div class="slide-photo-left">
+            <img src="photos/4.png" alt="Фото 4">
+          </div>
+          <div class="slide-photo-center">
+            <img src="photos/5.png" alt="Фото 5">
+          </div>
+          <div class="slide-photo-right">
+            <img src="photos/1.png" alt="Фото 1">
+          </div>
+        </div>
+        <!-- Slide 5: 5,1,2 -->
+        <div class="informal__slide">
+          <div class="slide-photo-left">
+            <img src="photos/5.png" alt="Фото 5">
+          </div>
+          <div class="slide-photo-center">
+            <img src="photos/1.png" alt="Фото 1">
+          </div>
+          <div class="slide-photo-right">
+            <img src="photos/2.png" alt="Фото 2">
+          </div>
+        </div>
+      </div>
+      <div class="dots" id="informalDots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <div class="hobbies reveal">
+    <div class="hobbies__item">
+      <img src="icons/star.svg" alt="">
+      <p>Люблю путешествовать, искусство, моду, учить языки, серф и котиков!</p>
+    </div>
+    <p>Приятно познакомиться!</p>
+  </div>
+
+  </div><!-- /panelFormal -->
+
+  <!-- ── TAB PANEL: ОБРАЗОВАНИЕ ── -->
+  <div id="panelEdu" class="tab-panel tab-panel--hidden">
+    <div class="edu-layout">
+      <div class="edu-photo">
+        <img src="https://www.figma.com/api/mcp/asset/a92e1dbc-a57f-4749-bcb5-7dc9da3bde53" alt="Мария Голубева">
+      </div>
+      <div class="edu-content">
+        <div class="edu-section">
+          <h3>Курсы повышения квалификации</h3>
+          <div class="edu-group">
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/55ad9818-1dd5-4098-bb3c-d7cf7f4efc94" alt="">
+              <p>Курс UX/UI-дизайна (512 ч.)</p>
+            </div>
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/d1b29ec7-429c-48f2-a4b0-ddbf156481a7" alt="">
+              <p>Британская высшая школа дизайна 2026 г.</p>
+            </div>
+          </div>
+          <div class="edu-group">
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/918aa1ac-0871-4e25-98e0-f6b6da19f306" alt="">
+              <p>IT Продлёнка хакатон (Победитель)</p>
+            </div>
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/dfccf727-6e9c-4efb-903e-526039cb0f0c" alt="">
+              <p>Яндекс практикум 2025 г.</p>
+            </div>
+          </div>
+          <div class="edu-group">
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/918aa1ac-0871-4e25-98e0-f6b6da19f306" alt="">
+              <p>Дизайнер интерфейсов (444 ч.)</p>
+            </div>
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/dfccf727-6e9c-4efb-903e-526039cb0f0c" alt="">
+              <p>Яндекс практикум 2025 г.</p>
+            </div>
+          </div>
+        </div>
+        <div class="edu-section">
+          <h3>Высшее образование</h3>
+          <div class="edu-group">
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/918aa1ac-0871-4e25-98e0-f6b6da19f306" alt="">
+              <p>Московский педагогический государственный университет, Москва</p>
+            </div>
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/dfccf727-6e9c-4efb-903e-526039cb0f0c" alt="">
+              <p>Modern Technologies in Teaching English (in English) Магистр, 2021</p>
+            </div>
+          </div>
+          <div class="edu-group">
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/918aa1ac-0871-4e25-98e0-f6b6da19f306" alt="">
+              <p>Московский государственный лингвистический университет, Москва</p>
+            </div>
+            <div class="edu-item">
+              <img src="https://www.figma.com/api/mcp/asset/dfccf727-6e9c-4efb-903e-526039cb0f0c" alt="">
+              <p>Культурология со знанием английского и немецкого языка, Бакалавр, 2018</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panelEdu -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a class="footer__logo" href="index.html">мария голубева</a>
+      <ul class="footer__nav">
+        <li><a href="index.html">мои проекты</a></li>
+        <li><a href="about.html">обо мне</a></li>
+      </ul>
+    </div>
+  </footer>
+
+
+<script>
+  // ── Tab switching ──
+  function switchTab(tab) {
+    const isFormal = tab === 'formal';
+    document.getElementById('panelFormal').classList.toggle('tab-panel--hidden', !isFormal);
+    document.getElementById('panelEdu').classList.toggle('tab-panel--hidden', isFormal);
+    document.getElementById('tabFormal').classList.toggle('tab--inactive', !isFormal);
+    document.getElementById('tabEdu').classList.toggle('tab--inactive', isFormal);
+  }
+
+  // ── Reveal on scroll ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ── Formal photo carousel ──
+  function makeCarousel(sliderId, dotsId, interval) {
+    const slider = document.getElementById(sliderId);
+    const dotsEl = document.getElementById(dotsId);
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('img');
+    const dots = dotsEl ? dotsEl.querySelectorAll('.dot') : [];
+    let current = 0;
+
+    function goTo(idx) {
+      slides[current].classList.remove('slide-active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = idx % slides.length;
+      slides[current].classList.add('slide-active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    // dot click
+    dots.forEach((dot, i) => dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      timer = setInterval(() => goTo(current + 1), interval);
+    }));
+
+    let timer = setInterval(() => goTo(current + 1), interval);
+  }
+
+  makeCarousel('formalSlider', 'formalDots', 3500);
+
+  // Informal slider — switches entire slide (3 photos at once)
+  (function() {
+    const slider = document.getElementById('informalSlider');
+    const dotsEl = document.getElementById('informalDots');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.informal__slide');
+    const dots = dotsEl ? dotsEl.querySelectorAll('.dot') : [];
+    let current = 0;
+
+    function goTo(idx) {
+      slides[current].classList.remove('slide-active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = idx % slides.length;
+      slides[current].classList.add('slide-active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      timer = setInterval(() => goTo(current + 1), 4000);
+    }));
+
+    var timer = setInterval(() => goTo(current + 1), 4000);
+  })();
+</script>
+</body>
+</html>

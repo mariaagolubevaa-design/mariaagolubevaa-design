@@ -4,8 +4,48 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Мария Голубева — UX/UI дизайнер</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Soyuz Grotesk';
+      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
+           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-semibold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -13,7 +53,6 @@
       font-family: 'Gilroy', 'Montserrat', 'Inter', Arial, sans-serif;
       background: #fffefb;
       color: #1e1e1c;
-      overflow-x: hidden;
     }
 
     :root {
@@ -23,7 +62,16 @@
       --grey2: #a5a5a4;
       --grey3: #787877;
       --footer-bg: #ece6d6;
-      --page-w: 1200px;
+      --pad: 40px;
+      --max-w: 1280px;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
     }
 
     /* ── NAVBAR ── */
@@ -31,12 +79,18 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
+      background: rgba(255,254,251,.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 50px var(--pad) 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 80px;
-      background: rgba(255,254,251,.92);
-      backdrop-filter: blur(12px);
+      position: relative;
     }
 
     .nav__logo {
@@ -50,17 +104,12 @@
       text-decoration: none;
     }
 
-    .nav__logo-icon {
-      width: 24px; height: 24px;
-    }
+    .nav__logo-icon { width: 24px; height: 24px; }
 
-    .nav__links {
-      display: flex;
-      gap: 48px;
-      list-style: none;
-    }
-
-    .nav__links a {
+    .nav__about {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
       font-size: 24px;
       font-weight: 700;
@@ -69,48 +118,65 @@
       transition: color .2s;
     }
 
-    .nav__links a:hover { color: var(--black); }
+    .nav__about:hover { color: var(--black); }
+
+    .nav__link {
+      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--grey1);
+      text-decoration: none;
+      transition: color .2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__link img { width: 24px; height: 24px; }
+
+    .nav__link:hover { color: var(--black); }
 
     /* ── HERO ── */
     .hero {
-      max-width: var(--page-w);
+      max-width: var(--max-w);
       margin: 0 auto;
-      padding: 140px 40px 80px;
+      padding: 160px var(--pad) 0;
       display: grid;
       grid-template-columns: 570px 1fr;
-      gap: 80px;
+      gap: 30px;
       align-items: center;
-      min-height: 90vh;
     }
 
     .hero__photo-wrap {
       position: relative;
+      width: 570px;
       height: 420px;
       border-radius: 32px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
-    .hero__photo-wrap img {
+    .hero__photo-wrap img.hero__photo {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 33%;
     }
 
     .hero__bubble {
       position: absolute;
       top: 56px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 32px;
+      width: 226px;
+      height: 54px;
       background: #fff;
-      border-radius: 32px 32px 32px 4px;
-      padding: 10px 20px;
+      border-radius: 32px 32px 32px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
       font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
       font-size: 24px;
       font-weight: 700;
       color: var(--black);
       white-space: nowrap;
-      box-shadow: 0 4px 20px rgba(0,0,0,.08);
     }
 
     .hero__content {
@@ -120,12 +186,17 @@
     }
 
     .hero__text {
+      font-family: 'Gilroy', 'Montserrat', sans-serif;
       font-size: 24px;
-      line-height: 1.5;
+      font-weight: 400;
+      line-height: 36px;
       color: var(--black);
     }
 
-    .hero__text strong { font-weight: 700; }
+    .hero__text strong {
+      font-family: 'Gilroy', 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
 
     .hero__star {
       display: inline-block;
@@ -137,77 +208,92 @@
     .hero__btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 12px;
       border: 1.5px solid var(--black);
       border-radius: 32px;
-      padding: 10px 20px;
+      width: 208px;
+      height: 48px;
       font-size: 24px;
       font-weight: 500;
+      font-family: 'Gilroy', 'Montserrat', sans-serif;
       color: var(--black);
       text-decoration: none;
-      width: fit-content;
       transition: background .2s, color .2s;
-      cursor: pointer;
-      background: none;
-      font-family: inherit;
     }
 
     .hero__btn:hover {
-      background: var(--black);
-      color: #fff;
+      color: #B03C39;
+      border-color: #B03C39;
+    }
+
+    .hero__btn:hover .hero__btn-arrow {
+      filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(800%) hue-rotate(323deg) brightness(90%);
+    }
+
+    .hero__btn-arrow {
+      width: 24px;
+      height: 26px;
     }
 
     /* ── PROJECTS ── */
     .projects {
-      max-width: var(--page-w);
-      margin: 0 auto;
-      padding: 0 40px 80px;
+      margin-top: 84px;
+      padding-bottom: 80px;
     }
 
-    .projects__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .projects-scroll {
+      display: flex;
       gap: 32px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 104px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 8px 40px 20px 104px;
     }
+
+    .projects-scroll::-webkit-scrollbar { display: none; }
 
     .project-card {
-      cursor: pointer;
+      min-width: 632px;
+      width: 632px;
+      height: 589px;
+      flex-shrink: 0;
+      padding: 20px 16px 0;
       text-decoration: none;
       color: var(--black);
+      scroll-snap-align: start;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
     }
 
     .project-card__thumb {
-      height: 380px;
+      width: 600px;
+      height: 435px;
       border-radius: 32px;
       overflow: hidden;
       margin-bottom: 16px;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform .3s ease, box-shadow .3s ease;
+      transition: transform 0.3s ease;
     }
 
     .project-card:hover .project-card__thumb {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.12);
-    }
-
-    .project-card__thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .4s ease;
-    }
-
-    .project-card:hover .project-card__thumb img {
       transform: scale(1.03);
+      transition: 0.3s ease;
     }
 
-    .project-card__star {
-      position: absolute;
-      top: 0; right: 0;
-      width: 80px; height: 80px;
+
+    .project-card:hover .project-card__name {
+      color: #B03C39;
+    }
+
+    .project-card:hover .project-card__name-star {
+      filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(800%) hue-rotate(323deg) brightness(90%);
     }
 
     .project-card__name {
@@ -216,25 +302,21 @@
       gap: 12px;
       font-size: 24px;
       font-weight: 600;
+      font-family: 'Gilroy', 'Montserrat', sans-serif;
       margin-bottom: 4px;
     }
 
-    .project-card__name-star {
-      width: 16px; height: 16px;
-    }
+    .project-card__name-star { width: 16px; height: 16px; }
 
     .project-card__org {
       font-size: 20px;
       color: var(--grey2);
       font-weight: 500;
+      font-family: 'Gilroy', 'Montserrat', sans-serif;
       margin-bottom: 12px;
     }
 
-    .chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
 
     .chip {
       border: 1.5px solid var(--grey2);
@@ -245,23 +327,23 @@
       font-weight: 500;
     }
 
-    /* project bg colors */
     .bg-pink   { background: #ffe8e0; }
     .bg-purple { background: #cabeff; }
     .bg-teal   { background: #d6ebec; }
     .bg-sand   { background: #ece6d6; }
-    .bg-grey   { background: linear-gradient(148deg, #e9e9e9 7%, #d9d8d8 40%, #d8d8d8 65%); }
+    .bg-grey   { background: linear-gradient(148deg, #e9e9e9 7%, #d9d8d8 22%, #d9d8d8 40%, #dddddd 57%, #d8d8d8 65%, #d2d2d2 73%); }
 
     /* ── FOOTER ── */
     footer {
       background: var(--footer-bg);
       border-radius: 32px 32px 0 0;
-      padding: 32px 80px;
+      margin: 0;
     }
 
     .footer-inner {
-      max-width: var(--page-w);
+      max-width: var(--max-w);
       margin: 0 auto;
+      padding: 32px var(--pad);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -273,13 +355,10 @@
       font-weight: 700;
       color: var(--black);
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
-    .footer__nav {
-      display: flex;
-      gap: 132px;
-      list-style: none;
-    }
+    .footer__nav { display: flex; gap: 132px; list-style: none; }
 
     .footer__nav a {
       font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
@@ -287,9 +366,11 @@
       font-weight: 700;
       color: var(--black);
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
-    .footer__nav a:hover { opacity: .6; }
+    .footer__nav a:hover { color: #B03C39; }
+    .footer__logo:hover { color: #B03C39; }
 
     /* ── REVEAL ── */
     .reveal {
@@ -304,57 +385,59 @@
 
 <!-- NAVBAR -->
 <nav class="nav">
-  <a class="nav__logo" href="index.html">
-    <img class="nav__logo-icon" src="https://www.figma.com/api/mcp/asset/498cff41-5a07-4882-9ef8-366aca42a034" alt="">
-    Мария Голубева
-  </a>
-  <ul class="nav__links">
-    <li><a href="#projects">обо мне</a></li>
-    <li><a href="mailto:golubeva@example.com">контакты</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a class="nav__logo" href="index.html">
+      <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
+      Мария Голубева
+    </a>
+    <a class="nav__about" href="about.html">обо мне</a>
+    <a class="nav__link" href="contacts.html">контакты</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero reveal">
   <div class="hero__photo-wrap">
-    <img src="https://www.figma.com/api/mcp/asset/0bc0f3ec-1add-4c2c-81a7-4ab926575c6d" alt="Маша Голубева">
+    <img class="hero__photo" src="https://www.figma.com/api/mcp/asset/e8361f56-35f7-49ae-bbc7-9d8d81976a18" alt="Маша Голубева">
     <div class="hero__bubble">Привет! Я — Маша</div>
   </div>
 
   <div class="hero__content">
     <p class="hero__text">
       UX/UI дизайнер, <strong>победитель хакатона от Яндекс Практикума</strong>
-      <img class="hero__star" src="https://www.figma.com/api/mcp/asset/596f1945-0614-45be-ab3c-c736416b5c0a" alt="✦">
-      <br>
-      В рамках учебных проектов работала со <strong>SberDevices</strong> и <strong>Wildberries</strong>
-      <br>
-      Работаю с мобильными приложениями и вебсайтами
-      <img class="hero__star" src="https://www.figma.com/api/mcp/asset/596f1945-0614-45be-ab3c-c736416b5c0a" alt="✦">
+      <img class="hero__star" src="icons/star.svg" alt="✦"><br>
+      В рамках учебных проектов работала со <strong>SberDevices</strong> и <strong>Wildberries</strong><br>
+      Работаю с мобильными приложениями<br>и вебсайтами
+      <img class="hero__star" src="icons/star.svg" alt="✦">
     </p>
     <a class="hero__btn" href="#projects">
-      Посмотреть &nbsp;›
+      Посмотреть
+      <img class="hero__btn-arrow" src="icons/chevron.svg" alt="">
     </a>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section class="projects" id="projects">
-  <div class="projects__grid">
+  <div class="projects-scroll">
 
     <!-- 1. Дизайн конф -->
     <a class="project-card reveal" href="https://bhsad.ru/britankaconf" target="_blank">
-      <div class="project-card__thumb bg-pink" style="overflow:hidden;">
-        <img src="https://www.figma.com/api/mcp/asset/2a81fef9-b91d-4748-ad96-b54667c53abb" alt="Дизайн конф" style="position:absolute;width:114%;height:116%;object-fit:cover;top:50%;left:50%;transform:translate(-50%,-50%);">
-        <!-- Звезда большая — правый верхний угол -->
-        <img src="https://www.figma.com/api/mcp/asset/29ac56b0-a5a8-400c-b9f8-fd5dfd005b32" alt="" style="position:absolute;top:0;right:0;width:90px;height:90px;pointer-events:none;">
-        <!-- Звезда средняя — правый край, ниже -->
-        <img src="https://www.figma.com/api/mcp/asset/4283f2ed-fd8c-40ea-86fb-b62793ee5972" alt="" style="position:absolute;top:92px;right:0;width:51px;height:52px;pointer-events:none;">
-        <!-- Звезда маленькая — чуть левее большой -->
-        <img src="https://www.figma.com/api/mcp/asset/c8631f7d-574c-4d2a-a6fd-2201ce071b61" alt="" style="position:absolute;top:3px;right:90px;width:43px;height:44px;pointer-events:none;">
+      <div class="project-card__thumb bg-pink">
+        <!-- Laptop image centered -->
+        <img src="https://www.figma.com/api/mcp/asset/2caa27e3-4d26-4487-975e-66453c553bb9" alt="Дизайн конф"
+          style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:685px;height:506px;max-width:none;object-fit:cover;pointer-events:none;">
+        <!-- Star decorations -->
+        <img src="icons/star-white.svg" alt=""
+          style="position:absolute;top:0;right:0;width:90px;height:90px;pointer-events:none;">
+        <img src="icons/star-white.svg" alt=""
+          style="position:absolute;top:92px;right:0;width:51px;height:52px;pointer-events:none;">
+        <img src="icons/star-white.svg" alt=""
+          style="position:absolute;top:3px;right:90px;width:43px;height:44px;pointer-events:none;">
       </div>
       <div class="project-card__name">
         Дизайн конф
-        <img class="project-card__name-star" src="https://www.figma.com/api/mcp/asset/dc852e6a-ed2a-453a-be26-8a8449772329" alt="">
+        <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
       <div class="project-card__org">BHSAD</div>
@@ -367,13 +450,20 @@
 
     <!-- 2. Профиль пользователя (Tingli) -->
     <a class="project-card reveal" href="tingli.html">
-      <div class="project-card__thumb bg-purple" style="position:relative;overflow:hidden;">
-        <img src="https://www.figma.com/api/mcp/asset/9204cc00-ecd8-4b3a-8e70-e5df8c3b7162" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;">
-        <img src="https://www.figma.com/api/mcp/asset/8c6d1985-9f77-4e69-85bb-abbe747476d9" alt="Tingli" style="position:relative;height:88%;border-radius:32px;object-fit:contain;">
+      <div class="project-card__thumb bg-purple">
+        <!-- Blob vector: 527×413px, positioned per Figma (left:33px, top:14px) -->
+        <svg style="position:absolute;left:33px;top:14px;width:527px;height:413px;pointer-events:none;" viewBox="0 0 527 413" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M45.0117 125.734L440.893 45.205C444.283 44.5155 445.955 49.1627 442.904 50.7914L108.533 229.255C105.778 230.725 106.823 234.901 109.946 234.901H478.935C482.406 234.901 483.105 239.814 479.772 240.782L45.0117 367.104" stroke="white" stroke-opacity="0.3" stroke-width="90" stroke-linecap="round"/>
+        </svg>
+        <!-- Phone: 248x488px, centered, screen image inside -->
+        <div style="position:absolute;left:50%;top:16px;transform:translateX(-50%);width:248px;height:488px;border-radius:40px;overflow:hidden;pointer-events:none;">
+          <img src="https://www.figma.com/api/mcp/asset/f640d6e1-7735-421a-b14d-541f3283c28a" alt="Tingli"
+            style="position:absolute;height:129.18%;left:-66.14%;max-width:none;top:-13.91%;width:338.6%;">
+        </div>
       </div>
       <div class="project-card__name">
         Профиль пользователя
-        <img class="project-card__name-star" src="https://www.figma.com/api/mcp/asset/dc852e6a-ed2a-453a-be26-8a8449772329" alt="">
+        <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
       <div class="project-card__org">Tingli, Wildberries × BHSAD</div>
@@ -383,14 +473,18 @@
       </div>
     </a>
 
-    <!-- 3. Геймификация в умном доме -->
+    <!-- 3. Геймификация в умном доме (Sberdevices) -->
     <a class="project-card reveal" href="gamification.html">
       <div class="project-card__thumb bg-teal">
-        <img src="https://www.figma.com/api/mcp/asset/6e5f9118-7baf-450a-a6fc-e7bfabb8745a" alt="Геймификация" style="height:88%;border-radius:32px;object-fit:contain;">
+        <!-- Phone: 248x484px, centered, top:16px -->
+        <div style="position:absolute;left:50%;top:16px;transform:translateX(-50%);width:248px;height:484px;border-radius:40px;overflow:hidden;pointer-events:none;">
+          <img src="https://www.figma.com/api/mcp/asset/387fc587-2cf8-4e65-9092-4e14f7709b39" alt="Геймификация"
+            style="position:absolute;height:129.73%;left:-64.86%;max-width:none;top:-14.16%;width:337.84%;">
+        </div>
       </div>
       <div class="project-card__name">
         Геймификация в умном доме
-        <img class="project-card__name-star" src="https://www.figma.com/api/mcp/asset/dc852e6a-ed2a-453a-be26-8a8449772329" alt="">
+        <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
       <div class="project-card__org">Sberdevices × BHSAD</div>
@@ -403,11 +497,12 @@
     <!-- 4. Анкета для слабовидящих -->
     <a class="project-card reveal" href="hakaton.html">
       <div class="project-card__thumb bg-grey">
-        <img src="https://www.figma.com/api/mcp/asset/46a3fda6-ebf7-404e-b0cc-ddb02b867a42" alt="Анкета для слабовидящих" style="height:100%;object-fit:cover;">
+        <img src="https://www.figma.com/api/mcp/asset/bf31c871-1311-41a7-9b10-ec0785f3221c" alt="Анкета для слабовидящих"
+          style="position:absolute;left:50%;top:-26px;transform:translateX(-50%);width:685px;height:506px;max-width:none;object-fit:cover;pointer-events:none;">
       </div>
       <div class="project-card__name">
         Анкета для слабовидящих
-        <img class="project-card__name-star" src="https://www.figma.com/api/mcp/asset/dc852e6a-ed2a-453a-be26-8a8449772329" alt="">
+        <img class="project-card__name-star" src="icons/star.svg" alt="">
         2025
       </div>
       <div class="project-card__org">Яндекс Практикум × НРОО Инватур</div>
@@ -420,14 +515,20 @@
 
     <!-- 5. Mendi -->
     <a class="project-card reveal" href="mendi.html">
-      <div class="project-card__thumb bg-sand" style="display:flex;align-items:center;justify-content:center;gap:12px;">
-        <img src="https://www.figma.com/api/mcp/asset/a8228013-70d4-4533-a8e5-2d4c98f3e016" alt="" style="height:82%;border-radius:24px;object-fit:contain;">
-        <img src="https://www.figma.com/api/mcp/asset/ba3cd63b-0b38-4b02-902a-5f5aa5937e74" alt="" style="height:82%;border-radius:24px;object-fit:contain;">
-        <img src="https://www.figma.com/api/mcp/asset/cff1c54c-86a7-43f1-9dbb-8e8e0b345cd2" alt="" style="height:82%;border-radius:24px;object-fit:contain;">
+      <div class="project-card__thumb bg-sand">
+        <!-- Left phone -->
+        <img src="https://www.figma.com/api/mcp/asset/7512ed6a-73ce-40a5-b708-04c56a98bfae" alt=""
+          style="position:absolute;left:12px;top:-7px;width:182px;height:377px;border-radius:32px;object-fit:cover;max-width:none;">
+        <!-- Center phone -->
+        <img src="https://www.figma.com/api/mcp/asset/58f27539-838c-4c4b-8485-e4acfbb0fe20" alt=""
+          style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:182px;height:372px;border-radius:32px;object-fit:cover;max-width:none;">
+        <!-- Right phone -->
+        <img src="https://www.figma.com/api/mcp/asset/97933bc3-3870-42fc-b703-d1ad13c2f516" alt=""
+          style="position:absolute;bottom:3px;left:400px;width:188px;height:374px;border-radius:32px;object-fit:cover;max-width:none;">
       </div>
       <div class="project-card__name">
         Mendi
-        <img class="project-card__name-star" src="https://www.figma.com/api/mcp/asset/dc852e6a-ed2a-453a-be26-8a8449772329" alt="">
+        <img class="project-card__name-star" src="icons/star.svg" alt="">
         2025
       </div>
       <div class="project-card__org">Яндекс Практикум</div>
@@ -446,7 +547,7 @@
     <a class="footer__logo" href="index.html">мария голубева</a>
     <ul class="footer__nav">
       <li><a href="#projects">мои проекты</a></li>
-      <li><a href="#">обо мне</a></li>
+      <li><a href="about.html">обо мне</a></li>
     </ul>
   </div>
 </footer>

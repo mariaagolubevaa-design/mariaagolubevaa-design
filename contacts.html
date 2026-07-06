@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Контакты — Мария Голубева</title>
+  <style>
+    @font-face {
+      font-family: 'Soyuz Grotesk';
+      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
+           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Gilroy', 'Montserrat', Arial, sans-serif;
+      background: #fffefb;
+      color: #1e1e1c;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    :root {
+      --black: #1e1e1c;
+      --grey1: #d2d2d2;
+      --grey2: #a5a5a4;
+      --footer-bg: #ece6d6;
+      --pad: 40px;
+      --max-w: 1280px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,254,251,.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 50px var(--pad) 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative;
+    }
+    .nav__logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--grey1); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav__logo-icon { width: 24px; height: 24px; }
+    .nav__logo:hover { color: var(--black); }
+    .nav__active {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--grey1); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav__active:hover { color: var(--black); }
+    .nav__link {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--black); text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__link img { width: 24px; height: 24px; }
+
+    /* ── MAIN ── */
+    .contacts-main {
+      flex: 1;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 0 var(--pad);
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .contacts-left {
+      flex: 1;
+      padding-top: 123px;
+    }
+
+    .contacts-heading {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .contacts-heading img { width: 40px; height: 40px; flex-shrink: 0; }
+    .contacts-heading h1 {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 50px; font-weight: 700;
+      color: var(--black); text-transform: uppercase;
+      line-height: normal;
+    }
+
+    .contacts-list {
+      margin-top: 124px;
+      display: flex; flex-direction: column; gap: 56px;
+    }
+
+    .contacts-item {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .contacts-item img { width: 24px; height: 24px; flex-shrink: 0; }
+    .contacts-item p,
+    .contacts-item a.label {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 20px; font-weight: 500;
+      color: var(--black); text-decoration: none;
+      line-height: normal;
+    }
+    .contacts-item a.label:hover { text-decoration: underline; }
+    .contacts-item a.tg-link {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 20px; font-weight: 500;
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .contacts-item a.tg-link:hover { opacity: .7; }
+
+    /* ── PHOTO ── */
+    .contacts-photo {
+      width: 606px; height: 452px;
+      border-radius: 24px; overflow: hidden;
+      flex-shrink: 0; position: relative;
+      margin-top: 123px;
+    }
+    .contacts-photo img {
+      position: absolute;
+      height: 106.86%; left: -4%; top: -2.43%; width: 119.36%;
+      max-width: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      border-radius: 32px 32px 0 0;
+      margin: 0;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 32px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer__logo {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--black); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer__logo:hover { color: #B03C39; }
+    .footer__nav { display: flex; gap: 132px; list-style: none; }
+    .footer__nav a {
+      font-family: 'Soyuz Grotesk', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--black); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer__nav a:hover { color: #B03C39; }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal--delay-1 { transition-delay: .15s; }
+    .reveal--delay-2 { transition-delay: .30s; }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav__logo" href="index.html">мария голубева</a>
+      <a class="nav__active" href="about.html">обо мне</a>
+      <a class="nav__link" href="contacts.html">
+        <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
+        контакты
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="contacts-main">
+
+    <div class="contacts-left">
+      <div class="contacts-heading reveal">
+        <img src="icons/logo-star.svg" alt="">
+        <h1>Контакты</h1>
+      </div>
+
+      <div class="contacts-list">
+        <div class="contacts-item reveal reveal--delay-1">
+          <img src="icons/star.svg" alt="">
+          <p>Телеграм:&nbsp;<a class="tg-link" href="https://t.me/mariaagolubeva" target="_blank">@mariaagolubeva</a></p>
+        </div>
+        <div class="contacts-item reveal reveal--delay-1">
+          <img src="icons/star.svg" alt="">
+          <a class="label" href="mailto:mariashikalovaa@gmail.com">Почта</a>
+        </div>
+        <div class="contacts-item reveal reveal--delay-2">
+          <img src="icons/star.svg" alt="">
+          <a class="label" href="https://hh.ru/resume/279dfc0cff0e5cd9250039ed1f70434c6e7676?print=true" target="_blank">Резюме</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts-photo reveal">
+      <img src="https://www.figma.com/api/mcp/asset/cbbd9db2-89a6-40bb-b530-793032ece15e" alt="Мария Голубева">
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a class="footer__logo" href="index.html">мария голубева</a>
+      <ul class="footer__nav">
+        <li><a href="index.html">мои проекты</a></li>
+        <li><a href="about.html">обо мне</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
