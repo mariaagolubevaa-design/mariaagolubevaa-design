@@ -209,8 +209,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      border: 1.5px solid var(--black);
+      gap: 14px;
+      border: 1.5px solid #1E1E1C;
       border-radius: 32px;
       width: 208px;
       height: 48px;
@@ -227,13 +227,15 @@
       border-color: #B03C39;
     }
 
-    .hero__btn:hover .hero__btn-arrow {
-      filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(800%) hue-rotate(323deg) brightness(90%);
+    .hero__btn:hover .hero__btn-arrow path {
+      stroke: #B03C39;
     }
 
     .hero__btn-arrow {
-      width: 24px;
-      height: 26px;
+      flex-shrink: 0;
+      vertical-align: middle;
+      position: relative;
+      top: 1px;
     }
 
     /* ── PROJECTS ── */
@@ -398,7 +400,7 @@
 <!-- HERO -->
 <section class="hero reveal">
   <div class="hero__photo-wrap">
-    <img class="hero__photo" src="https://www.figma.com/api/mcp/asset/e8361f56-35f7-49ae-bbc7-9d8d81976a18" alt="Маша Голубева">
+    <img class="hero__photo" src="assets/images/hero-photo-masha.jpeg" alt="Маша Голубева">
     <div class="hero__bubble">Привет! Я — Маша</div>
   </div>
 
@@ -412,7 +414,9 @@
     </p>
     <a class="hero__btn" href="#projects">
       Посмотреть
-      <img class="hero__btn-arrow" src="icons/chevron.svg" alt="">
+      <svg class="hero__btn-arrow" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.5 1L5.5 6L1.5 11" stroke="#1E1E1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
   </div>
 </section>
@@ -425,7 +429,7 @@
     <a class="project-card reveal" href="https://bhsad.ru/britankaconf" target="_blank">
       <div class="project-card__thumb bg-pink">
         <!-- Laptop image centered -->
-        <img src="https://www.figma.com/api/mcp/asset/2caa27e3-4d26-4487-975e-66453c553bb9" alt="Дизайн конф"
+        <img src="assets/images/card-dizajn-konf.png" alt="Дизайн конф"
           style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:685px;height:506px;max-width:none;object-fit:cover;pointer-events:none;">
         <!-- Star decorations -->
         <img src="icons/star-white.svg" alt=""
@@ -457,7 +461,7 @@
         </svg>
         <!-- Phone: 248x488px, centered, screen image inside -->
         <div style="position:absolute;left:50%;top:16px;transform:translateX(-50%);width:248px;height:488px;border-radius:40px;overflow:hidden;pointer-events:none;">
-          <img src="https://www.figma.com/api/mcp/asset/f640d6e1-7735-421a-b14d-541f3283c28a" alt="Tingli"
+          <img src="assets/images/card-tingli.png" alt="Tingli"
             style="position:absolute;height:129.18%;left:-66.14%;max-width:none;top:-13.91%;width:338.6%;">
         </div>
       </div>
@@ -478,7 +482,7 @@
       <div class="project-card__thumb bg-teal">
         <!-- Phone: 248x484px, centered, top:16px -->
         <div style="position:absolute;left:50%;top:16px;transform:translateX(-50%);width:248px;height:484px;border-radius:40px;overflow:hidden;pointer-events:none;">
-          <img src="https://www.figma.com/api/mcp/asset/387fc587-2cf8-4e65-9092-4e14f7709b39" alt="Геймификация"
+          <img src="assets/images/card-gamification.png" alt="Геймификация"
             style="position:absolute;height:129.73%;left:-64.86%;max-width:none;top:-14.16%;width:337.84%;">
         </div>
       </div>
@@ -497,7 +501,7 @@
     <!-- 4. Анкета для слабовидящих -->
     <a class="project-card reveal" href="hakaton.html">
       <div class="project-card__thumb bg-grey">
-        <img src="https://www.figma.com/api/mcp/asset/bf31c871-1311-41a7-9b10-ec0785f3221c" alt="Анкета для слабовидящих"
+        <img src="assets/images/card-anketa.png" alt="Анкета для слабовидящих"
           style="position:absolute;left:50%;top:-26px;transform:translateX(-50%);width:685px;height:506px;max-width:none;object-fit:cover;pointer-events:none;">
       </div>
       <div class="project-card__name">
@@ -513,30 +517,6 @@
       </div>
     </a>
 
-    <!-- 5. Mendi -->
-    <a class="project-card reveal" href="mendi.html">
-      <div class="project-card__thumb bg-sand">
-        <!-- Left phone -->
-        <img src="https://www.figma.com/api/mcp/asset/7512ed6a-73ce-40a5-b708-04c56a98bfae" alt=""
-          style="position:absolute;left:12px;top:-7px;width:182px;height:377px;border-radius:32px;object-fit:cover;max-width:none;">
-        <!-- Center phone -->
-        <img src="https://www.figma.com/api/mcp/asset/58f27539-838c-4c4b-8485-e4acfbb0fe20" alt=""
-          style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:182px;height:372px;border-radius:32px;object-fit:cover;max-width:none;">
-        <!-- Right phone -->
-        <img src="https://www.figma.com/api/mcp/asset/97933bc3-3870-42fc-b703-d1ad13c2f516" alt=""
-          style="position:absolute;bottom:3px;left:400px;width:188px;height:374px;border-radius:32px;object-fit:cover;max-width:none;">
-      </div>
-      <div class="project-card__name">
-        Mendi
-        <img class="project-card__name-star" src="icons/star.svg" alt="">
-        2025
-      </div>
-      <div class="project-card__org">Яндекс Практикум</div>
-      <div class="chips">
-        <span class="chip">приложение</span>
-        <span class="chip">ux/ui</span>
-      </div>
-    </a>
 
   </div>
 </section>
