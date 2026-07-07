@@ -354,6 +354,17 @@
     }
     .sberdevices-link:hover { color: var(--black); }
 
+    /* ── ONBOARDING SCROLL ── */
+    .onboarding-scroll {
+      overflow-x: auto;
+      width: calc(100% + 80px);
+      margin-left: -40px;
+      margin-right: -40px;
+      height: 576px;
+      scrollbar-width: none;
+    }
+    .onboarding-scroll::-webkit-scrollbar { display: none; }
+
     /* ── MY ROLE CARD ── */
     .my-role-card {
       position: relative;
@@ -842,10 +853,10 @@
       </div>
 
       <!-- Flow onboarding (1300:9289) -->
-      <div class="reveal" style="margin-top:96px;">
+      <div class="onboarding-scroll reveal" style="margin-top:96px;">
         <img src="assets/images/gamification-flow-onboarding.png"
              alt="Спроектированный онбординг для геймификации"
-             style="width:100%; display:block; border-radius:16px;">
+             style="height:576px; width:auto; display:block; border-radius:16px;">
       </div>
 
       <!-- My Role (276:11335) -->
