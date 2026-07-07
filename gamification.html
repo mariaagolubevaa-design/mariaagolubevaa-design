@@ -20,11 +20,41 @@
       padding-bottom: 0;
     }
 
-    /* Gilroy fallback via font-face from CDN */
+    @font-face {
+      font-family: 'Soyuz Grotesk';
+      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
+           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
     @font-face {
       font-family: 'Gilroy';
+      src: url('fonts/gilroy-regular.ttf') format('truetype');
       font-weight: 400;
-      src: local('Montserrat');
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-semibold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
     }
 
     /* ── TOKENS ── */
@@ -32,11 +62,16 @@
       --black: #1e1e1c;
       --white: #fff;
       --grey1: #d2d2d2;
+      --grey2: #a5a5a4;
+      --grey3: #787877;
       --cover-bg: #d6ebec;
       --footer-bg: #ece6d6;
       --accent: #1e1e1c;
       --muted: rgba(30,30,28,.4);
       --page-width: 1200px;
+      --page-w: 1200px;
+      --max-w: 1280px;
+      --pad: 40px;
       --radius-card: 48px;
       --radius-screen: 56px;
     }
@@ -50,45 +85,71 @@
 
     section { padding: 80px 0; }
 
-    /* ── NAVBAR ── */
-    .navbar {
-      position: sticky;
-      top: 0;
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,254,251,.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--grey1);
-      padding: 18px 80px;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #nav-hover-zone {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      z-index: 101;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 50px var(--pad) 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
-
-    .navbar__logo {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      text-transform: lowercase;
-      text-decoration: none;
-      color: var(--black);
-    }
-
-    .navbar__links {
+    .nav__logo {
       display: flex;
-      gap: 132px;
-      list-style: none;
-    }
-
-    .navbar__links a {
-      font-size: 20px;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px;
       font-weight: 700;
-      text-decoration: none;
       color: var(--black);
-      text-transform: lowercase;
-      transition: opacity .2s;
+      text-decoration: none;
     }
-
-    .navbar__links a:hover { opacity: .5; }
+    .nav__logo-icon { width: 24px; height: 24px; }
+    .nav__logo { transition: color .2s; }
+    .nav__logo:hover { color: #B03C39; }
+    .nav__about {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav__about:hover { color: #B03C39; }
+    .nav__link {
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__link:hover { color: #B03C39; }
 
     /* ── COVER ── */
     .cover {
@@ -99,66 +160,75 @@
       overflow: hidden;
       position: relative;
       height: 805px;
-      display: flex;
-      align-items: flex-end;
     }
 
     .cover__bg-title {
       position: absolute;
-      top: 28px;
-      left: 57px;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 140px;
-      font-weight: 700;
+      font-weight: 600;
       color: rgba(255,255,255,.5);
       text-transform: uppercase;
       white-space: nowrap;
       pointer-events: none;
-      letter-spacing: -.02em;
+      letter-spacing: 2.8px;
       line-height: 1;
     }
 
     .cover__info {
       position: absolute;
-      top: 181px;
-      left: 57px;
-      right: 57px;
+      top: 161px;
+      left: 55px;
+      width: 633px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 16px;
       font-weight: 500;
       color: var(--black);
+      white-space: nowrap;
     }
 
-    .cover__info-left { display: flex; gap: 24px; }
+    .cover__info-left { display: flex; gap: 16px; }
 
     .cover__info-right {
       display: flex;
-      gap: 60px;
+      width: 363px;
+      justify-content: space-between;
     }
 
     .cover__headline {
       position: absolute;
-      left: 57px;
-      top: 382px;
+      left: 55px;
+      top: 322px;
       font-size: 40px;
       font-weight: 600;
-      line-height: 1.2;
+      line-height: normal;
       color: var(--black);
     }
 
     .cover__headline strong { font-weight: 700; }
 
+    .cover__underline {
+      position: absolute;
+      left: 113px;
+      top: 413px;
+      width: 486px;
+      height: 5px;
+      display: block;
+    }
+
     .cover__phone {
       position: absolute;
-      right: 57px;
-      top: 222px;
+      left: 758px;
+      top: 109px;
       width: 402px;
       height: 874px;
       border-radius: 56px;
       border: 2px solid #fff;
       overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,.15);
     }
 
     .cover__phone img {
@@ -208,52 +278,45 @@
       margin-bottom: 60px;
       display: flex;
       align-items: center;
-      gap: 16px;
-    }
-
-    .section-title::after {
-      content: '↑';
-      font-size: 24px;
-      opacity: .4;
+      gap: 24px;
     }
 
     /* ── ABOUT PROJECT ── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      row-gap: 80px;
+      column-gap: 0;
       margin-bottom: 80px;
     }
 
+    .about-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
     .about-block h3 {
-      font-size: 32px;
+      font-size: 40px;
       font-weight: 600;
-      margin-bottom: 16px;
       color: var(--black);
     }
 
     .about-block p {
-      font-size: 18px;
-      line-height: 1.6;
+      font-size: 20px;
+      line-height: normal;
       color: var(--black);
+      margin: 0;
     }
 
     .about-block p strong { font-weight: 700; }
 
-    .about-block .sub {
-      font-size: 16px;
-      color: #a7a7a7;
-      line-height: 1.75;
-      margin-top: 8px;
-    }
-
     /* ── DEVICES ROW ── */
     .devices-row {
       display: flex;
-      gap: 60px;
+      gap: 76px;
       align-items: flex-end;
       margin-bottom: 60px;
-      padding: 40px 0;
     }
 
     .device-card {
@@ -278,49 +341,13 @@
 
     /* ── MY ROLE CARD ── */
     .my-role-card {
-      background: var(--cover-bg);
-      border-radius: var(--radius-card);
-      padding: 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      margin-bottom: 80px;
       position: relative;
+      width: calc(100% + 80px);
+      margin: 80px -40px 0;
+      height: 539px;
+      background: #d6ebec;
+      border-radius: 48px;
       overflow: hidden;
-    }
-
-    .my-role-card h3 {
-      font-size: 32px;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .my-role-card ul {
-      list-style: none;
-      font-size: 18px;
-      line-height: 1.75;
-    }
-
-    .my-role-card ul li strong { font-weight: 700; }
-
-    .my-role-card__img {
-      border-radius: 32px;
-      overflow: hidden;
-      border: 3px solid #fff;
-    }
-
-    .my-role-card__img img { width: 100%; display: block; }
-
-    .my-role-bubble {
-      position: absolute;
-      bottom: 60px;
-      right: 60px;
-      background: #fff;
-      border-radius: 14px 14px 14px 0;
-      padding: 10px 20px;
-      font-size: 24px;
-      font-weight: 600;
     }
 
     /* ── DESIGN PROCESS ── */
@@ -674,39 +701,39 @@
 <body>
 
   <!-- BACK NAV -->
-  <nav class="navbar" style="position:sticky;top:0;z-index:100;background:rgba(255,254,251,.92);backdrop-filter:blur(12px);border-bottom:1px solid #d2d2d2;padding:18px 80px;display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" style="display:flex;align-items:center;gap:10px;font-family:Montserrat,sans-serif;font-size:20px;font-weight:700;color:#1e1e1c;text-decoration:none;">← мои проекты</a>
-    <span style="font-family:Montserrat,sans-serif;font-size:20px;font-weight:700;color:#1e1e1c;">мария голубева</span>
-  </nav>
-  <nav class="navbar">
-    <a class="navbar__logo" href="#">мария голубева</a>
-    <ul class="navbar__links">
-      <li><a href="#projects">мои проекты</a></li>
-      <li><a href="#about-me">обо мне</a></li>
-    </ul>
+  <div id="nav-hover-zone"></div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav__logo" href="index.html">
+        <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
+        Мария Голубева
+      </a>
+      <a class="nav__about" href="about.html">обо мне</a>
+      <a class="nav__link" href="contacts.html">контакты</a>
+    </div>
   </nav>
 
   <!-- COVER -->
-  <div class="container" style="padding:0 40px;">
-    <div class="cover">
-      <p class="cover__bg-title">ГЕЙМИФИКАЦИЯ</p>
-      <div class="cover__info">
-        <div class="cover__info-left">
-          <span>Sberdevices</span>
-          <span>BHSAD</span>
-        </div>
-        <div class="cover__info-right">
-          <span>приложение</span>
-          <span>ноябрь 2025 – январь 2026</span>
-        </div>
+  <div class="cover">
+    <p class="cover__bg-title">ГЕЙМИФИКАЦИЯ</p>
+    <div class="cover__info">
+      <div class="cover__info-left">
+        <span>Sberdevices</span>
+        <span>BHSAD</span>
       </div>
-      <div style="padding: 382px 57px 0; z-index:1;">
-        <h1 class="cover__headline">
-          Новый взгляд <br>на <strong>приложение умного дома</strong>
-        </h1>
+      <div class="cover__info-right">
+        <span>приложение</span>
+        <span>ноябрь 2025 – январь 2026</span>
       </div>
-      <div class="cover__phone">
-        <img src="https://www.figma.com/api/mcp/asset/9a7b7f25-52f2-4062-9f3d-31920919d3ae" alt="Скриншот приложения" />
+    </div>
+    <h1 class="cover__headline">
+      Новый взгляд <br>на <strong>приложение умного дома</strong>
+    </h1>
+    <img class="cover__underline" src="assets/images/gamification-cover-underline.svg" alt="" aria-hidden="true">
+    <div class="cover__phone">
+      <img src="assets/images/gamification-cover-phone.gif" alt="Скриншот приложения">
+      <div style="position:absolute; left:50%; top:136px; transform:translateX(-50%) rotate(-5deg); width:247px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+        <p style="font-family:'Caveat',cursive; font-size:48px; font-weight:400; line-height:34px; color:#080808; opacity:0.6; text-align:center; width:242px; margin:0;">Дом вашей мечты</p>
       </div>
     </div>
   </div>
@@ -725,71 +752,134 @@
   <!-- ABOUT PROJECT -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title">О проекте</h2>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:60px;">
+        <h2 class="section-title" style="margin-bottom:0;">О проекте
+          <img src="assets/images/gamification-about-chevron.svg" width="24" height="24" alt="" aria-hidden="true" style="transform:rotate(180deg); flex-shrink:0;">
+        </h2>
+        <div style="background:#d2d2d2; border-radius:16px 16px 16px 0; padding:10px 20px; font-family:'Gilroy',Arial,sans-serif; font-size:24px; font-weight:600; color:#1e1e1c; white-space:nowrap;">
+          – Салют, умный дом
+        </div>
+      </div>
 
       <div class="about-grid reveal">
         <div class="about-block">
           <h3>Проблема</h3>
-          <p>1 Пользователи <strong>мало знают про экосистему</strong> умных устройств Сбер и думают, что умные устройства — это что-то сложное</p>
-          <br>
-          <p>2 <strong>Недостаточно вовлечены в сценарии</strong> и другую функциональность устройств</p>
+          <div>
+            <p>1 Пользователи <strong>мало знают про экосистему</strong> умных устройств Сбер и думают, что умные устройства — это что‑то сложное</p>
+            <p>2 <strong>Недостаточно вовлечены в сценарии</strong> и другую функциональность устройств</p>
+          </div>
         </div>
         <div class="about-block">
           <h3>Задача</h3>
-          <p><strong>Спроектировать геймифицированный опыт</strong> пользователей со Сбер устройствами</p>
+          <p><strong>Спроектировать геймифицированный опыт </strong>пользователей со Сбер устройствами</p>
+        </div>
+        <div class="about-block">
+          <h3>Метрики</h3>
+          <p>повлиять на Engagement rate, Stickness и CSI</p>
         </div>
         <div class="about-block">
           <h3>Цель</h3>
-          <p><strong>Встроить геймификацию</strong> в приложение умного дома, чтобы познакомить пользователей с устройствами Cбер</p>
-          <p class="sub">повлиять на Engagement rate, Stickness и CSI</p>
+          <p><strong>Встроить геймификацию</strong> в приложение умного дома, чтобы познакомить пользователей с устройствами Сбер</p>
         </div>
       </div>
 
       <!-- Devices row -->
       <div class="devices-row reveal">
         <div class="device-card">
-          <img src="https://www.figma.com/api/mcp/asset/39aeae57-010c-47fc-af66-d6c00740032b" alt="Умные телевизоры" />
+          <img src="assets/images/gamification-device-tv.png" alt="Умные телевизоры" style="max-height:183px;">
           <span>Умные телевизоры</span>
         </div>
         <div class="device-card">
-          <img src="https://www.figma.com/api/mcp/asset/da343680-b6cb-4fa1-8bb5-c001fca8005c" alt="Умная колонка" />
+          <img src="assets/images/gamification-device-boom.png" alt="Умная колонка" style="max-height:160px;">
           <span>Умная колонка</span>
         </div>
         <div class="device-card">
-          <img src="https://www.figma.com/api/mcp/asset/bfe48a6c-00aa-4bc4-a648-f137ded3fe98" alt="Медиацентры" />
+          <img src="assets/images/gamification-device-box2.png" alt="Медиацентры" style="max-height:179px;">
           <span>Медиацентры</span>
         </div>
         <div class="device-card">
-          <img src="https://www.figma.com/api/mcp/asset/87f20ee0-91b3-4908-ad4f-00b2e38c753e" alt="Лампочки" />
+          <img src="assets/images/gamification-device-lamp.png" alt="Лампочки" style="max-height:160px;">
           <span>Лампочки</span>
         </div>
         <div class="device-card">
-          <img src="https://www.figma.com/api/mcp/asset/30922224-7af6-499b-9ef8-d9a8682845f3" alt="Умное кольцо" />
+          <img src="assets/images/gamification-device-ring.png" alt="Умное кольцо" style="max-height:160px;">
           <span>Умное кольцо</span>
         </div>
         <div class="device-card">
-          <img src="https://www.figma.com/api/mcp/asset/c9492b54-c696-4ce8-a207-be4be9ed2d9d" alt="Умный ночник" />
+          <img src="assets/images/gamification-device-nightlight.png" alt="Умный ночник" style="max-height:160px;">
           <span>Умный ночник</span>
+        </div>
+        <div class="device-card">
+          <div style="position:relative; width:201px; height:134px;">
+            <img src="assets/images/gamification-device-mini2w.png" alt=""
+                 style="position:absolute; top:-10px; left:0; width:73%; object-fit:contain; object-position:bottom;">
+            <img src="assets/images/gamification-device-mini3b.png" alt=""
+                 style="position:absolute; top:21px; left:32px; right:0; width:84%; object-fit:contain; object-position:bottom;">
+          </div>
+          <span>Стереопара</span>
         </div>
       </div>
 
-      <!-- My Role -->
+      <!-- sberdevices.ru link -->
+      <div class="reveal" style="text-align:center; margin-bottom:60px;">
+        <a href="https://sberdevices.ru" target="_blank" rel="noopener"
+           style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:rgba(0,0,0,0.5); text-decoration:none;">sberdevices.ru</a>
+      </div>
+
+      <!-- Flow onboarding (1300:9289) -->
+      <div class="reveal" style="margin-top:80px;">
+        <img src="assets/images/gamification-flow-onboarding.png"
+             alt="Спроектированный онбординг для геймификации"
+             style="width:100%; display:block; border-radius:16px;">
+      </div>
+
+      <!-- My Role (276:11335) -->
       <div class="my-role-card reveal">
-        <div>
-          <h3 style="font-size:32px;font-weight:600;margin-bottom:24px;">Моя роль 🏠</h3>
-          <ul style="list-style:none;font-size:18px;line-height:1.9;">
-            <li>1 Проводила <strong>анализ конкурентов</strong> и <strong>полевые исследования</strong>,</li>
-            <li>2 Изучила фреймворки <strong>по геймификации (Октализ)</strong> и <strong>типологию игроков по Бартлу</strong>,</li>
-            <li>3 Интервьюировала респондентов,</li>
-            <li>4 Проводила <strong>количественный опрос</strong>,</li>
-            <li>5 Собирала CJM, Userstories и персоны,</li>
-            <li>6 Собирала презентацию и питчила</li>
-          </ul>
+        <!-- Heading -->
+        <div style="position:absolute; left:40px; top:32px; display:flex; align-items:center; gap:18px;">
+          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:32px; font-weight:600; color:#1e1e1c; white-space:nowrap; margin:0;">Моя роль</p>
+          <img src="assets/images/gamification-myrole-house.svg" width="40" height="28" alt="" aria-hidden="true">
         </div>
-        <div class="my-role-card__img">
-          <img src="https://www.figma.com/api/mcp/asset/00c2f2b2-3b5b-470f-9349-72fe839cd04d" alt="Питчинг" />
+        <!-- Text list -->
+        <div style="position:absolute; left:40px; top:95px; width:600px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Проводила <strong style="font-weight:700;">анализ конкурентов</strong> и <strong style="font-weight:700;">полевые исследования</strong>,</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Изучила фреймворки <strong style="font-weight:700;">по геймификации (Октализ)</strong> и <strong style="font-weight:700;">типологию игроков по Бартлу</strong>,</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Интервьюировала респондентов,</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Проводила <strong style="font-weight:700;">количественный опрос</strong>,</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Собирала CJM, Userstories и персоны,</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Собирала экраны по предложенному концепту,</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/gamification-myrole-star1.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:500; color:#1e1e1c; line-height:normal; margin:0; width:524px;">Собирала презентацию и пичтила</p>
+          </div>
         </div>
-        <div class="my-role-bubble">Салют! Да, это – я!</div>
+        <!-- Photo -->
+        <div style="position:absolute; left:640px; top:32px; width:520px; height:397px; border-radius:48px; border:3px solid #fff; overflow:hidden;">
+          <img src="assets/images/gamification-myrole-pitching.jpg" alt="Питчинг"
+               style="position:absolute; left:-18.33%; top:0; width:118.36%; height:100%; object-fit:cover;">
+        </div>
+        <!-- Speech bubble -->
+        <div style="position:absolute; left:905px; top:453px; background:#fff; border-radius:0 16px 16px 16px; padding:10px 20px; font-family:'Gilroy',Arial,sans-serif; font-size:24px; font-weight:600; color:#1e1e1c; white-space:nowrap;">
+          Салют! Да, это – я!
+        </div>
       </div>
     </div>
   </section>
@@ -1090,6 +1180,14 @@
       });
     }, { threshold: 0.1 });
     revealEls.forEach(el => revealObs.observe(el));
+    const nav = document.querySelector('.nav');
+    const hoverZone = document.getElementById('nav-hover-zone');
+    const showNav = () => nav.classList.add('nav--visible');
+    const hideNav = () => { if (!nav.matches(':hover') && !hoverZone.matches(':hover')) nav.classList.remove('nav--visible'); };
+    hoverZone.addEventListener('mouseenter', showNav);
+    hoverZone.addEventListener('mouseleave', hideNav);
+    nav.addEventListener('mouseenter', showNav);
+    nav.addEventListener('mouseleave', hideNav);
   </script>
 </body>
 </html>

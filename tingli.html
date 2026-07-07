@@ -185,7 +185,7 @@
 
     /* PAGINATION */
     .pagination { display:flex; align-items:center; justify-content:space-between; padding:32px 40px; max-width:var(--page-w); margin:0 auto; border-top:1px solid var(--grey1); }
-    .pagination__btn { display:flex; align-items:center; gap:12px; font-size:24px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:inherit; }
+    .pagination__btn { display:flex; align-items:center; gap:16px; font-size:24px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:inherit; }
     .pagination__btn:hover { opacity:.6; }
 
     /* FOOTER */
@@ -606,26 +606,84 @@
 <!-- RESULT -->
 <section id="result" style="padding-top:16px;">
   <div class="container">
-    <h2 class="section-title">Результат</h2>
-    <div class="reveal">
-      <h3>Итог проекта</h3>
-      <p>Мы решаем проблему фрагментированного опыта, где пользователю приходится использовать несколько разных приложений. Создаём устойчивую систему обучения, которая удерживает пользователя и растёт вместе с ним.</p>
-    </div>
-    <div class="screens-row reveal">
-      <div class="phone-screen">
-        <img src="assets/images/tingli-rezultat-phone-thumb.png" alt="Результат">
+    <div class="reveal" style="display:flex; align-items:flex-start; justify-content:space-between;">
+      <p style="font-family:'Gilroy',Arial,sans-serif; font-size:40px; font-weight:600; color:#1e1e1c; white-space:nowrap; text-align:center; margin:0;">Результат</p>
+      <div style="width:598px;">
+        <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Мы решаем проблему фрагментированного опыта, где пользователю приходится использовать несколько разных приложений</p>
+        <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">В итоге мы создаём не просто приложение, а устойчивую систему обучения, которая удерживает пользователя и растёт вместе с ним</p>
       </div>
     </div>
+
+    <!-- Screens mockup frame (668:20830) -->
+    <div class="reveal" style="position:relative; width:calc(100% + 80px); margin:60px -40px 0; height:950px; background:#f9e5e6; border-radius:48px; overflow:hidden;">
+
+      <!-- background vector waves -->
+      <img src="assets/images/tingli-result-bg-waves.svg" alt="" aria-hidden="true" style="position:absolute; left:-2.5px; top:29px; width:1182.5px; height:683.5px; display:block;">
+
+      <!-- phone mockup: 375×812, left:413, top:64 -->
+      <div style="position:absolute; left:413px; top:64px; width:375px; height:812px; background:white; border-radius:48px; overflow:hidden;">
+
+        <!-- status bar (simplified) -->
+        <div style="position:absolute; left:0; top:0; width:375px; height:54px; display:flex; align-items:center; padding:0 28px; box-sizing:border-box;">
+          <span style="font-size:15px; font-weight:600; color:#000; letter-spacing:-0.4px;">9:41</span>
+        </div>
+
+        <!-- logo: left:155, top:66, 64×24 -->
+        <div style="position:absolute; left:155px; top:66px; height:24px; display:flex; align-items:center; gap:4px;">
+          <img src="assets/images/tingli-result-logo-icon.png" alt="" style="width:24px; height:24px; display:block;">
+          <span style="font-size:16px; color:#000; line-height:1;">tingli</span>
+        </div>
+
+        <!-- star 113: left:68, top:181, 50×50 -->
+        <img src="assets/images/tingli-result-star1.svg" alt="" aria-hidden="true" style="position:absolute; left:68px; top:181px; width:50px; height:50px; display:block;">
+
+        <!-- star 115: left:270, top:126, 32×32 -->
+        <img src="assets/images/tingli-result-star2.svg" alt="" aria-hidden="true" style="position:absolute; left:270px; top:126px; width:32px; height:32px; display:block;">
+
+        <!-- lunar large (horizontally flipped): left:221, top:181, 156×225.5 -->
+        <div style="position:absolute; left:221px; top:181px; width:156px; height:225.5px;">
+          <img src="assets/images/tingli-result-lunar-lg.svg" alt="" style="width:100%; height:100%; display:block; transform:rotate(180deg) scaleY(-1);">
+        </div>
+
+        <!-- lunar small: left:40, top:593, 66×95 -->
+        <div style="position:absolute; left:40px; top:593px; width:66px; height:95px;">
+          <img src="assets/images/tingli-result-lunar-sm.svg" alt="" style="width:100%; height:100%; display:block;">
+        </div>
+
+        <!-- 元宵节: centered, top:489, 48px -->
+        <p style="position:absolute; left:50%; top:489px; transform:translateX(-50%); font-size:48px; line-height:1; color:#000; text-align:center; white-space:nowrap; margin:0;">元宵节</p>
+
+        <!-- Праздник фонарей!: left:60, top:537, width:256, 20px -->
+        <p style="position:absolute; left:60px; top:537px; width:256px; font-size:20px; line-height:1.2; color:#000; text-align:center; margin:0;">Праздник фонарей!</p>
+
+        <!-- star 114: left:283, top:458, 40×40 -->
+        <img src="assets/images/tingli-result-star3.svg" alt="" aria-hidden="true" style="position:absolute; left:283px; top:458px; width:40px; height:40px; display:block;">
+
+        <!-- lantern left: left:53, top:296, 89×113.5 -->
+        <img src="assets/images/tingli-result-lantern-l.svg" alt="" style="position:absolute; left:53px; top:296px; width:89px; height:113.5px; display:block;">
+
+        <!-- lantern right: left:253, top:610, 89×113.5 -->
+        <img src="assets/images/tingli-result-lantern-r.svg" alt="" style="position:absolute; left:253px; top:610px; width:89px; height:113.5px; display:block;">
+
+        <!-- home indicator: top:778, 375×34 -->
+        <img src="assets/images/tingli-result-home-indicator.svg" alt="" style="position:absolute; left:0; top:778px; width:375px; height:34px; display:block;">
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- PAGINATION -->
 <div class="pagination">
-  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ наверх</button>
-  <div style="display:flex;gap:40px;">
-    <a class="pagination__btn" href="gamification.html">← Геймификация в УД</a>
-    <a class="pagination__btn" href="mendi.html">Mendi →</a>
-  </div>
+  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <img src="assets/images/tingli-pagination-chevron.svg" width="24" height="24" alt="" aria-hidden="true">
+    <span style="text-transform:capitalize;">наверх</span>
+  </button>
+  <a class="pagination__btn" href="gamification.html">
+    Геймификация в УД
+    <img src="assets/images/tingli-pagination-chevron.svg" width="24" height="24" alt="" aria-hidden="true">
+  </a>
 </div>
 
 <footer>
