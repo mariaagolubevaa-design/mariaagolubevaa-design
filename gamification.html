@@ -1089,12 +1089,20 @@
                 <img src="assets/images/main-chevron.svg" alt="" style="width:13.73px; height:13.73px; transform:rotate(180deg);">
               </div>
 
-              <!-- Charge (1354:14892): x=154.46, y=36.04, 36.46×25.17 -->
-              <div style="position:absolute; left:154.46px; top:36.04px; width:36.46px; height:25.17px; border-radius:57.21px; display:flex; align-items:center; gap:3.43px; padding:6.87px 5.72px; box-sizing:border-box; background:rgba(255,255,255,0.5);">
+              <!-- Charge (1354:14892): x=154.46, y=36.04, 36.46×25.17, glass Frost=2.86 Refraction=60 Depth=17 -->
+              <div style="position:absolute; left:154.46px; top:36.04px; width:36.46px; height:25.17px; border-radius:57.21px; display:flex; align-items:center; gap:3.43px; padding:6.86px 6.86px 6.86px 5.72px; box-sizing:border-box;
+                   background:rgba(255,255,255,0.5);
+                   backdrop-filter:blur(2.86px) saturate(160%); -webkit-backdrop-filter:blur(2.86px) saturate(160%);
+                   box-shadow:0 2px 17px rgba(0,0,0,0.12);">
                 <span style="font-size:8.01px; font-weight:600; color:#080808; font-family:'Gilroy',system-ui,sans-serif; letter-spacing:-0.16px; line-height:10.3px; flex-shrink:0;">52</span>
-                <!-- Coin: dark radial sphere + yellow bolt -->
-                <div style="position:relative; width:11.44px; height:11.44px; border-radius:50%; overflow:hidden; flex-shrink:0;">
-                  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 63%, rgb(6,5,1) 64%, rgb(18,16,3) 68%, rgb(31,27,4) 73%, rgb(57,49,8) 82%, rgb(82,71,12) 91%, rgb(108,93,15) 100%);"></div>
+                <!-- Coin: 4-layer (white+saturation+overlay+radial linear-burn) + bolt -->
+                <div style="position:relative; width:11.44px; height:11.44px; border-radius:50%; flex-shrink:0; box-shadow:0 0 1.14px rgba(0,0,0,0.1), 0 0.57px 4.58px rgba(0,0,0,0.12);">
+                  <div style="position:absolute; inset:0; border-radius:50%; overflow:hidden;">
+                    <div style="position:absolute; inset:0; background:rgba(255,255,255,0.5);"></div>
+                    <div style="position:absolute; inset:0; background:white; mix-blend-mode:saturation;"></div>
+                    <div style="position:absolute; inset:0; background:#999999; mix-blend-mode:overlay;"></div>
+                    <div style="position:absolute; inset:0; mix-blend-mode:linear-burn; background:radial-gradient(circle at 50% 50%, rgb(6,5,1) 63%, rgb(18,16,3) 68%, rgb(31,27,4) 73%, rgb(57,49,8) 82%, rgb(82,71,12) 91%, rgb(108,93,15) 100%);"></div>
+                  </div>
                   <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
                     <img src="assets/images/main-bolt.svg" alt="" style="width:4.58px; height:9.15px;">
                   </div>
