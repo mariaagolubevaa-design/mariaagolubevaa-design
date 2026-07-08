@@ -988,10 +988,11 @@
 
               <!-- Header – Figma: x=11.15 y=36.04 w=211.67 h=25.17 (topmost z) -->
               <div style="position:absolute; top:36.04px; left:11.15px; width:211.67px; height:25.17px; display:flex; justify-content:space-between; align-items:center;">
-                <!-- Close button: w=25.17 h=25.17, white0.5, GLASS blur=2.86 -->
+                <!-- Close button: w=25.17 h=25.17, white0.5, GLASS Frost=2.86 Refraction=60 Depth=17 -->
                 <div style="width:25.17px; height:25.17px; border-radius:57.21px; overflow:hidden; display:flex; align-items:center; justify-content:center; flex-shrink:0;
                      background:rgba(255,255,255,0.5);
-                     backdrop-filter:blur(2.86px); -webkit-backdrop-filter:blur(2.86px);">
+                     backdrop-filter:blur(2.86px) saturate(160%); -webkit-backdrop-filter:blur(2.86px) saturate(160%);
+                     box-shadow:0 2px 17px rgba(0,0,0,0.12);">
                   <svg width="11.44" height="11.44" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#080808" stroke-width="2" stroke-linecap="round"/></svg>
                 </div>
                 <!-- Progress bars: Figma gap=4.577px, each bar w=57.21px h=3.43px -->
