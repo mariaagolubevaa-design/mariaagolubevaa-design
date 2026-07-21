@@ -56,6 +56,13 @@
       font-style: normal;
       font-display: swap;
     }
+    @font-face {
+      font-family: 'Kom-post';
+      src: url('fonts/kom-post.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
     /* ── TOKENS ── */
     :root {
@@ -84,6 +91,7 @@
     }
 
     section { padding: 80px 0; }
+    #process { padding-top: 48px; padding-bottom: 30px; }
 
     /* ── NAV ── */
     .nav {
@@ -272,6 +280,7 @@
 
     /* ── SECTION TITLES ── */
     .section-title {
+      font-family: 'Gilroy', sans-serif;
       font-size: 40px;
       font-weight: 600;
       color: var(--black);
@@ -378,44 +387,58 @@
 
     /* ── DESIGN PROCESS ── */
     .process-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 80px;
+      position: relative;
+      min-height: 220px;
+      margin-bottom: 0;
     }
 
     .process-step {
-      padding: 40px;
-      background: #f5f5f5;
-      border-radius: 32px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .process-step__num {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: .1em;
+    .process-step:nth-child(1) {
+      top: 0;
+      left: 0;
+      right: 824px;
+    }
+
+    .process-step:nth-child(2) {
+      top: 48px;
+      left: calc(50% - 148px);
+      width: 296px;
+    }
+
+    .process-step:nth-child(3) {
+      top: 96px;
+      right: 0;
+      width: 296px;
     }
 
     .process-step h3 {
+      font-family: 'Gilroy', sans-serif;
       font-size: 24px;
       font-weight: 600;
-      margin-bottom: 12px;
+      color: var(--black);
+      margin: 0;
     }
 
     .process-step p {
+      font-family: 'Gilroy', sans-serif;
       font-size: 18px;
-      line-height: 1.6;
-      color: #555;
+      font-weight: 500;
+      line-height: normal;
+      color: var(--black);
+      margin: 0;
     }
 
     /* ── RESEARCH ── */
     .competitors-row {
       display: flex;
       gap: 80px;
-      margin-bottom: 60px;
+      margin-bottom: 96px;
       align-items: flex-start;
     }
 
@@ -453,87 +476,25 @@
     .interviews-card {
       background: var(--cover-bg);
       border-radius: var(--radius-card);
-      padding: 60px;
       margin-bottom: 60px;
-    }
-
-    .interviews-card h3 {
-      font-size: 32px;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .interviews-card p {
-      font-size: 18px;
-      line-height: 1.75;
-      max-width: 600px;
-      margin-bottom: 40px;
-    }
-
-    .interviews-stats {
-      display: flex;
-      gap: 80px;
-    }
-
-    .stat { }
-
-    .stat__label { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
-
-    .stat__value {
-      font-size: 80px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .quotes-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 40px;
+      width: 1200px;
+      height: 621px;
+      margin-left: -40px;
+      position: relative;
+      overflow: hidden;
     }
 
     .quote-bubble {
-      display: inline-block;
       background: #fff;
       border-radius: 14px 14px 14px 0;
       padding: 10px 20px;
+      font-family: 'Gilroy', sans-serif;
       font-size: 20px;
       font-weight: 500;
-      align-self: flex-start;
+      color: #1e1e1c;
+      white-space: nowrap;
     }
 
-    /* ── PERSONAS ── */
-    .personas-row {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 80px;
-      overflow-x: auto;
-      padding-bottom: 16px;
-    }
-
-    .persona-card {
-      flex-shrink: 0;
-      width: 300px;
-      position: relative;
-    }
-
-    .persona-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      object-position: bottom;
-      border-radius: 16px 16px 0 0;
-      display: block;
-    }
-
-    .persona-card__name {
-      background: #fff;
-      padding: 14px 20px 8px;
-      font-family: 'Caveat', cursive;
-      font-size: 36px;
-      color: var(--black);
-      border-radius: 0 0 16px 16px;
-    }
 
     /* ── DESIGN / PAIN POINTS ── */
     .pain-section {
@@ -703,16 +664,16 @@
     .big-stat {
       display: flex;
       gap: 16px;
-      align-items: baseline;
+      align-items: center;
       margin-bottom: 40px;
     }
     .big-stat__num {
       font-size: 80px;
-      font-weight: 700;
-      line-height: 1;
+      font-weight: 600;
+      line-height: 84px;
     }
     .big-stat__label {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
     }
 
@@ -1268,44 +1229,38 @@
     </div>
   </section>
 
-  <div class="sep"></div>
-
   <!-- DESIGN PROCESS -->
   <section id="process">
     <div class="container">
-      <h2 class="section-title">Дизайн-процесс</h2>
+      <h2 class="section-title" style="margin-bottom:24px;">Дизайн-процесс<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
 
       <div class="process-grid reveal">
         <div class="process-step">
-          <div class="process-step__num">01</div>
-          <h3>Исследование</h3>
+          <h3>01 Исследование</h3>
           <p>Анализ конкурентов, Гипотезы, Полевые исследования, Глубинки, CJM, Userstories</p>
         </div>
         <div class="process-step">
-          <div class="process-step__num">02</div>
-          <h3>Дизайн</h3>
+          <h3>02 Дизайн</h3>
           <p>Мудборд, Юзерфлоу, Компоненты, Вайрфреймы, Макеты</p>
         </div>
         <div class="process-step">
-          <div class="process-step__num">03</div>
-          <h3>Тестирование</h3>
-          <p>ЮТ, Подведение итогов</p>
+          <h3>03 Тестирование</h3>
+          <p>3 итерации ЮТ, Подведение итогов</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="sep"></div>
-
   <!-- RESEARCH -->
   <section id="research">
     <div class="container">
-      <h2 class="section-title">Исследование</h2>
-
-      <!-- Competitors -->
-      <div class="big-stat reveal">
-        <span class="big-stat__num">19</span>
-        <span class="big-stat__label">конкурентов</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:64px;">
+        <h2 class="section-title" style="margin-bottom:0;">Исследование<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
+        <!-- Competitors -->
+        <div class="big-stat reveal" style="margin-bottom:0;">
+          <span class="big-stat__num">19</span>
+          <span class="big-stat__label">конкурентов</span>
+        </div>
       </div>
 
       <h3 style="font-size:32px;font-weight:600;margin-bottom:40px;" class="reveal">Анализ конкурентов</h3>
@@ -1313,35 +1268,33 @@
       <div class="competitors-row reveal">
         <div class="competitors-col">
           <div class="logos-grid">
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/68e12ead-3fba-40a9-b358-49df6e4ed1e5" alt="Сбер" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/4afb3802-220c-4aa2-beb4-7e8c7d33ae6a" alt="VK" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/22eeecb3-2caf-43ee-86b1-bc5438a6051d" alt="МТС" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/f904e62c-fedf-4e84-a227-037405044107" alt="Яндекс" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/70544a88-776a-4a2d-a95d-8efe04b841c4" alt="Google" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/5e6abccb-e521-499d-9ded-d55296cbfc23" alt="Apple" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/d9f74a44-c20e-4107-af3e-5dae378e1c4e" alt="Xiaomi" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-yandex.png" alt="Яндекс" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-vk.png" alt="VK" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-amazon.png" alt="Amazon" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-google.png" alt="Google" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-apple.png" alt="Apple" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-xiaomi.png" alt="Xiaomi" /></div>
           </div>
           <p class="competitors-col__title">умный дом</p>
         </div>
         <div class="competitors-col">
           <div class="logos-grid">
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/8b4a4e5f-9034-4b1f-9af9-ed74208b78b4" alt="Геймификация 1" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/18f74703-296b-488a-8390-af5c316e4819" alt="Apple Fitness" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/fc4bb196-489f-4a2e-8d42-f7549d323dec" alt="Додо" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/0cbaf533-cd28-47c0-8af1-c598c028b938" alt="Геймификация" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/84930a3e-730e-420d-93cd-c6ec2dff6a54" alt="Геймификация 2" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/231b94f6-71ec-4923-8962-8627bc782f60" alt="Т-Банк" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/2067e2b5-2319-49f2-834d-f0cd24a1861e" alt="Telegram" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-duolingo.png" alt="Duolingo" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-fitness.png" alt="Apple Fitness" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-dodo.jpeg" alt="Додо" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-ozon.png" alt="Ozon" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-tbank.jpeg" alt="Т-Банк" /></div>
+            <div class="logo-circle" style="position:relative;"><img src="assets/images/logo-telegram.jpeg" alt="Яндекс Сити" style="position:absolute;width:148.22%;height:147.25%;left:-23.9%;top:-3.42%;max-width:none;object-fit:fill;" /></div>
           </div>
           <p class="competitors-col__title">геймификация</p>
         </div>
         <div class="competitors-col">
           <div class="logos-grid">
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/afb7a945-d929-4e52-a08d-e70b10931320" alt="Онбординг 1" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/b143950d-9fed-4dfd-9b87-1ee6a7a0967b" alt="Самокат" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/e3706793-a566-49a8-bd76-726ec2e029ec" alt="Онбординг 2" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/7fb65c04-1209-4a75-9396-9afd9ef24f49" alt="Онбординг 3" /></div>
-            <div class="logo-circle"><img src="https://www.figma.com/api/mcp/asset/231b94f6-71ec-4923-8962-8627bc782f60" alt="Т-Банк 2" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-ob-1.png" alt="Онбординг 1" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-samokat.png" alt="Самокат" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-ob-2.png" alt="Онбординг 2" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-ob-3.png" alt="Онбординг 3" /></div>
+            <div class="logo-circle"><img src="assets/images/logo-tbank2.jpeg" alt="Т-Банк 2" /></div>
           </div>
           <p class="competitors-col__title">онбординг</p>
         </div>
@@ -1349,61 +1302,108 @@
 
       <!-- Interviews card -->
       <div class="interviews-card reveal">
-        <h3>Глубинные интервью</h3>
-        <p>
-          За время проектирования мы провели 24 глубинных интервью и опросили 120 респондентов на количественном опросе.
-          Основная часть пользователей имеет более 2 устройств УД, но были и те, у кого нет устройств совсем или, напротив, более 5.
-          Пользователи используют умные устройства как криптоферму, устройство для слежки за женой или делают приятно умной лентой рыбкам!
-        </p>
+        <!-- Heading: left 40, top 110 -->
+        <h3 style="position:absolute;left:40px;top:110px;font-family:'Gilroy',sans-serif;font-size:32px;font-weight:600;color:#1e1e1c;white-space:nowrap;margin:0;line-height:normal;">Глубинные интервью</h3>
 
-        <div class="quotes-group">
-          <div class="quote-bubble">«Какой умный дом? У меня однушка!»</div>
-          <div class="quote-bubble">«В хрущовке нет денег»</div>
-          <div class="quote-bubble">«Я слежу через приложения аэрогриля, что готовит жена»</div>
-          <div class="quote-bubble">«Все настраивает муж!»</div>
+        <!-- Body text: left 40, top 173, width 600 -->
+        <div style="position:absolute;left:40px;top:173px;width:600px;font-family:'Gilroy',sans-serif;font-size:18px;font-weight:500;color:#1e1e1c;line-height:normal;">
+          <p style="margin:0;">За время проектирования мы провели 24 глубинных интервью<br>и опросили 120 респондентов на количественном опросе.<br>Основная часть пользователей имеет более 2 устройств УД,</p>
+          <p style="margin:0;">но были и те, у кого нет устройств совсем или, напротив,<br>более 5 устройств.<br>Пользователи используют умные устройства как криптоферму, устройство для слежки за женой или делают приятно умной лентой рыбкам!</p>
         </div>
 
-        <div class="interviews-stats" style="margin-top:40px;">
-          <div class="stat">
-            <div class="stat__label">Провели интервью</div>
-            <div class="stat__value">24</div>
-          </div>
-          <div class="stat">
-            <div class="stat__label">Нами куплено устройств</div>
-            <div class="stat__value">5</div>
-          </div>
-          <div class="stat">
-            <div class="stat__label">У респондентов устройств</div>
-            <div class="stat__value">344</div>
-          </div>
+        <!-- Quote 1: left 772, top 75, w 395, h 71, rotate +4deg -->
+        <div style="position:absolute;left:772px;top:75px;width:395px;height:71px;display:flex;align-items:center;justify-content:center;">
+          <div class="quote-bubble" style="transform:rotate(4deg);">«Какой умный дом? У меня однушка!»</div>
+        </div>
+
+        <!-- Quote 2: left 731, top 140, w 268, h 62, rotate -4deg -->
+        <div style="position:absolute;left:731px;top:140px;width:268px;height:62px;display:flex;align-items:center;justify-content:center;">
+          <div class="quote-bubble" style="transform:rotate(-4deg);">«В хрущовке нет денег»</div>
+        </div>
+
+        <!-- Quote 3: left 761, top 198, w 427, h 97, rotate +4deg -->
+        <div style="position:absolute;left:761px;top:198px;width:427px;height:97px;display:flex;align-items:center;justify-content:center;">
+          <div class="quote-bubble" style="transform:rotate(4deg);white-space:normal;text-align:center;">«Я слежу через приложение аэрогриля,<br>что готовит жена»</div>
+        </div>
+
+        <!-- Quote 4: left 747, top 284, w 273, h 63, rotate -4deg -->
+        <div style="position:absolute;left:747px;top:284px;width:273px;height:63px;display:flex;align-items:center;justify-content:center;">
+          <div class="quote-bubble" style="transform:rotate(-4deg);">«Все настраивает муж!»</div>
+        </div>
+
+        <!-- Stat 1: left 179, top 448, w 160, gap 12 -->
+        <div style="position:absolute;left:179px;top:448px;width:160px;display:flex;flex-direction:column;gap:12px;">
+          <div style="font-family:'Gilroy',sans-serif;font-size:18px;font-weight:500;color:#1e1e1c;line-height:normal;">Провели интервью</div>
+          <div style="font-family:'Gilroy',sans-serif;font-size:80px;font-weight:700;color:#1e1e1c;line-height:normal;">24</div>
+        </div>
+
+        <!-- Stat 2: centered at 50%-105px, top 446, w 210, gap 17 -->
+        <div style="position:absolute;left:calc(50% - 105px);top:446px;width:210px;display:flex;flex-direction:column;gap:17px;align-items:center;">
+          <div style="font-family:'Gilroy',sans-serif;font-size:18px;font-weight:500;color:#1e1e1c;line-height:normal;width:100%;">Нами куплено устройств</div>
+          <div style="font-family:'Gilroy',sans-serif;font-size:80px;font-weight:700;color:#1e1e1c;line-height:normal;text-align:center;width:100%;">5</div>
+        </div>
+
+        <!-- Stat 3: left 905, top 446, gap 17 -->
+        <div style="position:absolute;left:905px;top:446px;display:flex;flex-direction:column;gap:17px;white-space:nowrap;">
+          <div style="font-family:'Gilroy',sans-serif;font-size:18px;font-weight:500;color:#1e1e1c;line-height:normal;">У респондентов устройств</div>
+          <div style="font-family:'Gilroy',sans-serif;font-size:80px;font-weight:700;color:#1e1e1c;line-height:normal;">344</div>
         </div>
       </div>
 
-      <!-- Personas -->
-      <h3 style="font-size:32px;font-weight:600;margin-bottom:40px;" class="reveal">Персоны</h3>
-      <div class="personas-row reveal">
-        <div class="persona-card">
-          <img src="https://www.figma.com/api/mcp/asset/43f584b2-97e1-472c-9cc4-3fc86b1dcb7a" alt="Кинестетик" />
-          <div class="persona-card__name">кинестетик</div>
+      <!-- Персоны heading -->
+      <h3 style="font-family:'Gilroy',sans-serif;font-size:32px;font-weight:600;color:#1e1e1c;margin:96px 0 0 0;line-height:normal;">Персоны</h3>
+
+      <!-- Persona cards row -->
+      <div style="display:flex;gap:17.5px;margin-top:48px;align-items:flex-start;padding-bottom:37px;">
+
+        <!-- Card 1: Кинестетик 262×194 -->
+        <div style="position:relative;width:262px;flex-shrink:0;">
+          <div style="width:262px;height:194px;overflow:hidden;">
+            <img src="assets/images/persona-kinestetik.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;" alt="Кинестетик">
+          </div>
+          <div style="position:absolute;left:36px;top:184px;width:191px;height:47px;">
+            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
+            <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">кинестетик</span>
+          </div>
         </div>
-        <div class="persona-card">
-          <img src="https://www.figma.com/api/mcp/asset/1127a8d1-5625-4624-be75-0e0728799584" alt="Консерватор" />
-          <div class="persona-card__name">Консерватор</div>
+
+        <!-- Card 2: Консерватор 272×188 -->
+        <div style="position:relative;width:272px;flex-shrink:0;">
+          <div style="width:272px;height:188px;overflow:hidden;">
+            <img src="assets/images/persona-konservator.png" style="width:100%;height:208px;object-fit:cover;object-position:top center;display:block;margin-top:-12px;" alt="Консерватор">
+          </div>
+          <div style="position:absolute;left:40px;top:184px;width:192px;height:47px;">
+            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
+            <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">Консерватор</span>
+          </div>
         </div>
-        <div class="persona-card">
-          <img src="https://www.figma.com/api/mcp/asset/84e12373-fed8-44e1-91bc-bb8b1361b163" alt="Комбинатор" />
-          <div class="persona-card__name">комбинатор</div>
+
+        <!-- Card 3: Комбинатор 254×209 -->
+        <div style="position:relative;width:254px;flex-shrink:0;">
+          <div style="width:254px;height:209px;overflow:hidden;position:relative;">
+            <img src="assets/images/persona-kombinator-correct.png" style="position:absolute;left:-5px;top:-4px;width:295px;height:200px;object-fit:cover;object-position:top center;display:block;" alt="Комбинатор">
+          </div>
+          <div style="position:absolute;left:27px;top:184px;width:190px;height:47px;">
+            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
+            <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">комбинатор</span>
+          </div>
         </div>
-        <div class="persona-card">
-          <img src="https://www.figma.com/api/mcp/asset/0a1b51a7-b977-45be-b875-4f94b9a4f7dc" alt="Комфортолюб" />
-          <div class="persona-card__name">комфортолюб</div>
+
+        <!-- Card 4: Комфортолюб 268×186 -->
+        <div style="position:relative;width:268px;flex-shrink:0;">
+          <div style="width:268px;height:194px;overflow:hidden;">
+            <img src="assets/images/persona-komfortolub.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;" alt="Комфортолюб">
+          </div>
+          <div style="position:absolute;left:32px;top:184px;width:215px;height:47px;">
+            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
+            <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">комфортолюб</span>
+          </div>
         </div>
+
       </div>
 
     </div>
   </section>
-
-  <div class="sep"></div>
 
   <!-- DESIGN -->
   <section id="design">
