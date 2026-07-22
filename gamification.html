@@ -683,6 +683,120 @@
       background: var(--grey1);
       margin: 0 40px;
     }
+
+    /* ── PERSONA CARDS HOVER/ACTIVE ── */
+    .persona-card {
+      cursor: pointer;
+      position: relative;
+    }
+    .persona-card .persona-bw {
+      transition: opacity 0.3s;
+    }
+    .persona-card .persona-color {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .persona-card:hover .persona-color,
+    .persona-card.is-active .persona-color {
+      opacity: 1;
+    }
+    .persona-card:hover .persona-bw,
+    .persona-card.is-active .persona-bw {
+      opacity: 0;
+    }
+
+    .persona-bubble {
+      position: absolute;
+      top: 0;
+      z-index: 20;
+      width: 500px;
+      min-height: 190px;
+      border: 1.5px solid #c8c8c8;
+      border-radius: 100px;
+      background: white;
+      padding: 32px 44px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      pointer-events: none;
+    }
+    .persona-card.is-active .persona-bubble {
+      display: flex;
+      pointer-events: auto;
+    }
+    .persona-bubble-right {
+      left: calc(100% + 18px);
+    }
+    .persona-bubble-left {
+      right: calc(100% + 18px);
+    }
+
+    /* Tail pointing LEFT (for right-side bubbles) */
+    .persona-bubble-right::before {
+      content: '';
+      position: absolute;
+      bottom: 44px;
+      left: -20px;
+      border: 11px solid transparent;
+      border-right: 20px solid #c8c8c8;
+    }
+    .persona-bubble-right::after {
+      content: '';
+      position: absolute;
+      bottom: 45px;
+      left: -16px;
+      border: 10px solid transparent;
+      border-right: 18px solid white;
+    }
+
+    /* Tail pointing RIGHT (for left-side bubbles) */
+    .persona-bubble-left::before {
+      content: '';
+      position: absolute;
+      bottom: 44px;
+      right: -20px;
+      border: 11px solid transparent;
+      border-left: 20px solid #c8c8c8;
+    }
+    .persona-bubble-left::after {
+      content: '';
+      position: absolute;
+      bottom: 45px;
+      right: -16px;
+      border: 10px solid transparent;
+      border-left: 18px solid white;
+    }
+
+    .persona-quote {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 18px;
+      line-height: 1.45;
+      color: #1e1e1c;
+      font-weight: 400;
+      margin: 0;
+    }
+    .persona-quote strong {
+      font-weight: 700;
+    }
+    .persona-status {
+      font-family: 'Gilroy', sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin: 0;
+    }
+    .persona-status-no {
+      color: #d0021b;
+    }
+    .persona-status-yes {
+      color: #2d8a3f;
+    }
+    .persona-status u {
+      text-underline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -1354,49 +1468,71 @@
       <h3 style="font-family:'Gilroy',sans-serif;font-size:32px;font-weight:600;color:#1e1e1c;margin:96px 0 0 0;line-height:normal;">Персоны</h3>
 
       <!-- Persona cards row -->
-      <div style="display:flex;gap:17.5px;margin-top:48px;align-items:flex-start;padding-bottom:37px;">
+      <div style="display:flex;gap:17.5px;margin-top:48px;align-items:flex-start;padding-bottom:5px;position:relative;">
 
         <!-- Card 1: Кинестетик 262×194 -->
-        <div style="position:relative;width:262px;flex-shrink:0;">
-          <div style="width:262px;height:194px;overflow:hidden;">
-            <img src="assets/images/persona-kinestetik.png" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" alt="Кинестетик">
+        <div class="persona-card" style="position:relative;width:262px;flex-shrink:0;">
+          <div style="width:262px;height:194px;overflow:hidden;position:relative;">
+            <img class="persona-bw" src="assets/images/persona-kinestetik.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="">
+            <img class="persona-color" src="assets/images/persona-kinestetik-color.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Кинестетик">
           </div>
           <div style="position:absolute;left:36px;top:184px;width:191px;height:47px;">
             <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
             <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">кинестетик</span>
           </div>
+          <div class="persona-bubble persona-bubble-right">
+            <p class="persona-quote">«Нет необходимости. Считаю, что все можно делать самостоятельно без «Алиса, включи свет». Люблю <strong>ощущать вещи тактильно</strong>»</p>
+            <p class="persona-status persona-status-no"><span>×</span><span><u>*Не брали в расчет, т.к. сложно повлиять</u></span></p>
+          </div>
         </div>
 
         <!-- Card 2: Консерватор 264×194 -->
-        <div style="position:relative;width:264px;flex-shrink:0;">
-          <div style="width:264px;height:194px;overflow:hidden;">
-            <img src="assets/images/persona-konservator.png" style="width:264px;height:208px;display:block;margin-top:-12px;object-fit:fill;" alt="Консерватор">
+        <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
+          <div style="width:264px;height:194px;overflow:hidden;position:relative;">
+            <img class="persona-bw" src="assets/images/persona-konservator.png" style="position:absolute;width:264px;height:208px;top:-12px;left:0;object-fit:fill;display:block;" alt="">
+            <img class="persona-color" src="assets/images/persona-konservator-color.png" style="position:absolute;width:264px;height:208px;top:-12px;left:0;object-fit:cover;object-position:center top;display:block;" alt="Консерватор">
           </div>
           <div style="position:absolute;left:36px;top:184px;width:192px;height:47px;">
             <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
             <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:50%;top:50%;transform:translate(-50%,-50%);">Консерватор</span>
           </div>
-        </div>
-
-        <!-- Card 3: Комбинатор 262×209 -->
-        <div style="position:relative;width:262px;flex-shrink:0;">
-          <div style="width:262px;height:209px;overflow:hidden;position:relative;">
-            <img src="assets/images/persona-kombinator-bw.png" style="position:absolute;left:-5px;top:-4px;width:295px;height:200px;object-fit:cover;object-position:59% top;display:block;" alt="Комбинатор">
-          </div>
-          <div style="position:absolute;left:27px;top:184px;width:190px;height:47px;">
-            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:50%;top:50%;transform:translate(-50%,-50%);">комбинатор</span>
+          <div class="persona-bubble persona-bubble-right">
+            <p class="persona-quote">«Не нужны мне эти ваши технологии! Вдруг с интернетом что‑то случилось или если свет отключили? <strong>Всякое бывает</strong>»</p>
+            <p class="persona-status persona-status-no"><span>×</span><span><u>*Не брали в расчет, т.к. сложно повлиять</u></span></p>
           </div>
         </div>
 
-        <!-- Card 4: Комфортолюб 268×186 -->
-        <div style="position:relative;width:268px;flex-shrink:0;">
-          <div style="width:268px;height:194px;overflow:hidden;">
-            <img src="assets/images/persona-komfortolub.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;" alt="Комфортолюб">
+        <!-- Card 3: Комбинатор 264×194 -->
+        <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
+          <div style="width:264px;height:194px;overflow:hidden;position:relative;">
+            <div style="position:absolute;left:-5px;top:-4px;width:295px;height:200px;">
+              <img class="persona-bw" src="assets/images/persona-kombinator.png" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt="">
+              <img class="persona-color" src="assets/images/persona-kombinator-color.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;" alt="Комбинатор">
+            </div>
           </div>
-          <div style="position:absolute;left:32px;top:184px;width:215px;height:47px;">
+          <div style="position:absolute;left:27px;top:184px;width:190px;height:47px;display:flex;align-items:center;justify-content:center;padding:10.233px 10.964px 5.848px 14.619px;box-sizing:border-box;">
             <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:absolute;font-family:'Kom-post',cursive;font-size:35px;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">комфортолюб</span>
+            <span style="position:relative;font-family:'Kom-post',cursive;font-size:34.714px;color:#1e1e1c;white-space:nowrap;">комбинатор</span>
+          </div>
+          <div class="persona-bubble persona-bubble-left">
+            <p class="persona-quote">«Настрою дом <strong>под любого вора</strong>»</p>
+            <p class="persona-status persona-status-yes"><span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span></p>
+          </div>
+        </div>
+
+        <!-- Card 4: Комфортолюб 264×194 -->
+        <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
+          <div style="width:264px;height:194px;overflow:hidden;position:relative;">
+            <img class="persona-bw" src="assets/images/persona-komfortolub.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" alt="">
+            <img class="persona-color" src="assets/images/persona-komfortolub-color.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" alt="Комфортолюб">
+          </div>
+          <div style="position:absolute;left:28px;top:184px;width:215px;height:47px;display:flex;align-items:center;justify-content:center;padding:10.233px 10.964px 5.848px 14.619px;box-sizing:border-box;">
+            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
+            <span style="position:relative;font-family:'Kom-post',cursive;font-size:34.714px;color:#1e1e1c;white-space:nowrap;">комфортолюб</span>
+          </div>
+          <div class="persona-bubble persona-bubble-left">
+            <p class="persona-quote">«Минимум усилий и <strong>максимум пользы</strong>»</p>
+            <p class="persona-status persona-status-yes"><span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span></p>
           </div>
         </div>
 
@@ -1408,7 +1544,18 @@
   <!-- DESIGN -->
   <section id="design">
     <div class="container">
-      <h2 class="section-title">Решения и дизайн</h2>
+      <h2 class="section-title">Решения и дизайн<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
+
+      <!-- Контекст (1310:12409) -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-top:64px;margin-bottom:64px;">
+        <p style="font-family:'Gilroy',sans-serif;font-size:34px;font-weight:600;color:#1e1e1c;white-space:nowrap;flex-shrink:0;margin:0;line-height:1.3;">Контекст</p>
+        <p style="font-family:'Gilroy',sans-serif;font-size:21px;font-weight:500;color:#1e1e1c;width:631px;margin:0;line-height:1.5;">Нашей целью было спроектировать геймифицированный флоу в уже имеющееся приложение умного дома. По итогам исследования, мы пришли к выводу, что квартирный вопрос стоит довольно остро в обществе и дом внутри приложения умного дома может стать своего рода «картой желаний»</p>
+      </div>
+
+      <!-- Дизайн-диаграмма (1310:12408) -->
+      <div style="width:100%;margin-bottom:80px;">
+        <img src="assets/images/design-diagram.png" alt="Дизайн-диаграмма: точки входа и переходы в геймификации" style="width:100%;height:auto;display:block;">
+      </div>
 
       <!-- Pain 1 -->
       <div class="pain-section reveal">
@@ -1572,6 +1719,23 @@
     hoverZone.addEventListener('mouseleave', hideNav);
     nav.addEventListener('mouseenter', showNav);
     nav.addEventListener('mouseleave', hideNav);
+
+    // Persona card click → toggle speech bubble
+    (function() {
+      var cards = document.querySelectorAll('.persona-card');
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var wasActive = card.classList.contains('is-active');
+          cards.forEach(function(c) { c.classList.remove('is-active'); });
+          if (!wasActive) card.classList.add('is-active');
+        });
+      });
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.persona-card')) {
+          cards.forEach(function(c) { c.classList.remove('is-active'); });
+        }
+      });
+    })();
   </script>
 </body>
 </html>
