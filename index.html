@@ -545,7 +545,7 @@
     const track = document.querySelector('.projects-scroll');
     if (!track) return;
 
-    const DURATION = 10000; // ms — Figma duration: 10
+    const DURATION = 25000; // ms — 2.5× slower than Figma max (10 000 ms)
     const TARGET   = 1344;  // px — Figma x-shift from State=1 to State=2
 
     let elapsed = 0;
