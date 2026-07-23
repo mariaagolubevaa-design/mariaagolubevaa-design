@@ -240,7 +240,7 @@
 
     /* ── PROJECTS ── */
     .projects {
-      margin-top: 84px;
+      margin-top: 48px;
       padding-bottom: 80px;
     }
 
@@ -542,6 +542,49 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── AUTO-SCROLL projects (Figma: SMART_ANIMATE LINEAR 10s → instant reset) ── */
+  (function () {
+    const track = document.querySelector('.projects-scroll');
+    if (!track) return;
+
+    const DURATION = 10000; // ms — Figma duration: 10
+    const TARGET   = 1344;  // px — Figma x-shift from State=1 to State=2
+
+    let elapsed = 0;
+    let lastTs  = null;
+    let paused  = false;
+    let wheelTimer;
+
+    track.addEventListener('mouseenter', () => { paused = true; });
+    track.addEventListener('mouseleave', () => { paused = false; });
+    track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    track.addEventListener('touchend',   () => { setTimeout(() => { paused = false; }, 1500); }, { passive: true });
+    track.addEventListener('wheel', () => {
+      paused = true;
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(() => { track.scrollLeft = 0; elapsed = 0; paused = false; }, 2500);
+    }, { passive: true });
+
+    function tick(ts) {
+      if (!paused) {
+        if (lastTs !== null) elapsed += ts - lastTs;
+        lastTs = ts;
+
+        if (elapsed >= DURATION) {
+          track.scrollLeft = 0; // instant reset — Figma: no-transition CHANGE_TO State=1
+          elapsed = 0;
+        } else {
+          track.scrollLeft = (elapsed / DURATION) * TARGET; // LINEAR
+        }
+      } else {
+        lastTs = null;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  })();
 </script>
 </body>
 </html>
