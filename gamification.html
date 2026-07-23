@@ -797,6 +797,7 @@
     .persona-status u {
       text-underline-offset: 2px;
     }
+    .kontekst-diagram-scroll::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body>
@@ -1552,9 +1553,22 @@
         <p style="font-family:'Gilroy',sans-serif;font-size:21px;font-weight:500;color:#1e1e1c;width:631px;margin:0;line-height:1.5;">Нашей целью было спроектировать геймифицированный флоу в уже имеющееся приложение умного дома. По итогам исследования, мы пришли к выводу, что квартирный вопрос стоит довольно остро в обществе и дом внутри приложения умного дома может стать своего рода «картой желаний»</p>
       </div>
 
-      <!-- Дизайн-диаграмма (1310:12408) -->
-      <div style="width:100%;margin-bottom:80px;">
-        <img src="assets/images/design-diagram.png" alt="Дизайн-диаграмма: точки входа и переходы в геймификации" style="width:100%;height:auto;display:block;">
+      <!-- Дизайн-диаграмма (1310:12408): frame 1610×596px, inner content 1936px, horizontally scrollable -->
+      <div class="kontekst-diagram-scroll" style="overflow-x:auto;width:1610px;height:596px;margin-bottom:80px;background:#E2F3F4;border-radius:48px;scrollbar-width:none;-ms-overflow-style:none;">
+        <div style="display:flex;width:max-content;position:relative;">
+          <img src="assets/images/design-diagram.png" alt="Дизайн-диаграмма: точки входа и переходы в геймификации (часть 1)" style="height:596px;width:1280px;display:block;flex-shrink:0;">
+          <img src="assets/images/diagram-right.png" alt="Дизайн-диаграмма: точки входа и переходы в геймификации (часть 2)" style="height:596px;width:656px;display:block;flex-shrink:0;">
+          <!-- Маска старого текста из PNG -->
+          <div style="position:absolute;z-index:2;left:0;top:225px;width:270px;height:92px;background:#E2F3F4;"></div>
+          <!-- Текстовый блок 1 (1310:11813) -->
+          <div style="position:absolute;z-index:3;left:40px;top:238px;display:inline-flex;padding:6px 8px;align-items:flex-start;border-radius:3px;background:#FFF;">
+            <p style="margin:0;font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:#1E1E1C;text-align:center;line-height:normal;white-space:nowrap;">Точка входа<br>в геймификацию</p>
+          </div>
+          <!-- Текстовый блок 3 (1310:11824) -->
+          <div style="position:absolute;left:1078px;top:48px;display:flex;width:242px;padding:6px 9px;align-items:flex-start;border-radius:3px;background:#FFF;box-sizing:border-box;">
+            <p style="margin:0;font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:#000;text-align:center;letter-spacing:-0.18px;line-height:normal;width:100%;">Выход из игры<br>(Переход к главной Салюта)</p>
+          </div>
+        </div>
       </div>
 
       <!-- Pain 1 -->
