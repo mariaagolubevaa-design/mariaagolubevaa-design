@@ -1568,28 +1568,35 @@
 
         <!-- Card 4: Комфортолюб — fresh Figma fetch 2026-07-27, nodes 1354:14647/14648/14649 -->
         <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
+          <!-- Photo: clip 264×194; BW 528×388 transparent bg; Color 528×388 opaque, both fill via inset:0 -->
           <div style="width:264px;height:194px;overflow:hidden;position:relative;">
-            <div style="position:absolute;left:4px;top:0;width:264px;height:194px;">
-              <img class="persona-bw"
-                   src="assets/images/persona-komfortolub.png"
-                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" alt="">
-              <img class="persona-color"
-                   src="assets/images/persona-komfortolub-color.png"
-                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" alt="Комфортолюб">
-            </div>
+            <img class="persona-bw"
+                 src="assets/images/persona-komfortolub.png"
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" alt="">
+            <img class="persona-color"
+                 src="assets/images/persona-komfortolub-color.png"
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" alt="Комфортолюб">
           </div>
+          <!-- Name: Figma Default x=33 y=184 w=206 h=48 pad T10 R16 B10 L16, Kom-post Regular 32px #1e1e1c -->
           <div class="persona-name-label"
                style="position:absolute;left:33px;top:184px;width:206px;height:48px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:10px 16px;background:#fff;z-index:5;">
             <span style="font-family:'Kom-post',cursive;font-size:32px;color:#1e1e1c;line-height:normal;white-space:nowrap;">комфортолюб</span>
           </div>
+          <!-- Active bubble: left side (Figma Text 4: 638×279 white bg)
+               Ellipse 2817: x=558 y=40 478×181, mirrored right→left by CSS scaleX(-1)
+               Quote: Gilroy 20px x=225 y=96 w=188 center-aligned; Checkmark: x=107 y=218; Status: x=127 y=215 Gilroy 16px -->
           <div class="persona-bubble persona-bubble-left">
-            <svg class="persona-bubble-shape" width="504" height="187" viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 477.056 78.611 C 445.881 181.000 17.536 111.419 17.536 181.000 C 32.658 136.438 -8.076 101.954 1.466 56.871 C 11.008 11.788 106.637 0 234.755 0 C 362.873 0 490.254 35.263 477.056 78.611 Z" stroke="#121212" stroke-opacity="0.20" stroke-width="5"/>
+            <svg class="persona-bubble-shape" width="504" height="187"
+                 viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 477.056 78.611 C 445.881 181.000 17.536 111.419 17.536 181.000 C 32.658 136.438 -8.076 101.954 1.466 56.871 C 11.008 11.788 106.637 0 234.755 0 C 362.873 0 490.254 35.263 477.056 78.611 Z"
+                    stroke="#121212" stroke-opacity="0.20" stroke-width="5"/>
             </svg>
-            <div class="persona-bubble-text">
-              <p class="persona-quote">«Минимум усилий и <strong>максимум пользы</strong>»</p>
+            <div class="persona-bubble-text" style="left:225px;top:96px;width:188px;text-align:center;">
+              <p class="persona-quote">«Минимум усилий<br>и максимум пользы»</p>
             </div>
-            <p class="persona-status persona-status-yes"><span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span></p>
+            <p class="persona-status persona-status-yes">
+              <span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span>
+            </p>
           </div>
         </div>
 
