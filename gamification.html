@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мария Голубева — Портфолио</title>
+  <link rel="preload" href="fonts/kom-post.ttf" as="font" type="font/truetype">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -61,7 +62,7 @@
       src: url('fonts/kom-post.ttf') format('truetype');
       font-weight: 400;
       font-style: normal;
-      font-display: swap;
+      font-display: block;
     }
 
     /* ── TOKENS ── */
@@ -691,10 +692,12 @@
     }
     .persona-card .persona-bw {
       transition: opacity 0.3s;
+      will-change: opacity;
     }
     .persona-card .persona-color {
       opacity: 0;
       transition: opacity 0.3s;
+      will-change: opacity;
     }
     .persona-card:hover .persona-color,
     .persona-card.is-active .persona-color {
@@ -710,15 +713,17 @@
       filter: grayscale(100%);
       opacity: 1;
       transition: filter 0.3s;
+      will-change: filter;
     }
     .persona-card-2:hover .persona-color,
     .persona-card-2.is-active .persona-color {
       filter: grayscale(0%);
     }
 
-    /* Name label: Figma Default/Hover = 32px (card not expanded in active, keep same) */
+    /* Name label: Figma Default/Hover = 32px, identical in both states. */
     .persona-name-label > span {
       font-size: 32px !important;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* Layer 1: white rectangle container — Figma bgRect 638×279, cornerRadius=0 */
@@ -1489,9 +1494,8 @@
             <img class="persona-bw" src="assets/images/persona-kinestetik.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="">
             <img class="persona-color" src="assets/images/persona-kinestetik-color.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Кинестетик">
           </div>
-          <div class="persona-name-label" style="position:absolute;left:36px;top:184px;width:191px;height:47px;">
-            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:absolute;font-family:'Kom-post',cursive;color:#1e1e1c;white-space:nowrap;left:14px;top:50%;transform:translateY(-50%);">кинестетик</span>
+          <div class="persona-name-label" style="position:absolute;left:36px;top:184px;height:48px;display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;background:#fff;z-index:5;">
+            <span style="font-family:'Kom-post',cursive;color:#1e1e1c;white-space:nowrap;">кинестетик</span>
           </div>
           <div class="persona-bubble persona-bubble-right">
             <svg class="persona-bubble-shape" width="504" height="187" viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1509,9 +1513,8 @@
           <div style="width:264px;height:194px;overflow:hidden;position:relative;">
             <img class="persona-color" src="assets/images/persona-konservator-color.png" style="position:absolute;width:264px;height:208px;top:-12px;left:0;object-fit:cover;object-position:center top;display:block;" alt="Консерватор">
           </div>
-          <div class="persona-name-label" style="position:absolute;left:36px;top:184px;width:192px;height:47px;">
-            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:absolute;font-family:'Kom-post',cursive;color:#1e1e1c;white-space:nowrap;left:50%;top:50%;transform:translate(-50%,-50%);">Консерватор</span>
+          <div class="persona-name-label" style="position:absolute;left:36px;top:184px;height:48px;display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;background:#fff;z-index:5;">
+            <span style="font-family:'Kom-post',cursive;color:#1e1e1c;white-space:nowrap;">Консерватор</span>
           </div>
           <div class="persona-bubble persona-bubble-right">
             <svg class="persona-bubble-shape" width="504" height="187" viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1526,33 +1529,28 @@
           </div>
         </div>
 
-        <!-- Card 3: Комбинатор — rebuilt from Figma 1354:14643/14644/14645 -->
+        <!-- Card 3: Комбинатор — fresh Figma fetch 2026-07-27, nodes 1354:14643/14644/14645 -->
         <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
-          <!-- Photo: outer clip 264×194; inner rect x=-5 y=-4 w=295 h=200 (Figma Picture layer) -->
+          <!-- Photo container: clip 264×194; inner frame x=-5 y=-4 w=295 h=200 (Figma RECTANGLE) -->
           <div style="width:264px;height:194px;overflow:hidden;position:relative;">
             <div style="position:absolute;left:-5px;top:-4px;width:295px;height:200px;">
-              <!-- Default (bw): Figma scaleMode=FILL, identity transform → fills 295×200 at 1:1 -->
+              <!-- Default BW: 590×400 AI-enhanced (Figma: "Person 3-Picsart-AiImageEnhancer 1", object-cover) -->
               <img class="persona-bw"
                    src="assets/images/persona-kombinator.png"
-                   style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt="">
-              <!-- Hover (color): identical positioning to bw — same container, same rules, only src differs -->
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" alt="">
+              <!-- Hover color: 768×1024 portrait (Figma: "Person 3", fill-stretch) -->
               <img class="persona-color"
                    src="assets/images/persona-kombinator-color.png"
                    style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt="Комбинатор">
             </div>
           </div>
-          <!-- Name: Figma Default x=40 y=184 w=183 h=48 "комбинатор" Kom-post 32px -->
+          <!-- Name: Figma 1475:9213 — x=40 y=184 w=183 h=48 pad T10 R16 B10 L16, Kom-post Regular 32px #1e1e1c -->
           <div class="persona-name-label"
-               style="position:absolute;left:40px;top:184px;width:183px;height:48px;
-                      display:flex;align-items:center;justify-content:center;
-                      padding:10.233px 10.964px 5.848px 14.619px;box-sizing:border-box;">
-            <img src="assets/images/persona-name-bg.svg"
-                 style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:relative;font-family:'Kom-post',cursive;
-                         color:#1e1e1c;white-space:nowrap;">комбинатор</span>
+               style="position:absolute;left:40px;top:184px;width:183px;height:48px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:10px 16px;background:#fff;z-index:5;">
+            <span style="font-family:'Kom-post',cursive;font-size:32px;color:#1e1e1c;line-height:normal;white-space:nowrap;">комбинатор</span>
           </div>
-          <!-- Active bubble: left side (tail → right toward card); Figma Text 3 frame 638×279
-               Quote: x=233 y=84 w=173  Status: checkmark x=108 y=219 text x=128 y=216 -->
+          <!-- Active bubble: left side (Figma Text 3: 638×279 white bg)
+               Quote: Gilroy 20px x=233 y=84 w=173; Checkmark: x=108 y=219; Status: x=128 y=216 Gilroy 16px -->
           <div class="persona-bubble persona-bubble-left">
             <svg class="persona-bubble-shape" width="504" height="187"
                  viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1560,7 +1558,7 @@
                     stroke="#121212" stroke-opacity="0.20" stroke-width="5"/>
             </svg>
             <div class="persona-bubble-text" style="left:233px;width:173px;top:84px;">
-              <p class="persona-quote">«Настрою дом <strong>под любого вора</strong>»</p>
+              <p class="persona-quote">«Настрою дом<br>под любого вора»</p>
             </div>
             <p class="persona-status persona-status-yes">
               <span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span>
@@ -1568,15 +1566,21 @@
           </div>
         </div>
 
-        <!-- Card 4: Комфортолюб 264×194 -->
+        <!-- Card 4: Комфортолюб — fresh Figma fetch 2026-07-27, nodes 1354:14647/14648/14649 -->
         <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
           <div style="width:264px;height:194px;overflow:hidden;position:relative;">
-            <img class="persona-bw" src="assets/images/persona-komfortolub.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" alt="">
-            <img class="persona-color" src="assets/images/persona-komfortolub-color.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" alt="Комфортолюб">
+            <div style="position:absolute;left:4px;top:0;width:264px;height:194px;">
+              <img class="persona-bw"
+                   src="assets/images/persona-komfortolub.png"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" alt="">
+              <img class="persona-color"
+                   src="assets/images/persona-komfortolub-color.png"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" alt="Комфортолюб">
+            </div>
           </div>
-          <div class="persona-name-label" style="position:absolute;left:28px;top:184px;width:215px;height:47px;display:flex;align-items:center;justify-content:center;padding:10.233px 10.964px 5.848px 14.619px;box-sizing:border-box;">
-            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:relative;font-family:'Kom-post',cursive;color:#1e1e1c;white-space:nowrap;">комфортолюб</span>
+          <div class="persona-name-label"
+               style="position:absolute;left:33px;top:184px;width:206px;height:48px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:10px 16px;background:#fff;z-index:5;">
+            <span style="font-family:'Kom-post',cursive;font-size:32px;color:#1e1e1c;line-height:normal;white-space:nowrap;">комфортолюб</span>
           </div>
           <div class="persona-bubble persona-bubble-left">
             <svg class="persona-bubble-shape" width="504" height="187" viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
