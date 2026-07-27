@@ -716,17 +716,6 @@
       filter: grayscale(0%);
     }
 
-    /* Card 3 (Комбинатор): same approach — single color image with grayscale filter */
-    .persona-card-3 .persona-color {
-      filter: grayscale(100%);
-      opacity: 1;
-      transition: filter 0.3s;
-    }
-    .persona-card-3:hover .persona-color,
-    .persona-card-3.is-active .persona-color {
-      filter: grayscale(0%);
-    }
-
     /* Name label: Figma Default/Hover = 32px (card not expanded in active, keep same) */
     .persona-name-label > span {
       font-size: 32px !important;
@@ -1538,11 +1527,12 @@
         </div>
 
         <!-- Card 3: Комбинатор 264×194 -->
-        <div class="persona-card persona-card-3" style="position:relative;width:264px;flex-shrink:0;">
+        <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
           <div style="width:264px;height:194px;overflow:hidden;position:relative;">
             <div style="position:absolute;left:-5px;top:-4px;width:295px;height:200px;">
-              <!-- Single color image with CSS grayscale (same as Card 2): identical crop in default/hover, only color changes -->
-              <div class="persona-color" style="position:absolute;inset:0;background-image:url('assets/images/persona-kombinator-color.png');background-size:cover;background-position:center top;background-repeat:no-repeat;"></div>
+              <!-- bw: 295×200 fills container exactly (Figma scaleMode=FILL, identity transform) -->
+              <img class="persona-bw" src="assets/images/persona-kombinator.png" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt="">
+              <img class="persona-color" src="assets/images/persona-kombinator-color.png" style="position:absolute;top:0;left:0;width:295px;height:200px;object-fit:cover;object-position:center top;display:block;" alt="Комбинатор">
             </div>
           </div>
           <!-- Figma Default Name: x=40, y=184, 183×48 -->
