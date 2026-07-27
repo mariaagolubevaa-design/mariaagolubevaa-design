@@ -1526,29 +1526,50 @@
           </div>
         </div>
 
-        <!-- Card 3: Комбинатор 264×194 -->
+        <!-- Card 3: Комбинатор — rebuilt from Figma 1354:14643/14644/14645 -->
         <div class="persona-card" style="position:relative;width:264px;flex-shrink:0;">
+          <!-- Photo: outer clip 264×194; inner rect x=-5 y=-4 w=295 h=200 (Figma Picture layer) -->
           <div style="width:264px;height:194px;overflow:hidden;position:relative;">
             <div style="position:absolute;left:-5px;top:-4px;width:295px;height:200px;">
-              <!-- bw: 295×200 fills container exactly (Figma scaleMode=FILL, identity transform) -->
-              <img class="persona-bw" src="assets/images/persona-kombinator.png" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt="">
-              <img class="persona-color" src="assets/images/persona-kombinator-color.png" style="position:absolute;top:0;left:0;width:295px;height:200px;object-fit:cover;object-position:center top;display:block;" alt="Комбинатор">
+              <!-- Default (bw): Figma scaleMode=FILL, identity transform → fills 295×200 at 1:1 -->
+              <img class="persona-bw"
+                   src="assets/images/persona-kombinator.png"
+                   style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt="">
+              <!-- Hover (color): Figma scaleMode=CROP, imageTransform=[[0.5544,0,0.3087],[0,0.2945,0.0005]]
+                   Visible crop: x=237–663 y=0–302 of 768×1024.
+                   CSS: scale image to 532px wide (768×295/426), shift -164px left (237×295/426). -->
+              <div class="persona-color"
+                   style="position:absolute;inset:0;
+                          background-image:url('assets/images/persona-kombinator-color.png');
+                          background-size:532px auto;
+                          background-position:-164px 0;
+                          background-repeat:no-repeat;"></div>
             </div>
           </div>
-          <!-- Figma Default Name: x=40, y=184, 183×48 -->
-          <div class="persona-name-label" style="position:absolute;left:40px;top:184px;width:183px;height:48px;display:flex;align-items:center;justify-content:center;padding:10.233px 10.964px 5.848px 14.619px;box-sizing:border-box;">
-            <img src="assets/images/persona-name-bg.svg" style="position:absolute;inset:0;width:100%;height:100%;" alt="">
-            <span style="position:relative;font-family:'Kom-post',cursive;color:#1e1e1c;white-space:nowrap;">комбинатор</span>
+          <!-- Name: Figma Default x=40 y=184 w=183 h=48 "комбинатор" Kom-post 32px -->
+          <div class="persona-name-label"
+               style="position:absolute;left:40px;top:184px;width:183px;height:48px;
+                      display:flex;align-items:center;justify-content:center;
+                      padding:10.233px 10.964px 5.848px 14.619px;box-sizing:border-box;">
+            <img src="assets/images/persona-name-bg.svg"
+                 style="position:absolute;inset:0;width:100%;height:100%;" alt="">
+            <span style="position:relative;font-family:'Kom-post',cursive;
+                         color:#1e1e1c;white-space:nowrap;">комбинатор</span>
           </div>
+          <!-- Active bubble: left side (tail → right toward card); Figma Text 3 frame 638×279
+               Quote: x=233 y=84 w=173  Status: checkmark x=108 y=219 text x=128 y=216 -->
           <div class="persona-bubble persona-bubble-left">
-            <svg class="persona-bubble-shape" width="504" height="187" viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 477.056 78.611 C 445.881 181.000 17.536 111.419 17.536 181.000 C 32.658 136.438 -8.076 101.954 1.466 56.871 C 11.008 11.788 106.637 0 234.755 0 C 362.873 0 490.254 35.263 477.056 78.611 Z" stroke="#121212" stroke-opacity="0.20" stroke-width="5"/>
+            <svg class="persona-bubble-shape" width="504" height="187"
+                 viewBox="-12 -3 504 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 477.056 78.611 C 445.881 181.000 17.536 111.419 17.536 181.000 C 32.658 136.438 -8.076 101.954 1.466 56.871 C 11.008 11.788 106.637 0 234.755 0 C 362.873 0 490.254 35.263 477.056 78.611 Z"
+                    stroke="#121212" stroke-opacity="0.20" stroke-width="5"/>
             </svg>
-            <!-- Figma Text 3: quote x=233, w=173 (differs from Person 1/2 x=104, w=427) -->
-            <div class="persona-bubble-text" style="left:233px;width:173px;">
+            <div class="persona-bubble-text" style="left:233px;width:173px;top:84px;">
               <p class="persona-quote">«Настрою дом <strong>под любого вора</strong>»</p>
             </div>
-            <p class="persona-status persona-status-yes"><span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span></p>
+            <p class="persona-status persona-status-yes">
+              <span>✓</span><span><u>*Учитывали персону при проектировании решений</u></span>
+            </p>
           </div>
         </div>
 
