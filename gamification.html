@@ -815,6 +815,7 @@
       text-underline-offset: 3px;
     }
     .kontekst-diagram-scroll::-webkit-scrollbar { display: none; }
+    .pain1-flow-scroll::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body>
@@ -1627,32 +1628,161 @@
 
       <!-- Pain 1 -->
       <div class="pain-section reveal">
-        <div class="pain-header">Боль 1</div>
-        <div class="pain-desc">не знают о сценариях и устройствах <span style="font-family:'Caveat',cursive;font-size:28px;color:#888;">комфортолюб</span></div>
-        <div class="screens-row">
-          <div class="phone-screen">
-            <img src="https://www.figma.com/api/mcp/asset/ba032098-69b9-445e-a66c-e6a0a5e74341" alt="Боль 1 — решение" />
-          </div>
-          <div style="display:flex;flex-direction:column;justify-content:center;max-width:370px;background:rgba(158,183,83,.15);border-radius:32px;padding:28px;gap:16px;">
-            <p style="font-size:24px;line-height:1.4;font-weight:500;color:#080808;">Посмотрите видео про сценарий</p>
-            <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.7);border-radius:100px;padding:8px 14px;width:fit-content;">
-              <span style="font-size:18px;">⚡ +3 заряда</span>
-            </div>
+        <!-- Pain 1 text — Figma 1326:12910: «Боль 1» слева | описание справа | стикер + стрелка -->
+        <div style="display:flex;align-items:flex-start;margin-bottom:32px;position:relative;">
+          <p style="font-family:'Gilroy',sans-serif;font-size:34px;font-weight:600;white-space:nowrap;flex-shrink:0;margin:0;color:#1e1e1c;line-height:normal;">Боль 1</p>
+          <div style="margin-left:auto;width:631px;position:relative;padding-bottom:52px;">
+            <p style="font-family:'Gilroy',sans-serif;font-size:21px;font-weight:500;line-height:normal;margin:0;color:#1e1e1c;">не знают о сценариях для умного дома и устройствах в&nbsp;экосистеме</p>
+            <img src="assets/images/pain1-arrow.svg" alt="" aria-hidden="true"
+                 style="position:absolute;right:193px;bottom:8px;width:70px;height:41px;pointer-events:none;">
+            <p style="position:absolute;right:0;bottom:0;font-family:'Kom-post',cursive;font-size:34px;font-weight:400;color:#1e1e1c;transform:rotate(-12deg);transform-origin:right bottom;white-space:nowrap;margin:0;line-height:normal;">комфортолюб</p>
           </div>
         </div>
+
+        <!-- Pain 1 — horizontal flow scroll (FLOW 1, Figma 1326:12909, 2039×829px) -->
+        <div class="pain1-flow-scroll" style="overflow-x:auto;overflow-y:hidden;width:calc(100% + 80px);margin-left:-40px;scrollbar-width:none;margin-bottom:8px;">
+          <div style="position:relative;width:2039px;height:829px;">
+
+            <!-- Annotation: «Заряды можно получить…» (x=56, y=29, w=370) -->
+            <div style="position:absolute;left:56px;top:29px;width:370px;border:2.5px solid #080808;border-radius:3px;background:#fff;padding:6px 9px;font-family:'Inter',sans-serif;font-size:18px;line-height:1.4;color:#080808;box-sizing:border-box;">
+              Заряды можно получить за выполнение заданий и обменять на мебель/дом и покупку комнат
+            </div>
+
+            <!-- Screen 1: Main scroll (322×698px, x=80, y=131) -->
+            <img src="assets/images/pain1-screen1-main.png" alt="Главный экран геймификации — дом мечты, задания, достижения"
+                 style="position:absolute;left:80px;top:131px;width:322px;height:698px;border-radius:28px;display:block;">
+
+            <!-- Annotation: «У каждого задания есть…» (x=417, y=576, w=370) -->
+            <div style="position:absolute;left:417px;top:576px;width:370px;border:2.5px solid #080808;border-radius:3px;background:#fff;padding:6px 9px;font-family:'Inter',sans-serif;font-size:18px;line-height:1.4;color:#080808;box-sizing:border-box;">
+              У каждого задания есть определённое количество баллов (в зависимости от сложности)
+            </div>
+
+            <!-- Screen 2: Tasks — Первое знакомство (233×500px, x=706, y=326) -->
+            <img src="assets/images/pain1-screen2-tasks.png" alt="Задание: первое знакомство с домом"
+                 style="position:absolute;left:706px;top:326px;width:233px;height:500px;border-radius:20px;display:block;">
+
+            <!-- Screen 3: Tasks — Видео о сценарии (233×500px, x=972, y=326) -->
+            <img src="assets/images/pain1-screen3-video.png" alt="Задание: посмотрите видео про сценарий"
+                 style="position:absolute;left:972px;top:326px;width:233px;height:500px;border-radius:20px;display:block;">
+
+            <!-- Annotation: «Просмотр видео/анимации…» (x=1221, y=356, w=248) -->
+            <div style="position:absolute;left:1221px;top:356px;width:248px;border:2.5px solid #080808;border-radius:3px;background:#fff;padding:6px 9px;font-family:'Inter',sans-serif;font-size:18px;line-height:1.4;color:#080808;box-sizing:border-box;text-align:center;">
+              Просмотр видео/анимации о сценарии
+            </div>
+
+            <!-- Screen 4: Tasks success (233×500px, x=1485, y=126) -->
+            <div style="position:absolute;left:1485px;top:126px;width:233px;height:500px;border-radius:20px;overflow:hidden;background:#080808;">
+              <img src="assets/images/pain1-screen4-bg.png" alt="" aria-hidden="true"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:0.35;pointer-events:none;display:block;">
+              <div style="position:absolute;inset:0;background:rgba(8,8,8,0.72);"></div>
+              <!-- Back button -->
+              <div style="position:absolute;top:36px;left:9px;width:25px;height:25px;background:rgba(255,255,255,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5L3.5 6L7.5 9.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <!-- Info button -->
+              <div style="position:absolute;top:36px;right:9px;width:25px;height:25px;background:rgba(255,255,255,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5.5" stroke="white" stroke-width="1.2"/><line x1="7" y1="6.3" x2="7" y2="9.7" stroke="white" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="4.8" r="0.65" fill="white"/></svg>
+              </div>
+              <!-- Handwritten title -->
+              <div style="position:absolute;top:79px;left:50%;transform:translateX(-50%) rotate(-5deg);white-space:nowrap;">
+                <span style="font-family:'Caveat',cursive;font-size:27px;color:white;font-weight:400;">Задания</span>
+              </div>
+              <!-- Stacked card base (shadow) -->
+              <div style="position:absolute;top:131px;left:18px;right:18px;height:306px;border-radius:15px;background:rgba(8,8,8,0.4);"></div>
+              <div style="position:absolute;top:135px;left:13px;right:13px;height:302px;border-radius:17px;background:rgba(8,8,8,0.2);"></div>
+              <!-- Main card -->
+              <div style="position:absolute;top:139px;left:9px;width:215px;height:296px;border-radius:18px;overflow:hidden;background:linear-gradient(224deg, rgba(158,183,83,0.5) 5%, rgba(255,255,255,0) 97%), rgba(255,255,255,0.5);">
+                <div style="position:absolute;top:16px;left:16px;right:16px;">
+                  <p style="font-family:'Inter',sans-serif;font-size:17px;color:#080808;margin:0 0 8px;line-height:1.2;font-weight:400;">Первое знакомство с домом</p>
+                  <p style="font-family:'Inter',sans-serif;font-size:10px;color:#545353;margin:0;line-height:1.4;">Посетите свой дом и расставьте в нём мебель</p>
+                </div>
+                <p style="position:absolute;top:141px;left:16px;font-family:'Inter',sans-serif;font-size:10px;color:#080808;margin:0;">Награда за выполнение</p>
+                <!-- Charge badge -->
+                <div style="position:absolute;bottom:18px;left:16px;display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.7);border-radius:50px;padding:3px 7px 3px 3px;">
+                  <div style="width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 50% 65%, #39DA71, #1FA04F);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                    <svg width="9" height="7" viewBox="0 0 9 7" fill="none" aria-hidden="true"><path d="M1 3.5L3.5 6L8 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span style="font-family:'Inter',sans-serif;font-size:11px;color:#080808;white-space:nowrap;">Задание выполнено!</span>
+                </div>
+              </div>
+              <!-- Level footer -->
+              <div style="position:absolute;bottom:28px;left:0;right:0;text-align:center;">
+                <p style="font-family:'Gilroy',sans-serif;font-size:17px;color:rgba(255,255,255,0.96);margin:0 0 6px;">1 уровень</p>
+                <p style="font-family:'Gilroy',sans-serif;font-size:11px;color:rgba(255,255,255,0.32);margin:0;">Выполнено 2 задания из 10</p>
+              </div>
+            </div>
+
+            <!-- Label «Экран успеха» (x=1485, y=642, w=233, h=30) -->
+            <div style="position:absolute;left:1485px;top:642px;width:233px;height:30px;border:2.5px solid #080808;border-radius:3px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:15px;color:#080808;box-sizing:border-box;">
+              Экран успеха
+            </div>
+
+            <!-- Screen 5: Tasks unavailable (233×500px, x=1766, y=126) -->
+            <div style="position:absolute;left:1766px;top:126px;width:233px;height:500px;border-radius:20px;overflow:hidden;background:#080808;">
+              <img src="assets/images/pain1-screen5-bg.png" alt="" aria-hidden="true"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:0.35;pointer-events:none;display:block;">
+              <div style="position:absolute;inset:0;background:rgba(8,8,8,0.72);"></div>
+              <!-- Back button -->
+              <div style="position:absolute;top:36px;left:9px;width:25px;height:25px;background:rgba(255,255,255,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5L3.5 6L7.5 9.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <!-- Info button -->
+              <div style="position:absolute;top:36px;right:9px;width:25px;height:25px;background:rgba(255,255,255,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5.5" stroke="white" stroke-width="1.2"/><line x1="7" y1="6.3" x2="7" y2="9.7" stroke="white" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="4.8" r="0.65" fill="white"/></svg>
+              </div>
+              <!-- Handwritten title -->
+              <div style="position:absolute;top:79px;left:50%;transform:translateX(-50%) rotate(-5deg);white-space:nowrap;">
+                <span style="font-family:'Caveat',cursive;font-size:27px;color:white;font-weight:400;">Задания</span>
+              </div>
+              <!-- Stacked card bases -->
+              <div style="position:absolute;top:131px;left:18px;right:18px;height:306px;border-radius:15px;background:rgba(8,8,8,0.4);"></div>
+              <div style="position:absolute;top:135px;left:13px;right:13px;height:302px;border-radius:17px;background:rgba(8,8,8,0.2);"></div>
+              <!-- Main card (locked) -->
+              <div style="position:absolute;top:139px;left:9px;width:215px;height:296px;border-radius:18px;overflow:hidden;background:linear-gradient(224deg, rgba(166,83,183,0.5) 5%, rgba(255,255,255,0) 97%), rgba(255,255,255,0.5);">
+                <!-- Centered lock content -->
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);text-align:center;width:160px;">
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 10px;" aria-hidden="true">
+                    <rect x="5" y="11" width="14" height="11" rx="2" stroke="#080808" stroke-width="1.5"/>
+                    <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="#080808" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <p style="font-family:'Inter',sans-serif;font-size:10px;color:#080808;margin:0;line-height:1.5;">Сначала выполните все задания первого уровня</p>
+                </div>
+              </div>
+              <!-- Level footer -->
+              <div style="position:absolute;bottom:28px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:5px;">
+                <span style="font-family:'Gilroy',sans-serif;font-size:18px;color:rgba(255,255,255,0.96);">2 уровень</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="5" y="11" width="14" height="11" rx="2" stroke="rgba(255,255,255,0.96)" stroke-width="1.5"/>
+                  <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="rgba(255,255,255,0.96)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /Pain 1 flow scroll -->
+
       </div>
 
       <!-- Pain 2 -->
       <div class="pain-section reveal">
-        <div class="pain-header">Боль 2</div>
-        <div class="pain-desc">не хватает подсказок <span style="font-family:'Caveat',cursive;font-size:28px;color:#888;">комфортолюб</span></div>
-        <div class="screens-row">
-          <div class="phone-screen" style="background:#080808;">
-            <img src="https://www.figma.com/api/mcp/asset/f8bb2126-9d66-415a-8ae9-6b41ae1a1e8b" alt="Боль 2 — онбординг" />
-          </div>
-          <div class="phone-screen" style="background:#080808;">
-            <img src="https://www.figma.com/api/mcp/asset/e1fec7c5-4d0c-49bc-b030-836e6b02d964" alt="Боль 2 — кстати" />
-          </div>
+        <img src="assets/images/pain2-header.png"
+             alt="Боль 2 — не хватает подсказок для устройств"
+             style="width:100%;height:auto;display:block;border-radius:20px;">
+        <!-- Pain 2 screens — Figma 1544:6686, 1200×526px, 4 экрана × 245px, border-radius:29.44px -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-top:32px;">
+          <img src="assets/images/pain2-screen1-morning.png"
+               alt="Доброе утро — подсказка об умных лампочках"
+               style="width:245px;height:526px;border-radius:29px;display:block;flex-shrink:0;">
+          <img src="assets/images/pain2-screen2-sunrise.png"
+               alt="Как рассвет — подсказка об умных лампочках"
+               style="width:245px;height:526px;border-radius:29px;display:block;flex-shrink:0;">
+          <img src="assets/images/pain2-screen3-btw.png"
+               alt="Кстати! — подсказка об умной колонке"
+               style="width:245px;height:526px;border-radius:29px;display:block;flex-shrink:0;">
+          <img src="assets/images/pain2-screen4-setup.png"
+               alt="Настройте сценарий — подсказка"
+               style="width:245px;height:526px;border-radius:29px;display:block;flex-shrink:0;">
         </div>
       </div>
 
