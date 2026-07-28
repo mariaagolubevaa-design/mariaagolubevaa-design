@@ -610,6 +610,15 @@
     .pagination__btn:active { color: #B03C39; opacity: .7; }
     .pagination__btn:focus-visible { outline: 2px solid #1e1e1c; outline-offset: 4px; border-radius: 2px; }
 
+
+    /* ── ACCORDION ── */
+    .accordion-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 0.35s ease; }
+    .accordion-body.collapsed { grid-template-rows:0fr; }
+    .accordion-inner { min-height:0; min-width:0; }
+    .accordion-body.collapsed .accordion-inner { overflow:hidden; }
+    .accordion-toggle { cursor:pointer; user-select:none; }
+    .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
+    .accordion-chevron.rotated { transform:rotate(180deg); }
     /* ── FOOTER ── */
     footer {
       background: var(--footer-bg);
@@ -875,13 +884,14 @@
   <section id="about">
     <div class="container">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:60px;">
-        <h2 class="section-title" style="margin-bottom:0;">О проекте
-          <img src="assets/images/gamification-about-chevron.svg" width="24" height="24" alt="" aria-hidden="true" style="transform:rotate(180deg); flex-shrink:0;">
+        <h2 class="section-title accordion-toggle" style="margin-bottom:0;" data-target="about-body">О проекте
+          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg>
         </h2>
         <div style="background:#d2d2d2; border-radius:16px 16px 16px 0; padding:10px 20px; font-family:'Gilroy',Arial,sans-serif; font-size:24px; font-weight:600; color:#1e1e1c; white-space:nowrap;">
           – Салют, умный дом
         </div>
       </div>
+      <div class="accordion-body" id="about-body"><div class="accordion-inner">
 
       <!-- Devices row (569:14757) -->
       <div class="devices-row reveal" id="devicesScroll">
@@ -1361,15 +1371,16 @@
           Салют! Да, это – я!
         </div>
       </div>
+      </div></div>
     </div>
   </section>
 
   <!-- DESIGN PROCESS -->
   <section id="process">
     <div class="container">
-      <h2 class="section-title" style="margin-bottom:24px;">Дизайн-процесс<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
+      <h2 class="section-title accordion-toggle" style="margin-bottom:24px;" data-target="process-body">Дизайн-процесс<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
 
-      <div class="process-grid reveal">
+      <div class="accordion-body" id="process-body"><div class="accordion-inner"><div class="process-grid reveal">
         <div class="process-step">
           <h3>01 Исследование</h3>
           <p>Анализ конкурентов, Гипотезы, Полевые исследования, Глубинки, CJM, Userstories</p>
@@ -1382,7 +1393,7 @@
           <h3>03 Тестирование</h3>
           <p>3 итерации ЮТ, Подведение итогов</p>
         </div>
-      </div>
+      </div></div></div>
     </div>
   </section>
 
@@ -1390,13 +1401,14 @@
   <section id="research" style="padding-bottom:0;">
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:64px;">
-        <h2 class="section-title" style="margin-bottom:0;">Исследование<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
+        <h2 class="section-title accordion-toggle" style="margin-bottom:0;" data-target="research-body">Исследование<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
         <!-- Competitors -->
         <div class="big-stat reveal" style="margin-bottom:0;">
           <span class="big-stat__num">19</span>
           <span class="big-stat__label">конкурентов</span>
         </div>
       </div>
+      <div class="accordion-body" id="research-body"><div class="accordion-inner">
 
       <h3 style="font-size:32px;font-weight:600;margin-bottom:40px;" class="reveal">Анализ конкурентов</h3>
 
@@ -1604,6 +1616,7 @@
         </div>
 
       </div>
+      </div></div>
 
     </div>
   </section>
@@ -1611,7 +1624,8 @@
   <!-- DESIGN -->
   <section id="design" style="padding-top:128px;padding-bottom:0;">
     <div class="container">
-      <h2 class="section-title">Решения и дизайн<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
+      <h2 class="section-title accordion-toggle" data-target="design-body">Решения и дизайн<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
+      <div class="accordion-body" id="design-body"><div class="accordion-inner">
 
 
       <!-- Контекст (1310:12409) -->
@@ -1846,6 +1860,7 @@
                style="position:absolute;left:396px;top:0;width:514px;height:154px;display:block;">
         </div>
       </div>
+      </div></div>
 
     </div>
   </section>
@@ -1952,6 +1967,36 @@
         }
       });
     })();
+  </script>
+
+  <script>
+  document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var body = document.getElementById(this.dataset.target);
+      if (!body) return;
+      var inner = body.querySelector('.accordion-inner');
+      var isCollapsed = body.classList.contains('collapsed');
+      var chevron = this.querySelector('.accordion-chevron');
+
+      if (isCollapsed) {
+        // Expanding: clip only during animation, then reveal
+        inner.style.overflow = 'hidden';
+        body.classList.remove('collapsed');
+        body.addEventListener('transitionend', function onDone(e) {
+          if (e.propertyName === 'grid-template-rows') {
+            inner.style.overflow = '';
+            body.removeEventListener('transitionend', onDone);
+          }
+        });
+      } else {
+        // Collapsing: clip before animation starts
+        inner.style.overflow = 'hidden';
+        body.classList.add('collapsed');
+      }
+
+      if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
+    });
+  });
   </script>
 </body>
 </html>
