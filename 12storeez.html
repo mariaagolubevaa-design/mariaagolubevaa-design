@@ -212,7 +212,7 @@
     .myrole-block { position: relative; width: 100%; height: 915px; }
     .myrole-block__header {
       position: absolute; left: 0; top: 0;
-      font-size: 40px; font-weight: 600; color: var(--black); line-height: normal;
+      font-size: 32px; font-weight: 600; color: var(--black); line-height: normal;
     }
     .myrole-block__photo {
       position: absolute; left: 0; top: 83px;
@@ -249,6 +249,33 @@
 
     /* DESIGN PROCESS */
     .process-img { width: 100%; border-radius: 24px; display: block; }
+    .dp-block { }
+    .dp-block__header {
+      display: flex; align-items: center; gap: 24px;
+      font-size: 40px; font-weight: 600; color: var(--black);
+      line-height: normal; margin-bottom: 64px;
+    }
+    .dp-block__cols {
+      display: grid; grid-template-columns: 350px 350px 350px;
+      gap: 35px;
+    }
+    .dp-block__col { display: flex; flex-direction: column; }
+    .dp-block__col-title {
+      font-size: 32px; font-weight: 600; line-height: normal;
+      padding-bottom: 14px; margin-bottom: 16px;
+    }
+    .dp-block__col--active .dp-block__col-title {
+      color: var(--black); border-bottom: 2px solid var(--black);
+    }
+    .dp-block__col--inactive .dp-block__col-title {
+      color: var(--grey2); border-bottom: 1px solid var(--grey1);
+    }
+    .dp-block__col-desc {
+      font-size: 20px; font-weight: 500; line-height: normal;
+      letter-spacing: -0.4px;
+    }
+    .dp-block__col--active .dp-block__col-desc { color: var(--black); }
+    .dp-block__col--inactive .dp-block__col-desc { color: var(--grey2); }
 
     /* RESEARCH */
     .research-img-block { margin-bottom: 60px; }
@@ -256,11 +283,24 @@
     .research-img-block__title { font-size: 32px; font-weight: 600; margin-bottom: 24px; }
 
     /* BRANDS */
-    .brands-wrap {
-      overflow: hidden; margin-bottom: 60px;
-      border-top: 1px solid var(--grey1); border-bottom: 1px solid var(--grey1);
+    .brands-marquee { overflow: hidden; width: 100%; margin-bottom: 64px; }
+    .brands-track {
+      display: flex; align-items: center; gap: 32px;
+      width: max-content;
+      animation: brands-scroll 80s linear infinite;
     }
-    .brands-img { width: 100%; display: block; }
+    .brands-track:hover { animation-play-state: paused; }
+    @keyframes brands-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .brand-pill {
+      flex-shrink: 0;
+      height: 64px;
+      background: #fff;
+      border: 0.83px solid var(--grey1);
+      display: flex; align-items: center; justify-content: center;
+    }
 
     /* CJM / MINDSETS */
     .full-width-img { width: 100%; display: block; }
@@ -473,53 +513,94 @@
   </div>
 </section>
 
-<div class="sep"></div>
-
 <!-- DESIGN PROCESS -->
 <section id="process">
   <div class="container">
-    <h2 class="section-title reveal">Дизайн-процесс</h2>
-    <div class="reveal">
-      <img class="process-img" src="assets/images/storeez-process.png" alt="Дизайн-процесс: Исследование → Дизайн → Тестирование">
-    </div>
-    <div class="reveal" style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
-      <div style="padding:32px;background:#f5f5f5;border-radius:24px;">
-        <div style="font-size:13px;font-weight:700;color:var(--grey2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">01 Исследование</div>
-        <p style="font-size:16px;line-height:1.6;color:#555;">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM по 5 LOK, Майндсеты</p>
+    <div class="dp-block reveal">
+      <div class="dp-block__header">
+        Дизайн-процесс
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <div style="padding:32px;background:#f5f5f5;border-radius:24px;">
-        <div style="font-size:13px;font-weight:700;color:var(--grey2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">02 Дизайн</div>
-        <p style="font-size:16px;line-height:1.6;color:#555;">Генерация идей, приоритизация через количественный анализ по Кано, юзерфлоу, вайрфреймы, экраны, генерация инфографики</p>
-      </div>
-      <div style="padding:32px;background:#f5f5f5;border-radius:24px;">
-        <div style="font-size:13px;font-weight:700;color:var(--grey2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">03 Тестирование</div>
-        <p style="font-size:16px;line-height:1.6;color:#555;">ЮТ по RITE, развитие решений, итоги</p>
+      <div class="dp-block__cols">
+        <div class="dp-block__col dp-block__col--active">
+          <div class="dp-block__col-title">01 Исследование</div>
+          <p class="dp-block__col-desc">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM по 5 LOK, Майндсеты,</p>
+        </div>
+        <div class="dp-block__col dp-block__col--inactive">
+          <div class="dp-block__col-title">02 Дизайн</div>
+          <p class="dp-block__col-desc">Генерация идей, Приоритизация через колич по Кано, Юзерфлоу, Вайрфреймы, Экраны,<br>Генерация инфографики</p>
+        </div>
+        <div class="dp-block__col dp-block__col--inactive">
+          <div class="dp-block__col-title">03 Тестирование</div>
+          <p class="dp-block__col-desc">ЮТ по RITE, Развитие решений, Итоги</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="sep"></div>
-
 <!-- RESEARCH -->
 <section id="research">
   <div class="container">
-    <h2 class="section-title reveal">Исследование</h2>
-
-    <!-- Usability Testing -->
-    <div class="research-img-block reveal">
-      <h3 class="research-img-block__title">ЮТ текущего приложения</h3>
-      <img src="assets/images/storeez-ut.png" alt="Юзабилити-тестирование текущего приложения" style="width:100%;border-radius:24px;">
+    <div class="dp-block__header reveal" style="margin-bottom:64px;">
+      Исследование
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
 
-    <div style="height:40px;"></div>
-
-    <!-- Brands marquee -->
-    <div style="margin-bottom:16px;">
-      <h3 style="font-size:24px;font-weight:600;color:var(--grey2);margin-bottom:16px;">Анализ конкурентов и бенчмарков</h3>
+    <!-- Деск ресерч -->
+    <div class="reveal" style="position:relative; height:210px; margin-bottom:64px;">
+      <img src="assets/images/desk-research.png" alt="Конкуренты и Бенчмарки" style="position:absolute; left:0; top:0; width:100%; height:auto; display:block;">
+      <img src="assets/images/trendy.png" alt="Тренды" style="position:absolute; left:845px; top:0; display:block;">
     </div>
-    <div class="brands-wrap reveal">
-      <img class="brands-img" src="assets/images/storeez-brands.png" alt="Конкуренты и бренды: Zara, Massimo Dutti, H&M, Gucci, Loro Piana, COS, Farfetch, Lamoda и другие">
+
+    <!-- Brands -->
+    <div class="brands-marquee reveal">
+      <div class="brands-track">
+        <!-- Set 1 -->
+        <div class="brand-pill" style="padding:16px 32px;"><img src="assets/images/brand-zara.svg" alt="Zara" style="width:80px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-massimo-dutti.svg" alt="Massimo Dutti" style="width:215px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-chanel.svg" alt="Chanel" style="width:180px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-gucci.svg" alt="Gucci" style="width:140px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="width:200px;padding:20px;"><img src="assets/images/brand-lv.svg" alt="Louis Vuitton" style="width:160px;height:16px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-loro-piana.svg" alt="Loro Piana" style="width:152px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;gap:5.18px;border-width:0.518px;"><img src="assets/images/brand-bottega-1.svg" alt="Bottega Veneta" style="width:240px;height:20px;flex-shrink:0;display:block;"><img src="assets/images/brand-bottega-2.svg" alt="" style="width:263px;height:32px;flex-shrink:0;display:block;"></div>
+        <div class="brand-pill" style="width:187px;padding:22px 24px;"><img src="assets/images/brand-cos.svg" alt="" style="width:139px;height:20px;display:block;"></div>
+        <div class="brand-pill" style="width:185px;padding:21px 17.5px;"><div style="width:150px;height:22px;overflow:hidden;"><img src="assets/images/brand-lamoda-inner.svg" alt="" style="width:100%;height:100%;display:block;"></div></div>
+        <div class="brand-pill" style="width:200px;padding:5.5px 21px;"><img src="assets/images/brand-tsum.svg" alt="ЦУМ" style="width:86px;height:53px;display:block;"></div>
+        <div class="brand-pill" style="width:147px;"><span style="font-family:'Gilroy',sans-serif;font-weight:300;font-size:32.5px;color:var(--grey1);text-transform:uppercase;letter-spacing:0.05em;">goat</span></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-svgexport1.svg" alt="" style="width:149px;height:22px;display:block;"></div>
+        <div class="brand-pill" style="padding:5.5px 21px;"><img src="assets/images/brand-farfetch.svg" alt="Farfetch" style="width:199px;height:53px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-idol.svg" alt="Idol" style="width:114px;height:36px;display:block;"></div>
+        <div style="flex-shrink:0;width:147px;height:64px;"><img src="assets/images/brand-monochrome.svg" alt="" style="width:100%;height:100%;display:block;object-fit:contain;"></div>
+        <div class="brand-pill" style="padding:17.5px;"><img src="assets/images/brand-yandex-market.svg" alt="Яндекс Маркет" style="width:152px;height:29px;display:block;"></div>
+        <div class="brand-pill" style="padding:21px;"><div style="width:108px;height:22px;overflow:hidden;position:relative;"><div style="position:absolute;inset:-25% -10%;"><img src="assets/images/brand-lamoda.svg" alt="Lamoda" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div></div></div>
+        <div class="brand-pill" style="width:173px;padding:18px;"><img src="assets/images/brand-small-icon.svg" alt="" style="width:126px;height:25px;display:block;"></div>
+        <div class="brand-pill" style="width:235px;padding:10px 22px;"><img src="assets/images/brand-ekunika.svg" alt="Экника" style="width:191px;height:44px;display:block;"></div>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="brand-pill" style="padding:16px 32px;"><img src="assets/images/brand-zara.svg" alt="Zara" style="width:80px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-massimo-dutti.svg" alt="Massimo Dutti" style="width:215px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-chanel.svg" alt="Chanel" style="width:180px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-gucci.svg" alt="Gucci" style="width:140px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="width:200px;padding:20px;"><img src="assets/images/brand-lv.svg" alt="Louis Vuitton" style="width:160px;height:16px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-loro-piana.svg" alt="Loro Piana" style="width:152px;height:32px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;gap:5.18px;border-width:0.518px;"><img src="assets/images/brand-bottega-1.svg" alt="Bottega Veneta" style="width:240px;height:20px;flex-shrink:0;display:block;"><img src="assets/images/brand-bottega-2.svg" alt="" style="width:263px;height:32px;flex-shrink:0;display:block;"></div>
+        <div class="brand-pill" style="width:187px;padding:22px 24px;"><img src="assets/images/brand-cos.svg" alt="" style="width:139px;height:20px;display:block;"></div>
+        <div class="brand-pill" style="width:185px;padding:21px 17.5px;"><div style="width:150px;height:22px;overflow:hidden;"><img src="assets/images/brand-lamoda-inner.svg" alt="" style="width:100%;height:100%;display:block;"></div></div>
+        <div class="brand-pill" style="width:200px;padding:5.5px 21px;"><img src="assets/images/brand-tsum.svg" alt="ЦУМ" style="width:86px;height:53px;display:block;"></div>
+        <div class="brand-pill" style="width:147px;"><span style="font-family:'Gilroy',sans-serif;font-weight:300;font-size:32.5px;color:var(--grey1);text-transform:uppercase;letter-spacing:0.05em;">goat</span></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-svgexport1.svg" alt="" style="width:149px;height:22px;display:block;"></div>
+        <div class="brand-pill" style="padding:5.5px 21px;"><img src="assets/images/brand-farfetch.svg" alt="Farfetch" style="width:199px;height:53px;display:block;"></div>
+        <div class="brand-pill" style="padding:16px 24px;"><img src="assets/images/brand-idol.svg" alt="Idol" style="width:114px;height:36px;display:block;"></div>
+        <div style="flex-shrink:0;width:147px;height:64px;"><img src="assets/images/brand-monochrome.svg" alt="" style="width:100%;height:100%;display:block;object-fit:contain;"></div>
+        <div class="brand-pill" style="padding:17.5px;"><img src="assets/images/brand-yandex-market.svg" alt="Яндекс Маркет" style="width:152px;height:29px;display:block;"></div>
+        <div class="brand-pill" style="padding:21px;"><div style="width:108px;height:22px;overflow:hidden;position:relative;"><div style="position:absolute;inset:-25% -10%;"><img src="assets/images/brand-lamoda.svg" alt="Lamoda" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div></div></div>
+        <div class="brand-pill" style="width:173px;padding:18px;"><img src="assets/images/brand-small-icon.svg" alt="" style="width:126px;height:25px;display:block;"></div>
+        <div class="brand-pill" style="width:235px;padding:10px 22px;"><img src="assets/images/brand-ekunika.svg" alt="Экника" style="width:191px;height:44px;display:block;"></div>
+      </div>
     </div>
 
     <!-- CJM -->
