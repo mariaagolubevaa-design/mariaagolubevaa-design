@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>12 STOREEZ — Мария Голубева</title>
+  <style>
+    @font-face {
+      font-family: 'Soyuz Grotesk';
+      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
+           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-medium.ttf') format('truetype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-semibold.ttf') format('truetype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-bold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Gilroy', Arial, sans-serif; background: #fff; color: #1e1e1c; overflow-x: hidden; }
+    :root {
+      --black: #1e1e1c;
+      --grey1: #d2d2d2;
+      --grey2: #a5a5a4;
+      --grey3: #787877;
+      --footer-bg: #ece6d6;
+      --page-w: 1200px;
+      --max-w: 1280px;
+      --pad: 40px;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,254,251,.92);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #nav-hover-zone {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      z-index: 101;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 50px var(--pad) 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav__logo:hover { color: #B03C39; }
+    .nav__logo-icon { width: 24px; height: 24px; }
+    .nav__about {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav__about:hover { color: #B03C39; }
+    .nav__link {
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__link:hover { color: #B03C39; }
+
+    /* COVER */
+    .cover { width: 100%; overflow: hidden; line-height: 0; }
+    .cover img { width: 100%; display: block; }
+
+    /* COVER LABEL */
+    .cover-label {
+      max-width: var(--page-w);
+      margin: 32px auto 0;
+      padding: 0 40px;
+      font-family: 'Gilroy', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #d2d2d2;
+      white-space: nowrap;
+    }
+
+    /* SECTION NAV */
+    .section-nav {
+      max-width: var(--page-w); margin: 0 auto;
+      padding: 0 40px; display: flex; gap: 48px;
+      border-bottom: 1px solid var(--grey1); margin-top: 16px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .section-nav::-webkit-scrollbar { display: none; }
+    .section-nav a {
+      font-size: 24px; font-weight: 500; color: var(--grey2);
+      text-decoration: none; padding-bottom: 18px;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s; white-space: nowrap; flex-shrink: 0;
+    }
+    .section-nav a:hover, .section-nav a.active { color: var(--black); border-bottom-color: var(--black); font-weight: 700; }
+
+    /* CONTAINER */
+    .container { max-width: var(--page-w); margin: 0 auto; padding: 0 40px; }
+    section { padding: 80px 0; }
+    .section-title { font-size: 40px; font-weight: 600; margin-bottom: 48px; }
+    .sep { height: 1px; background: var(--grey1); margin: 0 40px; }
+
+    /* CONTEXT */
+    .context-block {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 40px; align-items: start;
+    }
+    .context-block__label {
+      font-size: 40px; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .context-block__label span { font-size: 24px; color: var(--grey2); }
+    .context-block__text { font-size: 20px; line-height: 1.5; font-weight: 500; max-width: 600px; }
+
+    /* AS IS */
+    .asis-section { padding: 60px 0 40px; }
+    .asis-label {
+      font-size: 40px; font-weight: 600; margin-bottom: 16px;
+      color: var(--black);
+    }
+    .asis-caption {
+      font-size: 20px; color: var(--grey2); font-weight: 500;
+      margin-bottom: 40px; font-style: italic;
+    }
+    .asis-phones {
+      display: flex; gap: 40px; align-items: flex-start;
+    }
+    .asis-phone-img {
+      border-radius: 32px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.12);
+    }
+
+    /* CHALLENGE GRID */
+    .challenge-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; margin-bottom: 0;
+    }
+    .challenge-card {
+      padding: 40px; border: 1.5px solid var(--grey1);
+      border-radius: 24px;
+    }
+    .challenge-card__label {
+      font-size: 14px; font-weight: 600; color: var(--grey2);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px;
+    }
+    .challenge-card__text { font-size: 20px; line-height: 1.6; }
+    .challenge-card__list { list-style: none; padding: 0; }
+    .challenge-card__list li {
+      font-size: 20px; line-height: 1.6; padding-left: 20px;
+      position: relative; margin-bottom: 8px;
+    }
+    .challenge-card__list li::before {
+      content: counter(item) '.';
+      counter-increment: item;
+      position: absolute; left: 0; color: var(--grey2); font-weight: 700;
+    }
+    .challenge-card__list { counter-reset: item; }
+
+    /* MY ROLE */
+    .myrole-img { width: 100%; border-radius: 24px; display: block; margin-bottom: 48px; }
+
+    /* PHOTOS */
+    .photos-row { display: flex; gap: 32px; align-items: flex-start; }
+    .photos-row img { border-radius: 24px; object-fit: cover; flex: 1; min-width: 0; }
+
+    /* DESIGN PROCESS */
+    .process-img { width: 100%; border-radius: 24px; display: block; }
+
+    /* RESEARCH */
+    .research-img-block { margin-bottom: 60px; }
+    .research-img-block img { width: 100%; border-radius: 16px; display: block; }
+    .research-img-block__title { font-size: 32px; font-weight: 600; margin-bottom: 24px; }
+
+    /* BRANDS */
+    .brands-wrap {
+      overflow: hidden; margin-bottom: 60px;
+      border-top: 1px solid var(--grey1); border-bottom: 1px solid var(--grey1);
+    }
+    .brands-img { width: 100%; display: block; }
+
+    /* CJM / MINDSETS */
+    .full-width-img { width: 100%; display: block; }
+    .full-width-img--rounded { border-radius: 24px; }
+
+    /* DESIGN PAINS */
+    .pain-block { margin-bottom: 80px; }
+    .pain-block__header {
+      display: flex; align-items: baseline; gap: 24px;
+      margin-bottom: 32px;
+    }
+    .pain-block__title { font-size: 40px; font-weight: 600; }
+    .pain-block__quote {
+      font-size: 20px; color: var(--grey2); font-style: italic; font-weight: 500;
+    }
+    .pain-block img { width: 100%; border-radius: 24px; display: block; }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 40px; max-width: var(--page-w); margin: 0 auto;
+      border-top: 1px solid var(--grey1);
+    }
+    .pagination__btn {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 24px; font-weight: 500; text-decoration: none;
+      color: var(--black); cursor: pointer;
+      background: none; border: none; font-family: inherit;
+      transition: opacity .2s;
+    }
+    .pagination__btn:hover { opacity: .6; }
+
+    /* FOOTER */
+    footer { background: var(--footer-bg); border-radius: 32px 32px 0 0; }
+    .footer-inner {
+      max-width: var(--page-w); margin: 0 auto;
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer__logo {
+      font-family: 'Soyuz Grotesk', Arial, sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--black); text-decoration: none;
+    }
+    .footer__nav { display: flex; gap: 132px; list-style: none; }
+    .footer__nav a {
+      font-family: 'Soyuz Grotesk', Arial, sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--black); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer__nav a:hover, .footer__logo:hover { color: #B03C39; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* CHIPS */
+    .chips { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .chip {
+      border: 1.5px solid var(--grey2); border-radius: 32px;
+      padding: 8px 16px; font-size: 16px; color: var(--grey3); font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div id="nav-hover-zone"></div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav__logo" href="index.html">
+      <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
+      Мария Голубева
+    </a>
+    <a class="nav__about" href="about.html">обо мне</a>
+    <a class="nav__link" href="contacts.html">контакты</a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <img src="assets/images/storeez-cover.png" alt="12 STOREEZ — главная страница приложения">
+</div>
+
+<!-- PROJECT LABEL -->
+<div class="cover-label">12 STOREEZ&nbsp;&nbsp;×&nbsp;&nbsp;BHSAD</div>
+
+<!-- SECTION NAV -->
+<div class="section-nav">
+  <a href="#about" class="active">О проекте</a>
+  <a href="#process">Дизайн-процесс</a>
+  <a href="#research">Исследование</a>
+  <a href="#design">Дизайн</a>
+  <a href="#result">Результат</a>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+
+    <!-- Контекст -->
+    <div class="context-block reveal">
+      <div class="context-block__label">
+        Контекст <span>↓</span>
+      </div>
+      <p class="context-block__text">
+        12 STOREEZ — российский премиум бренд лаконичной одежды, обуви и аксессуаров вне времени, с фокусом на натуральные материалы. У бренда есть несколько цифровых каналов в онлайне, но нам предстояла работа над приложением.<br><br>
+        Помимо основной задачи брифа, заказчик задался глобальным вопросом «Зачем приложение бренду?»
+      </p>
+    </div>
+
+    <div style="height:64px;"></div>
+    <div class="sep" style="margin:0;"></div>
+    <div style="height:64px;"></div>
+
+    <!-- As is -->
+    <div class="asis-section reveal">
+      <div class="asis-label">As is</div>
+      <p class="asis-caption">Сейчас главная в приложении 12 STOREEZ выглядит так</p>
+      <div class="asis-phones">
+        <img class="asis-phone-img" src="assets/images/storeez-asisis.png" alt="Текущее приложение 12 STOREEZ" style="height:420px;width:auto;">
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+    <div class="sep" style="margin:0;"></div>
+    <div style="height:64px;"></div>
+
+    <!-- Challenge grid: Problem / Task / Metrics / Limitations -->
+    <div class="challenge-grid reveal">
+      <div class="challenge-card">
+        <div class="challenge-card__label">Проблема</div>
+        <ol class="challenge-card__list">
+          <li>Низкая глубина просмотра на главной — CTR ≈ 3 баннера</li>
+          <li>Низкая конверсия с главной страницы</li>
+          <li>Зачем бренду вообще приложение?</li>
+        </ol>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__label">Задача</div>
+        <p class="challenge-card__text">
+          Спроектировать самобытный и современный главный экран приложения, который эффектно презентует товары и остаётся интуитивным для пользователя
+        </p>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__label">Метрики</div>
+        <p class="challenge-card__text">
+          Наши решения должны повлиять на увеличение количества покупок (CR to purchase), увеличить глубину просмотра на главной (CTR) и добавление в корзину или вишлист (Add to cart, wishlist) сразу с главной страницы приложения
+        </p>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-card__label">Ограничения</div>
+        <p class="challenge-card__text">
+          Главная должна быть красивой, НО обязана продавать. НО не должна превращаться в витрину маркетплейса
+        </p>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+    <div class="sep" style="margin:0;"></div>
+    <div style="height:64px;"></div>
+
+    <!-- My role -->
+    <div class="reveal">
+      <h2 class="section-title">Моя роль</h2>
+      <img class="myrole-img" src="assets/images/storeez-myrole.png" alt="Моя роль в проекте">
+    </div>
+
+    <!-- Photos -->
+    <div class="photos-row reveal">
+      <img src="assets/images/storeez-photo1.png" alt="Процесс работы" style="border-radius:24px;max-height:400px;object-fit:cover;">
+      <img src="assets/images/storeez-photo2.png" alt="Команда" style="border-radius:24px;max-height:400px;object-fit:cover;">
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- DESIGN PROCESS -->
+<section id="process">
+  <div class="container">
+    <h2 class="section-title reveal">Дизайн-процесс</h2>
+    <div class="reveal">
+      <img class="process-img" src="assets/images/storeez-process.png" alt="Дизайн-процесс: Исследование → Дизайн → Тестирование">
+    </div>
+    <div class="reveal" style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+      <div style="padding:32px;background:#f5f5f5;border-radius:24px;">
+        <div style="font-size:13px;font-weight:700;color:var(--grey2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">01 Исследование</div>
+        <p style="font-size:16px;line-height:1.6;color:#555;">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM по 5 LOK, Майндсеты</p>
+      </div>
+      <div style="padding:32px;background:#f5f5f5;border-radius:24px;">
+        <div style="font-size:13px;font-weight:700;color:var(--grey2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">02 Дизайн</div>
+        <p style="font-size:16px;line-height:1.6;color:#555;">Генерация идей, приоритизация через количественный анализ по Кано, юзерфлоу, вайрфреймы, экраны, генерация инфографики</p>
+      </div>
+      <div style="padding:32px;background:#f5f5f5;border-radius:24px;">
+        <div style="font-size:13px;font-weight:700;color:var(--grey2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">03 Тестирование</div>
+        <p style="font-size:16px;line-height:1.6;color:#555;">ЮТ по RITE, развитие решений, итоги</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <h2 class="section-title reveal">Исследование</h2>
+
+    <!-- Usability Testing -->
+    <div class="research-img-block reveal">
+      <h3 class="research-img-block__title">ЮТ текущего приложения</h3>
+      <img src="assets/images/storeez-ut.png" alt="Юзабилити-тестирование текущего приложения" style="width:100%;border-radius:24px;">
+    </div>
+
+    <div style="height:40px;"></div>
+
+    <!-- Brands marquee -->
+    <div style="margin-bottom:16px;">
+      <h3 style="font-size:24px;font-weight:600;color:var(--grey2);margin-bottom:16px;">Анализ конкурентов и бенчмарков</h3>
+    </div>
+    <div class="brands-wrap reveal">
+      <img class="brands-img" src="assets/images/storeez-brands.png" alt="Конкуренты и бренды: Zara, Massimo Dutti, H&M, Gucci, Loro Piana, COS, Farfetch, Lamoda и другие">
+    </div>
+
+    <!-- CJM -->
+    <div style="margin-bottom:16px;" class="reveal">
+      <h3 style="font-size:32px;font-weight:600;margin-bottom:24px;">CJM AS IS по 5 LOK</h3>
+      <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по фреймворку 5 LOK" style="border-radius:16px;margin-left:-40px;width:calc(100% + 80px);display:block;">
+    </div>
+
+    <div style="height:60px;"></div>
+
+    <!-- Mindsets text -->
+    <div class="reveal" style="margin-bottom:32px;">
+      <img src="assets/images/storeez-mindsets-text.png" alt="Майндсеты — описание" style="width:100%;border-radius:16px;">
+    </div>
+
+    <!-- Mindsets visual -->
+    <div class="reveal" style="margin-left:-40px;width:calc(100% + 80px);">
+      <img src="assets/images/storeez-mindsets.png" alt="Майндсеты" style="width:100%;display:block;">
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- DESIGN -->
+<section id="design">
+  <div class="container">
+    <h2 class="section-title reveal">Решения и дизайн</h2>
+
+    <!-- Pain 1 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Не цепляет главная</span>
+        <span class="pain-block__quote">«Красивые кампейны! Но больше 2 раз не смотрю»</span>
+      </div>
+      <img src="assets/images/storeez-pain1.png" alt="Решение: не цепляет главная — дополнительный слой навигации">
+    </div>
+
+    <!-- Pain 2 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Не знаю о полезных функциях</span>
+        <span class="pain-block__quote">«Ого! Даже не знаю о таком!»</span>
+      </div>
+      <img src="assets/images/storeez-pain2.png" alt="Решение: открытие полезных функций">
+    </div>
+
+    <!-- Pain 3 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">А как это выглядит в жизни?</span>
+        <span class="pain-block__quote">«Часто иду смотреть в тг или инст вещи, как они смотрятся в жизни»</span>
+      </div>
+      <img src="assets/images/storeez-pain3.png" alt="Решение: лучшие образы месяца">
+    </div>
+
+    <!-- Pain 4 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Нечего надеть</span>
+        <span class="pain-block__quote">«У меня много вещей с бирками. Наверное, не было ещё повода для них»</span>
+      </div>
+      <img src="assets/images/storeez-pain4.png" alt="Решение: вещи складываются в образы, готовые образы на главной">
+    </div>
+
+    <!-- Pain 5 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Зачем приложение?</span>
+        <span class="pain-block__quote">«Я скачиваю приложения только тех сервисов, куда захожу каждый день»</span>
+      </div>
+      <img src="assets/images/storeez-pain5.png" alt="Решение: ценность приложения для пользователя">
+    </div>
+
+    <!-- Pain 6 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Как сидит?</span>
+      </div>
+      <img src="assets/images/storeez-pain6.png" alt="Решение: как выглядит вещь на разных людях">
+    </div>
+
+    <!-- Pain 7 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Барьеры в онлайне</span>
+      </div>
+      <img src="assets/images/storeez-pain7.png" alt="Решение: преодоление барьеров онлайн-покупок">
+    </div>
+
+    <!-- Pain 8 -->
+    <div class="pain-block reveal">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Омниканальность</span>
+      </div>
+      <img src="assets/images/storeez-pain8.png" alt="Решение: коммьюнити, события, офлайн-точки">
+    </div>
+
+    <!-- Pain 9 -->
+    <div class="pain-block reveal" id="result">
+      <div class="pain-block__header">
+        <span class="pain-block__title">Не хватает общения</span>
+      </div>
+      <img src="assets/images/storeez-pain9.png" alt="Решение: коммьюнити и общение">
+    </div>
+
+    <div class="chips reveal">
+      <span class="chip">приложение</span>
+      <span class="chip">ux/ui</span>
+      <span class="chip">B2C</span>
+      <span class="chip">премиум</span>
+      <span class="chip">2026</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAGINATION -->
+<div class="pagination">
+  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ наверх</button>
+  <div style="display:flex;gap:40px;">
+    <a class="pagination__btn" href="tingli.html">← Профиль пользователя</a>
+    <a class="pagination__btn" href="gamification.html">Геймификация в УД →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a class="footer__logo" href="index.html">мария голубева</a>
+    <ul class="footer__nav">
+      <li><a href="index.html#projects">мои проекты</a></li>
+      <li><a href="about.html">обо мне</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const navLinks = document.querySelectorAll('.section-nav a');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur || (a.getAttribute('href') === '#result' && cur === 'design'));
+    });
+  });
+
+  const nav = document.querySelector('.nav');
+  const hoverZone = document.getElementById('nav-hover-zone');
+  const showNav = () => nav.classList.add('nav--visible');
+  const hideNav = () => { if (!nav.matches(':hover') && !hoverZone.matches(':hover')) nav.classList.remove('nav--visible'); };
+  hoverZone.addEventListener('mouseenter', showNav);
+  hoverZone.addEventListener('mouseleave', hideNav);
+  nav.addEventListener('mouseenter', showNav);
+  nav.addEventListener('mouseleave', hideNav);
+</script>
+</body>
+</html>
