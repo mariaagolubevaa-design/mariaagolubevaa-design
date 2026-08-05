@@ -170,9 +170,10 @@
     }
 
     /* AS IS */
-    .asis-section { padding: 60px 0 40px; }
+    .asis-section { position: relative; padding: 0 0 40px; }
     .asis-label {
-      font-size: 70px; font-weight: 600; margin-bottom: 16px;
+      position: absolute; left: 0; top: 0;
+      font-size: 50px; font-weight: 600;
       color: #d2d2d2; line-height: normal;
     }
     .asis-caption {
@@ -180,41 +181,67 @@
       margin-bottom: 40px; font-style: italic;
     }
     .asis-phones {
-      display: flex; gap: 40px; align-items: flex-start;
+      display: flex; gap: 244px; align-items: flex-start; justify-content: center;
+      padding-top: 26px;
     }
     .asis-phone-img {
-      border-radius: 32px; overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,.12);
+      width: 322px; height: 700px;
+      object-fit: cover;
+      border-radius: 25.6px;
     }
 
     /* CHALLENGE GRID */
     .challenge-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 32px; margin-bottom: 0;
+      column-gap: 80px; row-gap: 60px; margin-bottom: 0;
     }
     .challenge-card {
-      padding: 40px; border: 1.5px solid var(--grey1);
-      border-radius: 24px;
+      display: flex; flex-direction: column; gap: 24px;
     }
     .challenge-card__label {
-      font-size: 14px; font-weight: 600; color: var(--grey2);
-      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px;
+      font-size: 32px; font-weight: 600; color: var(--black);
+      line-height: normal;
     }
-    .challenge-card__text { font-size: 20px; line-height: 1.6; }
-    .challenge-card__list { list-style: none; padding: 0; }
-    .challenge-card__list li {
-      font-size: 20px; line-height: 1.6; padding-left: 20px;
-      position: relative; margin-bottom: 8px;
+    .challenge-card__text {
+      font-size: 20px; font-weight: 500; line-height: normal;
+      color: var(--black); letter-spacing: -0.4px;
     }
-    .challenge-card__list li::before {
-      content: counter(item) '.';
-      counter-increment: item;
-      position: absolute; left: 0; color: var(--grey2); font-weight: 700;
-    }
-    .challenge-card__list { counter-reset: item; }
+    .challenge-card__text p { margin: 0; }
 
     /* MY ROLE */
-    .myrole-img { width: 100%; border-radius: 24px; display: block; margin-bottom: 48px; }
+    .myrole-block { position: relative; width: 100%; height: 915px; }
+    .myrole-block__header {
+      position: absolute; left: 0; top: 0;
+      font-size: 40px; font-weight: 600; color: var(--black); line-height: normal;
+    }
+    .myrole-block__photo {
+      position: absolute; left: 0; top: 83px;
+      width: 462px; height: 308px; border-radius: 32px; overflow: hidden;
+    }
+    .myrole-block__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .myrole-block__list {
+      position: absolute; left: 520px; top: 7px;
+      width: 600px; display: flex; flex-direction: column; gap: 16px;
+    }
+    .myrole-block__item { display: flex; gap: 16px; align-items: flex-start; }
+    .myrole-block__star { width: 24px; height: 24px; flex-shrink: 0; }
+    .myrole-block__item p {
+      font-size: 20px; font-weight: 500; color: var(--black);
+      letter-spacing: -0.4px; line-height: normal; margin: 0; width: 524px;
+    }
+    .myrole-block__photos {
+      position: absolute; left: 0; top: 439px;
+      width: 1120px; height: 476px; display: flex; align-items: flex-start; gap: 54px;
+    }
+    .myrole-block__photo-left {
+      width: 490px; height: 476px; border-radius: 32px; overflow: hidden; flex-shrink: 0;
+    }
+    .myrole-block__photo-left img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .myrole-block__photo-right {
+      width: 576px; height: 384px; border-radius: 32px; overflow: hidden;
+      flex-shrink: 0; margin-top: 46px;
+    }
+    .myrole-block__photo-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* PHOTOS */
     .photos-row { display: flex; gap: 32px; align-items: flex-start; }
@@ -349,30 +376,28 @@
       </p>
     </div>
 
-    <div style="height:40px;"></div>
+    <div style="height:24px;"></div>
 
     <!-- As is -->
     <div class="asis-section reveal">
       <div class="asis-label">As is</div>
-      <p class="asis-caption">Сейчас главная в приложении 12 STOREEZ выглядит так</p>
       <div class="asis-phones">
-        <img class="asis-phone-img" src="assets/images/storeez-asisis.png" alt="Текущее приложение 12 STOREEZ" style="height:420px;width:auto;">
+        <img class="asis-phone-img" src="assets/images/storeez-asisis.png" alt="Текущее приложение 12 STOREEZ">
+        <img class="asis-phone-img" src="assets/images/storeez-asisis2.png" alt="12 STOREEZ без авторизации">
       </div>
     </div>
 
-    <div style="height:80px;"></div>
-    <div class="sep" style="margin:0;"></div>
-    <div style="height:64px;"></div>
+    <div style="height:104px;"></div>
 
     <!-- Challenge grid: Problem / Task / Metrics / Limitations -->
     <div class="challenge-grid reveal">
       <div class="challenge-card">
         <div class="challenge-card__label">Проблема</div>
-        <ol class="challenge-card__list">
-          <li>Низкая глубина просмотра на главной — CTR ≈ 3 баннера</li>
-          <li>Низкая конверсия с главной страницы</li>
-          <li>Зачем бренду вообще приложение?</li>
-        </ol>
+        <div class="challenge-card__text">
+          <p>1 Низкая глубина просмотра на главной – CTR <br>3 баннера</p>
+          <p>2 Низкая конверсия с главной страницы</p>
+          <p>3 Зачем бренду вообще приложение?</p>
+        </div>
       </div>
       <div class="challenge-card">
         <div class="challenge-card__label">Задача</div>
@@ -395,19 +420,54 @@
     </div>
 
     <div style="height:80px;"></div>
-    <div class="sep" style="margin:0;"></div>
-    <div style="height:64px;"></div>
 
     <!-- My role -->
-    <div class="reveal">
-      <h2 class="section-title">Моя роль</h2>
-      <img class="myrole-img" src="assets/images/storeez-myrole.png" alt="Моя роль в проекте">
-    </div>
+    <div class="myrole-block reveal">
+      <div class="myrole-block__header">Моя роль</div>
 
-    <!-- Photos -->
-    <div class="photos-row reveal">
-      <img src="assets/images/storeez-photo1.png" alt="Процесс работы" style="border-radius:24px;max-height:400px;object-fit:cover;">
-      <img src="assets/images/storeez-photo2.png" alt="Команда" style="border-radius:24px;max-height:400px;object-fit:cover;">
+      <div class="myrole-block__photo">
+        <img src="assets/images/myrole-main.png" alt="Финальный питчинг">
+      </div>
+
+      <div class="myrole-block__list">
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Проводила кабинетные и глубинные исследования,</p>
+        </div>
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Проводила ЮТ текущего приложения 12 STOREEZ с упором на главную страницу для выявления болей пользователей,</p>
+        </div>
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Разложила текущее приложение на CJM по фреймворку 5LOK (гигиена, барьеры, нативность и т.д.),</p>
+        </div>
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Генерировала инфографику и видео для презентации в Nano Banana, ChatGPT и Kling,</p>
+        </div>
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Разрабатывала визуальный концепт финальной презентации и питчила на всех этапах,</p>
+        </div>
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Экраны</p>
+        </div>
+        <div class="myrole-block__item">
+          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
+          <p>Проводила ЮТ</p>
+        </div>
+      </div>
+
+      <div class="myrole-block__photos">
+        <div class="myrole-block__photo-left">
+          <img src="assets/images/myrole-photo1.png" alt="Финальный питчинг — команда">
+        </div>
+        <div class="myrole-block__photo-right">
+          <img src="assets/images/myrole-photo2.png" alt="Финальный питчинг — выступление">
+        </div>
+      </div>
     </div>
 
   </div>
