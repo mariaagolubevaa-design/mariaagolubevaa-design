@@ -113,60 +113,67 @@
     .nav__link:hover { color: #B03C39; }
 
     /* COVER */
-    .cover { width: 100%; overflow: hidden; line-height: 0; }
-    .cover img { width: 100%; display: block; }
+    .cover { width: 100%; aspect-ratio: 1280 / 720; overflow: hidden; line-height: 0; position: relative; }
+    .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* COVER LABEL */
     .cover-label {
-      max-width: var(--page-w);
-      margin: 32px auto 0;
-      padding: 0 40px;
+      position: absolute;
+      left: 60px;
+      top: 74px;
       font-family: 'Gilroy', Arial, sans-serif;
       font-size: 20px;
       font-weight: 500;
       color: #d2d2d2;
       white-space: nowrap;
+      line-height: normal;
+      z-index: 1;
     }
 
     /* SECTION NAV */
     .section-nav {
       max-width: var(--page-w); margin: 0 auto;
-      padding: 0 40px; display: flex; gap: 48px;
-      border-bottom: 1px solid var(--grey1); margin-top: 16px;
+      padding: 0 40px; display: flex; justify-content: space-between;
+      margin-top: 163px;
       overflow-x: auto; scrollbar-width: none;
     }
     .section-nav::-webkit-scrollbar { display: none; }
     .section-nav a {
-      font-size: 24px; font-weight: 500; color: var(--grey2);
+      font-size: 24px; font-weight: 500; color: var(--black);
       text-decoration: none; padding-bottom: 18px;
       border-bottom: 3px solid transparent;
-      transition: color .2s, border-color .2s; white-space: nowrap; flex-shrink: 0;
+      white-space: nowrap; flex-shrink: 0;
+      transition: color .2s, border-color .2s;
     }
-    .section-nav a:hover, .section-nav a.active { color: var(--black); border-bottom-color: var(--black); font-weight: 700; }
+    .section-nav a:hover, .section-nav a.active { border-bottom-color: var(--black); font-weight: 700; }
 
     /* CONTAINER */
     .container { max-width: var(--page-w); margin: 0 auto; padding: 0 40px; }
     section { padding: 80px 0; }
+    /* #about: gap from nav bottom (y=911) to Context (y=999) = 88px; nav has 18px padding-bottom → 88-18=70px */
+    #about { padding-top: 70px; }
     .section-title { font-size: 40px; font-weight: 600; margin-bottom: 48px; }
     .sep { height: 1px; background: var(--grey1); margin: 0 40px; }
 
     /* CONTEXT */
     .context-block {
-      display: grid; grid-template-columns: 200px 1fr;
-      gap: 40px; align-items: start;
+      display: flex; justify-content: space-between; align-items: flex-start;
     }
     .context-block__label {
-      font-size: 40px; font-weight: 600;
-      display: flex; align-items: center; gap: 8px;
+      font-size: 40px; font-weight: 600; color: var(--black);
+      display: flex; align-items: center; gap: 24px; flex-shrink: 0;
     }
-    .context-block__label span { font-size: 24px; color: var(--grey2); }
-    .context-block__text { font-size: 20px; line-height: 1.5; font-weight: 500; max-width: 600px; }
+    .context-block__label svg { flex-shrink: 0; }
+    .context-block__text {
+      font-size: 20px; line-height: normal; font-weight: 500;
+      color: var(--black); letter-spacing: -0.4px; width: 600px; flex-shrink: 0;
+    }
 
     /* AS IS */
     .asis-section { padding: 60px 0 40px; }
     .asis-label {
-      font-size: 40px; font-weight: 600; margin-bottom: 16px;
-      color: var(--black);
+      font-size: 70px; font-weight: 600; margin-bottom: 16px;
+      color: #d2d2d2; line-height: normal;
     }
     .asis-caption {
       font-size: 20px; color: var(--grey2); font-weight: 500;
@@ -308,10 +315,8 @@
 <!-- COVER -->
 <div class="cover">
   <img src="assets/images/storeez-cover.png" alt="12 STOREEZ — главная страница приложения">
+  <div class="cover-label">12 STOREEZ&nbsp;&nbsp;×&nbsp;&nbsp;BHSAD</div>
 </div>
-
-<!-- PROJECT LABEL -->
-<div class="cover-label">12 STOREEZ&nbsp;&nbsp;×&nbsp;&nbsp;BHSAD</div>
 
 <!-- SECTION NAV -->
 <div class="section-nav">
@@ -329,17 +334,22 @@
     <!-- Контекст -->
     <div class="context-block reveal">
       <div class="context-block__label">
-        Контекст <span>↓</span>
+        Контекст
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <p class="context-block__text">
-        12 STOREEZ — российский премиум бренд лаконичной одежды, обуви и аксессуаров вне времени, с фокусом на натуральные материалы. У бренда есть несколько цифровых каналов в онлайне, но нам предстояла работа над приложением.<br><br>
-        Помимо основной задачи брифа, заказчик задался глобальным вопросом «Зачем приложение бренду?»
+        12 STOREEZ — российский премиум бренд лаконичной одежды,<br>
+        обуви и аксессуаров вне времени, с фокусом на натуральные<br>
+        материалы. У бренда есть несколько цифровых каналов<br>
+        в онлайне, но нам предстояла работа над приложением<br>
+        Помимо основной задачи брифа, заказчик задался глобальным<br>
+        вопросом «Зачем приложение бренду?»
       </p>
     </div>
 
-    <div style="height:64px;"></div>
-    <div class="sep" style="margin:0;"></div>
-    <div style="height:64px;"></div>
+    <div style="height:40px;"></div>
 
     <!-- As is -->
     <div class="asis-section reveal">
