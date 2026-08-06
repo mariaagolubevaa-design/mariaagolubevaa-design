@@ -282,15 +282,6 @@
     .research-img-block img { width: 100%; border-radius: 16px; display: block; }
     .research-img-block__title { font-size: 32px; font-weight: 600; margin-bottom: 24px; }
 
-    /* DESK RESEARCH CARDS — individual hover shadow */
-    .desk-card {
-      filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.07));
-      transition: filter 0.2s ease;
-    }
-    .desk-card:hover {
-      filter: drop-shadow(0px 5px 16px rgba(0,0,0,0.13));
-    }
-
     /* BRANDS */
     .brands-marquee { overflow: hidden; width: 100%; margin-bottom: 64px; }
     .brands-track {
@@ -360,6 +351,57 @@
       transition: color .2s;
     }
     .footer__nav a:hover, .footer__logo:hover { color: #B03C39; }
+
+    /* DESK RESEARCH */
+    .desk-research {
+      position: relative;
+      margin-left: -40px;
+      width: calc(100% + 80px);
+      height: 181px;
+      overflow: visible;
+      margin-bottom: 48px;
+    }
+    .dr-wrapper {
+      position: absolute;
+      width: 260.831px;
+      height: 181.04px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dr-card {
+      position: relative;
+      width: 250px;
+      height: 164px;
+      background: #f7f6f4;
+      border: 0.623px solid rgba(0,0,0,0.05);
+      filter: drop-shadow(0px 1.247px 4.364px rgba(0,0,0,0.07));
+      transition: filter 0.25s ease;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .dr-title {
+      position: absolute;
+      inset: 6.2% 2.57% 70.1% 6.23%;
+      font-family: 'Gilroy', Arial, sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #1e1e1c;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      line-height: normal;
+      transition: color 0.25s ease;
+      word-break: break-word;
+    }
+    .dr-bar {
+      position: absolute;
+      background: #141414;
+      border: 0.623px solid rgba(0,0,0,0.05);
+      transition: background-color 0.25s ease;
+    }
+    .dr-wrapper.dr-inactive .dr-title { color: #d2d2d2; }
+    .dr-wrapper.dr-inactive .dr-bar { background-color: #d2d2d2; }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
@@ -561,10 +603,116 @@
     </div>
 
     <!-- Деск ресерч -->
-    <div class="reveal" style="position:relative; height:210px; margin-bottom:64px;">
-      <img class="desk-card" src="assets/images/desk-konkurenty.png" alt="Конкуренты" style="position:absolute; left:0; top:0; width:33.928%; height:auto; display:block;">
-      <img class="desk-card" src="assets/images/desk-benchmark.png" alt="Бенчмарк" style="position:absolute; left:33.928%; top:0; width:66.072%; height:auto; display:block;">
-      <img class="desk-card" src="assets/images/trendy.png" alt="Тренды" style="position:absolute; left:845px; top:0; display:block;">
+    <div class="desk-research reveal">
+
+      <!-- Конкуренты: rotate(-4deg) -->
+      <div class="dr-wrapper" style="left:0;top:0;">
+        <div style="transform:rotate(-4deg);flex-shrink:0;">
+          <div class="dr-card">
+            <div class="dr-title">Конкуренты</div>
+            <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
+            <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
+            <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
+            <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
+            <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
+            <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
+            <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
+            <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
+            <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
+            <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
+            <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
+            <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
+            <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
+            <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
+            <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
+            <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
+            <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
+            <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
+            <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
+            <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
+            <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
+            <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
+            <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
+            <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
+            <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
+            <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
+            <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Бенчмарки: rotate(+4deg) -->
+      <div class="dr-wrapper" style="left:calc(50% + 0.42px);top:7px;transform:translateX(-50%);">
+        <div style="transform:rotate(4deg);flex-shrink:0;">
+          <div class="dr-card">
+            <div class="dr-title">Бенчмарки</div>
+            <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
+            <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
+            <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
+            <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
+            <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
+            <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
+            <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
+            <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
+            <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
+            <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
+            <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
+            <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
+            <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
+            <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
+            <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
+            <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
+            <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
+            <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
+            <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
+            <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
+            <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
+            <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
+            <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
+            <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
+            <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
+            <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
+            <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Тренды: rotate(-4deg) -->
+      <div class="dr-wrapper" style="right:0.17px;top:0;">
+        <div style="transform:rotate(-4deg);flex-shrink:0;">
+          <div class="dr-card">
+            <div class="dr-title">Тренды</div>
+            <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
+            <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
+            <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
+            <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
+            <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
+            <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
+            <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
+            <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
+            <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
+            <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
+            <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
+            <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
+            <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
+            <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
+            <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
+            <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
+            <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
+            <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
+            <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
+            <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
+            <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
+            <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
+            <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
+            <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
+            <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
+            <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
+            <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Brands -->
@@ -763,6 +911,16 @@
     navLinks.forEach(a => {
       a.classList.toggle('active', a.getAttribute('href') === '#' + cur || (a.getAttribute('href') === '#result' && cur === 'design'));
     });
+  });
+
+  const drWrappers = document.querySelectorAll('.dr-wrapper');
+  drWrappers.forEach(wrapper => {
+    wrapper.addEventListener('mouseenter', () => {
+      drWrappers.forEach(w => w.classList.toggle('dr-inactive', w !== wrapper));
+    });
+  });
+  document.querySelector('.desk-research')?.addEventListener('mouseleave', () => {
+    drWrappers.forEach(w => w.classList.remove('dr-inactive'));
   });
 
   const nav = document.querySelector('.nav');
