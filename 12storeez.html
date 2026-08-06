@@ -282,6 +282,15 @@
     .research-img-block img { width: 100%; border-radius: 16px; display: block; }
     .research-img-block__title { font-size: 32px; font-weight: 600; margin-bottom: 24px; }
 
+    /* DESK RESEARCH CARDS — individual hover shadow */
+    .desk-card {
+      filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.07));
+      transition: filter 0.2s ease;
+    }
+    .desk-card:hover {
+      filter: drop-shadow(0px 5px 16px rgba(0,0,0,0.13));
+    }
+
     /* BRANDS */
     .brands-marquee { overflow: hidden; width: 100%; margin-bottom: 64px; }
     .brands-track {
@@ -553,8 +562,9 @@
 
     <!-- Деск ресерч -->
     <div class="reveal" style="position:relative; height:210px; margin-bottom:64px;">
-      <img src="assets/images/desk-research.png" alt="Конкуренты и Бенчмарки" style="position:absolute; left:0; top:0; width:100%; height:auto; display:block;">
-      <img src="assets/images/trendy.png" alt="Тренды" style="position:absolute; left:845px; top:0; display:block;">
+      <img class="desk-card" src="assets/images/desk-konkurenty.png" alt="Конкуренты" style="position:absolute; left:0; top:0; width:33.928%; height:auto; display:block;">
+      <img class="desk-card" src="assets/images/desk-benchmark.png" alt="Бенчмарк" style="position:absolute; left:33.928%; top:0; width:66.072%; height:auto; display:block;">
+      <img class="desk-card" src="assets/images/trendy.png" alt="Тренды" style="position:absolute; left:845px; top:0; display:block;">
     </div>
 
     <!-- Brands -->
