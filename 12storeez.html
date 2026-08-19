@@ -128,12 +128,20 @@
       top: 1.2%;
       width: 28.16%;
       transform: translateX(-50%);
+      aspect-ratio: 721 / 1245;
+      overflow: hidden;
     }
-    .cover-phone-wrap img {
+    .cover-gif,
+    .cover-phone-shell {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
       display: block;
     }
+    .cover-phone-shell { pointer-events: none; }
     /* Chips: left 40/1280 = 3.125%, top 500/630 = 79.37% */
     .cover-chips-new {
       position: absolute;
@@ -166,11 +174,23 @@
     /* SECTION NAV */
     .section-nav {
       max-width: var(--page-w); margin: 0 auto;
-      padding: 0 40px; display: flex; justify-content: space-between;
-      margin-top: 163px;
+      padding: 0 40px; display: flex; justify-content: space-between; align-items: flex-end;
+      margin-top: 72px;
       overflow-x: auto; scrollbar-width: none;
     }
     .section-nav::-webkit-scrollbar { display: none; }
+    /* Left group: О проекте + Дизайн-процесс, gap=111px (Figma: 408px total) */
+    .section-nav__left {
+      display: flex; align-items: flex-end; gap: 111px;
+    }
+    /* Right group: sub + Результат, gap=164px (Figma: 681px total, starts x=519) */
+    .section-nav__right {
+      display: flex; align-items: flex-end; gap: 164px;
+    }
+    /* Sub-group: Исследование + Дизайн, gap=164px (Figma: 407px, center of page) */
+    .section-nav__sub {
+      display: flex; align-items: flex-end; gap: 164px;
+    }
     .section-nav a {
       font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
       font-size: 24px; font-weight: 500; line-height: normal;
@@ -185,25 +205,25 @@
     /* CONTAINER */
     .container { max-width: var(--page-w); margin: 0 auto; padding: 0 40px; }
     section { padding: 80px 0; }
-    /* #about: gap from nav bottom (y=911) to Context (y=999) = 88px; nav has 18px padding-bottom → 88-18=70px */
-    #about { padding-top: 70px; }
+    /* #about: nav bottom y=731 + padding-bottom 18 + border 3 = 752; Context y=827 → 827-752=75px */
+    #about { padding-top: 75px; }
     .section-title { font-size: 40px; font-weight: 600; margin-bottom: 48px; }
     .sep { height: 1px; background: var(--grey1); margin: 0 40px; }
 
     /* CONTEXT — Figma node 1572:9996 */
     .context-block {
-      display: flex; gap: 383px; justify-content: flex-end; align-items: flex-start;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: start;
     }
     .context-block__label {
       font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
       font-size: 40px; font-weight: 500; line-height: normal; color: #141414;
-      display: flex; align-items: center; gap: 24px; flex-shrink: 0;
+      display: flex; align-items: center; gap: 24px;
     }
     .context-block__label svg { flex-shrink: 0; }
     .context-block__text {
       font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
       font-size: 16px; line-height: normal; font-weight: 500;
-      color: #141414; letter-spacing: 0; width: 600px; flex-shrink: 0;
+      color: #141414; letter-spacing: 0;
     }
 
     /* AS IS */
@@ -473,7 +493,8 @@
 <!-- COVER -->
 <div class="cover">
   <div class="cover-phone-wrap">
-    <img src="assets/images/storeez-phone-cover.png" alt="12 STOREEZ — приложение" width="721" height="1245">
+    <img class="cover-gif" src="assets/images/cover.gif" alt="12 STOREEZ — Главная страница" width="400" height="537">
+    <img class="cover-phone-shell" src="assets/images/storeez-phone-shell.png" alt="" width="721" height="1245" aria-hidden="true">
   </div>
   <div class="cover-chips-new">
     <span class="cover-chip-new">приложение</span>
@@ -485,11 +506,17 @@
 
 <!-- SECTION NAV -->
 <div class="section-nav">
-  <a href="#about" class="active">О проекте</a>
-  <a href="#process">Дизайн-процесс</a>
-  <a href="#research">Исследование</a>
-  <a href="#design">Дизайн</a>
-  <a href="#result">Результат</a>
+  <div class="section-nav__left">
+    <a href="#about" class="active">О проекте</a>
+    <a href="#process">Дизайн-процесс</a>
+  </div>
+  <div class="section-nav__right">
+    <div class="section-nav__sub">
+      <a href="#research">Исследование</a>
+      <a href="#design">Дизайн</a>
+    </div>
+    <a href="#result">Результат</a>
+  </div>
 </div>
 
 <!-- ABOUT -->
@@ -514,18 +541,7 @@
       </p>
     </div>
 
-    <div style="height:24px;"></div>
-
-    <!-- As is -->
-    <div class="asis-section reveal">
-      <div class="asis-label">As is</div>
-      <div class="asis-phones">
-        <img class="asis-phone-img" src="assets/images/storeez-asisis.png" alt="Текущее приложение 12 STOREEZ">
-        <img class="asis-phone-img" src="assets/images/storeez-asisis2.png" alt="12 STOREEZ без авторизации">
-      </div>
-    </div>
-
-    <div style="height:104px;"></div>
+    <div style="height:96px;"></div>
 
     <!-- Challenge grid: Problem / Task / Metrics / Limitations -->
     <div class="challenge-grid reveal">
@@ -978,6 +994,7 @@
   hoverZone.addEventListener('mouseleave', hideNav);
   nav.addEventListener('mouseenter', showNav);
   nav.addEventListener('mouseleave', hideNav);
+
 </script>
 </body>
 </html>
