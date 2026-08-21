@@ -37,7 +37,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Gilroy', Arial, sans-serif; background: #fff; color: #1e1e1c; overflow-x: hidden; }
+    body { font-family: 'Gilroy', Arial, sans-serif; background: #fafafa; color: #1e1e1c; overflow-x: hidden; }
     :root {
       --black: #1e1e1c;
       --grey1: #d2d2d2;
@@ -239,6 +239,149 @@
       color: #141414; letter-spacing: 0;
     }
 
+    /* BYLO-STALO COMPARISON SLIDER */
+    .bylo-section { padding-bottom: 48px; }
+    .bylo-wrapper {
+      position: relative; width: 100%; height: 766px;
+      cursor: col-resize;
+      user-select: none; -webkit-user-select: none;
+    }
+    .bylo-layer {
+      position: absolute; top: 0; left: 0; width: 100%; height: 700px;
+    }
+    .bylo-layer--stalo { z-index: 1; }
+    .bylo-layer--bylo { z-index: 2; clip-path: inset(0 50% 0 0); }
+    .bylo-phone {
+      position: absolute; top: 0; width: auto; height: 700px;
+    }
+    .bylo-phone--left { left: 139px; }
+    .bylo-phone--right { left: 739px; }
+    .bylo-annotation {
+      position: absolute; top: 319px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; line-height: normal;
+      color: #141414; white-space: nowrap;
+    }
+    .bylo-annotation p { margin: 0 0 24px; }
+    .bylo-annotation--left { left: 166px; }
+    .bylo-annotation--right { left: 800px; }
+    .bylo-handle {
+      position: absolute; top: 0; left: 50%; width: 174px; height: 700px;
+      transform: translateX(-50%); z-index: 10; pointer-events: none;
+    }
+    .bylo-handle__line {
+      position: absolute; top: 0; bottom: 0; left: 50%; width: 1px;
+      background: #1e1e1c; transform: translateX(-50%);
+    }
+    .bylo-handle__track {
+      position: absolute; top: 50%; left: 0; right: 0;
+      transform: translateY(-50%);
+      display: flex; align-items: center; justify-content: space-between;
+      pointer-events: all; cursor: col-resize;
+    }
+    .bylo-arrow { width: 0; height: 0; flex-shrink: 0; }
+    .bylo-arrow--left {
+      border-top: 31px solid transparent; border-bottom: 31px solid transparent;
+      border-right: 40px solid #1e1e1c;
+    }
+    .bylo-arrow--right {
+      border-top: 31px solid transparent; border-bottom: 31px solid transparent;
+      border-left: 40px solid #1e1e1c;
+    }
+    .bylo-labels {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 66px;
+      display: flex; align-items: flex-start; padding-top: 24px;
+    }
+    .bylo-label {
+      position: absolute;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; line-height: normal;
+      white-space: nowrap; transition: color 0.2s;
+    }
+    .bylo-label--bylo { left: 300px; transform: translateX(-50%); color: #141414; }
+    .bylo-label--stalo { left: 900px; transform: translateX(-50%); color: #c8c8c8; }
+
+    /* TEXT FRAME — Figma 1744:13468 */
+    .text-frame {
+      display: grid;
+      grid-template-columns: 552px 600px;
+      column-gap: 48px;
+      row-gap: 48px;
+    }
+    .text-frame__card {
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .text-frame__label {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; line-height: normal;
+      color: #141414; white-space: nowrap;
+    }
+    .text-frame__body {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; line-height: normal;
+      color: #141414;
+    }
+    .text-frame__body p { margin: 0; }
+
+    /* MY ROLE — Figma 1572:10047, 1200×839px */
+    .myrole-new {
+      position: relative; width: 100%; height: 839px;
+    }
+    .myrole-new__heading {
+      position: absolute; left: 0; top: 0;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 32px; font-weight: 500; line-height: normal;
+      color: #141414; white-space: nowrap;
+    }
+    .myrole-new__list {
+      position: absolute; left: 600px; top: 25px; width: 600px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .myrole-new__item {
+      display: flex; gap: 16px; align-items: flex-start; width: 100%;
+    }
+    .myrole-new__star {
+      width: 14px; height: 16px; flex-shrink: 0; display: block; margin-top: 1px;
+    }
+    .myrole-new__item-text {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; line-height: normal;
+      color: #141414; margin: 0;
+    }
+    .myrole-new__photo-top {
+      position: absolute; left: 0; top: 48px; width: 478px; height: 282px;
+      overflow: hidden;
+    }
+    .myrole-new__photo-top img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .myrole-new__photos-row {
+      position: absolute; left: 0; top: 429px; width: 1200px; height: 410px;
+    }
+    .myrole-new__photo-bl {
+      position: absolute; left: 0; top: -67px; width: 478px; height: 477px;
+      overflow: hidden;
+    }
+    .myrole-new__photo-bl img {
+      position: absolute; left: 0; top: -31.26%;
+      width: 100%; height: 154.3%; max-width: none;
+    }
+    .myrole-new__photo-br {
+      position: absolute; left: 600px; top: calc(50% - 34px);
+      width: 600px; height: 400px;
+      transform: translateY(-50%); overflow: hidden;
+    }
+    .myrole-new__photo-br img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .myrole-new__award {
+      position: absolute; left: 1098px; top: 411px;
+      transform: translateY(-100%);
+      font-family: 'Sprite Graffiti', 'Soyuz Grotesk', Arial, sans-serif;
+      font-size: 32px; font-weight: 400; line-height: normal;
+      color: #141414; white-space: nowrap;
+    }
+
     /* AS IS */
     .asis-section { position: relative; padding: 0 0 40px; }
     .asis-label {
@@ -322,7 +465,8 @@
     .dp-block { }
     .dp-block__header {
       display: flex; align-items: center; gap: 24px;
-      font-size: 40px; font-weight: 600; color: var(--black);
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 40px; font-weight: 500; color: var(--black);
       line-height: normal; margin-bottom: 64px;
     }
     .dp-block__cols {
@@ -331,18 +475,19 @@
     }
     .dp-block__col { display: flex; flex-direction: column; }
     .dp-block__col-title {
-      font-size: 32px; font-weight: 600; line-height: normal;
-      padding-bottom: 14px; margin-bottom: 16px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; line-height: normal;
+      padding-bottom: 16px; margin-bottom: 16px;
     }
     .dp-block__col--active .dp-block__col-title {
-      color: var(--black); border-bottom: 2px solid var(--black);
+      color: var(--black); border-bottom: 1.5px solid var(--black);
     }
     .dp-block__col--inactive .dp-block__col-title {
       color: var(--grey2); border-bottom: 1px solid var(--grey1);
     }
     .dp-block__col-desc {
-      font-size: 20px; font-weight: 500; line-height: normal;
-      letter-spacing: -0.4px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; line-height: normal;
     }
     .dp-block__col--active .dp-block__col-desc { color: var(--black); }
     .dp-block__col--inactive .dp-block__col-desc { color: var(--grey2); }
@@ -352,8 +497,107 @@
     .research-img-block img { width: 100%; border-radius: 16px; display: block; }
     .research-img-block__title { font-size: 32px; font-weight: 600; margin-bottom: 24px; }
 
+
+    /* Майндсеты диаграмма */
+    .mindsets-diagram {
+      position: relative; width: 100%; height: 640px;
+      background: #fafafa; overflow: hidden;
+    }
+    .mindsets-axis-h {
+      position: absolute; left: 0; top: 320px;
+      width: 1200px; height: 0; border-top: 1.5px solid #141414;
+    }
+    .mindsets-axis-v {
+      position: absolute; left: 600px; top: 0;
+      width: 0; height: 640px; border-left: 1.5px solid #141414;
+    }
+    .mindsets-axis-label {
+      position: absolute;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; color: #9b9b9b;
+      line-height: normal; white-space: nowrap; margin: 0;
+      transform: translateX(-50%);
+    }
+    .mindsets-name {
+      position: absolute;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; color: #9b9b9b;
+      line-height: normal; white-space: nowrap; margin: 0;
+      transform: translate(-50%, -100%);
+    }
+    .mindsets-photo {
+      position: absolute; overflow: hidden;
+    }
+    .mindsets-photo img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; pointer-events: none; display: block;
+    }
+    .mindsets-photo--bottom img { object-position: bottom center; }
+    .mindsets-fluger {
+      position: absolute; left: 600px; top: 280px;
+      width: 267px; height: 81px; background: #fafafa;
+      border: 1.5px solid #9b9b9b;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mindsets-fluger__text {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; color: #9b9b9b;
+      line-height: normal;
+    }
+
+    /* Майндсеты текст */
+    .mindsets-text {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      width: 100%; margin-bottom: 72px;
+    }
+    .mindsets-text__title {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; color: #141414;
+      line-height: normal; white-space: nowrap; flex-shrink: 0;
+    }
+    .mindsets-text__body {
+      width: 600px; flex-shrink: 0;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414; line-height: normal;
+    }
+    .mindsets-text__body p { margin: 0; }
+
     /* BRANDS */
-    .brands-marquee { overflow: hidden; width: 100%; margin-bottom: 64px; }
+    .brands-marquee { overflow: hidden; width: 100%; margin-bottom: 96px; }
+
+    /* ЮТ / Юзабилити тестирование */
+    .ut-block { position: relative; width: 100%; height: 400px; margin-bottom: 96px; }
+    .ut-block__title {
+      position: absolute; left: 0; top: 0;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; color: #141414;
+      line-height: normal; white-space: nowrap;
+    }
+    .ut-block__photo {
+      position: absolute; right: 0; top: 0;
+      width: 600px; height: 400px; overflow: hidden;
+    }
+    .ut-block__photo img {
+      position: absolute; top: -22.24%; left: 0.03%;
+      width: 99.97%; height: 180.97%; max-width: none; display: block;
+    }
+    .ut-block__desc {
+      position: absolute; left: 0; top: 68px; width: 576px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414; line-height: normal;
+    }
+    .ut-block__desc p { margin: 0; }
+    .ut-block__item {
+      position: absolute; left: 0; width: 576px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .ut-block__star { width: 14px; height: 16px; flex-shrink: 0; display: block; margin-top: 2px; }
+    .ut-block__item-text {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414;
+      line-height: normal; width: 546px;
+    }
+    .ut-block__item-text p { margin: 0; }
     .brands-track {
       display: flex; align-items: center; gap: 32px;
       width: max-content;
@@ -425,19 +669,15 @@
     /* DESK RESEARCH */
     .desk-research {
       position: relative;
-      margin-left: -40px;
-      width: calc(100% + 80px);
-      height: 181px;
+      width: 100%;
+      height: 168px;
       overflow: visible;
       margin-bottom: 48px;
     }
     .dr-wrapper {
       position: absolute;
-      width: 260.831px;
-      height: 181.04px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 250px;
+      height: 164px;
     }
     .dr-card {
       position: relative;
@@ -448,7 +688,6 @@
       box-shadow: 0px 1.247px 4.364px 0px rgba(0,0,0,0.07);
       transition: box-shadow 0.25s ease;
       cursor: pointer;
-      flex-shrink: 0;
     }
     .dr-wrapper:hover .dr-card {
       box-shadow: 1px 5px 4px 0px rgba(30,30,28,0.05), 0px 1.247px 8.728px 0px rgba(0,0,0,0.07);
@@ -456,10 +695,10 @@
     .dr-title {
       position: absolute;
       inset: 6.2% 2.57% 70.1% 6.23%;
-      font-family: 'Gilroy', Arial, sans-serif;
-      font-size: 32px;
-      font-weight: 600;
-      color: #1e1e1c;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #141414;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -475,6 +714,122 @@
     }
     .dr-wrapper.dr-inactive .dr-title { color: #d2d2d2; }
     .dr-wrapper.dr-inactive .dr-bar { background-color: #d2d2d2; }
+
+    /* ДЛЯ ВАС section — полная ширина страницы */
+    .dlv-section {
+      background: #fff;
+      padding: 72px 0 80px;
+    }
+    .dlv-tabs-bar {
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+      border-bottom: 1px solid #d2d2d2;
+      margin-bottom: 40px;
+    }
+    .dlv-tab-item {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #a5a5a4;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      padding-bottom: 16px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      line-height: normal;
+    }
+    .dlv-tab-item--active {
+      color: #141414;
+      border-bottom-color: #141414;
+    }
+    .dlv-section-heading {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 40px;
+      font-weight: 500;
+      color: #141414;
+      text-transform: uppercase;
+      line-height: normal;
+      margin-bottom: 32px;
+    }
+    .dlv-cards-row {
+      display: flex;
+      gap: 16px;
+    }
+    .dlv-page-card {
+      position: relative;
+      width: 420px;
+      height: 489px;
+      background: #f3f3f3;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .dlv-page-card__img-wrap {
+      position: absolute;
+      left: 123px; top: 0;
+      width: 172px; height: 480px;
+      overflow: hidden;
+    }
+    .dlv-page-card__img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+    }
+    .dlv-page-card__ellipse {
+      position: absolute;
+      left: calc(50% - 12.85px - 102px);
+      top: 424px;
+      width: 205px; height: 42px;
+      pointer-events: none;
+    }
+    .dlv-page-card__texts {
+      position: absolute;
+      left: 18px; top: 18px;
+      display: flex; flex-direction: column; gap: 5px;
+      z-index: 2;
+    }
+    .dlv-page-card__title {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 18px; font-weight: 400;
+      color: #141414; text-transform: uppercase;
+      letter-spacing: 0.18px; line-height: normal;
+    }
+    .dlv-page-card__sub {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 15px; color: #7b7b7b;
+      letter-spacing: 0.15px; line-height: normal;
+    }
+    .dlv-page-card__btn {
+      position: absolute;
+      bottom: 36px; left: 18px;
+      display: flex; align-items: center;
+      background: #141414; border-radius: 10px;
+      padding: 6px 10px; height: 36px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 400; color: #fff;
+      white-space: nowrap; z-index: 2; line-height: normal;
+    }
+    .dlv-page-thumbs {
+      display: flex;
+      gap: 9px;
+      margin-top: 12px;
+      width: 420px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .dlv-page-thumbs::-webkit-scrollbar { display: none; }
+    .dlv-page-thumb {
+      width: 90px; height: 162px;
+      border-radius: 10px; background: #f3f3f3;
+      overflow: hidden; flex-shrink: 0; box-sizing: border-box;
+    }
+    .dlv-page-thumb--active { border: 1px solid #141414; }
+    .dlv-page-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
@@ -558,82 +913,118 @@
 
     <div style="height:96px;"></div>
 
-    <!-- Challenge grid: Problem / Task / Metrics / Limitations -->
-    <div class="challenge-grid reveal">
-      <div class="challenge-card">
-        <div class="challenge-card__label">Проблема</div>
-        <div class="challenge-card__text">
-          <p>1 Низкая глубина просмотра на главной – CTR <br>3 баннера</p>
-          <p>2 Низкая конверсия с главной страницы</p>
-          <p>3 Зачем бренду вообще приложение?</p>
+    <!-- Было / Стало — comparison slider, Figma 1719:12101 / 1719:12102 -->
+    <div class="bylo-section reveal">
+      <div class="bylo-wrapper" id="byloWrapper">
+        <!-- Layer стало (bottom) -->
+        <div class="bylo-layer bylo-layer--stalo">
+          <img class="bylo-phone bylo-phone--right" src="assets/images/storeez-stalo-phone.png" alt="Новый дизайн">
+          <div class="bylo-annotation bylo-annotation--left">
+            <p>Персонализированная главная</p>
+            <p>Цифровой аватар в готовых образах</p>
+          </div>
         </div>
-      </div>
-      <div class="challenge-card">
-        <div class="challenge-card__label">Задача</div>
-        <p class="challenge-card__text">
-          Спроектировать самобытный и современный главный экран приложения, который эффектно презентует товары и остаётся интуитивным для пользователя
-        </p>
-      </div>
-      <div class="challenge-card">
-        <div class="challenge-card__label">Метрики</div>
-        <p class="challenge-card__text">
-          Наши решения должны повлиять на увеличение количества покупок (CR to purchase), увеличить глубину просмотра на главной (CTR) и добавление в корзину или вишлист (Add to cart, wishlist) сразу с главной страницы приложения
-        </p>
-      </div>
-      <div class="challenge-card">
-        <div class="challenge-card__label">Ограничения</div>
-        <p class="challenge-card__text">
-          Главная должна быть красивой, НО обязана продавать. НО не должна превращаться в витрину маркетплейса
-        </p>
+        <!-- Layer было (top, clipped) -->
+        <div class="bylo-layer bylo-layer--bylo" id="byloLayer">
+          <img class="bylo-phone bylo-phone--left" src="assets/images/storeez-bylo-phone.png" alt="Старый дизайн">
+          <div class="bylo-annotation bylo-annotation--right">
+            <p>Низкая глубина просмотра</p>
+            <p>Низкая конверсия</p>
+          </div>
+        </div>
+        <!-- Slider handle -->
+        <div class="bylo-handle" id="byloHandle">
+          <div class="bylo-handle__track">
+            <div class="bylo-arrow bylo-arrow--left"></div>
+            <div class="bylo-arrow bylo-arrow--right"></div>
+          </div>
+          <div class="bylo-handle__line"></div>
+        </div>
+        <!-- Labels -->
+        <div class="bylo-labels">
+          <span class="bylo-label bylo-label--bylo" id="byloLabelBilo">было</span>
+          <span class="bylo-label bylo-label--stalo" id="byloLabelStalo">стало</span>
+        </div>
       </div>
     </div>
 
-    <div style="height:80px;"></div>
+    <!-- Text frame — Figma 1744:13468 -->
+    <div class="text-frame reveal">
+      <div class="text-frame__card">
+        <div class="text-frame__label">Проблема</div>
+        <div class="text-frame__body">
+          <p>[01]&nbsp; Низкая глубина просмотра на главной – CTR 3 баннера</p>
+          <p>[02] Низкая конверсия с главной страницы</p>
+          <p>[03] Зачем бренду вообще приложение?</p>
+        </div>
+      </div>
+      <div class="text-frame__card">
+        <div class="text-frame__label">Задача</div>
+        <div class="text-frame__body">
+          <p>Спроектировать самобытный и современный главный экран приложения, который эффектно презентует товары и остаётся интуитивным для пользователя</p>
+        </div>
+      </div>
+      <div class="text-frame__card">
+        <div class="text-frame__label">Ограничения</div>
+        <div class="text-frame__body">
+          <p>Главная должна быть красивой,</p>
+          <p>НО обязана продавать<br>НО не должна превращаться в витрину маркетплейса</p>
+        </div>
+      </div>
+      <div class="text-frame__card">
+        <div class="text-frame__label">Метрики</div>
+        <div class="text-frame__body">
+          <p>Наши решения должны повлиять на увеличение количества покупок (CR to purchase), увеличить глубину просмотра на главной (CTR) и добавление в корзину или вишлист (Add to cart, wishlist) сразу с главной страницы приложения</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- My role -->
-    <div class="myrole-block reveal">
-      <div class="myrole-block__header">Моя роль</div>
+    <div style="height:96px;"></div>
 
-      <div class="myrole-block__photo">
+    <!-- My role — Figma 1572:10047 -->
+    <div class="myrole-new reveal">
+      <div class="myrole-new__heading">Моя роль</div>
+
+      <div class="myrole-new__list">
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Проводила кабинетные и глубинные исследования,</p>
+        </div>
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Проводила ЮТ текущего приложения 12 STOREEZ с упором на главную страницу для выявления болей пользователей,</p>
+        </div>
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Разложила текущее приложение на CJM по фреймворку 5LOK (гигиена, барьеры, нативность и т.д.),</p>
+        </div>
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Генерировала инфографику и видео для презентации<br>в Nano Banana, ChatGPT и Kling,</p>
+        </div>
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Разрабатывала визуальный концепт финальной презентации и питчила на всех этапах,</p>
+        </div>
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Экраны</p>
+        </div>
+        <div class="myrole-new__item">
+          <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
+          <p class="myrole-new__item-text">Проводила ЮТ и обрабатывала обратную связь</p>
+        </div>
+      </div>
+
+      <div class="myrole-new__photo-top">
         <img src="assets/images/myrole-main.png" alt="Финальный питчинг">
       </div>
 
-      <div class="myrole-block__list">
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Проводила кабинетные и глубинные исследования,</p>
-        </div>
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Проводила ЮТ текущего приложения 12 STOREEZ с упором на главную страницу для выявления болей пользователей,</p>
-        </div>
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Разложила текущее приложение на CJM по фреймворку 5LOK (гигиена, барьеры, нативность и т.д.),</p>
-        </div>
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Генерировала инфографику и видео для презентации в Nano Banana, ChatGPT и Kling,</p>
-        </div>
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Разрабатывала визуальный концепт финальной презентации и питчила на всех этапах,</p>
-        </div>
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Экраны</p>
-        </div>
-        <div class="myrole-block__item">
-          <img class="myrole-block__star" src="assets/icons/star.svg" alt="">
-          <p>Проводила ЮТ</p>
-        </div>
-      </div>
-
-      <div class="myrole-block__photos">
-        <div class="myrole-block__photo-left">
+      <div class="myrole-new__photos-row">
+        <div class="myrole-new__photo-bl">
           <img src="assets/images/myrole-photo1.png" alt="Финальный питчинг — команда">
         </div>
-        <div class="myrole-block__photo-right">
+        <div class="myrole-new__photo-br">
           <img src="assets/images/myrole-photo2.png" alt="Финальный питчинг — выступление">
         </div>
       </div>
@@ -649,26 +1040,28 @@
       <div class="dp-block__header">
         Дизайн-процесс
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 9L12 15L18 9" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="dp-block__cols">
         <div class="dp-block__col dp-block__col--active">
           <div class="dp-block__col-title">01 Исследование</div>
-          <p class="dp-block__col-desc">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM по 5 LOK, Майндсеты,</p>
+          <p class="dp-block__col-desc">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM по 5 LOK, Майндсеты</p>
         </div>
         <div class="dp-block__col dp-block__col--inactive">
           <div class="dp-block__col-title">02 Дизайн</div>
-          <p class="dp-block__col-desc">Генерация идей, Приоритизация через колич по Кано, Юзерфлоу, Вайрфреймы, Экраны,<br>Генерация инфографики</p>
+          <p class="dp-block__col-desc">Генерация идей, Приоритизация через колич по Кано, Юзерфлоу, Вайрфреймы, Экраны, Генерация инфографики, Прототипирование</p>
         </div>
         <div class="dp-block__col dp-block__col--inactive">
           <div class="dp-block__col-title">03 Тестирование</div>
-          <p class="dp-block__col-desc">ЮТ по RITE, Развитие решений, Итоги</p>
+          <p class="dp-block__col-desc">ЮТ по RITE, Вайбкодинг, Развитие решений, Итоги</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div style="height:128px;"></div>
 
 <!-- RESEARCH -->
 <section id="research">
@@ -682,115 +1075,105 @@
 
     <!-- Деск ресерч -->
     <div class="desk-research reveal">
-
-      <!-- Конкуренты: rotate(-4deg) -->
-      <div class="dr-wrapper" style="left:0;top:0;">
-        <div style="transform:rotate(-4deg);flex-shrink:0;">
-          <div class="dr-card">
-            <div class="dr-title">Конкуренты</div>
-            <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
-            <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
-            <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
-            <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
-            <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
-            <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
-            <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
-            <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
-            <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
-            <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
-            <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
-            <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
-            <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
-            <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
-            <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
-            <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
-            <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
-            <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
-            <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
-            <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
-            <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
-            <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
-            <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
-            <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
-            <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
-            <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
-            <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
-          </div>
+      <!-- Конкуренты -->
+      <div class="dr-wrapper" style="left:68px;top:0;">
+        <div class="dr-card">
+          <div class="dr-title">Конкуренты</div>
+          <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
+          <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
+          <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
+          <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
+          <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
+          <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
+          <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
+          <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
+          <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
+          <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
+          <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
+          <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
+          <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
+          <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
+          <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
+          <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
+          <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
+          <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
+          <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
+          <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
+          <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
+          <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
+          <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
+          <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
+          <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
+          <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
+          <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
         </div>
       </div>
-
-      <!-- Бенчмарки: rotate(+4deg) -->
-      <div class="dr-wrapper" style="left:calc(50% + 0.42px);top:7px;transform:translateX(-50%);">
-        <div style="transform:rotate(4deg);flex-shrink:0;">
-          <div class="dr-card">
-            <div class="dr-title">Бенчмарки</div>
-            <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
-            <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
-            <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
-            <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
-            <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
-            <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
-            <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
-            <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
-            <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
-            <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
-            <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
-            <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
-            <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
-            <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
-            <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
-            <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
-            <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
-            <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
-            <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
-            <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
-            <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
-            <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
-            <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
-            <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
-            <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
-            <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
-            <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
-          </div>
+      <!-- Бенчмарки -->
+      <div class="dr-wrapper" style="left:50%;top:0;transform:translateX(-50%);">
+        <div class="dr-card">
+          <div class="dr-title">Бенчмарки</div>
+          <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
+          <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
+          <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
+          <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
+          <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
+          <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
+          <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
+          <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
+          <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
+          <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
+          <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
+          <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
+          <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
+          <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
+          <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
+          <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
+          <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
+          <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
+          <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
+          <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
+          <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
+          <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
+          <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
+          <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
+          <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
+          <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
+          <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
         </div>
       </div>
-
-      <!-- Тренды: rotate(-4deg) -->
-      <div class="dr-wrapper" style="right:0.17px;top:0;">
-        <div style="transform:rotate(-4deg);flex-shrink:0;">
-          <div class="dr-card">
-            <div class="dr-title">Тренды</div>
-            <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
-            <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
-            <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
-            <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
-            <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
-            <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
-            <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
-            <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
-            <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
-            <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
-            <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
-            <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
-            <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
-            <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
-            <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
-            <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
-            <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
-            <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
-            <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
-            <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
-            <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
-            <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
-            <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
-            <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
-            <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
-            <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
-            <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
-          </div>
+      <!-- Тренды -->
+      <div class="dr-wrapper" style="right:68px;top:0;">
+        <div class="dr-card">
+          <div class="dr-title">Тренды</div>
+          <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
+          <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
+          <div class="dr-bar" style="inset:52.27% 59.85% 5.68% 36.41%;"></div>
+          <div class="dr-bar" style="inset:52.27% 8.23% 5.68% 88.03%;"></div>
+          <div class="dr-bar" style="inset:52.27% 54.86% 5.68% 41.4%;"></div>
+          <div class="dr-bar" style="inset:52.27% 3.24% 5.68% 93.02%;"></div>
+          <div class="dr-bar" style="inset:52.27% 90.27% 5.68% 7.98%;"></div>
+          <div class="dr-bar" style="inset:52.27% 38.65% 5.68% 59.6%;"></div>
+          <div class="dr-bar" style="inset:52.27% 67.08% 5.68% 31.17%;"></div>
+          <div class="dr-bar" style="inset:52.27% 15.46% 5.68% 82.79%;"></div>
+          <div class="dr-bar" style="inset:52.27% 86.28% 5.68% 10.97%;"></div>
+          <div class="dr-bar" style="inset:52.27% 34.66% 5.68% 62.59%;"></div>
+          <div class="dr-bar" style="inset:52.27% 50.87% 5.68% 46.38%;"></div>
+          <div class="dr-bar" style="inset:52.27% 70.07% 5.68% 27.18%;"></div>
+          <div class="dr-bar" style="inset:52.27% 18.45% 5.68% 78.8%;"></div>
+          <div class="dr-bar" style="inset:52.27% 83.04% 5.68% 14.96%;"></div>
+          <div class="dr-bar" style="inset:52.27% 31.42% 5.68% 66.58%;"></div>
+          <div class="dr-bar" style="inset:52.27% 78.3% 5.68% 18.2%;"></div>
+          <div class="dr-bar" style="inset:52.27% 26.68% 5.68% 69.83%;"></div>
+          <div class="dr-bar" style="inset:52.27% 76.31% 5.68% 22.94%;"></div>
+          <div class="dr-bar" style="inset:52.27% 24.69% 5.68% 74.56%;"></div>
+          <div class="dr-bar" style="inset:52.27% 48.88% 5.68% 50.37%;"></div>
+          <div class="dr-bar" style="inset:52.27% 74.06% 5.68% 24.94%;"></div>
+          <div class="dr-bar" style="inset:52.27% 22.44% 5.68% 76.56%;"></div>
+          <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
+          <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
+          <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
         </div>
       </div>
-
     </div>
 
     <!-- Brands -->
@@ -839,28 +1222,102 @@
       </div>
     </div>
 
+    <!-- ЮТ -->
+    <div class="ut-block reveal">
+      <div class="ut-block__title">Юзабилити тестирование</div>
+      <div class="ut-block__photo">
+        <img src="assets/images/ut-photo.png" alt="Юзабилити тестирование">
+      </div>
+      <div class="ut-block__desc">
+        <p>Параллельно с глубинками, мы провели 17 ЮТ всего текущего приложения с упором на главную страницу</p>
+        <p>Нам важно было понять с какими трудностями сталкивается постоянный клиент пользующийся приложением и те, кто видят приложение впервые, но пользуются приложениями конкурентов</p>
+      </div>
+      <div class="ut-block__item" style="top:187px;">
+        <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
+        <div class="ut-block__item-text">
+          <p>6 из 17 респондентов</p>
+          <p>не считывали возможность клика по баннеру на главной</p>
+        </div>
+      </div>
+      <div class="ut-block__item" style="top:241px;">
+        <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
+        <div class="ut-block__item-text">
+          <p>2 из 17 респондентов</p>
+          <p>не считывали таббар на баннере и воспринимали как обычный текст</p>
+        </div>
+      </div>
+      <div class="ut-block__item" style="top:295px;">
+        <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
+        <div class="ut-block__item-text">
+          <p>4 из 17 респондентов</p>
+          <p>хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
+        </div>
+      </div>
+    </div>
+
     <!-- CJM -->
     <div style="margin-bottom:16px;" class="reveal">
-      <h3 style="font-size:32px;font-weight:600;margin-bottom:24px;">CJM AS IS по 5 LOK</h3>
+      <h3 style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;margin-bottom:24px;">CJM AS IS по 5 LOK</h3>
       <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по фреймворку 5 LOK" style="border-radius:16px;margin-left:-40px;width:calc(100% + 80px);display:block;">
     </div>
 
-    <div style="height:60px;"></div>
+    <div style="height:96px;"></div>
 
-    <!-- Mindsets text -->
-    <div class="reveal" style="margin-bottom:32px;">
-      <img src="assets/images/storeez-mindsets-text.png" alt="Майндсеты — описание" style="width:100%;border-radius:16px;">
+    <!-- Майндсеты текст -->
+    <div class="mindsets-text reveal">
+      <p class="mindsets-text__title">Майндсеты</p>
+      <div class="mindsets-text__body">
+        <p>Мы разложили наших респондентов на оси координат по формату:<br>Те, кто склонён к импульсивным покупкам и продумывать покупки;<br>Те, кто предпочитает онлайн офлайну и наоборот</p>
+        <p><br>Для проектирования решений мы выбрали 3 майндсета:</p>
+        <p>прагматик и кибершопоголик — те, кто любит онлайн, потому что наш продукт в онлайне<br>искушённый, потому что он самый лояльный майндсет и готов ко всему, что делает бренд</p>
+      </div>
     </div>
 
-    <!-- Mindsets visual -->
-    <div class="reveal" style="margin-left:-40px;width:calc(100% + 80px);">
-      <img src="assets/images/storeez-mindsets.png" alt="Майндсеты" style="width:100%;display:block;">
+    <!-- Майндсеты диаграмма -->
+    <div class="mindsets-diagram reveal">
+      <!-- Оси координат -->
+      <div class="mindsets-axis-h"></div>
+      <div class="mindsets-axis-v"></div>
+
+      <!-- Подписи осей -->
+      <p class="mindsets-axis-label" style="left:678px;top:8px;">люблю онлайн</p>
+      <p class="mindsets-axis-label" style="left:1137.5px;top:293px;">импульсивный</p>
+      <p class="mindsets-axis-label" style="left:62.5px;top:328px;">рациональный</p>
+      <p class="mindsets-axis-label" style="left:521px;top:613px;">люблю офлайн</p>
+
+      <!-- Фото -->
+      <div class="mindsets-photo" style="left:20.67px;top:0;width:219.52px;height:294px;">
+        <img src="assets/images/mindsets-pragmatik.png" alt="Прагматик">
+      </div>
+      <div class="mindsets-photo mindsets-photo--bottom" style="left:961px;top:2px;width:209px;height:287px;">
+        <img src="assets/images/mindsets-yana.png" alt="Кибершопоголик">
+      </div>
+
+      <!-- Флюгер бокс — под фото (ниже в стеке) -->
+      <div class="mindsets-fluger">
+        <span class="mindsets-fluger__text">Флюгер</span>
+      </div>
+
+      <!-- Флюгер фото — поверх бокса -->
+      <div class="mindsets-photo" style="left:458px;top:126px;width:285px;height:382px;">
+        <img src="assets/images/mindsets-fluger-person.png" alt="Флюгер">
+      </div>
+      <div class="mindsets-photo" style="left:21px;top:370px;width:200px;height:268px;">
+        <img src="assets/images/mindsets-angelina.png" alt="Ревизорро">
+      </div>
+      <div class="mindsets-photo mindsets-photo--bottom" style="left:967px;top:376px;width:190px;height:255px;">
+        <img src="assets/images/mindsets-bottom-right.png" alt="Искушённый">
+      </div>
+
+      <!-- Названия майндсетов -->
+      <p class="mindsets-name" style="left:290px;top:178px;">Прагматик</p>
+      <p class="mindsets-name" style="left:822.5px;top:178px;">Кибершопоголик</p>
+      <p class="mindsets-name" style="left:289.5px;top:498px;">Ревизорро</p>
+      <p class="mindsets-name" style="left:794px;top:498px;">Искушённый</p>
     </div>
 
   </div>
 </section>
-
-<div class="sep"></div>
 
 <!-- DESIGN -->
 <section id="design">
@@ -1000,6 +1457,43 @@
   document.querySelector('.desk-research')?.addEventListener('mouseleave', () => {
     drWrappers.forEach(w => w.classList.remove('dr-inactive'));
   });
+
+  /* BYLO-STALO SLIDER */
+  (function() {
+    var wrapper = document.getElementById('byloWrapper');
+    var layer   = document.getElementById('byloLayer');
+    var handle  = document.getElementById('byloHandle');
+    var lblBilo = document.getElementById('byloLabelBilo');
+    var lblStalo= document.getElementById('byloLabelStalo');
+    if (!wrapper) return;
+
+    var dragging = false, rect;
+
+    function setPos(clientX) {
+      rect = rect || wrapper.getBoundingClientRect();
+      var pct = Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
+      layer.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      handle.style.left    = pct + '%';
+      var bilo = pct >= 50;
+      lblBilo.style.color  = bilo ? '#141414' : '#c8c8c8';
+      lblStalo.style.color = bilo ? '#c8c8c8' : '#141414';
+    }
+
+    wrapper.addEventListener('mousedown', function(e) {
+      dragging = true; rect = wrapper.getBoundingClientRect(); setPos(e.clientX);
+    });
+    document.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
+    document.addEventListener('mouseup',   function()  { dragging = false; });
+
+    wrapper.addEventListener('touchstart', function(e) {
+      dragging = true; rect = wrapper.getBoundingClientRect();
+      setPos(e.touches[0].clientX); e.preventDefault();
+    }, {passive: false});
+    document.addEventListener('touchmove', function(e) {
+      if (dragging) { setPos(e.touches[0].clientX); e.preventDefault(); }
+    }, {passive: false});
+    document.addEventListener('touchend', function() { dragging = false; });
+  })();
 
   const nav = document.querySelector('.nav');
   const hoverZone = document.getElementById('nav-hover-zone');
