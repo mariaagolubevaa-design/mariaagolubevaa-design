@@ -703,16 +703,18 @@
     .pagination {
       display: flex; align-items: center; justify-content: space-between;
       padding: 32px 40px; max-width: var(--page-w); margin: 0 auto;
-      border-top: 1px solid var(--grey1);
     }
     .pagination__btn {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 24px; font-weight: 500; text-decoration: none;
-      color: var(--black); cursor: pointer;
-      background: none; border: none; font-family: inherit;
-      transition: opacity .2s;
+      display: flex; align-items: center; gap: 16px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; text-transform: uppercase;
+      text-decoration: none; color: var(--black); cursor: pointer;
+      background: none; border: none;
+      transition: color 0.15s ease;
     }
-    .pagination__btn:hover { opacity: .6; }
+    .pagination__btn:hover { color: #B03C39; }
+    .pagination__btn:active { color: #B03C39; opacity: .7; }
+    .pagination__btn:focus-visible { outline: 2px solid #1e1e1c; outline-offset: 4px; border-radius: 2px; }
 
     /* FOOTER */
     footer { background: var(--footer-bg); border-radius: 32px 32px 0 0; }
@@ -1387,7 +1389,7 @@
 </section>
 
 <!-- DESIGN -->
-<section id="design">
+<section id="design" style="padding-bottom:0;">
   <div class="container">
 
     <div class="dp-block__header reveal" style="margin-bottom:64px;">
@@ -1403,9 +1405,9 @@
     <div class="arh-frame reveal">
 
       <!-- 1. Линии соединения (нижний слой) -->
-      <!-- верхняя пара: Line 2 y=295.56 +1.89°, Line 1 y=274.85 +2° -->
+      <!-- верхняя пара: Line 2 y=295.56 +1.89°, Line 1 y=295.09 +2° (transform-origin: left top) -->
       <img class="arh-line" src="assets/images/arh-line-148.svg" style="left:349px;top:295.56px;width:582px;height:1px;transform:rotate(1.89deg);">
-      <img class="arh-line" src="assets/images/arh-line-153.svg" style="left:349px;top:274.85px;width:580px;height:1px;transform:rotate(2deg);">
+      <svg style="position:absolute;left:0;top:0;width:100%;height:640px;pointer-events:none;overflow:visible;" xmlns="http://www.w3.org/2000/svg"><line x1="349" y1="274.85" x2="928.65" y2="295.09" stroke="#9B9B9B" stroke-width="1"/></svg>
       <!-- нижняя пара около y=416 -->
       <img class="arh-line" src="assets/images/arh-line-154.svg" style="left:349px;top:416px;width:582px;height:1px;transform:rotate(1.89deg);">
       <img class="arh-line" src="assets/images/arh-line-153.svg" style="left:350px;top:416.09px;width:580px;height:1px;transform:rotate(-2deg);">
@@ -1459,101 +1461,338 @@
 
     </div>
 
-    <!-- Pain 1 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Не цепляет главная</span>
-        <span class="pain-block__quote">«Красивые кампейны! Но больше 2 раз не смотрю»</span>
-      </div>
-      <img src="assets/images/storeez-pain1.png" alt="Решение: не цепляет главная — дополнительный слой навигации">
+    <!-- Не цепляет главная — Figma 1768:14028 -->
+    <div class="reveal" style="display:flex;align-items:baseline;margin-bottom:32px;">
+      <span style="flex:0 0 50%;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;">Не цепляет главная</span>
+      <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;">«Красивые кампейны! Но больше 2 раз не смотрю»</span>
     </div>
 
-    <!-- Pain 2 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Не знаю о полезных функциях</span>
-        <span class="pain-block__quote">«Ого! Даже не знаю о таком!»</span>
+    <!-- Не знаю о полезных функциях — Figma 1572:10998 -->
+    <div class="reveal" style="margin-bottom:80px;">
+      <div style="display:flex;align-items:center;gap:183px;margin-bottom:32px;">
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Не знаю о полезных функциях</span>
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Ого! Даже не знаю о таком!»</span>
       </div>
-      <img src="assets/images/storeez-pain2.png" alt="Решение: открытие полезных функций">
     </div>
 
-    <!-- Pain 3 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">А как это выглядит в жизни?</span>
-        <span class="pain-block__quote">«Часто иду смотреть в тг или инст вещи, как они смотрятся в жизни»</span>
+    <!-- А как это выглядит в жизни? — Figma 1777:14502 -->
+    <div class="reveal" style="position:relative;height:860px;margin-bottom:96px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">А как это выглядит в жизни?</span>
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Часто иду смотреть в тг или инст вещи, как они смотрятся в жизни»</span>
       </div>
-      <img src="assets/images/storeez-pain3.png" alt="Решение: лучшие образы месяца">
+      <!-- Левый телефон — Figma 1572:11149 -->
+      <div style="position:absolute;left:calc(50% - 299px);top:155px;transform:translateX(-50%);width:322px;height:703.127px;">
+        <div style="position:absolute;left:-1px;top:-60px;width:322px;height:700px;overflow:hidden;border-radius:38.448px;">
+          <div style="position:absolute;inset:0;background:#fff;"></div>
+          <div style="position:absolute;inset:0;overflow:hidden;">
+            <img src="assets/images/storeez-pain3-screen2.png" alt="" style="position:absolute;left:0;top:0.03%;width:100%;height:153.89%;max-width:none;">
+          </div>
+        </div>
+        <div style="position:absolute;left:-1px;top:-58px;width:322px;height:700px;z-index:1;pointer-events:none;">
+          <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.915px;max-width:none;display:block;">
+        </div>
+      </div>
+      <!-- Правый телефон — Figma 1569:8670 -->
+      <div style="position:absolute;left:calc(50% + 300px);top:calc(50% + 33px);transform:translate(-50%,-50%);width:322px;height:700px;">
+        <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
+          <img src="assets/images/storeez-pain3-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.21px;top:-18.41px;width:360.172px;height:auto;z-index:1;pointer-events:none;display:block;">
+      </div>
     </div>
 
-    <!-- Pain 4 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Нечего надеть</span>
-        <span class="pain-block__quote">«У меня много вещей с бирками. Наверное, не было ещё повода для них»</span>
-      </div>
-      <img src="assets/images/storeez-pain4.png" alt="Решение: вещи складываются в образы, готовые образы на главной">
+    <!-- Нечего надеть — Figma 1572:11161 -->
+    <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:96px;">
+      <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Нечего надеть</span>
+      <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«У меня много вещей с бирками. Наверное, не было ещё повода для них»</span>
     </div>
 
-    <!-- Pain 5 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Зачем приложение?</span>
-        <span class="pain-block__quote">«Я скачиваю приложения только тех сервисов, куда захожу каждый день»</span>
+    <!-- Зачем приложение? — Figma 1778:15454: 1200×867px, container x=40 -->
+    <div class="reveal" style="position:relative;height:867px;margin-bottom:96px;">
+
+      <!-- Заголовок (1573:11177): y=0, height=38px -->
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Зачем приложение?</span>
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Я скачиваю приложения только тех сервисов, куда захожу каждый день. А для обычных покупок мне хватает сайта»</span>
       </div>
-      <img src="assets/images/storeez-pain5.png" alt="Решение: ценность приложения для пользователя">
+
+      <!-- Левый телефон (1573:11180 "Контент"): x=139, y=98, 322×700px -->
+      <div style="position:absolute;left:139px;top:98px;width:322px;height:700px;">
+        <!-- Lock Screen: один скриншот экрана -->
+        <div style="position:absolute;inset:0 0.08px 0.12px 0;overflow:hidden;border-radius:38.657px;">
+          <div style="position:absolute;inset:0;background:white;"></div>
+          <img src="assets/images/storeez-zachem-screen-left.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <!-- Рамка iPhone 17 Pro: left=-19.33, top=-18.52, 362.41×740.928px -->
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.33px;top:-18.52px;width:362.41px;height:740.928px;max-width:none;display:block;z-index:1;pointer-events:none;">
+      </div>
+
+      <!-- Правый телефон (1573:11190 "от редакции"): x=739, y=146, 322×700px -->
+      <div style="position:absolute;left:739px;top:146px;width:322px;height:700px;">
+        <!-- Lock Screen: UI приложения, border-radius=38.466px -->
+        <div style="position:absolute;inset:0 -0.16px 0.03px 0;overflow:hidden;border-radius:38.466px;background:white;">
+
+          <!-- мобилка (1573:11192): top=-1.779px, left=0.078px, width=322px -->
+          <div style="position:absolute;top:-1.779px;left:0.078px;width:322px;">
+
+            <!-- Пространство для sticky-шапки: 89.821px -->
+            <div style="height:89.821px;"></div>
+
+            <!-- Редакционный блок (1573:11200): padding 10.168 top / 12.816 sides / 16.947 bottom -->
+            <div style="background:white;padding:10.168px 12.816px 16.947px;width:322px;box-sizing:border-box;">
+              <div style="display:flex;flex-direction:column;gap:16.02px;width:296.368px;">
+
+                <!-- Заголовок "ОТ РЕДАКЦИИ" (1573:11202): h=25.632px, Inter Medium 20.83px -->
+                <div style="height:25.632px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+                  <p style="font-family:'Inter',Arial,sans-serif;font-size:20.83px;font-weight:500;color:#141414;text-transform:uppercase;white-space:nowrap;line-height:1;margin:0;">ОТ РЕДАКЦИИ</p>
+                </div>
+
+                <!-- Галерея + кнопка (1573:11203): gap 18.642px -->
+                <div style="display:flex;flex-direction:column;gap:18.642px;width:296.368px;">
+
+                  <!-- Галерея (1573:11204): 3 ряда с gap 12.816px -->
+                  <div style="display:flex;flex-direction:column;gap:12.816px;width:296.368px;">
+
+                    <!-- Ряд 1: 1/7 и 2/7 — left-aligned, высота 140.975px -->
+                    <div style="display:flex;gap:6.408px;height:140.975px;align-items:flex-start;width:296.368px;">
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">1/7</p></div>
+                        <div style="height:128.159px;border-radius:6.408px;overflow:hidden;">
+                          <img src="assets/images/storeez-zachem-gallery-1.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+                        </div>
+                      </div>
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">2/7</p></div>
+                        <div style="height:128.159px;border-radius:6.408px;overflow:hidden;background:#f4f4f4;">
+                          <img src="assets/images/storeez-zachem-gallery-2.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Ряд 2: 3/7 и 4/7 — right-aligned (колонки 2-3), высота 142.854px -->
+                    <div style="display:flex;gap:6.408px;align-items:flex-start;justify-content:flex-end;width:296.368px;">
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">3/7</p></div>
+                        <div style="height:128.159px;border-radius:6.408px;overflow:hidden;">
+                          <img src="assets/images/storeez-zachem-gallery-3.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+                        </div>
+                      </div>
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">4/7</p></div>
+                        <div style="position:relative;height:128.159px;border-radius:6.408px;overflow:hidden;">
+                          <div style="position:absolute;inset:0;overflow:hidden;border-radius:6.408px;">
+                            <img src="assets/images/storeez-zachem-gallery-4.png" alt="" style="position:absolute;width:100%;height:131.09%;max-width:none;top:-5.16%;left:0;display:block;">
+                          </div>
+                          <div style="position:absolute;inset:0;background:rgba(0,0,0,0.2);border-radius:6.408px;"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Ряд 3: 5/7, 6/7, 7/7 — все 3 колонки, высота 140.975px -->
+                    <div style="position:relative;display:flex;gap:6.408px;height:140.975px;align-items:flex-start;width:296.368px;">
+                      <!-- 5/7: тёмный оверлей -->
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">5/7</p></div>
+                        <div style="position:relative;height:128.159px;border-radius:6.408px;overflow:hidden;">
+                          <div style="position:absolute;inset:0;overflow:hidden;border-radius:6.408px;">
+                            <img src="assets/images/storeez-zachem-gallery-5.png" alt="" style="position:absolute;width:100%;height:131.09%;max-width:none;top:-13.14%;left:0;display:block;">
+                          </div>
+                          <div style="position:absolute;inset:0;background:rgba(0,0,0,0.2);border-radius:6.408px;"></div>
+                        </div>
+                      </div>
+                      <!-- 6/7: frosted blur + "СКОРО" -->
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">6/7</p></div>
+                        <div style="position:relative;height:128.159px;border-radius:6.408px;overflow:hidden;background:#f4f4f4;">
+                          <img src="assets/images/storeez-zachem-gallery-6.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+                          <div style="position:absolute;inset:-0.8px 0 0 -0.8px;width:95.318px;height:128.159px;border-radius:6.408px;backdrop-filter:blur(3.084px);-webkit-backdrop-filter:blur(3.084px);background:rgba(217,217,217,0.13);"></div>
+                        </div>
+                      </div>
+                      <!-- 7/7: frosted blur + "СКОРО" -->
+                      <div style="width:94.517px;flex-shrink:0;display:flex;flex-direction:column;gap:1.695px;">
+                        <div style="display:flex;justify-content:center;"><p style="font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:#141414;letter-spacing:-0.104px;line-height:1;margin:0;">7/7</p></div>
+                        <div style="position:relative;height:128.159px;border-radius:6.408px;overflow:hidden;background:#f4f4f4;">
+                          <img src="assets/images/storeez-zachem-gallery-7.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+                          <div style="position:absolute;inset:0;height:128.159px;border-radius:6.408px;backdrop-filter:blur(3.084px);-webkit-backdrop-filter:blur(3.084px);background:rgba(217,217,217,0.13);"></div>
+                        </div>
+                      </div>
+                      <!-- "СКОРО" на 6/7: x=132.163, y=73.69 от container ряда 3 -->
+                      <p style="position:absolute;left:132.163px;top:73.69px;font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:white;text-transform:uppercase;white-space:nowrap;margin:0;line-height:1;pointer-events:none;">Скоро</p>
+                      <!-- "СКОРО" на 7/7: x=233.89, y=73.69 -->
+                      <p style="position:absolute;left:233.89px;top:73.69px;font-family:'Inter',Arial,sans-serif;font-size:10.413px;color:white;text-transform:uppercase;white-space:nowrap;margin:0;line-height:1;pointer-events:none;">Скоро</p>
+                    </div>
+
+                  </div>
+
+                  <!-- Кнопка "Все материалы" (1573:11244): 296.368×32.04px, border 0.801px -->
+                  <div style="width:296.368px;height:32.04px;border:0.801px solid #141414;border-radius:8px;display:flex;align-items:center;justify-content:center;background:white;">
+                    <p style="font-family:'Inter',Arial,sans-serif;font-size:11.21px;color:#141414;text-transform:uppercase;white-space:nowrap;margin:0;line-height:1;">Все материалы</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div><!-- конец мобилки -->
+
+          <!-- Sticky шапка: статус-бар + навигация (z-index:5) -->
+          <div style="position:absolute;top:0;left:0;width:325.389px;height:89.821px;z-index:5;">
+            <!-- Статус-бар: высота 42.9px, белый фон -->
+            <div style="height:42.9px;background:white;display:flex;align-items:center;justify-content:space-between;padding:0 15px;">
+              <span style="font-family:'Inter',Arial,sans-serif;font-size:14px;font-weight:600;color:#141414;line-height:1;">9:41</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#141414"/><rect x="4.5" y="6" width="3" height="6" rx="0.5" fill="#141414"/><rect x="9" y="3.5" width="3" height="8.5" rx="0.5" fill="#141414"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#141414"/></svg>
+                <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 10.5a1 1 0 100-2 1 1 0 000 2z" fill="#141414"/><path d="M4.5 7.5C5.6 6.4 6.7 5.8 8 5.8s2.4.6 3.5 1.7" stroke="#141414" stroke-width="1.3" stroke-linecap="round"/><path d="M1.5 4.5C3.3 2.7 5.5 1.8 8 1.8s4.7.9 6.5 2.7" stroke="#141414" stroke-width="1.3" stroke-linecap="round"/></svg>
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#141414" stroke-opacity="0.35"/><rect x="2" y="2" width="18" height="8" rx="2" fill="#141414"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="#141414" fill-opacity="0.4"/></svg>
+              </div>
+            </div>
+            <!-- Табы навигации: ДЛЯ ВАС | ВДОХНОВЕНИЕ (active) | СЕРВИСЫ -->
+            <div style="height:46.947px;background:white;display:flex;align-items:center;padding:0 12.951px;gap:25.902px;">
+              <div style="display:flex;flex-direction:column;align-items:center;padding:9.713px 0 6.475px;flex-shrink:0;">
+                <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#959595;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;">ДЛЯ ВАС</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-start;padding:9.713px 0 6.475px;gap:0.809px;flex-shrink:0;">
+                <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#141414;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;">ВДОХНОВЕНИЕ</span>
+                <img src="assets/images/storeez-zachem-line-vdoh.svg" alt="" style="display:block;width:100%;height:1px;">
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;padding:9.713px 0 6.475px;flex-shrink:0;">
+                <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#959595;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;">СЕРВИСЫ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab bar (1573:11274): top=625.3px (=627.078−1.779), h=75.277px -->
+          <div style="position:absolute;left:0;top:625.3px;width:325.389px;height:75.277px;background:white;border-top:0.405px solid #f3f3f3;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:5;">
+            <div style="display:flex;align-items:center;justify-content:center;height:38.852px;">
+              <!-- Tab 1: активный (home), с подсветкой #ededed -->
+              <div style="width:55.041px;height:38.852px;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;">
+                <div style="position:absolute;inset:0 -1.62px;border-radius:80.943px;background:#ededed;"></div>
+                <img src="assets/images/storeez-zachem-icon1.svg" alt="" style="width:19.426px;height:19.426px;display:block;position:relative;z-index:1;">
+              </div>
+              <div style="width:55.041px;height:38.852px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="assets/images/storeez-zachem-icon2.svg" alt="" style="width:19.426px;height:19.426px;display:block;">
+              </div>
+              <div style="width:55.041px;height:38.852px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="assets/images/storeez-zachem-icon3.svg" alt="" style="width:19.426px;height:19.426px;display:block;">
+              </div>
+              <div style="width:55.041px;height:38.852px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="assets/images/storeez-zachem-icon4.svg" alt="" style="width:19.426px;height:19.426px;display:block;">
+              </div>
+              <div style="width:55.041px;height:38.852px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="assets/images/storeez-zachem-icon5.svg" alt="" style="width:19.426px;height:19.426px;display:block;">
+              </div>
+            </div>
+          </div>
+
+        </div><!-- конец Lock Screen правого телефона -->
+        <!-- Рамка iPhone 17 Pro: left=-19.23, top=-18.43, 360.623×737.273px -->
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.23px;top:-18.43px;width:360.623px;height:737.273px;max-width:none;display:block;z-index:1;pointer-events:none;">
+      </div><!-- конец правого телефона -->
+
+    </div><!-- конец секции Зачем приложение -->
+
+    <!-- Как сидит? — Figma 1569:7855 -->
+    <div class="reveal" style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:61px;">
+      <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Как сидит?</span>
+      <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Боюсь покупать цветные вещи. Их сложно сочетать между собой и мне может не подойти. Ведь много моделей смуглых»</span>
     </div>
 
-    <!-- Pain 6 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Как сидит?</span>
+    <!-- Как сидит? — 2 макета (модель С + модель М) — Figma 1569:8974 / 1569:8964 -->
+    <!-- модель С: x=139 в родит. фрейме → 179px от левого края 1280px; модель М: x=739 → 779px; gap=278px -->
+    <div class="reveal" style="display:flex;justify-content:center;gap:278px;margin-bottom:96px;">
+      <!-- модель С -->
+      <div style="position:relative;width:322px;height:700px;flex-shrink:0;">
+        <div style="position:absolute;inset:0 0 0.07px 0;overflow:hidden;border-radius:38.448px;">
+          <div style="position:absolute;inset:0;background:#fff;"></div>
+          <div style="position:absolute;inset:0;overflow:hidden;">
+            <img src="assets/images/storeez-kaksid-model-s.png" alt="Модель С" style="position:absolute;left:0;top:0;width:100%;height:210.97%;max-width:none;display:block;">
+          </div>
+        </div>
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:1;pointer-events:none;">
+        <!-- S badge — Figma 1569:8986: x=410,y=525 в родит. фрейме → left=271px,top=426px от телефона -->
+        <div style="position:absolute;left:271px;top:426px;width:99px;height:68px;background:#fafafa;border:1.5px solid #222;display:flex;align-items:center;justify-content:center;z-index:2;">
+          <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#222;line-height:1;">S</span>
+        </div>
       </div>
-      <img src="assets/images/storeez-pain6.png" alt="Решение: как выглядит вещь на разных людях">
+      <!-- модель М -->
+      <div style="position:relative;width:322px;height:700px;flex-shrink:0;">
+        <div style="position:absolute;inset:0 0 0.07px 0;overflow:hidden;border-radius:38.448px;">
+          <div style="position:absolute;inset:0;background:#fff;"></div>
+          <div style="position:absolute;inset:0;overflow:hidden;">
+            <img src="assets/images/storeez-kaksid-model-m.png" alt="Модель М" style="position:absolute;left:0;top:0.03%;width:100%;height:210.97%;max-width:none;display:block;">
+          </div>
+        </div>
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:1;pointer-events:none;">
+        <!-- L badge — Figma 1798:9405: x=1010,y=525 в родит. фрейме → left=271px,top=426px от телефона -->
+        <div style="position:absolute;left:271px;top:426px;width:99px;height:68px;background:#fafafa;border:1.5px solid #222;display:flex;align-items:center;justify-content:center;z-index:2;">
+          <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#222;line-height:1;">L</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Pain 7 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Барьеры в онлайне</span>
+    <!-- Барьеры в онлайне — Figma 1570:9689 -->
+    <div class="reveal" style="position:relative;height:840px;margin-bottom:96px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Барьеры в онлайне</span>
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Люблю 12 storeez, но не люблю доставку»</span>
       </div>
-      <img src="assets/images/storeez-pain7.png" alt="Решение: преодоление барьеров онлайн-покупок">
+      <!-- Phone mockup -->
+      <div style="position:absolute;left:50%;top:calc(50% + 44.5px);transform:translate(-50%,-50%);width:322px;height:700px;">
+        <div style="position:absolute;inset:0 0 0.07px 0;overflow:hidden;border-radius:38.448px;">
+          <div style="position:absolute;inset:0;background:#fff;"></div>
+          <div style="position:absolute;inset:0;overflow:hidden;">
+            <img src="assets/images/storeez-barriers-lockscreen.png" alt="" style="position:absolute;left:0;top:-0.04%;width:100%;height:164.25%;max-width:none;display:block;">
+          </div>
+        </div>
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:1;pointer-events:none;">
+      </div>
+      <!-- Order notification card -->
+      <div style="position:absolute;left:221px;top:488px;width:400px;height:249px;box-shadow:-26.763px 145.772px 41.568px 0px rgba(138,138,138,0),-4.555px 23.346px 23.916px 0px rgba(138,138,138,0.09),-1.139px 5.694px 13.097px 0px rgba(138,138,138,0.1);">
+        <img src="assets/images/storeez-barriers-order-card.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
     </div>
 
-    <!-- Pain 8 -->
-    <div class="pain-block reveal">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Омниканальность</span>
+    <!-- Нет бесшовной коммуникации — Figma 1573:11344 -->
+    <div class="reveal" style="position:relative;height:840px;margin-bottom:0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Нет бесшовной коммуникации</span>
+        <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Часто добавляю в корзину и показываю консультанту»</span>
       </div>
-      <img src="assets/images/storeez-pain8.png" alt="Решение: коммьюнити, события, офлайн-точки">
-    </div>
-
-    <!-- Pain 9 -->
-    <div class="pain-block reveal" id="result">
-      <div class="pain-block__header">
-        <span class="pain-block__title">Не хватает общения</span>
+      <!-- Phone mockup -->
+      <div style="position:absolute;left:50%;top:calc(50% + 41.5px);transform:translate(-50%,-50%);width:322px;height:700px;">
+        <div style="position:absolute;inset:0 0 0.07px 0;overflow:hidden;border-radius:38.448px;">
+          <img src="assets/images/storeez-omni-screen.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:1;pointer-events:none;">
       </div>
-      <img src="assets/images/storeez-pain9.png" alt="Решение: коммьюнити и общение">
-    </div>
-
-    <div class="chips reveal">
-      <span class="chip">приложение</span>
-      <span class="chip">ux/ui</span>
-      <span class="chip">B2C</span>
-      <span class="chip">премиум</span>
-      <span class="chip">2026</span>
     </div>
 
   </div>
 </section>
 
+<!-- RESULT -->
+<section id="result" style="padding-top:128px;">
+  <div class="container">
+    <div class="context-block reveal">
+      <div class="context-block__label">
+        Результат
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="context-block__text">
+        Мы переосмыслили главную страницу приложения: сделали персонализированной, отражающей интерес каждого пользователя. В ходе исследований мы выявили, что визуализация помогает совершать покупки – мы добавили цифровой аватар на главной.<br><br>
+        Мы переосмыслили ценность приложения в целом, добавив уникальные функции в приложение и посредствам создания fashion-экосистемы и мы развиваем плавный переход между онлайном и офлайном.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- PAGINATION -->
 <div class="pagination">
-  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ наверх</button>
-  <div style="display:flex;gap:40px;">
-    <a class="pagination__btn" href="tingli.html">← Профиль пользователя</a>
-    <a class="pagination__btn" href="gamification.html">Геймификация в УД →</a>
-  </div>
+  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>Наверх</button>
+  <a class="pagination__btn" href="tingli.html">Профиль пользователя<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg></a>
 </div>
 
 <!-- FOOTER -->
@@ -1579,7 +1818,7 @@
     let cur = '';
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
     navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + cur || (a.getAttribute('href') === '#result' && cur === 'design'));
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
     });
   });
 
