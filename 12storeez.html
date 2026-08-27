@@ -843,25 +843,45 @@
       height: 168px;
       overflow: visible;
       margin-bottom: 48px;
+      transition: margin-bottom 0.45s cubic-bezier(0.4,0,0.2,1);
     }
+    .desk-research.competitor-open { margin-bottom: 308px; }
     .dr-wrapper {
       position: absolute;
       width: 250px;
       height: 164px;
+      transition: width 0.45s cubic-bezier(0.4,0,0.2,1),
+                  height 0.45s cubic-bezier(0.4,0,0.2,1),
+                  left 0.45s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.25s ease;
+    }
+    .dr-wrapper.dr-expanded {
+      left: 0 !important;
+      width: 1200px;
+      height: 428px;
+      background: #fafafa;
+      z-index: 20;
+    }
+    .dr-wrapper.dr-inactive .dr-title { color: #d2d2d2; }
+    .dr-wrapper.dr-inactive .dr-bar { background-color: #d2d2d2; }
+    .desk-research.competitor-open .dr-wrapper.dr-inactive {
+      opacity: 0.35; pointer-events: none;
     }
     .dr-card {
-      position: relative;
+      position: absolute;
+      left: 0; top: 0;
       width: 250px;
       height: 164px;
       background: #f7f6f4;
       border: 0.623px solid rgba(0,0,0,0.05);
       box-shadow: 0px 1.247px 4.364px 0px rgba(0,0,0,0.07);
-      transition: box-shadow 0.25s ease;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s ease;
       cursor: pointer;
     }
-    .dr-wrapper:hover .dr-card {
+    .dr-wrapper:not(.dr-expanded):hover .dr-card {
       box-shadow: 1px 5px 4px 0px rgba(30,30,28,0.05), 0px 1.247px 8.728px 0px rgba(0,0,0,0.07);
     }
+    .dr-wrapper.dr-expanded .dr-card { transform: translateX(950px); }
     .dr-title {
       position: absolute;
       inset: 6.2% 2.57% 70.1% 6.23%;
@@ -882,8 +902,38 @@
       border: 0.623px solid rgba(0,0,0,0.05);
       transition: background-color 0.25s ease;
     }
-    .dr-wrapper.dr-inactive .dr-title { color: #d2d2d2; }
-    .dr-wrapper.dr-inactive .dr-bar { background-color: #d2d2d2; }
+
+    /* Конкуренты — expanded table */
+    .dr-competitors-table {
+      position: absolute;
+      left: 0; top: 212px;
+      width: 1200px; height: 216px;
+      display: flex; align-items: stretch;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s 0.22s ease;
+    }
+    .dr-wrapper.dr-expanded .dr-competitors-table { opacity: 1; pointer-events: auto; }
+    .dr-ct-col { display: flex; flex-direction: column; flex-shrink: 0; }
+    .dr-ct-header {
+      height: 36px; flex-shrink: 0;
+      background: #c8c8c8;
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px;
+      font-family: 'Inter Tight','Inter',Arial,sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414;
+      text-align: center; white-space: nowrap;
+    }
+    .dr-ct-row {
+      height: 40px; flex-shrink: 0;
+      background: #fafafa;
+      border-bottom: 1px solid #c8c8c8;
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px;
+      font-family: 'Inter Tight','Inter',Arial,sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414;
+      white-space: nowrap;
+    }
+    .dr-ct-check { display: block; width: 16px; height: 16px; }
 
     /* ДЛЯ ВАС section — полная ширина страницы */
     .dlv-section {
@@ -1246,8 +1296,8 @@
     <!-- Деск ресерч -->
     <div class="desk-research reveal">
       <!-- Конкуренты -->
-      <div class="dr-wrapper" style="left:68px;top:0;">
-        <div class="dr-card">
+      <div class="dr-wrapper" id="competitors-wrapper" style="left:68px;top:0;">
+        <div class="dr-card" id="competitors-card">
           <div class="dr-title">Конкуренты</div>
           <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
           <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
@@ -1276,6 +1326,89 @@
           <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
           <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
           <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
+        </div>
+        <!-- Expanded table -->
+        <div class="dr-competitors-table" id="competitors-table">
+          <!-- Menu column -->
+          <div class="dr-ct-col" style="width:160px;">
+            <div class="dr-ct-header" style="justify-content:flex-start;padding-left:13.5px;white-space:normal;">Главная страница</div>
+            <div class="dr-ct-row" style="justify-content:flex-start;padding-left:41.5px;">Кампейны</div>
+            <div class="dr-ct-row" style="justify-content:flex-start;padding-left:50.5px;">Каталог</div>
+            <div class="dr-ct-row" style="justify-content:flex-start;padding-left:47.5px;">Слайдер</div>
+            <div class="dr-ct-row" style="justify-content:flex-start;padding-left:27px;">Anti-marketing</div>
+          </div>
+          <!-- Chanel -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header">Chanel</div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Gucci -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header">Gucci</div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Bottega Veneta -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header" style="font-size:14px;">Bottega Veneta</div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+          </div>
+          <!-- ЦУМ -->
+          <div class="dr-ct-col" style="width:114px;">
+            <div class="dr-ct-header">ЦУМ</div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Farfetch -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header">Farfetch</div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Ekonika -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header">Ekonika</div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Idol -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header">Idol</div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Massimo Dutti -->
+          <div class="dr-ct-col" style="width:116px;">
+            <div class="dr-ct-header" style="font-size:14px;">Massimo Dutti</div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+          </div>
+          <!-- Zara -->
+          <div class="dr-ct-col" style="width:114px;">
+            <div class="dr-ct-header">Zara</div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+            <div class="dr-ct-row"><img src="assets/images/competitors-check-a.svg" class="dr-ct-check" alt=""></div>
+            <div class="dr-ct-row"></div>
+          </div>
         </div>
       </div>
       <!-- Бенчмарки -->
@@ -2100,13 +2233,36 @@
   });
 
   const drWrappers = document.querySelectorAll('.dr-wrapper');
+  const deskResearch = document.querySelector('.desk-research');
+  const competitorsWrapper = document.getElementById('competitors-wrapper');
+  const competitorsCard = document.getElementById('competitors-card');
+
   drWrappers.forEach(wrapper => {
     wrapper.addEventListener('mouseenter', () => {
-      drWrappers.forEach(w => w.classList.toggle('dr-inactive', w !== wrapper));
+      if (!document.querySelector('.dr-wrapper.dr-expanded')) {
+        drWrappers.forEach(w => w.classList.toggle('dr-inactive', w !== wrapper));
+      }
     });
   });
-  document.querySelector('.desk-research')?.addEventListener('mouseleave', () => {
-    drWrappers.forEach(w => w.classList.remove('dr-inactive'));
+  deskResearch?.addEventListener('mouseleave', () => {
+    if (!document.querySelector('.dr-wrapper.dr-expanded')) {
+      drWrappers.forEach(w => w.classList.remove('dr-inactive'));
+    }
+  });
+
+  competitorsCard?.addEventListener('click', () => {
+    const isExpanded = competitorsWrapper.classList.contains('dr-expanded');
+    if (isExpanded) {
+      competitorsWrapper.classList.remove('dr-expanded');
+      deskResearch.classList.remove('competitor-open');
+      drWrappers.forEach(w => w.classList.remove('dr-inactive'));
+    } else {
+      competitorsWrapper.classList.add('dr-expanded');
+      deskResearch.classList.add('competitor-open');
+      drWrappers.forEach(w => {
+        if (w !== competitorsWrapper) w.classList.add('dr-inactive');
+      });
+    }
   });
 
   /* BYLO-STALO SLIDER */
