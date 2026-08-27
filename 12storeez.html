@@ -878,7 +878,7 @@
       transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s ease;
       cursor: pointer;
     }
-    .dr-wrapper:not(.dr-expanded):hover .dr-card {
+    .dr-wrapper:not(.dr-expanded):not(.bench-open):hover .dr-card {
       box-shadow: 1px 5px 4px 0px rgba(30,30,28,0.05), 0px 1.247px 8.728px 0px rgba(0,0,0,0.07);
     }
     .dr-wrapper.dr-expanded .dr-card { transform: translateX(950px); }
@@ -934,6 +934,92 @@
       white-space: nowrap;
     }
     .dr-ct-check { display: block; width: 16px; height: 16px; }
+
+    /* Бенчмарки — expanded phone mockup */
+    .desk-research.bench-open { margin-bottom: 740px; }
+    .dr-wrapper.bench-open {
+      left: 0 !important;
+      width: 1200px;
+      height: 860px;
+      background: #fafafa;
+      z-index: 20;
+    }
+    .desk-research.bench-open .dr-wrapper.dr-inactive {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .bench-expanded {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s 0.22s ease;
+    }
+    .dr-wrapper.bench-open .bench-expanded { opacity: 1; pointer-events: auto; }
+    .bench-phone {
+      position: absolute;
+      left: 439px; top: 76px;
+      width: 322px; height: 700px;
+    }
+    .bench-phone-screen {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 48px;
+      transition: opacity 0.2s ease;
+    }
+    .bench-phone-screen.fading { opacity: 0; }
+    .bench-phone-bezel {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .bench-label {
+      position: absolute;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.0;
+      color: #141414;
+      transition: color 0.25s ease;
+    }
+    .bench-label span { display: block; }
+    .bench-label.inactive { color: #c8c8c8; }
+    .bench-lbl-1 { left: 80px; top: 302px; }
+    .bench-lbl-1 .bench-lbl-line2 { margin-top: 2px; margin-left: 81px; }
+    .bench-lbl-2 { left: 929px; top: 515px; }
+    .bench-lbl-2 .bench-lbl-line2 { margin-top: 3px; margin-left: 43px; }
+    .bench-logo-1 {
+      position: absolute;
+      left: 38px; top: 737px;
+      width: 176px; height: 25px;
+      opacity: 1;
+      transition: opacity 0.25s ease;
+    }
+    .bench-logo-2 {
+      position: absolute;
+      left: 23px; top: 716px;
+      width: 212px; height: 72px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .bench-nav {
+      position: absolute;
+      top: 398px;
+      width: 64px; height: 64px;
+      background: none; border: none;
+      padding: 0; cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .bench-nav-r { left: 1176px; }
+    .bench-nav-l { left: 24px; }
 
     /* ДЛЯ ВАС section — полная ширина страницы */
     .dlv-section {
@@ -1412,8 +1498,8 @@
         </div>
       </div>
       <!-- Бенчмарки -->
-      <div class="dr-wrapper" style="left:50%;top:0;transform:translateX(-50%);">
-        <div class="dr-card">
+      <div class="dr-wrapper" id="benchmarks-wrapper" style="left:calc(50% - 125px);top:0;">
+        <div class="dr-card" id="benchmarks-card">
           <div class="dr-title">Бенчмарки</div>
           <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
           <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
@@ -1442,6 +1528,29 @@
           <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
           <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
           <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
+        </div>
+        <!-- Expanded benchmarks -->
+        <div class="bench-expanded">
+          <div class="bench-phone">
+            <img class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw1.png" alt="">
+            <img class="bench-phone-bezel" src="assets/images/benchmarks/b1-raw3.png" alt="">
+          </div>
+          <div class="bench-label bench-lbl-1" id="bench-lbl-1">
+            <span class="bench-lbl-line1">01 Умная</span>
+            <span class="bench-lbl-line2">примерка</span>
+          </div>
+          <div class="bench-label bench-lbl-2 inactive" id="bench-lbl-2">
+            <span class="bench-lbl-line1">02 Shazam</span>
+            <span class="bench-lbl-line2">для вещей</span>
+          </div>
+          <img class="bench-logo-1" id="bench-logo-1" src="assets/images/benchmarks/b1-massimo-logo.svg" alt="Massimo Dutti">
+          <img class="bench-logo-2" id="bench-logo-2" src="assets/images/benchmarks/b2-zara-logo.svg" alt="Zara">
+          <button class="bench-nav bench-nav-l" id="bench-nav-l" aria-label="Предыдущий">
+            <img src="assets/images/benchmarks/b1-chevron.svg" alt="" style="transform:rotate(-90deg);display:block;">
+          </button>
+          <button class="bench-nav bench-nav-r" id="bench-nav-r" aria-label="Следующий">
+            <img src="assets/images/benchmarks/b1-chevron.svg" alt="" style="transform:rotate(90deg);display:block;">
+          </button>
         </div>
       </div>
       <!-- Тренды -->
@@ -2239,13 +2348,13 @@
 
   drWrappers.forEach(wrapper => {
     wrapper.addEventListener('mouseenter', () => {
-      if (!document.querySelector('.dr-wrapper.dr-expanded')) {
+      if (!document.querySelector('.dr-wrapper.dr-expanded') && !document.querySelector('.dr-wrapper.bench-open')) {
         drWrappers.forEach(w => w.classList.toggle('dr-inactive', w !== wrapper));
       }
     });
   });
   deskResearch?.addEventListener('mouseleave', () => {
-    if (!document.querySelector('.dr-wrapper.dr-expanded')) {
+    if (!document.querySelector('.dr-wrapper.dr-expanded') && !document.querySelector('.dr-wrapper.bench-open')) {
       drWrappers.forEach(w => w.classList.remove('dr-inactive'));
     }
   });
@@ -2264,6 +2373,91 @@
       });
     }
   });
+
+  /* Бенчмарки */
+  (function() {
+    var benchWrapper = document.getElementById('benchmarks-wrapper');
+    var benchCard    = document.getElementById('benchmarks-card');
+    var benchScreen  = document.getElementById('bench-phone-screen');
+    var benchLbl1    = document.getElementById('bench-lbl-1');
+    var benchLbl2    = document.getElementById('bench-lbl-2');
+    var benchLogo1   = document.getElementById('bench-logo-1');
+    var benchLogo2   = document.getElementById('bench-logo-2');
+    var benchNavL    = document.getElementById('bench-nav-l');
+    var benchNavR    = document.getElementById('bench-nav-r');
+    if (!benchWrapper) return;
+
+    var currentScreen = 1;
+    var screenData = [
+      { src: 'assets/images/benchmarks/b1-raw1.png' },
+      { src: 'assets/images/benchmarks/b2-raw3.png' }
+    ];
+
+    function setNavVisible(el, visible) {
+      el.style.opacity = visible ? '1' : '0';
+      el.style.pointerEvents = visible ? 'auto' : 'none';
+    }
+
+    function goToScreen(n) {
+      if (n === currentScreen) return;
+      currentScreen = n;
+      benchScreen.classList.add('fading');
+      setTimeout(function() {
+        benchScreen.src = screenData[n - 1].src;
+        benchScreen.classList.remove('fading');
+      }, 200);
+      benchLbl1.classList.toggle('inactive', n !== 1);
+      benchLbl2.classList.toggle('inactive', n !== 2);
+      benchLogo1.style.opacity = n === 1 ? '1' : '0';
+      benchLogo2.style.opacity = n === 2 ? '1' : '0';
+      setNavVisible(benchNavL, n === 2);
+      setNavVisible(benchNavR, true);
+    }
+
+    function openBench() {
+      currentScreen = 1;
+      benchScreen.src = screenData[0].src;
+      benchLbl1.classList.remove('inactive');
+      benchLbl2.classList.add('inactive');
+      benchLogo1.style.opacity = '1';
+      benchLogo2.style.opacity = '0';
+      setNavVisible(benchNavL, false);
+      setTimeout(function() { setNavVisible(benchNavR, true); }, 220);
+      benchWrapper.classList.add('bench-open');
+      deskResearch.classList.add('bench-open');
+      drWrappers.forEach(function(w) {
+        if (w !== benchWrapper) w.classList.add('dr-inactive');
+      });
+    }
+
+    function closeBench() {
+      benchNavL.style.opacity = '';
+      benchNavL.style.pointerEvents = '';
+      benchNavR.style.opacity = '';
+      benchNavR.style.pointerEvents = '';
+      benchWrapper.classList.remove('bench-open');
+      deskResearch.classList.remove('bench-open');
+      drWrappers.forEach(function(w) { w.classList.remove('dr-inactive'); });
+    }
+
+    benchCard.addEventListener('click', function() {
+      if (benchWrapper.classList.contains('bench-open')) {
+        closeBench();
+      } else {
+        openBench();
+      }
+    });
+
+    benchNavR.addEventListener('click', function(e) {
+      e.stopPropagation();
+      goToScreen(currentScreen === 1 ? 2 : 1);
+    });
+
+    benchNavL.addEventListener('click', function(e) {
+      e.stopPropagation();
+      goToScreen(1);
+    });
+  })();
 
   /* BYLO-STALO SLIDER */
   (function() {
