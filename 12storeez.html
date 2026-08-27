@@ -553,6 +553,7 @@
       border: 1.5px solid #9b9b9b;
       display: flex; align-items: center; justify-content: center;
       transition: border-color 0.3s ease;
+      cursor: pointer;
     }
     .mindsets-fluger:hover {
       border-color: #141414;
@@ -572,38 +573,36 @@
 
     /* Expanded persona state */
     .mindsets-overlay {
-      position: absolute; inset: 0;
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: #414141; opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 10;
+      transition: opacity 0.35s ease;
+      z-index: 1000;
     }
     .mindsets-overlay.is-active {
       opacity: 0.4;
       pointer-events: auto;
     }
     .mindsets-close-btn {
-      position: absolute; right: 20px; top: 20px;
+      position: fixed; right: 20px; top: 20px;
       width: 24px; height: 24px;
       background: none; border: none; padding: 0;
-      cursor: pointer; z-index: 12;
+      cursor: pointer; z-index: 1002;
       opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.35s ease;
     }
     .mindsets-close-btn.is-active {
       opacity: 1; pointer-events: auto;
     }
     .mindsets-expanded-panel {
-      position: absolute;
-      left: 60px; top: 44px;
+      position: fixed;
+      left: 50%; top: 50%;
+      margin-left: -540px; margin-top: -276px;
       width: 1080px; height: 552px;
       background: #fafafa; overflow: hidden;
-      z-index: 11;
+      z-index: 1001;
+      transform-origin: center center;
       opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .mindsets-expanded-panel.is-active {
-      opacity: 1; pointer-events: auto;
     }
     .mindsets-expanded-panel__photo {
       position: absolute;
@@ -1474,7 +1473,7 @@
       </div>
 
       <!-- Флюгер (фото внутри — overflow:visible, position relative к боксу) -->
-      <div class="mindsets-fluger">
+      <div class="mindsets-fluger" id="fluger-card">
         <div class="mindsets-photo" style="left:-142px;top:-154px;width:285px;height:382px;">
           <img src="assets/images/mindsets-fluger-person.png" alt="Флюгер">
         </div>
@@ -1482,7 +1481,7 @@
       </div>
 
       <!-- Карточка Ревизорро (Figma instance: x=29, y=370, w=335, h=268; обёртка от левого края фото x=21) -->
-      <div class="mindsets-card" style="left:21px;top:370px;width:343px;height:268px;">
+      <div class="mindsets-card mindsets-card--clickable" id="reviz-card" style="left:21px;top:370px;width:343px;height:268px;">
         <div class="mindsets-photo" style="left:0;top:0;width:200px;height:268px;">
           <img src="assets/images/mindsets-angelina.png" alt="Ревизорро">
         </div>
@@ -1490,7 +1489,7 @@
       </div>
 
       <!-- Карточка Искушённый (Figma instance: x=704, y=376, w=453, h=255) -->
-      <div class="mindsets-card" style="left:704px;top:376px;width:453px;height:255px;">
+      <div class="mindsets-card mindsets-card--clickable" id="iskush-card" style="left:704px;top:376px;width:453px;height:255px;">
         <div class="mindsets-photo" style="left:263px;top:0;width:190px;height:255px;">
           <img src="assets/images/mindsets-iskush-crop.png" alt="Искушённый">
         </div>
@@ -1530,6 +1529,90 @@
             <img src="assets/images/mindsets-line-right.svg" style="transform:rotate(20deg);flex:none;display:block;">
           </div>
           <p class="mindsets-expanded-insight__text">Знает свои параметры и как сядет вещь</p>
+        </div>
+      </div>
+
+      <!-- Expanded panel: Флюгер — x=60, y=44, w=1080, h=552 (Figma "Карточка Флюг" 1784:16100) -->
+      <div class="mindsets-expanded-panel" id="fluger-expanded">
+        <!-- Фото: 527×751, left=310, top=-109 (обрезается overflow:hidden панели) -->
+        <div class="mindsets-expanded-panel__photo" style="left:310px;top:-109px;width:527px;height:751px;">
+          <img src="assets/images/mindsets-fluger-expanded.png" alt="Флюгер">
+        </div>
+        <!-- Заголовок: Oswald 74px, left=817, top=36, w=233 -->
+        <p class="mindsets-expanded-panel__title" style="left:817px;width:233px;">Флюгер</p>
+        <!-- Insight 1: x=30, y=68, 294×92 — "Выбор зависит от настроения" (текст от top) -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:68px;width:294px;height:92px;">
+          <p class="mindsets-expanded-insight__text" style="top:8.5px;bottom:auto;left:18.5px;width:232px;">Выбор зависит от настроения</p>
+        </div>
+        <!-- Insight 2: x=30, y=359, 294×127 — "Может быть рациональным или импульсивным" (текст от bottom) -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:359px;">
+          <p class="mindsets-expanded-insight__text" style="bottom:11.5px;left:18.5px;">Может быть рациональным или импульсивным</p>
+        </div>
+        <!-- Insight 3: x=756, y=359, 294×127 — "Не так важен клиентский сервис" (текст от bottom) -->
+        <div class="mindsets-expanded-insight" style="left:756px;top:359px;">
+          <p class="mindsets-expanded-insight__text" style="bottom:11.5px;left:18.5px;width:252px;">Не так важен клиентский сервис</p>
+        </div>
+      </div>
+
+      <!-- Expanded panel: Ревизорро — x=60, y=44, w=1080, h=552 (Figma "Карточка Ревизоро" 1784:15980) -->
+      <div class="mindsets-expanded-panel" id="reviz-expanded">
+        <!-- Фото: 443.89×594.49, left=318, top=-21 (обрезается overflow:hidden панели) -->
+        <div class="mindsets-expanded-panel__photo" style="left:318px;top:-21px;width:444px;height:594px;">
+          <img src="assets/images/mindsets-reviz-expanded.png" alt="Ревизорро">
+        </div>
+        <!-- Заголовок: Oswald 74px, left=729, top=36, w=321 -->
+        <p class="mindsets-expanded-panel__title" style="left:729px;width:321px;">Ревизорро</p>
+        <!-- Insight 1: x=30, y=68, 287×92 — "Долго присматривается" + два коннектора -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:68px;width:287px;height:92px;">
+          <!-- Line 143: почти горизонтальная, идёт вправо к фото -->
+          <div class="mindsets-expanded-insight__line" style="left:283px;top:45px;width:142px;height:1.5px;">
+            <img src="assets/images/mindsets-reviz-line-right.svg" style="transform:rotate(-0.54deg);flex:none;display:block;">
+          </div>
+          <!-- Line 144: диагональная от фото к insight 3 (выходит за пределы карточки) -->
+          <div class="mindsets-expanded-insight__line" style="left:645.92px;top:179.96px;width:89px;height:46px;">
+            <img src="assets/images/mindsets-reviz-line-diag.svg" style="transform:rotate(-152.61deg);flex:none;display:block;">
+          </div>
+          <p class="mindsets-expanded-insight__text" style="top:10px;bottom:auto;">Долго присматривается</p>
+        </div>
+        <!-- Insight 2: x=30, y=356, 287×92 — "Не любит консультантов" -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:356px;width:287px;height:92px;">
+          <p class="mindsets-expanded-insight__text" style="top:10px;bottom:auto;">Не любит консультантов</p>
+        </div>
+        <!-- Insight 3: x=763, y=241, 287×92 — "Важно проверить физически" (текст от bottom) -->
+        <div class="mindsets-expanded-insight" style="left:763px;top:241px;width:287px;height:92px;">
+          <p class="mindsets-expanded-insight__text" style="bottom:12px;width:250px;left:18.5px;">Важно проверить физически</p>
+        </div>
+      </div>
+
+      <!-- Expanded panel: Искушённый — x=60, y=44, w=1080, h=552 (Figma "Карточка Искуш" 1572:10490) -->
+      <div class="mindsets-expanded-panel" id="iskush-expanded">
+        <!-- Фото: 750×604, left=165, top=-23 (обрезается overflow:hidden панели) -->
+        <div class="mindsets-expanded-panel__photo" style="left:165px;top:-23px;width:750px;height:604px;">
+          <img src="assets/images/mindsets-iskush-expanded.png" alt="Искушённый">
+        </div>
+        <!-- Заголовок: Oswald 76.5px, left=637, top=36, w=413 -->
+        <p class="mindsets-expanded-panel__title" style="left:637px;font-size:76.5px;letter-spacing:-1.53px;width:413px;">Искушённый</p>
+        <!-- Insight 1: x=30, y=144, 294×127 — "Любит клиентский сервис" (текст от top) -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:144px;">
+          <div class="mindsets-expanded-insight__line" style="left:292px;top:47px;width:125.8px;height:17.7px;">
+            <img src="assets/images/mindsets-iskush-line-right.svg" style="transform:rotate(-8deg);flex:none;display:block;">
+          </div>
+          <p class="mindsets-expanded-insight__text" style="top:9px;bottom:auto;">Любит клиентский сервис</p>
+        </div>
+        <!-- Insight 2: x=30, y=376, 294×127 — "Любит спонтанно приходить в магазин" (текст от top) -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:376px;">
+          <p class="mindsets-expanded-insight__text" style="top:9px;bottom:auto;">Любит спонтанно приходить в магазин</p>
+        </div>
+        <!-- Insight 3: x=756, y=144, 294×127 — "Онлайн воспринимает как витрину" (коннектор слева, текст от bottom) -->
+        <div class="mindsets-expanded-insight" style="left:756px;top:144px;">
+          <div class="mindsets-expanded-insight__line" style="left:-88px;top:52px;width:88px;height:12.4px;">
+            <img src="assets/images/mindsets-iskush-line-left.svg" style="transform:rotate(-172deg) scaleY(-1);flex:none;display:block;">
+          </div>
+          <p class="mindsets-expanded-insight__text">Онлайн воспринимает как витрину</p>
+        </div>
+        <!-- Insight 4: x=756, y=358, 294×164 — "Склонён к спонтанным покупкам в офлайне" (текст от top) -->
+        <div class="mindsets-expanded-insight" style="left:756px;top:358px;height:164px;">
+          <p class="mindsets-expanded-insight__text" style="top:10px;bottom:auto;left:19px;">Склонён к спонтанным покупкам в офлайне</p>
         </div>
       </div>
 
@@ -2072,35 +2155,102 @@
   nav.addEventListener('mouseenter', showNav);
   nav.addEventListener('mouseleave', hideNav);
 
-  // Expanded persona state
+  // Expanded persona state — transform animation from card origin
   (function() {
     var overlay = document.getElementById('mindsets-overlay');
     var closeBtn = document.getElementById('mindsets-close-btn');
+    var currentExpandedId = null;
+    var savedScrollY = 0;
 
-    function openPersona(expandedId) {
-      document.getElementById(expandedId).classList.add('is-active');
+    function lockScroll() {
+      savedScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-' + savedScrollY + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflowY = 'scroll';
+    }
+    function unlockScroll() {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    var PANEL_W = 1080, PANEL_H = 552;
+
+    function openPersona(expandedId, cardEl) {
+      currentExpandedId = expandedId;
+
+      // Get card's viewport position before locking scroll
+      var cardRect = cardEl.getBoundingClientRect();
+      lockScroll();
+
+      var panel = document.getElementById(expandedId);
+
+      // Compute initial transform: panel (centered in viewport) appears at card's viewport position/size
+      var cardCX = cardRect.left + cardRect.width / 2;
+      var cardCY = cardRect.top + cardRect.height / 2;
+      var panelCX = window.innerWidth / 2;
+      var panelCY = window.innerHeight / 2;
+      var sx = cardRect.width / PANEL_W;
+      var sy = cardRect.height / PANEL_H;
+      var dx = cardCX - panelCX;
+      var dy = cardCY - panelCY;
+
+      // Phase 1: set collapsed state instantly (no transition)
+      panel.style.transition = 'none';
+      panel.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + sx + ',' + sy + ')';
+      panel.style.opacity = '0';
+      panel.style.pointerEvents = 'none';
+
+      // Force reflow so browser registers the initial state
+      panel.offsetHeight;
+
+      // Phase 2: animate to expanded state
+      panel.style.transition = 'transform 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease';
+      panel.style.transform = 'translate(0,0) scale(1,1)';
+      panel.style.opacity = '1';
+      panel.style.pointerEvents = 'auto';
+
       overlay.classList.add('is-active');
       closeBtn.classList.add('is-active');
     }
+
     function closePersona() {
+      currentExpandedId = null;
+      unlockScroll();
       document.querySelectorAll('.mindsets-expanded-panel').forEach(function(el) {
-        el.classList.remove('is-active');
+        el.style.transition = 'opacity 0.25s ease';
+        el.style.opacity = '0';
+        el.style.pointerEvents = 'none';
       });
       overlay.classList.remove('is-active');
       closeBtn.classList.remove('is-active');
     }
 
-    function handleCardClick(expandedId) {
-      var isOpen = document.getElementById(expandedId).classList.contains('is-active');
+    function handleCardClick(expandedId, cardEl) {
+      var wasOpen = (currentExpandedId === expandedId);
       closePersona();
-      if (!isOpen) openPersona(expandedId);
+      if (!wasOpen) openPersona(expandedId, cardEl);
     }
 
     document.getElementById('pragmatik-card').addEventListener('click', function() {
-      handleCardClick('pragmatik-expanded');
+      handleCardClick('pragmatik-expanded', this);
     });
     document.getElementById('kiber-card').addEventListener('click', function() {
-      handleCardClick('kiber-expanded');
+      handleCardClick('kiber-expanded', this);
+    });
+    document.getElementById('iskush-card').addEventListener('click', function() {
+      handleCardClick('iskush-expanded', this);
+    });
+    document.getElementById('reviz-card').addEventListener('click', function() {
+      handleCardClick('reviz-expanded', this);
+    });
+    document.getElementById('fluger-card').addEventListener('click', function() {
+      handleCardClick('fluger-expanded', this);
     });
     closeBtn.addEventListener('click', closePersona);
     overlay.addEventListener('click', closePersona);
