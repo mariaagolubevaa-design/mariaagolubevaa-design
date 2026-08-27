@@ -6,7 +6,7 @@
   <title>12 STOREEZ — Мария Голубева</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&family=Oswald:wght@400&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Soyuz Grotesk';
@@ -525,6 +525,7 @@
       font-size: 30px; font-weight: 500; color: #9b9b9b;
       line-height: normal; white-space: nowrap; margin: 0;
       transform: translate(-50%, -100%);
+      transition: color 0.3s ease;
     }
     .mindsets-photo {
       position: absolute; overflow: hidden;
@@ -532,19 +533,120 @@
     .mindsets-photo img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; pointer-events: none; display: block;
+      filter: grayscale(100%);
+      transition: filter 0.25s ease;
     }
     .mindsets-photo--bottom img { object-position: bottom center; }
+    /* Карточка-обёртка для hover-группы (фото + название) */
+    .mindsets-card {
+      position: absolute; overflow: visible;
+    }
+    .mindsets-card:hover .mindsets-photo img {
+      filter: grayscale(0%);
+    }
+    .mindsets-card:hover .mindsets-name {
+      color: #141414; /* Color/Neutral/Black */
+    }
     .mindsets-fluger {
       position: absolute; left: 600px; top: 280px;
       width: 267px; height: 81px; background: #fafafa;
       border: 1.5px solid #9b9b9b;
       display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s ease;
+    }
+    .mindsets-fluger:hover {
+      border-color: #141414;
+    }
+    .mindsets-fluger:hover .mindsets-photo img {
+      filter: grayscale(0%);
     }
     .mindsets-fluger__text {
       font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
       font-size: 30px; font-weight: 500; color: #9b9b9b;
       line-height: normal;
+      transition: color 0.3s ease;
     }
+    .mindsets-fluger:hover .mindsets-fluger__text {
+      color: #141414;
+    }
+
+    /* Expanded persona state */
+    .mindsets-overlay {
+      position: absolute; inset: 0;
+      background: #414141; opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+    .mindsets-overlay.is-active {
+      opacity: 0.4;
+      pointer-events: auto;
+    }
+    .mindsets-close-btn {
+      position: absolute; right: 20px; top: 20px;
+      width: 24px; height: 24px;
+      background: none; border: none; padding: 0;
+      cursor: pointer; z-index: 12;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .mindsets-close-btn.is-active {
+      opacity: 1; pointer-events: auto;
+    }
+    .mindsets-expanded-panel {
+      position: absolute;
+      left: 60px; top: 44px;
+      width: 1080px; height: 552px;
+      background: #fafafa; overflow: hidden;
+      z-index: 11;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .mindsets-expanded-panel.is-active {
+      opacity: 1; pointer-events: auto;
+    }
+    .mindsets-expanded-panel__photo {
+      position: absolute;
+      left: 308px; top: -37px;
+      width: 466px; height: 623px;
+      pointer-events: none;
+    }
+    .mindsets-expanded-panel__photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .mindsets-expanded-panel__title {
+      position: absolute;
+      left: 731px; top: 36px;
+      width: 319px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 74px; font-weight: 400;
+      color: #222; text-transform: uppercase;
+      letter-spacing: -1.48px; line-height: 1;
+      text-align: center; white-space: nowrap; margin: 0;
+    }
+    .mindsets-expanded-insight {
+      position: absolute;
+      background: #fafafa;
+      border: 1.5px solid #9b9b9b;
+      width: 294px; height: 127px;
+      overflow: visible;
+    }
+    .mindsets-expanded-insight__text {
+      position: absolute;
+      bottom: 10px; left: 20px;
+      width: 254px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500;
+      color: #141414; line-height: normal; margin: 0;
+    }
+    .mindsets-expanded-insight__line {
+      position: absolute;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .mindsets-card--clickable { cursor: pointer; }
 
     /* Майндсеты текст */
     .mindsets-text {
@@ -1354,35 +1456,107 @@
       <p class="mindsets-axis-label" style="left:62.5px;top:328px;">рациональный</p>
       <p class="mindsets-axis-label" style="left:521px;top:613px;">люблю офлайн</p>
 
-      <!-- Фото -->
-      <div class="mindsets-photo" style="left:20.67px;top:0;width:219.52px;height:294px;">
-        <img src="assets/images/mindsets-pragmatik.png" alt="Прагматик">
-      </div>
-      <div class="mindsets-photo mindsets-photo--bottom" style="left:961px;top:2px;width:209px;height:287px;">
-        <img src="assets/images/mindsets-yana.png" alt="Кибершопоголик">
+      <!-- Карточка Прагматик (Figma instance: x=20.67, y=0, w=344.33, h=294) -->
+      <div class="mindsets-card mindsets-card--clickable" id="pragmatik-card" style="left:20.67px;top:0;width:344.33px;height:294px;">
+        <div class="mindsets-photo" style="left:0;top:0;width:219.52px;height:294px;">
+          <img src="assets/images/mindsets-pragmatik-color.png" alt="Прагматик">
+        </div>
+        <p class="mindsets-name" style="left:269.33px;top:163px;">Прагматик</p>
       </div>
 
-      <!-- Флюгер бокс — под фото (ниже в стеке) -->
+      <!-- Карточка Кибершопоголик (Figma instance: x=704, y=2, w=466, h=287) -->
+      <div class="mindsets-card mindsets-card--clickable" id="kiber-card" style="left:704px;top:2px;width:466px;height:287px;">
+        <div class="mindsets-photo" style="left:255px;top:0;width:211px;height:290px;">
+          <img src="assets/images/mindsets-yana-color.png" alt="Кибершопоголик">
+        </div>
+        <!-- top=calc(50%+17.5px)=161px по Figma 1784:15588 (было 176px — смещено на 15px вниз) -->
+        <p class="mindsets-name" style="left:118.5px;top:161px;">Кибершопоголик</p>
+      </div>
+
+      <!-- Флюгер (фото внутри — overflow:visible, position relative к боксу) -->
       <div class="mindsets-fluger">
+        <div class="mindsets-photo" style="left:-142px;top:-154px;width:285px;height:382px;">
+          <img src="assets/images/mindsets-fluger-person.png" alt="Флюгер">
+        </div>
         <span class="mindsets-fluger__text">Флюгер</span>
       </div>
 
-      <!-- Флюгер фото — поверх бокса -->
-      <div class="mindsets-photo" style="left:458px;top:126px;width:285px;height:382px;">
-        <img src="assets/images/mindsets-fluger-person.png" alt="Флюгер">
-      </div>
-      <div class="mindsets-photo" style="left:21px;top:370px;width:200px;height:268px;">
-        <img src="assets/images/mindsets-angelina.png" alt="Ревизорро">
-      </div>
-      <div class="mindsets-photo" style="left:967px;top:376px;width:190px;height:255px;">
-        <img src="assets/images/mindsets-iskush-crop.png" alt="Искушённый">
+      <!-- Карточка Ревизорро (Figma instance: x=29, y=370, w=335, h=268; обёртка от левого края фото x=21) -->
+      <div class="mindsets-card" style="left:21px;top:370px;width:343px;height:268px;">
+        <div class="mindsets-photo" style="left:0;top:0;width:200px;height:268px;">
+          <img src="assets/images/mindsets-angelina.png" alt="Ревизорро">
+        </div>
+        <p class="mindsets-name" style="left:268.5px;top:128px;">Ревизорро</p>
       </div>
 
-      <!-- Названия майндсетов -->
-      <p class="mindsets-name" style="left:290px;top:178px;">Прагматик</p>
-      <p class="mindsets-name" style="left:822.5px;top:178px;">Кибершопоголик</p>
-      <p class="mindsets-name" style="left:289.5px;top:498px;">Ревизорро</p>
-      <p class="mindsets-name" style="left:794px;top:498px;">Искушённый</p>
+      <!-- Карточка Искушённый (Figma instance: x=704, y=376, w=453, h=255) -->
+      <div class="mindsets-card" style="left:704px;top:376px;width:453px;height:255px;">
+        <div class="mindsets-photo" style="left:263px;top:0;width:190px;height:255px;">
+          <img src="assets/images/mindsets-iskush-crop.png" alt="Искушённый">
+        </div>
+        <p class="mindsets-name" style="left:90px;top:122px;">Искушённый</p>
+      </div>
+
+      <!-- Затемняющий оверлей (overlay) — #414141 @ 40% -->
+      <div class="mindsets-overlay" id="mindsets-overlay"></div>
+
+      <!-- Кнопка закрытия X — x=1156, y=20 в 1200×640 фрейме -->
+      <button class="mindsets-close-btn" id="mindsets-close-btn" aria-label="Закрыть">
+        <img src="assets/images/mindsets-close-x.svg" alt="" style="display:block;width:24px;height:24px;">
+      </button>
+
+      <!-- Expanded panel: Прагматик — x=60, y=44, w=1080, h=552 (Figma "Карточка Прагм" 1784:15964) -->
+      <div class="mindsets-expanded-panel" id="pragmatik-expanded">
+        <!-- Фото: 466×623, left=308, top=-37 (выходит за края панели, overflow:hidden клипит) -->
+        <div class="mindsets-expanded-panel__photo">
+          <img src="assets/images/mindsets-pragmatik-expanded.png" alt="Прагматик">
+        </div>
+        <!-- Заголовок: Oswald 74px, x=731, y=36 -->
+        <p class="mindsets-expanded-panel__title">Прагматик</p>
+        <!-- Insight 1: x=30, y=68 — "Продумывает покупки и сочетаемость" -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:68px;">
+          <div class="mindsets-expanded-insight__line" style="left:292px;top:54px;width:111.6px;height:17.7px;">
+            <img src="assets/images/mindsets-line-left.svg" style="transform:rotate(171deg);flex:none;display:block;">
+          </div>
+          <p class="mindsets-expanded-insight__text">Продумывает покупки и сочетаемость</p>
+        </div>
+        <!-- Insight 2: x=30, y=341 — "Не любит ходить по шоппинг центрам" -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:341px;">
+          <p class="mindsets-expanded-insight__text">Не любит ходить по шоппинг центрам</p>
+        </div>
+        <!-- Insight 3: x=756, y=187 — "Знает свои параметры и как сядет вещь" -->
+        <div class="mindsets-expanded-insight" style="left:756px;top:187px;">
+          <div class="mindsets-expanded-insight__line" style="left:-107.78px;top:25.67px;width:127.8px;height:46.5px;">
+            <img src="assets/images/mindsets-line-right.svg" style="transform:rotate(20deg);flex:none;display:block;">
+          </div>
+          <p class="mindsets-expanded-insight__text">Знает свои параметры и как сядет вещь</p>
+        </div>
+      </div>
+
+      <!-- Expanded panel: Кибершопоголик — x=60, y=44, w=1080, h=552 (Figma "Карточка Кибер" 1784:15924) -->
+      <div class="mindsets-expanded-panel" id="kiber-expanded">
+        <!-- Фото: 927×747, left=9, top=-110 (обрезается overflow:hidden панели) -->
+        <div class="mindsets-expanded-panel__photo" style="left:9px;top:-110px;width:927px;height:747px;">
+          <img src="assets/images/mindsets-kiber-expanded.png" alt="Кибершопоголик">
+        </div>
+        <!-- Заголовок: SVG-вектор "КИБЕРШОПОГОЛИК", left=527, top=36, 523×62 -->
+        <img src="assets/images/mindsets-kiber-title.svg" alt="Кибершопоголик" style="position:absolute;left:527px;top:36px;width:523px;height:62px;display:block;">
+        <!-- Insight 1: x=30, y=230, 294×127 — "Вещи висят с бирками в гардеробе" -->
+        <div class="mindsets-expanded-insight" style="left:30px;top:230px;">
+          <p class="mindsets-expanded-insight__text" style="bottom:11px;">Вещи висят с бирками в гардеробе</p>
+        </div>
+        <!-- Insight 2: x=764, y=120, 286×158 — "Мгновенно покупает понравившуюся вещь" -->
+        <div class="mindsets-expanded-insight" style="left:764px;top:120px;width:286px;height:158px;">
+          <div class="mindsets-expanded-insight__line" style="left:-139px;top:15px;width:139px;height:50.6px;">
+            <img src="assets/images/mindsets-kiber-line.svg" style="transform:rotate(20deg);flex:none;display:block;">
+          </div>
+          <p class="mindsets-expanded-insight__text" style="bottom:7px;width:246px;">Мгновенно покупает понравившуюся вещь</p>
+        </div>
+        <!-- Insight 3: x=764, y=334, 286×158 — "Получает удовольствие от добавления в корзину" -->
+        <div class="mindsets-expanded-insight" style="left:764px;top:334px;width:286px;height:158px;">
+          <p class="mindsets-expanded-insight__text" style="bottom:7px;width:246px;">Получает удовольствие от добавления в корзину</p>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -1467,11 +1641,36 @@
       <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;">«Красивые кампейны! Но больше 2 раз не смотрю»</span>
     </div>
 
-    <!-- Не знаю о полезных функциях — Figma 1572:10998 -->
-    <div class="reveal" style="margin-bottom:80px;">
-      <div style="display:flex;align-items:center;gap:183px;margin-bottom:32px;">
+    <!-- Не знаю о полезных функциях — Figma 1777:14501, 1200×828px -->
+    <div class="reveal" style="position:relative;height:828px;margin-bottom:96px;">
+      <!-- Заголовок (1572:10999): y=0, h=36px -->
+      <div style="display:flex;align-items:center;gap:183px;">
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Не знаю о полезных функциях</span>
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Ого! Даже не знаю о таком!»</span>
+      </div>
+
+      <!-- Левый телефон (1816:10171): x=139, y=97, 324×700px — статичный скриншот "Сервисы" -->
+      <div style="position:absolute;left:139px;top:97px;width:324px;height:700px;">
+        <!-- Lock Screen: inset top=2px right=-3px bottom=-7px left=0, border-radius=38.491px -->
+        <div style="position:absolute;top:2px;right:-3px;bottom:-7px;left:0;overflow:hidden;border-radius:38.491px;">
+          <img src="assets/images/storeez-polezfunc-left.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <!-- iPhone 17 Pro bezel: left=1px top=2px, image offset left=-19.25 top=-18.44 -->
+        <div style="position:absolute;left:1px;top:2px;width:324px;height:704px;z-index:1;pointer-events:none;">
+          <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.25px;top:-18.44px;width:360.853px;height:737.743px;max-width:none;display:block;">
+        </div>
+      </div>
+
+      <!-- Правый телефон (1816:10435): x=739, y=97, 322×700px — Сервисы экран -->
+      <div style="position:absolute;left:739px;top:97px;width:322px;height:700px;">
+        <!-- Lock Screen: inset top=0 right=0 bottom=0.93px left=0, border-radius=38.448px -->
+        <div style="position:absolute;top:0;right:0;bottom:0.93px;left:0;overflow:hidden;border-radius:38.448px;">
+          <img src="assets/images/storeez-polezfunc-right.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <!-- iPhone 17 Pro bezel (1816:10444): left=0 top=0, image offset left=-19.22 top=-18.42 -->
+        <div style="position:absolute;left:0;top:0;width:322px;height:700.07px;z-index:1;pointer-events:none;">
+          <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;">
+        </div>
       </div>
     </div>
 
@@ -1482,7 +1681,7 @@
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Часто иду смотреть в тг или инст вещи, как они смотрятся в жизни»</span>
       </div>
       <!-- Левый телефон — Figma 1572:11149 -->
-      <div style="position:absolute;left:calc(50% - 299px);top:155px;transform:translateX(-50%);width:322px;height:703.127px;">
+      <div style="position:absolute;left:139px;top:156px;width:322px;height:703.127px;">
         <div style="position:absolute;left:-1px;top:-60px;width:322px;height:700px;overflow:hidden;border-radius:38.448px;">
           <div style="position:absolute;inset:0;background:#fff;"></div>
           <div style="position:absolute;inset:0;overflow:hidden;">
@@ -1494,7 +1693,7 @@
         </div>
       </div>
       <!-- Правый телефон — Figma 1569:8670 -->
-      <div style="position:absolute;left:calc(50% + 300px);top:calc(50% + 33px);transform:translate(-50%,-50%);width:322px;height:700px;">
+      <div style="position:absolute;left:739px;top:99px;width:322px;height:700px;">
         <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
           <img src="assets/images/storeez-pain3-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
@@ -1530,8 +1729,9 @@
 
       <!-- Правый телефон (1573:11190 "от редакции"): x=739, y=146, 322×700px -->
       <div style="position:absolute;left:739px;top:146px;width:322px;height:700px;">
-        <!-- Lock Screen: UI приложения, border-radius=38.466px -->
-        <div style="position:absolute;inset:0 -0.16px 0.03px 0;overflow:hidden;border-radius:38.466px;background:white;">
+        <!-- Lock Screen: UI приложения, border-radius=38.466px (Figma: rounded-[38.466px]) -->
+        <!-- z-index:0 создаёт stacking context → overflow:hidden;border-radius корректно обрезает z-index:5 дочерние элементы -->
+        <div style="position:absolute;inset:0 -0.16px 0.03px 0;overflow:hidden;border-radius:38.466px;background:white;z-index:0;">
 
           <!-- мобилка (1573:11192): top=-1.779px, left=0.078px, width=322px -->
           <div style="position:absolute;top:-1.779px;left:0.078px;width:322px;">
@@ -1638,23 +1838,17 @@
 
           <!-- Sticky шапка: статус-бар + навигация (z-index:5) -->
           <div style="position:absolute;top:0;left:0;width:325.389px;height:89.821px;z-index:5;">
-            <!-- Статус-бар: высота 42.9px, белый фон -->
-            <div style="height:42.9px;background:white;display:flex;align-items:center;justify-content:space-between;padding:0 15px;">
-              <span style="font-family:'Inter',Arial,sans-serif;font-size:14px;font-weight:600;color:#141414;line-height:1;">9:41</span>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#141414"/><rect x="4.5" y="6" width="3" height="6" rx="0.5" fill="#141414"/><rect x="9" y="3.5" width="3" height="8.5" rx="0.5" fill="#141414"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#141414"/></svg>
-                <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 10.5a1 1 0 100-2 1 1 0 000 2z" fill="#141414"/><path d="M4.5 7.5C5.6 6.4 6.7 5.8 8 5.8s2.4.6 3.5 1.7" stroke="#141414" stroke-width="1.3" stroke-linecap="round"/><path d="M1.5 4.5C3.3 2.7 5.5 1.8 8 1.8s4.7.9 6.5 2.7" stroke="#141414" stroke-width="1.3" stroke-linecap="round"/></svg>
-                <svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#141414" stroke-opacity="0.35"/><rect x="2" y="2" width="18" height="8" rx="2" fill="#141414"/><path d="M23 4.5v3a1.5 1.5 0 000-3z" fill="#141414" fill-opacity="0.4"/></svg>
-              </div>
+            <!-- Статус-бар: 3x PNG из Figma (966×124px → 322×41 CSS) — чёткий на Retina -->
+            <div style="height:42.9px;background:white;overflow:hidden;">
+              <img src="assets/images/storeez-zachem-statusbar@3x.png" alt="" style="width:322px;height:41px;display:block;">
             </div>
             <!-- Табы навигации: ДЛЯ ВАС | ВДОХНОВЕНИЕ (active) | СЕРВИСЫ -->
             <div style="height:46.947px;background:white;display:flex;align-items:center;padding:0 12.951px;gap:25.902px;">
               <div style="display:flex;flex-direction:column;align-items:center;padding:9.713px 0 6.475px;flex-shrink:0;">
                 <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#959595;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;">ДЛЯ ВАС</span>
               </div>
-              <div style="display:flex;flex-direction:column;align-items:flex-start;padding:9.713px 0 6.475px;gap:0.809px;flex-shrink:0;">
-                <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#141414;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;">ВДОХНОВЕНИЕ</span>
-                <img src="assets/images/storeez-zachem-line-vdoh.svg" alt="" style="display:block;width:100%;height:1px;">
+              <div style="display:flex;flex-direction:column;align-items:center;padding:9.713px 0 6.475px;flex-shrink:0;">
+                <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#141414;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;border-bottom:0.809px solid #050505;padding-bottom:0.809px;">ВДОХНОВЕНИЕ</span>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center;padding:9.713px 0 6.475px;flex-shrink:0;">
                 <span style="font-family:'Inter',Arial,sans-serif;font-size:12.95px;color:#959595;letter-spacing:-0.13px;text-transform:uppercase;line-height:1;white-space:nowrap;">СЕРВИСЫ</span>
@@ -1877,6 +2071,40 @@
   hoverZone.addEventListener('mouseleave', hideNav);
   nav.addEventListener('mouseenter', showNav);
   nav.addEventListener('mouseleave', hideNav);
+
+  // Expanded persona state
+  (function() {
+    var overlay = document.getElementById('mindsets-overlay');
+    var closeBtn = document.getElementById('mindsets-close-btn');
+
+    function openPersona(expandedId) {
+      document.getElementById(expandedId).classList.add('is-active');
+      overlay.classList.add('is-active');
+      closeBtn.classList.add('is-active');
+    }
+    function closePersona() {
+      document.querySelectorAll('.mindsets-expanded-panel').forEach(function(el) {
+        el.classList.remove('is-active');
+      });
+      overlay.classList.remove('is-active');
+      closeBtn.classList.remove('is-active');
+    }
+
+    function handleCardClick(expandedId) {
+      var isOpen = document.getElementById(expandedId).classList.contains('is-active');
+      closePersona();
+      if (!isOpen) openPersona(expandedId);
+    }
+
+    document.getElementById('pragmatik-card').addEventListener('click', function() {
+      handleCardClick('pragmatik-expanded');
+    });
+    document.getElementById('kiber-card').addEventListener('click', function() {
+      handleCardClick('kiber-expanded');
+    });
+    closeBtn.addEventListener('click', closePersona);
+    overlay.addEventListener('click', closePersona);
+  })();
 
 </script>
 </body>
