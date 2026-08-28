@@ -1010,8 +1010,22 @@
     }
     .bench-logo-2 {
       position: absolute;
-      left: 23px; top: 688px;
+      left: 23px; top: 628px;
       width: 212px; height: 72px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .bench-logo-3 {
+      position: absolute;
+      left: 80px; top: 603px;
+      width: 97px; height: 97px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .bench-logo-4 {
+      position: absolute;
+      left: 70.5px; top: 594px;
+      width: 116px; height: 116px;
       opacity: 0;
       transition: opacity 0.25s ease;
     }
@@ -1542,7 +1556,7 @@
         <!-- Expanded benchmarks -->
         <div class="bench-expanded">
           <div class="bench-phone">
-            <img class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw1.png" alt="">
+            <img class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw2.gif" alt="">
             <img class="bench-phone-bezel" src="assets/images/benchmarks/b1-raw3.png" alt="">
           </div>
           <div class="bench-label bench-lbl-1" id="bench-lbl-1">
@@ -1557,6 +1571,8 @@
             <img src="assets/images/benchmarks/b1-massimo-logo.svg" alt="Massimo Dutti">
           </div>
           <img class="bench-logo-2" id="bench-logo-2" src="assets/images/benchmarks/b2-zara-logo.svg" alt="Zara">
+          <img class="bench-logo-3" id="bench-logo-3" src="assets/images/benchmarks/b3-pinterest-logo.png" alt="Pinterest">
+          <img class="bench-logo-4" id="bench-logo-4" src="assets/images/benchmarks/b4-yandex-logo.png" alt="Яндекс">
           <button class="bench-nav bench-nav-l" id="bench-nav-l" aria-label="Предыдущий">
             <img src="assets/images/benchmarks/b1-chevron.svg" alt="" style="transform:rotate(-90deg);display:block;">
           </button>
@@ -2405,14 +2421,18 @@
     var benchLbl2    = document.getElementById('bench-lbl-2');
     var benchLogo1   = document.getElementById('bench-logo-1');
     var benchLogo2   = document.getElementById('bench-logo-2');
+    var benchLogo3   = document.getElementById('bench-logo-3');
+    var benchLogo4   = document.getElementById('bench-logo-4');
     var benchNavL    = document.getElementById('bench-nav-l');
     var benchNavR    = document.getElementById('bench-nav-r');
     if (!benchWrapper) return;
 
     var currentScreen = 1;
     var screenData = [
-      { src: 'assets/images/benchmarks/b1-raw1.png' },
-      { src: 'assets/images/benchmarks/b2-raw3.png' }
+      { src: 'assets/images/benchmarks/b1-raw2.gif' },
+      { src: 'assets/images/benchmarks/b2-raw4.gif' },
+      { src: 'assets/images/benchmarks/b3-screen.jpg' },
+      { src: 'assets/images/benchmarks/b4-screen.gif' }
     ];
 
     function setNavVisible(el, visible) {
@@ -2428,12 +2448,20 @@
         benchScreen.src = screenData[n - 1].src;
         benchScreen.classList.remove('fading');
       }, 200);
-      benchLbl1.classList.toggle('inactive', n !== 1);
-      benchLbl2.classList.toggle('inactive', n !== 2);
+      /* screens 1-2: feature #01 active (lbl1 black); screen 3: feature #02 active (lbl2 black) */
+      if (n <= 2) {
+        benchLbl1.classList.remove('inactive');
+        benchLbl2.classList.add('inactive');
+      } else {
+        benchLbl1.classList.add('inactive');
+        benchLbl2.classList.remove('inactive');
+      }
       benchLogo1.style.opacity = n === 1 ? '1' : '0';
       benchLogo2.style.opacity = n === 2 ? '1' : '0';
-      setNavVisible(benchNavL, n === 2);
-      setNavVisible(benchNavR, true);
+      benchLogo3.style.opacity = n === 3 ? '1' : '0';
+      benchLogo4.style.opacity = n === 4 ? '1' : '0';
+      setNavVisible(benchNavL, n > 1);
+      setNavVisible(benchNavR, n < screenData.length);
     }
 
     function openBench() {
@@ -2449,6 +2477,8 @@
       benchLbl2.classList.add('inactive');
       benchLogo1.style.opacity = '1';
       benchLogo2.style.opacity = '0';
+      benchLogo3.style.opacity = '0';
+      benchLogo4.style.opacity = '0';
       setNavVisible(benchNavL, false);
       setTimeout(function() { setNavVisible(benchNavR, true); }, 220);
       benchWrapper.classList.add('bench-open');
@@ -2478,12 +2508,12 @@
 
     benchNavR.addEventListener('click', function(e) {
       e.stopPropagation();
-      goToScreen(currentScreen === 1 ? 2 : 1);
+      if (currentScreen < screenData.length) goToScreen(currentScreen + 1);
     });
 
     benchNavL.addEventListener('click', function(e) {
       e.stopPropagation();
-      goToScreen(1);
+      if (currentScreen > 1) goToScreen(currentScreen - 1);
     });
   })();
 
