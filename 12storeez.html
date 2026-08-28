@@ -1555,7 +1555,7 @@
         </div>
         <!-- Expanded benchmarks -->
         <div class="bench-expanded">
-          <div class="bench-phone">
+          <div class="bench-phone" id="bench-phone">
             <img class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw2.gif" alt="">
             <img class="bench-phone-bezel" src="assets/images/benchmarks/b1-raw3.png" alt="">
           </div>
@@ -2425,9 +2425,15 @@
     var benchLogo4   = document.getElementById('bench-logo-4');
     var benchNavL    = document.getElementById('bench-nav-l');
     var benchNavR    = document.getElementById('bench-nav-r');
+    var benchPhone   = document.getElementById('bench-phone');
     if (!benchWrapper) return;
 
     var currentScreen = 1;
+    var bench3Toggle = 0;
+    var bench3Srcs = [
+      'assets/images/benchmarks/b3-screen.jpg',
+      'assets/images/benchmarks/b3-screen-v2.jpg'
+    ];
     var screenData = [
       { src: 'assets/images/benchmarks/b1-raw2.gif' },
       { src: 'assets/images/benchmarks/b2-raw4.gif' },
@@ -2442,6 +2448,8 @@
 
     function goToScreen(n) {
       if (n === currentScreen) return;
+      bench3Toggle = 0;
+      benchPhone.style.cursor = n === 3 ? 'pointer' : '';
       currentScreen = n;
       benchScreen.classList.add('fading');
       setTimeout(function() {
@@ -2472,6 +2480,8 @@
         deskResearch.classList.remove('competitor-open');
       }
       currentScreen = 1;
+      bench3Toggle = 0;
+      benchPhone.style.cursor = '';
       benchScreen.src = screenData[0].src;
       benchLbl1.classList.remove('inactive');
       benchLbl2.classList.add('inactive');
@@ -2514,6 +2524,17 @@
     benchNavL.addEventListener('click', function(e) {
       e.stopPropagation();
       if (currentScreen > 1) goToScreen(currentScreen - 1);
+    });
+
+    benchPhone.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentScreen !== 3) return;
+      bench3Toggle = 1 - bench3Toggle;
+      benchScreen.classList.add('fading');
+      setTimeout(function() {
+        benchScreen.src = bench3Srcs[bench3Toggle];
+        benchScreen.classList.remove('fading');
+      }, 200);
     });
   })();
 
