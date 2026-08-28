@@ -937,6 +937,7 @@
 
     /* Бенчмарки — expanded phone mockup */
     .desk-research.bench-open { margin-bottom: 740px; }
+    .dr-wrapper.bench-open .dr-card { z-index: 2; }
     .dr-wrapper.bench-open {
       left: 0 !important;
       width: 1200px;
@@ -2366,6 +2367,16 @@
       deskResearch.classList.remove('competitor-open');
       drWrappers.forEach(w => w.classList.remove('dr-inactive'));
     } else {
+      /* close benchmarks if open */
+      const benchW = document.getElementById('benchmarks-wrapper');
+      if (benchW && benchW.classList.contains('bench-open')) {
+        benchW.classList.remove('bench-open');
+        deskResearch.classList.remove('bench-open');
+        ['bench-nav-l','bench-nav-r'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) { el.style.opacity = ''; el.style.pointerEvents = ''; }
+        });
+      }
       competitorsWrapper.classList.add('dr-expanded');
       deskResearch.classList.add('competitor-open');
       drWrappers.forEach(w => {
@@ -2415,6 +2426,12 @@
     }
 
     function openBench() {
+      /* close competitors if open */
+      var compW = document.getElementById('competitors-wrapper');
+      if (compW && compW.classList.contains('dr-expanded')) {
+        compW.classList.remove('dr-expanded');
+        deskResearch.classList.remove('competitor-open');
+      }
       currentScreen = 1;
       benchScreen.src = screenData[0].src;
       benchLbl1.classList.remove('inactive');
