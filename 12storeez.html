@@ -769,9 +769,16 @@
       transition: opacity 0.3s ease;
     }
     #cjm-lightbox.is-active { opacity: 1; pointer-events: auto; }
-    #cjm-lightbox img {
+    #cjm-lightbox-frame {
+      background: #fafafa;
+      padding: 16px 0;
+      display: inline-flex;
+      align-items: center;
       max-width: calc(100vw - 80px);
-      max-height: calc(100vh - 80px);
+    }
+    #cjm-lightbox img {
+      max-width: 100%;
+      max-height: calc(100vh - 80px - 32px);
       width: auto; height: auto;
       border-radius: 0;
       display: block;
@@ -2810,7 +2817,9 @@
   <img src="assets/images/mindsets-close-x.svg" alt="" style="display:block;width:24px;height:24px;">
 </button>
 <div id="cjm-lightbox">
-  <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по 5 LOK">
+  <div id="cjm-lightbox-frame">
+    <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по 5 LOK">
+  </div>
 </div>
 
 <script>
