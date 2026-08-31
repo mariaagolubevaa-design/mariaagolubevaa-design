@@ -721,6 +721,28 @@
     /* CJM / MINDSETS */
     .full-width-img { width: 100%; display: block; }
     .full-width-img--rounded { border-radius: 24px; }
+    .cjm-expand-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: none;
+      border-radius: 1px;
+      background: rgba(210,210,210,0.30);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+    .cjm-expand-btn:hover { background: rgba(210,210,210,0.50); }
+    .cjm-expand-btn:focus {
+      background: rgba(210,210,210,0.30);
+      border: 1px solid #a5a5a4;
+      outline: none;
+    }
 
     /* АРХИТЕКТУРА РЕШЕНИЙ */
     .arh-frame {
@@ -2089,7 +2111,12 @@
     <!-- CJM -->
     <div style="margin-bottom:16px;" class="reveal">
       <h3 style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;margin-bottom:24px;">CJM AS IS по 5 LOK</h3>
-      <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по фреймворку 5 LOK" style="border-radius:16px;margin-left:-40px;width:calc(100% + 80px);display:block;">
+      <div style="position:relative;margin-left:-40px;width:calc(100% + 80px);">
+        <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по фреймворку 5 LOK" style="border-radius:16px;width:100%;display:block;">
+        <button class="cjm-expand-btn" aria-label="Развернуть">
+          <img src="assets/images/arrows-out-simple.svg" alt="" width="24" height="24" style="display:block;">
+        </button>
+      </div>
     </div>
 
     <div style="height:96px;"></div>
