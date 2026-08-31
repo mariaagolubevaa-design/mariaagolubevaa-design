@@ -1076,6 +1076,164 @@
     }
     .bench-pulse__wave--2 { animation-delay: 0.75s; }
 
+    /* Тренды — expanded state */
+    .desk-research.trends-open { margin-bottom: 620px; }
+    .dr-wrapper.trends-open {
+      left: 0 !important;
+      width: 1200px;
+      height: 740px;
+      background: #fafafa;
+      z-index: 20;
+    }
+    .desk-research.trends-open .dr-wrapper.dr-inactive { opacity: 0.35; pointer-events: none; }
+    .dr-wrapper.trends-open .dr-card { transform: translateX(946px); z-index: 2; }
+    .trends-expanded {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s 0.22s ease;
+    }
+    .dr-wrapper.trends-open .trends-expanded { opacity: 1; pointer-events: auto; }
+    .trends-label {
+      position: absolute;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+      margin: 0;
+    }
+    .trends-nav {
+      position: absolute;
+      width: 64px; height: 64px;
+      background: none; border: none;
+      padding: 0; cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .trends-frame {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .trends-frame.tf-active { opacity: 1; }
+    .dr-wrapper.trends-open .trends-frame.tf-active { pointer-events: auto; }
+    .dr-wrapper.trends-open .trends-frame.tf-active .trends-nav { opacity: 1; pointer-events: auto; }
+    .trends-phone-screen {
+      position: absolute;
+      left: -0.23%; top: 0;
+      width: 100.46%; height: 100%;
+      object-fit: cover; display: block;
+      transition: opacity 0.2s ease;
+    }
+    .trends-phone-screen.fading { opacity: 0; }
+    .ugc4-img { transition: opacity 0.2s ease; }
+    .ugc4-img.fading { opacity: 0; }
+    .ugc4-pulse {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .ugc4-pulse.visible { opacity: 1; }
+    #ugc4-phone:hover .ugc4-pulse.visible,
+    #ugc4-coach:hover .ugc4-pulse.visible { opacity: 0; }
+    .ugc4-pulse__core,
+    .ugc4-pulse__wave {
+      position: absolute;
+      inset: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #FA472D;
+      transform-origin: center;
+    }
+    .ugc4-pulse__wave { animation: bench-ripple 1.6s ease-out infinite; }
+    .ugc4-pulse__wave--2 { animation-delay: 0.75s; }
+    .trends-pulse {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .trends-pulse.visible { opacity: 1; }
+    #trends-phone:hover .trends-pulse.visible { opacity: 0; }
+    .trends-pulse__core,
+    .trends-pulse__wave {
+      position: absolute;
+      inset: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #FA472D;
+      transform-origin: center;
+    }
+    .trends-pulse__wave { animation: bench-ripple 1.6s ease-out infinite; }
+    .trends-pulse__wave--2 { animation-delay: 0.75s; }
+
+    /* ML Подборки (Frame 2) pulse */
+    .ml2-pulse {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .ml2-pulse.visible { opacity: 1; }
+    #ml2-phone:hover .ml2-pulse.visible { opacity: 0; }
+    .ml2-pulse__core,
+    .ml2-pulse__wave {
+      position: absolute;
+      inset: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #FA472D;
+      transform-origin: center;
+    }
+    .ml2-pulse__wave { animation: bench-ripple 1.6s ease-out infinite; }
+    .ml2-pulse__wave--2 { animation-delay: 0.75s; }
+
+    /* Frame 3 ИИ ассистенты — t3 pulse */
+    .t3-pulse {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .t3-pulse.visible { opacity: 1; }
+    #t3-phone:hover .t3-pulse.visible { opacity: 0; }
+    .t3-pulse__core,
+    .t3-pulse__wave {
+      position: absolute;
+      inset: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #FA472D;
+      transform-origin: center;
+    }
+    .t3-pulse__wave { animation: bench-ripple 1.6s ease-out infinite; }
+    .t3-pulse__wave--2 { animation-delay: 0.75s; }
+
     /* ДЛЯ ВАС section — полная ширина страницы */
     .dlv-section {
       background: #fff;
@@ -1618,8 +1776,8 @@
         </div>
       </div>
       <!-- Тренды -->
-      <div class="dr-wrapper" style="right:68px;top:0;">
-        <div class="dr-card">
+      <div class="dr-wrapper" id="trends-wrapper" style="left:882px;top:0;">
+        <div class="dr-card" id="trends-card">
           <div class="dr-title">Тренды</div>
           <div class="dr-bar" style="inset:52.27% 93.27% 5.68% 2.99%;"></div>
           <div class="dr-bar" style="inset:52.27% 41.65% 5.68% 54.61%;"></div>
@@ -1648,6 +1806,203 @@
           <div class="dr-bar" style="inset:52.27% 46.63% 5.68% 52.37%;"></div>
           <div class="dr-bar" style="inset:52.27% 64.84% 5.68% 34.16%;"></div>
           <div class="dr-bar" style="inset:52.27% 13.22% 5.68% 85.79%;"></div>
+        </div>
+        <!-- Expanded: Тренды 1 (Figma 1833:11075, 1200×740) -->
+        <div class="trends-expanded">
+          <!-- Frame 1: Кастомизация (Figma 1833:11075) -->
+          <div class="trends-frame tf-active" id="trends-frame-1">
+            <!-- Кастомизация label: x=40, y=13 -->
+            <p class="trends-label" style="left:40px;top:13px;">Кастомизация</p>
+            <!-- Left phone "брелки": x=40, y=113, 280×608 -->
+            <div style="position:absolute;left:40px;top:113px;width:280px;height:608px;">
+              <div style="position:absolute;inset:0 0 0.66px 0;overflow:hidden;border-radius:33.45px;background:#fafafa;">
+                <img src="assets/images/trends/t1-coach-straps-screen.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+                <div style="position:absolute;left:0;top:0;width:280px;height:609.21px;">
+                  <img src="assets/images/trends/t1-coach-notifications.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;">
+                </div>
+              </div>
+              <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-16.73px;top:-16.03px;width:313.6px;height:641.15px;max-width:none;display:block;z-index:1;pointer-events:none;">
+            </div>
+            <!-- Center phone "Цвет сумки": x=439, y=21, 322×700 -->
+            <div id="trends-phone" style="position:absolute;left:439px;top:21px;width:322px;height:700px;cursor:pointer;">
+              <div style="position:absolute;inset:0 0 0.28px 0;overflow:hidden;border-radius:38.47px;background:#fafafa;">
+                <img id="trends-phone-screen" class="trends-phone-screen" src="assets/images/trends/t1-coach-bag.gif" alt="">
+              </div>
+              <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.23px;top:-18.43px;width:360.64px;height:737.32px;max-width:none;display:block;z-index:1;pointer-events:none;">
+              <div class="trends-pulse" id="trends-pulse">
+                <div class="trends-pulse__core"></div>
+                <div class="trends-pulse__wave trends-pulse__wave--1"></div>
+                <div class="trends-pulse__wave trends-pulse__wave--2"></div>
+              </div>
+            </div>
+            <!-- Brand logo COACH: x=965, y=628, 212×72 -->
+            <div style="position:absolute;left:965px;top:628px;width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+              <img src="assets/images/trends/t1-coach-logo.svg" alt="" style="width:168px;height:20px;display:block;">
+            </div>
+            <!-- Chevron right → Frame 2: x=1136, y=338, 64×64 -->
+            <button class="trends-nav" id="trends-nav-r" style="left:1112px;top:338px;" aria-label="Следующий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(90deg);display:block;width:64px;height:64px;">
+            </button>
+          </div>
+          <!-- Frame 2: ML Подборки (Figma 1731:13167) -->
+          <div class="trends-frame" id="trends-frame-2">
+            <!-- ML Подборки label: x=40, y=13 -->
+            <p class="trends-label" style="left:40px;top:13px;">ML Подборки</p>
+            <!-- Phone "ML Подборки" (Figma 1843:9579): x=439, y=16, 322×700 -->
+            <div id="ml2-phone" style="position:absolute;left:439px;top:16px;width:323.605px;height:703.841px;cursor:pointer;">
+              <div style="position:absolute;inset:0 0 -0.35px 0;overflow:hidden;border-radius:38.448px;">
+                <div aria-hidden style="position:absolute;inset:0;pointer-events:none;">
+                  <div style="position:absolute;inset:0;background:#fff;"></div>
+                  <img id="ml2-bg" class="ugc4-img" src="assets/images/trends/t2-ekonika-lock-screen.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block;">
+                </div>
+                <div id="ml2-screen-wrap" style="position:absolute;left:0;top:0;width:323.605px;height:703.841px;">
+                  <img id="ml2-screen" class="ugc4-img" src="assets/images/trends/t2-ekonika-screen.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none;display:block;">
+                </div>
+              </div>
+              <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:1;pointer-events:none;">
+              <div class="ml2-pulse" id="ml2-pulse">
+                <div class="ml2-pulse__core"></div>
+                <div class="ml2-pulse__wave ml2-pulse__wave--1"></div>
+                <div class="ml2-pulse__wave ml2-pulse__wave--2"></div>
+              </div>
+            </div>
+            <!-- Brand logo Экника: x=965, y=628, 212×72 -->
+            <div style="position:absolute;left:965px;top:628px;width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+              <img id="ml2-logo-img" src="assets/images/trends/t2-ekonika-logo.svg" alt="" style="width:172px;height:39px;display:block;">
+            </div>
+            <!-- Chevron left ← Frame 1: x=24, y=338, 64×64 -->
+            <button class="trends-nav" id="trends-nav-l" style="left:24px;top:338px;" aria-label="Предыдущий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(-90deg);display:block;width:64px;height:64px;">
+            </button>
+            <!-- Chevron right → Frame 3: right=24px, y=338, 64×64 -->
+            <button class="trends-nav" id="trends-nav-r2" style="left:1112px;top:338px;" aria-label="Следующий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(90deg);display:block;width:64px;height:64px;">
+            </button>
+          </div>
+          <!-- Frame 3: ИИ ассистенты (Figma 1843:9402 + 1849:10533) -->
+          <div class="trends-frame" id="trends-frame-3">
+            <!-- ИИ ассистенты label: x=40, y=13 -->
+            <p class="trends-label" style="left:40px;top:13px;">ИИ ассистенты</p>
+            <!-- Brand logo box: x=965, y=628, 212×72 — toggles Lamoda ↔ ChatGPT -->
+            <div style="position:absolute;left:965px;top:628px;width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+              <!-- Lamoda logo (state 0) -->
+              <div id="t3-logo-lamoda" style="width:151.96px;height:30.39px;overflow:hidden;position:relative;">
+                <div style="position:absolute;top:-25%;right:-10%;bottom:-25%;left:-10%;">
+                  <img src="assets/images/trends/t3-lamoda-logo.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
+                </div>
+              </div>
+              <!-- ChatGPT logo (state 1, hidden by default) -->
+              <div id="t3-logo-chatgpt" style="display:none;align-items:center;gap:12px;">
+                <div style="width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+                  <img src="assets/images/trends/t3-chatgpt-logo-icon.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+                </div>
+                <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:22px;font-weight:500;color:#141414;white-space:nowrap;">ChatGPT</span>
+              </div>
+            </div>
+            <!-- Phone mockup: x=438, y=13, 324×702 — clickable, toggles Lamoda ↔ ChatGPT -->
+            <div id="t3-phone" style="position:absolute;left:438px;top:13px;width:324px;height:702px;cursor:pointer;">
+              <!-- Screen clip wrapper (no bezel escape needed) -->
+              <div style="position:absolute;inset:0;overflow:hidden;border-radius:32px;">
+                <!-- Lamoda landscape screen (state 0) -->
+                <img id="t3-screen-lamoda" src="assets/images/trends/t3-lamoda-screen.png" alt="" style="position:absolute;width:1225px;height:735px;left:-761px;top:-16px;max-width:none;display:block;transition:opacity 0.25s ease;z-index:1;">
+                <!-- ChatGPT portrait screen (state 1) -->
+                <img id="t3-screen-chatgpt" src="assets/images/trends/t3-chatgpt-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 0.25s ease;z-index:2;">
+              </div>
+              <!-- iPhone bezel overlay for ChatGPT state -->
+              <img id="t3-bezel" src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:3;pointer-events:none;opacity:0;transition:opacity 0.25s ease;">
+              <!-- Pulse indicator -->
+              <div class="t3-pulse" id="t3-pulse">
+                <div class="t3-pulse__core"></div>
+                <div class="t3-pulse__wave t3-pulse__wave--1"></div>
+                <div class="t3-pulse__wave t3-pulse__wave--2"></div>
+              </div>
+            </div>
+            <!-- Chevron left ← Frame 2: x=24, y=338, 64×64 -->
+            <button class="trends-nav" id="trends-nav-l3" style="left:24px;top:338px;" aria-label="Предыдущий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(-90deg);display:block;width:64px;height:64px;">
+            </button>
+            <!-- Chevron right → Frame 4: right=24px, y=338, 64×64 -->
+            <button class="trends-nav" id="trends-nav-r3" style="left:1112px;top:338px;" aria-label="Следующий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(90deg);display:block;width:64px;height:64px;">
+            </button>
+          </div>
+          <!-- Frame 4: UGC контент (Figma 1849:10160) -->
+          <div class="trends-frame" id="trends-frame-4">
+            <p class="trends-label" style="left:40px;top:13px;">UGC контент</p>
+            <!-- Phone area: Ekonika (variant 0) and Alo (variant 1) -->
+            <div id="ugc4-phone" style="position:absolute;left:439px;top:16px;width:323.605px;height:703.841px;cursor:pointer;">
+              <div style="position:absolute;inset:0;overflow:hidden;border-radius:47.16px;background:#fefefe;">
+                <img id="ugc4-screen" class="ugc4-img" src="assets/images/trends/t2-ekonika-screen.gif" alt="" style="position:absolute;left:0;top:0;width:325.63px;height:703.84px;max-width:none;object-fit:cover;display:block;">
+              </div>
+              <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.32px;top:-18.51px;width:362.24px;height:740.59px;max-width:none;display:block;z-index:1;pointer-events:none;">
+              <div class="ugc4-pulse" id="ugc4-pulse-phone">
+                <div class="ugc4-pulse__core"></div>
+                <div class="ugc4-pulse__wave ugc4-pulse__wave--1"></div>
+                <div class="ugc4-pulse__wave ugc4-pulse__wave--2"></div>
+              </div>
+            </div>
+            <!-- Coach area: Coach 1 (variant 2) -->
+            <div id="ugc4-coach" style="display:none;position:absolute;left:270px;top:62px;width:660px;height:617px;overflow:hidden;cursor:pointer;">
+              <img id="ugc4-coach-img" class="ugc4-img" src="assets/images/trends/t4-coach1-screen.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block;">
+              <div class="ugc4-pulse" id="ugc4-pulse-coach">
+                <div class="ugc4-pulse__core"></div>
+                <div class="ugc4-pulse__wave ugc4-pulse__wave--1"></div>
+                <div class="ugc4-pulse__wave ugc4-pulse__wave--2"></div>
+              </div>
+            </div>
+            <!-- Brand logo: updates per variant -->
+            <div style="position:absolute;left:965px;top:628px;width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+              <img id="ugc4-logo-img" src="assets/images/trends/t2-ekonika-logo.svg" alt="" style="width:172px;height:39px;display:block;">
+            </div>
+            <!-- Chevron left ← Frame 3 -->
+            <button class="trends-nav" id="trends-nav-l4" style="left:24px;top:338px;" aria-label="Предыдущий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(-90deg);display:block;width:64px;height:64px;">
+            </button>
+            <!-- Chevron right → Frame 5 -->
+            <button class="trends-nav" id="trends-nav-r4" style="left:1112px;top:338px;" aria-label="Следующий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(90deg);display:block;width:64px;height:64px;">
+            </button>
+          </div>
+          <!-- Frame 5: Омниканальный сервис (Figma 1844:9744) -->
+          <div class="trends-frame" id="trends-frame-5">
+            <!-- Label: x=40, y=13 -->
+            <p class="trends-label" style="left:40px;top:13px;">Омниканальный<br>сервис</p>
+            <!-- Phone mockup: x=439, y=21, 322×700 — статичный экран Сервисы -->
+            <div style="position:absolute;left:439px;top:21px;width:322px;height:700px;">
+              <div style="position:absolute;inset:0 0 0.37px 0;overflow:hidden;border-radius:38.448px;background:#fff;">
+                <img src="assets/images/trends/t5-services-screen.png" alt=""
+                     style="position:absolute;left:-0.23%;top:0;width:100.46%;height:100%;object-fit:cover;display:block;">
+              </div>
+              <img src="assets/images/storeez-iphone17-frame.png" alt=""
+                   style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:auto;max-width:none;display:block;z-index:1;pointer-events:none;">
+            </div>
+            <!-- photo-01 (GIF): x=90, y=489, 232×232 -->
+            <div style="position:absolute;left:90px;top:489px;width:232px;height:232px;overflow:hidden;">
+              <img src="assets/images/trends/t5-photo01.png" alt=""
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;">
+            </div>
+            <!-- Logos block: x=965, y=409, 4 × 212×72, gap 8px -->
+            <div style="position:absolute;left:965px;top:409px;display:flex;flex-direction:column;gap:8px;">
+              <div style="width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+                <div style="width:160px;height:25px;overflow:hidden;position:relative;">
+                  <img src="assets/images/trends/t5-oskelly-logo.svg" alt="OSKELLY" style="position:absolute;inset:0;width:100%;height:100%;display:block;">
+                </div>
+              </div>
+              <div style="width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+                <img src="assets/images/trends/t5-lv-logo.svg" alt="Louis Vuitton" style="width:166px;height:17px;display:block;">
+              </div>
+              <div style="width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+                <img src="assets/images/trends/t5-loro-piana-logo.svg" alt="Loro Piana" style="width:175px;height:37px;display:block;">
+              </div>
+              <div style="width:212px;height:72px;background:#fafafa;border:1px solid #c8c8c8;display:flex;align-items:center;justify-content:center;">
+                <img src="assets/images/trends/t5-lululemon-logo.svg" alt="lululemon" style="width:158px;height:22px;display:block;">
+              </div>
+            </div>
+            <!-- Left chevron ← Frame 4: x=24, y=338 (последний фрейм — правого шеврона нет) -->
+            <button class="trends-nav" id="trends-nav-l5" style="left:24px;top:338px;" aria-label="Предыдущий">
+              <img src="assets/images/trends/t1-chevron.svg" alt="" style="transform:rotate(-90deg);display:block;width:64px;height:64px;">
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -2412,13 +2767,13 @@
 
   drWrappers.forEach(wrapper => {
     wrapper.addEventListener('mouseenter', () => {
-      if (!document.querySelector('.dr-wrapper.dr-expanded') && !document.querySelector('.dr-wrapper.bench-open')) {
+      if (!document.querySelector('.dr-wrapper.dr-expanded') && !document.querySelector('.dr-wrapper.bench-open') && !document.querySelector('.dr-wrapper.trends-open')) {
         drWrappers.forEach(w => w.classList.toggle('dr-inactive', w !== wrapper));
       }
     });
   });
   deskResearch?.addEventListener('mouseleave', () => {
-    if (!document.querySelector('.dr-wrapper.dr-expanded') && !document.querySelector('.dr-wrapper.bench-open')) {
+    if (!document.querySelector('.dr-wrapper.dr-expanded') && !document.querySelector('.dr-wrapper.bench-open') && !document.querySelector('.dr-wrapper.trends-open')) {
       drWrappers.forEach(w => w.classList.remove('dr-inactive'));
     }
   });
@@ -2439,6 +2794,12 @@
           const el = document.getElementById(id);
           if (el) { el.style.opacity = ''; el.style.pointerEvents = ''; }
         });
+      }
+      /* close trends if open */
+      const trendsW = document.getElementById('trends-wrapper');
+      if (trendsW && trendsW.classList.contains('trends-open')) {
+        trendsW.classList.remove('trends-open');
+        deskResearch.classList.remove('trends-open');
       }
       competitorsWrapper.classList.add('dr-expanded');
       deskResearch.classList.add('competitor-open');
@@ -2522,6 +2883,12 @@
         compW.classList.remove('dr-expanded');
         deskResearch.classList.remove('competitor-open');
       }
+      /* close trends if open */
+      var trendsW = document.getElementById('trends-wrapper');
+      if (trendsW && trendsW.classList.contains('trends-open')) {
+        trendsW.classList.remove('trends-open');
+        deskResearch.classList.remove('trends-open');
+      }
       currentScreen = 1;
       bench3Toggle = 0;
       benchPhone.style.cursor = '';
@@ -2582,6 +2949,361 @@
         benchScreen.classList.remove('fading');
       }, 200);
     });
+  })();
+
+  /* Тренды */
+  (function() {
+    var trendsWrapper    = document.getElementById('trends-wrapper');
+    var trendsCard       = document.getElementById('trends-card');
+    var trendsPhone      = document.getElementById('trends-phone');
+    var trendsScreen     = document.getElementById('trends-phone-screen');
+    var trendsPulse      = document.getElementById('trends-pulse');
+    var ml2Pulse         = document.getElementById('ml2-pulse');
+    var ml2Phone         = document.getElementById('ml2-phone');
+    var ml2Bg            = document.getElementById('ml2-bg');
+    var ml2Screen        = document.getElementById('ml2-screen');
+    var ml2ScreenWrap    = document.getElementById('ml2-screen-wrap');
+    var ml2LogoImg       = document.getElementById('ml2-logo-img');
+    var ml2Idx           = 0;
+    var t3Phone          = document.getElementById('t3-phone');
+    var t3ScreenLamoda   = document.getElementById('t3-screen-lamoda');
+    var t3ScreenChatgpt  = document.getElementById('t3-screen-chatgpt');
+    var t3LogoLamoda     = document.getElementById('t3-logo-lamoda');
+    var t3LogoChatgpt    = document.getElementById('t3-logo-chatgpt');
+    var t3Pulse          = document.getElementById('t3-pulse');
+    var t3Bezel          = document.getElementById('t3-bezel');
+    var t3Toggle         = 0;
+    if (!trendsWrapper) return;
+
+    var trendsSrcs = [
+      'assets/images/trends/t1-coach-bag.gif',
+      'assets/images/trends/t1-coach-ar.gif'
+    ];
+    var trendsToggle = 0;
+    var trendsFrame  = 0;
+    var trendsFrames = [
+      document.getElementById('trends-frame-1'),
+      document.getElementById('trends-frame-2'),
+      document.getElementById('trends-frame-3'),
+      document.getElementById('trends-frame-4'),
+      document.getElementById('trends-frame-5')
+    ];
+
+    function showTrendsFrame(idx) {
+      trendsFrames.forEach(function(f, i) {
+        if (f) f.classList.toggle('tf-active', i === idx);
+      });
+      trendsFrame = idx;
+      if (idx === 1) {
+        setTimeout(function() { setMl2Pulse(true); }, 200);
+      } else {
+        setMl2Pulse(false);
+      }
+      if (idx === 2) {
+        if (t3Toggle === 0) setTimeout(function() { setT3Pulse(true); }, 200);
+      } else {
+        setT3Pulse(false);
+      }
+      if (idx === 3) {
+        setTimeout(function() { setUgc4Pulse(true); }, 200);
+      } else {
+        setUgc4Pulse(false);
+      }
+    }
+
+    function setTrendsPulse(visible) {
+      if (!trendsPulse) return;
+      if (visible) {
+        trendsPulse.classList.remove('visible');
+        void trendsPulse.offsetWidth; // reflow → гарантирует перезапуск анимации
+        trendsPulse.classList.add('visible');
+      } else {
+        trendsPulse.classList.remove('visible');
+      }
+    }
+
+    function setMl2Pulse(visible) {
+      if (!ml2Pulse) return;
+      if (visible) {
+        ml2Pulse.classList.remove('visible');
+        void ml2Pulse.offsetWidth;
+        ml2Pulse.classList.add('visible');
+      } else {
+        ml2Pulse.classList.remove('visible');
+      }
+    }
+
+    function setT3Pulse(visible) {
+      if (!t3Pulse) return;
+      if (visible) {
+        t3Pulse.classList.remove('visible');
+        void t3Pulse.offsetWidth;
+        t3Pulse.classList.add('visible');
+      } else {
+        t3Pulse.classList.remove('visible');
+      }
+    }
+
+    function showT3Variant(idx) {
+      if (idx === 0) {
+        if (t3ScreenLamoda) t3ScreenLamoda.style.opacity = '1';
+        if (t3ScreenChatgpt) t3ScreenChatgpt.style.opacity = '0';
+        if (t3Bezel) t3Bezel.style.opacity = '0';
+        if (t3LogoLamoda) t3LogoLamoda.style.display = '';
+        if (t3LogoChatgpt) t3LogoChatgpt.style.display = 'none';
+      } else {
+        if (t3ScreenLamoda) t3ScreenLamoda.style.opacity = '0';
+        if (t3ScreenChatgpt) t3ScreenChatgpt.style.opacity = '1';
+        if (t3Bezel) t3Bezel.style.opacity = '1';
+        if (t3LogoLamoda) t3LogoLamoda.style.display = 'none';
+        if (t3LogoChatgpt) t3LogoChatgpt.style.display = 'flex';
+      }
+      t3Toggle = idx;
+    }
+
+    function openTrends() {
+      /* close competitors if open */
+      var compW = document.getElementById('competitors-wrapper');
+      if (compW && compW.classList.contains('dr-expanded')) {
+        compW.classList.remove('dr-expanded');
+        deskResearch.classList.remove('competitor-open');
+      }
+      /* close benchmarks if open */
+      var benchW = document.getElementById('benchmarks-wrapper');
+      if (benchW && benchW.classList.contains('bench-open')) {
+        benchW.classList.remove('bench-open');
+        deskResearch.classList.remove('bench-open');
+        ['bench-nav-l','bench-nav-r'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) { el.style.opacity = ''; el.style.pointerEvents = ''; }
+        });
+      }
+      /* reset to frame 1, screen state 0 */
+      trendsToggle = 0;
+      ml2Idx = 0;
+      if (ml2Bg) ml2Bg.src = 'assets/images/trends/t2-ekonika-lock-screen.png';
+      if (ml2Screen) { ml2Screen.src = 'assets/images/trends/t2-ekonika-screen.png'; ml2Screen.classList.remove('fading'); }
+      if (ml2ScreenWrap) ml2ScreenWrap.style.display = '';
+      if (ml2LogoImg) { ml2LogoImg.src = 'assets/images/trends/t2-ekonika-logo.svg'; ml2LogoImg.style.width = '172px'; ml2LogoImg.style.height = '39px'; }
+      showT3Variant(0);
+      showTrendsFrame(0);
+      if (trendsScreen) trendsScreen.src = trendsSrcs[0];
+      trendsWrapper.classList.add('trends-open');
+      deskResearch.classList.add('trends-open');
+      drWrappers.forEach(function(w) {
+        if (w !== trendsWrapper) w.classList.add('dr-inactive');
+      });
+      setTimeout(function() { setTrendsPulse(true); }, 300);
+    }
+
+    function closeTrends() {
+      setTrendsPulse(false);
+      setMl2Pulse(false);
+      setT3Pulse(false);
+      setUgc4Pulse(false);
+      trendsWrapper.classList.remove('trends-open');
+      deskResearch.classList.remove('trends-open');
+      drWrappers.forEach(function(w) { w.classList.remove('dr-inactive'); });
+    }
+
+    trendsCard.addEventListener('click', function() {
+      if (trendsWrapper.classList.contains('trends-open')) {
+        closeTrends();
+      } else {
+        openTrends();
+      }
+    });
+
+    if (trendsPhone) {
+      trendsPhone.addEventListener('click', function(e) {
+        e.stopPropagation();
+        trendsToggle = 1 - trendsToggle;
+        setTrendsPulse(false);
+        trendsScreen.classList.add('fading');
+        setTimeout(function() {
+          trendsScreen.src = trendsSrcs[trendsToggle];
+          trendsScreen.classList.remove('fading');
+          if (trendsToggle === 0) setTrendsPulse(true);
+        }, 200);
+      });
+    }
+
+    if (t3Phone) {
+      t3Phone.addEventListener('click', function(e) {
+        e.stopPropagation();
+        setT3Pulse(false);
+        showT3Variant(1 - t3Toggle);
+        if (t3Toggle === 0) setTimeout(function() { setT3Pulse(true); }, 50);
+      });
+    }
+
+    /* Frame navigation */
+    var trendsNavR = document.getElementById('trends-nav-r');
+    if (trendsNavR) {
+      trendsNavR.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (trendsFrame < trendsFrames.length - 1) {
+          setTrendsPulse(false);
+          showTrendsFrame(trendsFrame + 1);
+        }
+      });
+    }
+
+    var trendsNavL = document.getElementById('trends-nav-l');
+    if (trendsNavL) {
+      trendsNavL.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (trendsFrame > 0) {
+          showTrendsFrame(trendsFrame - 1);
+          if (trendsFrame === 0 && trendsToggle === 0) setTrendsPulse(true);
+        }
+      });
+    }
+
+    /* Generic right-chevron helper reused by each frame */
+    function addNavRight(id) {
+      var btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (trendsFrame < trendsFrames.length - 1) {
+            setTrendsPulse(false);
+            showTrendsFrame(trendsFrame + 1);
+          }
+        });
+      }
+    }
+    function addNavLeft(id) {
+      var btn = document.getElementById(id);
+      if (btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (trendsFrame > 0) {
+            showTrendsFrame(trendsFrame - 1);
+            if (trendsFrame === 0 && trendsToggle === 0) setTrendsPulse(true);
+          }
+        });
+      }
+    }
+
+    addNavRight('trends-nav-r2');
+    addNavLeft('trends-nav-l3');
+    addNavRight('trends-nav-r3');
+    addNavLeft('trends-nav-l4');
+    addNavRight('trends-nav-r4');
+    addNavLeft('trends-nav-l5');
+
+    /* UGC variant cycling within Frame 4 */
+    var ugcIdx      = 0;
+    var ugcPhone    = document.getElementById('ugc4-phone');
+    var ugcCoach    = document.getElementById('ugc4-coach');
+    var ugcScreen   = document.getElementById('ugc4-screen');
+    var ugcCoachImg = document.getElementById('ugc4-coach-img');
+    var ugcLogoImg  = document.getElementById('ugc4-logo-img');
+    var ugc4PulsePhone = document.getElementById('ugc4-pulse-phone');
+    var ugc4PulseCoach = document.getElementById('ugc4-pulse-coach');
+
+    function setUgc4Pulse(visible) {
+      var v = ugcVariants[ugcIdx];
+      var active   = v && v.type === 'coach' ? ugc4PulseCoach : ugc4PulsePhone;
+      var inactive = v && v.type === 'coach' ? ugc4PulsePhone : ugc4PulseCoach;
+      if (inactive) inactive.classList.remove('visible');
+      if (!active) return;
+      if (visible) {
+        active.classList.remove('visible');
+        void active.offsetWidth; // reflow → гарантирует перезапуск анимации
+        active.classList.add('visible');
+      } else {
+        active.classList.remove('visible');
+      }
+    }
+
+    var ugcVariants = [
+      { type:'phone', screenSrc:'assets/images/trends/t2-ekonika-screen.gif', logoSrc:'assets/images/trends/t2-ekonika-logo.svg', logoW:'172px', logoH:'39px' },
+      { type:'phone', screenSrc:'assets/images/trends/t4-alo-screen.gif',     logoSrc:'assets/images/trends/t4-alo-logo.svg',     logoW:'84px',  logoH:'48px' },
+      { type:'coach', coachSrc :'assets/images/trends/t4-coach1-screen.png',  logoSrc:'assets/images/trends/t4-coach-logo.svg',   logoW:'168px', logoH:'20px' }
+    ];
+
+    function showUgc4(idx) {
+      var v = ugcVariants[idx];
+      if (v.type === 'phone') {
+        if (ugcPhone) ugcPhone.style.display = '';
+        if (ugcCoach) ugcCoach.style.display = 'none';
+        if (ugcScreen) {
+          ugcScreen.classList.add('fading');
+          setTimeout(function() {
+            ugcScreen.src = v.screenSrc;
+            ugcScreen.classList.remove('fading');
+          }, 200);
+        }
+      } else {
+        if (ugcPhone) ugcPhone.style.display = 'none';
+        if (ugcCoach) ugcCoach.style.display = '';
+        if (ugcCoachImg) {
+          ugcCoachImg.classList.add('fading');
+          setTimeout(function() {
+            ugcCoachImg.src = v.coachSrc;
+            ugcCoachImg.classList.remove('fading');
+          }, 200);
+        }
+      }
+      if (ugcLogoImg) {
+        ugcLogoImg.src = v.logoSrc;
+        ugcLogoImg.style.width = v.logoW;
+        ugcLogoImg.style.height = v.logoH;
+      }
+      ugcIdx = idx;
+      setUgc4Pulse(true);
+    }
+
+    function cycleUgc4(e) {
+      e.stopPropagation();
+      showUgc4((ugcIdx + 1) % ugcVariants.length);
+    }
+
+    if (ugcPhone) ugcPhone.addEventListener('click', cycleUgc4);
+    if (ugcCoach) ugcCoach.addEventListener('click', cycleUgc4);
+
+    /* ML Подборки (Frame 2) — 3 варианта: Ekonika, 2mood, Яндекс Маркет */
+    var ml2Variants = [
+      { bgSrc:'assets/images/trends/t2-ekonika-lock-screen.png', screenSrc:'assets/images/trends/t2-ekonika-screen.png', logoSrc:'assets/images/trends/t2-ekonika-logo.svg', logoW:'172px', logoH:'39px' },
+      { bgSrc:'assets/images/trends/t2-2mood-lock-screen.png',   screenSrc:'assets/images/trends/t2-2mood-screen.png',   logoSrc:'assets/images/trends/t2-2mood-logo.svg',   logoW:'140px', logoH:'28px' },
+      { bgSrc:'assets/images/trends/t2-yandex-screen.png',       screenSrc:null,                                         logoSrc:'assets/images/trends/t2-yandex-logo.svg',  logoW:'160px', logoH:'34px' }
+    ];
+
+    function showMl2(idx) {
+      var v = ml2Variants[idx];
+      if (ml2Bg) {
+        ml2Bg.classList.add('fading');
+        setTimeout(function() { ml2Bg.src = v.bgSrc; ml2Bg.classList.remove('fading'); }, 200);
+      }
+      if (ml2ScreenWrap) {
+        if (v.screenSrc) {
+          ml2ScreenWrap.style.display = '';
+          if (ml2Screen) {
+            ml2Screen.classList.add('fading');
+            setTimeout(function() { ml2Screen.src = v.screenSrc; ml2Screen.classList.remove('fading'); }, 200);
+          }
+        } else {
+          if (ml2Screen) ml2Screen.classList.add('fading');
+          setTimeout(function() { ml2ScreenWrap.style.display = 'none'; }, 200);
+        }
+      }
+      if (ml2LogoImg) {
+        ml2LogoImg.src = v.logoSrc;
+        ml2LogoImg.style.width = v.logoW;
+        ml2LogoImg.style.height = v.logoH;
+      }
+      ml2Idx = idx;
+      setMl2Pulse(true);
+    }
+
+    if (ml2Phone) {
+      ml2Phone.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showMl2((ml2Idx + 1) % ml2Variants.length);
+      });
+    }
   })();
 
   /* BYLO-STALO SLIDER */
