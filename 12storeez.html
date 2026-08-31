@@ -743,6 +743,39 @@
       border: 1px solid #a5a5a4;
       outline: none;
     }
+    /* CJM Lightbox */
+    #cjm-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #414141; opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #cjm-overlay.is-active { opacity: 0.75; pointer-events: auto; }
+    #cjm-close-btn {
+      position: fixed; right: 20px; top: 20px;
+      width: 24px; height: 24px;
+      background: none; border: none; padding: 0;
+      cursor: pointer; z-index: 1002;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #cjm-close-btn.is-active { opacity: 1; pointer-events: auto; }
+    #cjm-lightbox {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1001;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #cjm-lightbox.is-active { opacity: 1; pointer-events: auto; }
+    #cjm-lightbox img {
+      max-width: calc(100vw - 80px);
+      max-height: calc(100vh - 80px);
+      width: auto; height: auto;
+      border-radius: 16px;
+      display: block;
+    }
 
     /* АРХИТЕКТУРА РЕШЕНИЙ */
     .arh-frame {
@@ -3480,6 +3513,64 @@
     overlay.addEventListener('click', closePersona);
   })();
 
+  // CJM Lightbox
+  (function() {
+    var overlay  = document.getElementById('cjm-overlay');
+    var closeBtn = document.getElementById('cjm-close-btn');
+    var lightbox = document.getElementById('cjm-lightbox');
+    var expandBtn = document.querySelector('.cjm-expand-btn');
+    var savedScrollY = 0;
+    var isOpen = false;
+
+    function lockScroll() {
+      savedScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-' + savedScrollY + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflowY = 'scroll';
+    }
+    function unlockScroll() {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    function openCjm() {
+      isOpen = true;
+      lockScroll();
+      lightbox.classList.add('is-active');
+      overlay.classList.add('is-active');
+      closeBtn.classList.add('is-active');
+    }
+
+    function closeCjm() {
+      if (!isOpen) return;
+      isOpen = false;
+      unlockScroll();
+      lightbox.classList.remove('is-active');
+      overlay.classList.remove('is-active');
+      closeBtn.classList.remove('is-active');
+    }
+
+    if (expandBtn) expandBtn.addEventListener('click', function(e) { e.stopPropagation(); openCjm(); });
+    closeBtn.addEventListener('click', closeCjm);
+    overlay.addEventListener('click', closeCjm);
+  })();
+
 </script>
+
+<!-- CJM Lightbox -->
+<div id="cjm-overlay"></div>
+<button id="cjm-close-btn" aria-label="Закрыть">
+  <img src="assets/images/mindsets-close-x.svg" alt="" style="display:block;width:24px;height:24px;">
+</button>
+<div id="cjm-lightbox">
+  <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по 5 LOK">
+</div>
+
 </body>
 </html>
