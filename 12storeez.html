@@ -1045,6 +1045,37 @@
     .bench-nav-r { left: 1112px; }
     .bench-nav-l { left: 24px; }
 
+    /* Bench pulse indicator */
+    @keyframes bench-ripple {
+      0%   { transform: scale(1);   opacity: 0.45; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+    .bench-pulse {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .bench-pulse.visible { opacity: 1; }
+    .bench-phone:hover .bench-pulse.visible { opacity: 0; }
+    .bench-pulse__core,
+    .bench-pulse__wave {
+      position: absolute;
+      inset: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #FA472D;
+      transform-origin: center;
+    }
+    .bench-pulse__wave {
+      animation: bench-ripple 1.6s ease-out infinite;
+    }
+    .bench-pulse__wave--2 { animation-delay: 0.75s; }
+
     /* ДЛЯ ВАС section — полная ширина страницы */
     .dlv-section {
       background: #fff;
@@ -1558,6 +1589,11 @@
           <div class="bench-phone" id="bench-phone">
             <img class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw2.gif" alt="">
             <img class="bench-phone-bezel" src="assets/images/benchmarks/b1-raw3.png" alt="">
+            <div class="bench-pulse" id="bench-pulse">
+              <div class="bench-pulse__core"></div>
+              <div class="bench-pulse__wave bench-pulse__wave--1"></div>
+              <div class="bench-pulse__wave bench-pulse__wave--2"></div>
+            </div>
           </div>
           <div class="bench-label bench-lbl-1" id="bench-lbl-1">
             <span class="bench-lbl-line1">01 Умная</span>
@@ -2426,7 +2462,13 @@
     var benchNavL    = document.getElementById('bench-nav-l');
     var benchNavR    = document.getElementById('bench-nav-r');
     var benchPhone   = document.getElementById('bench-phone');
+    var benchPulse   = document.getElementById('bench-pulse');
     if (!benchWrapper) return;
+
+    function setBenchPulse(visible) {
+      if (!benchPulse) return;
+      benchPulse.classList.toggle('visible', visible);
+    }
 
     var currentScreen = 1;
     var bench3Toggle = 0;
@@ -2470,6 +2512,7 @@
       benchLogo4.style.opacity = n === 4 ? '1' : '0';
       setNavVisible(benchNavL, n > 1);
       setNavVisible(benchNavR, n < screenData.length);
+      setBenchPulse(n === 3);
     }
 
     function openBench() {
@@ -2491,6 +2534,7 @@
       benchLogo4.style.opacity = '0';
       setNavVisible(benchNavL, false);
       setTimeout(function() { setNavVisible(benchNavR, true); }, 220);
+      setBenchPulse(false);
       benchWrapper.classList.add('bench-open');
       deskResearch.classList.add('bench-open');
       drWrappers.forEach(function(w) {
@@ -2503,6 +2547,7 @@
       benchNavL.style.pointerEvents = '';
       benchNavR.style.opacity = '';
       benchNavR.style.pointerEvents = '';
+      setBenchPulse(false);
       benchWrapper.classList.remove('bench-open');
       deskResearch.classList.remove('bench-open');
       drWrappers.forEach(function(w) { w.classList.remove('dr-inactive'); });
@@ -2530,6 +2575,7 @@
       e.stopPropagation();
       if (currentScreen !== 3) return;
       bench3Toggle = 1 - bench3Toggle;
+      setBenchPulse(true);
       benchScreen.classList.add('fading');
       setTimeout(function() {
         benchScreen.src = bench3Srcs[bench3Toggle];
