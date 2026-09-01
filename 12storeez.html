@@ -241,6 +241,15 @@
       color: #141414; letter-spacing: 0;
     }
 
+    /* ACCORDION (collapse/expand) */
+    .accordion-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 0.35s ease; }
+    .accordion-body.collapsed { grid-template-rows:0fr; }
+    .accordion-inner { min-height:0; min-width:0; }
+    .accordion-body.collapsed .accordion-inner { overflow:hidden; }
+    .accordion-toggle { cursor:pointer; user-select:none; }
+    .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
+    .accordion-chevron.rotated { transform:rotate(180deg); }
+
     /* BYLO-STALO COMPARISON SLIDER */
     .bylo-section { padding-bottom: 48px; }
     .bylo-wrapper {
@@ -1470,27 +1479,33 @@
 <section id="about">
   <div class="container">
 
-    <!-- Контекст -->
-    <div class="context-block reveal">
-      <div class="context-block__label">
-        Контекст
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <p class="context-block__text" style="white-space:nowrap;">
-        12 STOREEZ — российский премиум бренд лаконичной одежды, обуви<br>
-        и аксессуаров вне времени, с фокусом на натуральные материалы. У бренда<br>
-        есть несколько цифровых каналов в онлайне, но нам предстояла работа<br>
-        над приложением<br>
-        Помимо основной задачи брифа, заказчик задался глобальным вопросом<br>
-        «Зачем приложение бренду?»
-      </p>
+    <!-- Контекст (accordion toggle) -->
+    <div class="context-block__label accordion-toggle reveal" data-target="context-body">
+      Контекст
+      <svg class="accordion-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L12 15L18 9" stroke="#1e1e1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
 
-    <div style="height:96px;"></div>
+    <div class="accordion-body" id="context-body">
+      <div class="accordion-inner">
 
-    <!-- Было / Стало — comparison slider, Figma 1719:12101 / 1719:12102 -->
+        <!-- Текст контекста (правая колонка через grid) -->
+        <div class="context-block">
+          <div></div>
+          <p class="context-block__text" style="white-space:nowrap;">
+            12 STOREEZ — российский премиум бренд лаконичной одежды, обуви<br>
+            и аксессуаров вне времени, с фокусом на натуральные материалы. У бренда<br>
+            есть несколько цифровых каналов в онлайне, но нам предстояла работа<br>
+            над приложением<br>
+            Помимо основной задачи брифа, заказчик задался глобальным вопросом<br>
+            «Зачем приложение бренду?»
+          </p>
+        </div>
+
+        <div style="height:96px;"></div>
+
+        <!-- Было / Стало — comparison slider, Figma 1719:12101 / 1719:12102 -->
     <div class="bylo-section reveal">
       <div class="bylo-wrapper" id="byloWrapper">
         <!-- Layer стало (bottom) -->
@@ -1606,6 +1621,9 @@
         </div>
       </div>
     </div>
+
+      </div><!-- /accordion-inner -->
+    </div><!-- /accordion-body#context-body -->
 
   </div>
 </section>
@@ -3809,6 +3827,31 @@
       cols[active].classList.add('dp-block__col--active');
     }, 1500);
   })();
+
+  // Accordion toggle (collapse/expand sections)
+  document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var body = document.getElementById(this.dataset.target);
+      if (!body) return;
+      var inner = body.querySelector('.accordion-inner');
+      var isCollapsed = body.classList.contains('collapsed');
+      var chevron = this.querySelector('.accordion-chevron');
+      if (isCollapsed) {
+        inner.style.overflow = 'hidden';
+        body.classList.remove('collapsed');
+        body.addEventListener('transitionend', function onDone(e) {
+          if (e.propertyName === 'grid-template-rows') {
+            inner.style.overflow = '';
+            body.removeEventListener('transitionend', onDone);
+          }
+        });
+      } else {
+        inner.style.overflow = 'hidden';
+        body.classList.add('collapsed');
+      }
+      if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
+    });
+  });
 
 </script>
 
