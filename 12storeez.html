@@ -724,26 +724,19 @@
     .full-width-img--rounded { border-radius: 24px; }
     .cjm-expand-btn {
       position: absolute;
-      bottom: 8px;
-      right: 8px;
-      width: 24px;
-      height: 24px;
+      bottom: 5px;
+      right: 0;
+      width: 28px;
+      height: 28px;
       padding: 0;
       border: none;
-      border-radius: 1px;
-      background: rgba(210,210,210,0.30);
+      background: none;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease;
+      display: block;
+      transition: filter 0.15s ease;
     }
-    .cjm-expand-btn:hover { background: rgba(210,210,210,0.50); }
-    .cjm-expand-btn:focus {
-      background: rgba(210,210,210,0.30);
-      border: 1px solid #a5a5a4;
-      outline: none;
-    }
+    .cjm-expand-btn:hover { filter: brightness(0.88); }
+    .cjm-expand-btn:focus { outline: 1px solid #a5a5a4; outline-offset: 1px; }
     /* CJM Lightbox */
     #cjm-overlay {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -2221,7 +2214,7 @@
       <div style="position:relative;margin-left:-40px;width:calc(100% + 80px);">
         <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по фреймворку 5 LOK" style="border-radius:16px;width:100%;display:block;">
         <button class="cjm-expand-btn" aria-label="Развернуть">
-          <img src="assets/images/arrows-out-simple.svg" alt="" width="24" height="24" style="display:block;">
+          <img src="assets/images/arrows-out.svg" alt="" width="28" height="28" style="display:block;">
         </button>
       </div>
     </div>
