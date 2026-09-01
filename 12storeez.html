@@ -2473,9 +2473,16 @@
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Нечего надеть</span>
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«У меня много вещей с бирками. Наверное, не было ещё повода для них»</span>
       </div>
-      <!-- Телефон (1572:11164): 322×700px в x=439 y=97; PNG 1082×2192(3x)=361×731px(1x); left=439-19=420, top=97-18=79 -->
-      <div style="position:absolute;left:420px;top:79px;width:361px;height:731px;pointer-events:none;">
-        <img src="assets/images/nechego-nadet-phone.png" alt="" style="display:block;width:100%;height:100%;">
+      <!-- Телефон (1572:11164): 322×700px в x=439 y=97 -->
+      <!-- Собран из двух ассетов: Lock Screen (raw, 1.25x) + Bezel (raw, 3.75x) -->
+      <!-- Контейнер = Bezel bounds: left=439-19.22=420px, top=97-18.42=79px, 361×737px -->
+      <div style="position:absolute;left:420px;top:79px;width:361px;height:737px;pointer-events:none;">
+        <!-- Lock Screen: left=19px top=18px, 322×699px, border-radius=38.448px, overflow:hidden -->
+        <div style="position:absolute;left:19px;top:18px;width:322px;height:699px;border-radius:38.448px;overflow:hidden;background:#fff;">
+          <img src="assets/images/nechego-nadet-screen.png" alt="" style="display:block;width:100%;height:100%;object-fit:cover;">
+        </div>
+        <!-- Bezel (iPhone 17 Pro Silver Portrait, 3.75x) поверх экрана -->
+        <img src="assets/images/iphone17-bezel.png" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;">
       </div>
       <!-- вещи складываются в образы (1572:11174): x=929, y=326, w=152, #9b9b9b, text-right -->
       <p style="position:absolute;left:929px;top:326px;width:152px;text-align:right;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#9b9b9b;line-height:normal;margin:0;">вещи складываются<br>в образы</p>
