@@ -39,6 +39,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Gilroy', Arial, sans-serif; background: #fafafa; color: #1e1e1c; overflow-x: hidden; }
     :root {
+      --white: #fafafa;
       --black: #1e1e1c;
       --grey1: #d2d2d2;
       --grey2: #a5a5a4;
@@ -761,6 +762,9 @@
       transition: opacity 0.3s ease;
     }
     #cjm-close-btn.is-active { opacity: 1; pointer-events: auto; }
+    #cjm-close-btn img { transition: filter 0.2s ease; }
+    /* brightness(3.25): #141414 (rgb 20,20,20) × 3.25 = rgb(65,65,65) = #414141 */
+    #cjm-close-btn:hover img { filter: brightness(3.25); }
     #cjm-lightbox {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -770,17 +774,80 @@
     }
     #cjm-lightbox.is-active { opacity: 1; pointer-events: auto; }
     #cjm-lightbox-frame {
-      background: #fafafa;
       padding: 0;
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
       max-width: calc(100vw - 80px);
+      overflow: visible;
     }
-    #cjm-lightbox img {
-      max-width: 100%;
-      max-height: calc(100vh - 80px - 32px);
-      width: auto; height: auto;
-      border-radius: 0;
+    /* #cjm-img-wrap: фиксированный clip-контейнер.
+       Размеры (width/height) выставляются JS при открытии под scale=1.
+       Img внутри — position:absolute, растёт через JS-width при зуме;
+       overflow:hidden обрезает увеличенное изображение по границам wrap. */
+    #cjm-img-wrap {
+      background: var(--white);
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    #cjm-img-wrap img {
+      /* Абсолютное позиционирование + left:50% + translateX(-50%) центрирует
+         изображение в wrap при любом его размере — как при scale=1 (точное совпадение),
+         так и при scale>1 (overflow:hidden симметрично обрезает по краям).
+         width и transform выставляются JS; top:16px даёт 16px белой подложки сверху. */
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      height: auto;
+      display: block;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: width 0.25s ease, transform 0.25s ease;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+    #cjm-zoom-controls {
+      /* position: relative + z-index: 1 гарантируют, что кнопки всегда
+         рендерятся поверх масштабированного #cjm-img-wrap (у которого
+         появляется stacking context при наличии CSS transform). */
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 16px;
+      padding-bottom: 16px;
+      transition: opacity 0.2s ease;
+    }
+    /* При scale > 1 масштабированный контент визуально перекрывает панель кнопок.
+       Класс is-dimmed снижает видимость панели, не блокируя hover и клики. */
+    #cjm-zoom-controls.is-dimmed { opacity: 0.9; }
+    .cjm-zoom-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--white);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, opacity 0.15s ease;
+    }
+    /* Hover: rgba(200,200,200,0.3) over #fafafa → composited #ebebeb.
+       Используем твёрдый цвет, чтобы transition был чистым и не просвечивал
+       тёмный overlay лайтбокса сквозь полупрозрачный background. */
+    .cjm-zoom-btn:hover:not(:disabled) { background-color: #ebebeb; }
+    .cjm-zoom-btn:active:not(:disabled) { opacity: 0.45; }
+    .cjm-zoom-btn:disabled { opacity: 0.30; cursor: default; }
+    #cjm-zoom-controls img {
+      width: 24px;
+      height: 24px;
       display: block;
     }
 
@@ -2818,7 +2885,17 @@
 </button>
 <div id="cjm-lightbox">
   <div id="cjm-lightbox-frame">
-    <img src="assets/images/storeez-cjm.png" alt="CJM AS IS по 5 LOK">
+    <div id="cjm-img-wrap">
+      <img id="cjm-img" src="assets/images/storeez-cjm-sm.png" alt="CJM AS IS по 5 LOK">
+    </div>
+    <div id="cjm-zoom-controls">
+      <button class="cjm-zoom-btn" id="cjm-zoom-out-btn" aria-label="Zoom out" disabled>
+        <img src="assets/images/icon-zoom-out.svg" alt="">
+      </button>
+      <button class="cjm-zoom-btn" id="cjm-zoom-in-btn" aria-label="Zoom in">
+        <img src="assets/images/icon-zoom-in.svg" alt="">
+      </button>
+    </div>
   </div>
 </div>
 
@@ -3533,13 +3610,211 @@
 
   // CJM Lightbox
   (function() {
-    var overlay  = document.getElementById('cjm-overlay');
-    var closeBtn = document.getElementById('cjm-close-btn');
-    var lightbox = document.getElementById('cjm-lightbox');
-    var expandBtn = document.querySelector('.cjm-expand-btn');
+    var overlay      = document.getElementById('cjm-overlay');
+    var closeBtn     = document.getElementById('cjm-close-btn');
+    var lightbox     = document.getElementById('cjm-lightbox');
+    var expandBtn    = document.querySelector('.cjm-expand-btn');
+    var cjmWrap      = document.getElementById('cjm-img-wrap');
+    var cjmImg       = document.getElementById('cjm-img');
+    var zoomControls = document.getElementById('cjm-zoom-controls');
+    var zoomOutBtn   = document.getElementById('cjm-zoom-out-btn');
+    var zoomInBtn    = document.getElementById('cjm-zoom-in-btn');
     var savedScrollY = 0;
     var isOpen = false;
 
+    var MIN_SCALE = 1.0;
+    var MAX_SCALE = 3.0;
+    var ZOOM_STEP = 0.25;
+    var currentScale = 1.0;
+
+    // Base display dimensions at scale=1 (set once on open from viewport size)
+    var baseDisplayW = 0;
+    var baseDisplayH = 0;
+
+    // ── Resolution tiers ─────────────────────────────────────────────────────
+    // Ключ: JS устанавливает img.style.width = baseDisplayW * currentScale,
+    // заставляя браузер растеризовать изображение ровно в CSS-пикселях зума × dpr.
+    // Каждый тир подбирается так, чтобы натуральная ширина ≥ CSS-ширина при зуме × dpr:
+    //   sm (3000 px) — scale 1.00–1.24 (3000 ÷ (1432 × 2dpr × 1.25) ≈ 1.05)
+    //   md (7000 px) — scale 1.25–2.24 (7000 ÷ (1432 × 2dpr × 2.25) ≈ 1.09)
+    //   lg (18922px) — scale 2.25–3.00 (18922 ÷ (1432 × 2dpr × 3.00) ≈ 2.20)
+    var CJM_SRC = {
+      sm: 'assets/images/storeez-cjm-sm.png',
+      md: 'assets/images/storeez-cjm-md.png',
+      lg: 'assets/images/storeez-cjm.png'
+    };
+    var loadedTiers = { sm: false, md: false, lg: false };
+    var currentTier = '';
+
+    function tierForScale(s) {
+      if (s >= 2.25) return 'lg';
+      if (s >= 1.25) return 'md';
+      return 'sm';
+    }
+
+    function preloadTier(tier) {
+      if (loadedTiers[tier]) return;
+      var tmp = new Image();
+      tmp.onload = function() { loadedTiers[tier] = true; };
+      tmp.src = CJM_SRC[tier];
+    }
+
+    function switchSrc(scale) {
+      var tier = tierForScale(scale);
+      if (tier === currentTier) return;
+      var src = CJM_SRC[tier];
+      if (loadedTiers[tier]) {
+        cjmImg.src = src;
+        currentTier = tier;
+      } else {
+        // Preload then swap — only apply if user is still at this tier
+        (function(t, s) {
+          var tmp = new Image();
+          tmp.onload = function() {
+            loadedTiers[t] = true;
+            if (tierForScale(currentScale) === t) {
+              cjmImg.src = s;
+              currentTier = t;
+            }
+          };
+          tmp.src = s;
+        })(tier, src);
+      }
+    }
+
+    // ── Drag state ───────────────────────────────────────────────────────────
+    var dragX = 0, dragY = 0;
+    var isDragging = false;
+    var dragStartX = 0, dragStartY = 0, dragStartOffX = 0, dragStartOffY = 0;
+
+    // Clamp pan offsets within the visible image bounds.
+    // img top = 16px inside wrap (white border); at scale s img height = s × baseDisplayH.
+    // maxY = amount img can move up before its bottom aligns with wrap bottom.
+    function clampDrag() {
+      var maxX = baseDisplayW * (currentScale - 1) / 2;
+      var maxY = Math.max(0, baseDisplayH * (currentScale - 1) - 16);
+      dragX = Math.max(-maxX, Math.min(maxX, dragX));
+      dragY = Math.max(-maxY, Math.min(0,    dragY));
+    }
+
+    // img transform: center horizontally (left:50% + translateX(-50%)) + pan offset.
+    function applyTransform() {
+      cjmImg.style.transform =
+        'translateX(calc(-50% + ' + Math.round(dragX) + 'px))' +
+        ' translateY(' + Math.round(dragY) + 'px)';
+    }
+
+    function updateZoom() {
+      clampDrag();
+      // Force browser re-rasterization at zoom resolution × dpr (no GPU upscale)
+      cjmImg.style.width = Math.round(baseDisplayW * currentScale) + 'px';
+      applyTransform();
+      switchSrc(currentScale);
+      // Proactive preload of next tier
+      if (currentScale >= 1.0) preloadTier('md');
+      if (currentScale >= 1.5) preloadTier('lg');
+      cjmWrap.style.cursor = currentScale > 1.0 ? (isDragging ? 'grabbing' : 'grab') : '';
+      zoomOutBtn.disabled = currentScale <= MIN_SCALE;
+      zoomInBtn.disabled  = currentScale >= MAX_SCALE;
+      zoomControls.classList.toggle('is-dimmed', currentScale > MIN_SCALE);
+    }
+
+    function resetZoom() {
+      currentScale = 1.0;
+      dragX = 0;
+      dragY = 0;
+      isDragging = false;
+      cjmImg.style.transition = '';   // restore CSS transitions
+      if (baseDisplayW > 0) {
+        cjmImg.style.width = baseDisplayW + 'px';
+      }
+      applyTransform();
+      cjmWrap.style.cursor = '';
+      zoomOutBtn.disabled = true;
+      zoomInBtn.disabled  = false;
+      zoomControls.classList.remove('is-dimmed');
+    }
+
+    zoomInBtn.addEventListener('click', function() {
+      if (currentScale < MAX_SCALE) {
+        currentScale = Math.min(MAX_SCALE, Math.round((currentScale + ZOOM_STEP) * 100) / 100);
+        updateZoom();
+      }
+    });
+
+    zoomOutBtn.addEventListener('click', function() {
+      if (currentScale > MIN_SCALE) {
+        currentScale = Math.max(MIN_SCALE, Math.round((currentScale - ZOOM_STEP) * 100) / 100);
+        updateZoom();
+      }
+    });
+
+    // Pinch-to-zoom via trackpad wheel events.
+    lightbox.addEventListener('wheel', function(e) {
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      cjmImg.style.transition = 'none';   // no lag during continuous pinch
+      var delta = -e.deltaY * 0.005;
+      currentScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE,
+        Math.round((currentScale + delta) * 100) / 100));
+      updateZoom();
+    }, { passive: false });
+
+    // ── Mouse drag ───────────────────────────────────────────────────────────
+    cjmWrap.addEventListener('mousedown', function(e) {
+      if (currentScale <= 1.0) return;
+      e.preventDefault();
+      isDragging    = true;
+      cjmImg.style.transition = 'none';   // no CSS delay during drag
+      dragStartX    = e.clientX;
+      dragStartY    = e.clientY;
+      dragStartOffX = dragX;
+      dragStartOffY = dragY;
+      cjmWrap.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      dragX = dragStartOffX + (e.clientX - dragStartX);
+      dragY = dragStartOffY + (e.clientY - dragStartY);
+      clampDrag();
+      applyTransform();
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      cjmImg.style.transition = '';
+      cjmWrap.style.cursor = currentScale > 1.0 ? 'grab' : '';
+    });
+
+    // ── Touch drag ───────────────────────────────────────────────────────────
+    cjmWrap.addEventListener('touchstart', function(e) {
+      if (currentScale <= 1.0 || e.touches.length !== 1) return;
+      e.preventDefault();
+      isDragging    = true;
+      cjmImg.style.transition = 'none';
+      dragStartX    = e.touches[0].clientX;
+      dragStartY    = e.touches[0].clientY;
+      dragStartOffX = dragX;
+      dragStartOffY = dragY;
+    }, { passive: false });
+
+    cjmWrap.addEventListener('touchmove', function(e) {
+      if (!isDragging || e.touches.length !== 1) return;
+      e.preventDefault();
+      dragX = dragStartOffX + (e.touches[0].clientX - dragStartX);
+      dragY = dragStartOffY + (e.touches[0].clientY - dragStartY);
+      clampDrag();
+      applyTransform();
+    }, { passive: false });
+
+    cjmWrap.addEventListener('touchend', function() {
+      isDragging = false;
+      cjmImg.style.transition = '';
+    });
+
+    // ── Scroll lock ──────────────────────────────────────────────────────────
     function lockScroll() {
       savedScrollY = window.scrollY;
       document.body.style.position = 'fixed';
@@ -3557,17 +3832,52 @@
       window.scrollTo(0, savedScrollY);
     }
 
+    // Compute display dimensions from viewport + image aspect ratio (no DOM layout needed).
+    // 80px = close btn area; 80px = controls (48px btn + margins/padding); 32px = wrap white border.
+    function initBaseSize() {
+      var maxW    = window.innerWidth - 80;
+      var maxH    = window.innerHeight - 80 - 80 - 32;
+      var ratio   = (cjmImg.naturalWidth  || 3000) / (cjmImg.naturalHeight || 919);
+      baseDisplayW = Math.round(Math.min(maxW, maxH * ratio));
+      baseDisplayH = Math.round(baseDisplayW / ratio);
+      // Fix wrap as clip window
+      cjmWrap.style.width  = baseDisplayW + 'px';
+      cjmWrap.style.height = (baseDisplayH + 32) + 'px';
+      // Initial image position (centered, scale=1)
+      cjmImg.style.width = baseDisplayW + 'px';
+      applyTransform();
+    }
+
     function openCjm() {
       isOpen = true;
       lockScroll();
+      // Mark sm tier loaded if img already decoded
+      if (cjmImg.complete && cjmImg.naturalWidth > 0) {
+        loadedTiers.sm = true;
+        currentTier = 'sm';
+      } else {
+        cjmImg.addEventListener('load', function onSmLoad() {
+          loadedTiers.sm = true;
+          currentTier = 'sm';
+          cjmImg.removeEventListener('load', onSmLoad);
+        });
+      }
+      // Size the wrap without animation, then re-enable transitions
+      cjmImg.style.transition = 'none';
+      initBaseSize();
       lightbox.classList.add('is-active');
       overlay.classList.add('is-active');
       closeBtn.classList.add('is-active');
+      requestAnimationFrame(function() {
+        cjmImg.style.transition = '';
+        preloadTier('md');   // start fetching mid-res in background
+      });
     }
 
     function closeCjm() {
       if (!isOpen) return;
       isOpen = false;
+      resetZoom();
       unlockScroll();
       lightbox.classList.remove('is-active');
       overlay.classList.remove('is-active');
