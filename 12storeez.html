@@ -2620,39 +2620,39 @@
             <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.21px;top:-18.41px;width:360.172px;height:736.351px;max-width:none;display:block;">
           </div>
         </div>
-        <!-- Image section (1927:24958): left=-20, top=77, width=262 — renders above Lock Screen, below Bezel -->
-        <div style="position:absolute;left:-20px;top:77px;width:262px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
-          <!-- Photo: 262×454px -->
-          <div style="position:relative;width:262px;height:454px;border-radius:8px;overflow:hidden;flex-shrink:0;">
-            <img src="assets/images/storeez-ugc1-photo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;display:block;pointer-events:none;">
-          </div>
-          <!-- Username -->
-          <p style="margin:0;font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#141414;letter-spacing:-0.16px;line-height:normal;flex-shrink:0;">@happyheadache</p>
-          <!-- Detail icon 1: absolute at left=175.81, top=267.81 within Image section -->
-          <div style="position:absolute;left:175.81px;top:267.81px;width:24px;height:24px;">
-            <img src="assets/images/storeez-ugc1-detail-icon.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;">
-          </div>
-          <!-- Detail icon 2: absolute at left=98, top=312 within Image section -->
-          <div style="position:absolute;left:98px;top:312px;width:24px;height:24px;">
-            <img src="assets/images/storeez-ugc1-detail-icon2.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;">
-          </div>
-          <!-- Product tooltip: absolute at left=12, top=370, 238×72px -->
-          <div style="position:absolute;left:12px;top:370px;width:238px;height:72px;background:rgba(0,0,0,0.31);border-radius:8px;padding:2px 8px 2px 2px;box-sizing:border-box;display:flex;align-items:flex-start;">
-            <div style="display:flex;gap:8px;align-items:center;">
-              <div style="width:59px;height:68px;border-radius:6px;overflow:hidden;flex-shrink:0;">
-                <img src="assets/images/storeez-ugc1-product.png" alt="" style="width:100%;height:100%;object-fit:cover;max-width:none;display:block;">
-              </div>
+      </div>
+      <!-- Image section (1927:24958): вынесена наружу UGC-контейнера; координаты в секции: x=102+(-20)=82, y=97+77=174; z-index:2 — поверх Bezel (z-index:1) -->
+      <div style="position:absolute;left:82px;top:174px;width:262px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+        <!-- Photo: 262×454px -->
+        <div style="position:relative;width:262px;height:454px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+          <img src="assets/images/storeez-ugc1-photo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;display:block;pointer-events:none;">
+        </div>
+        <!-- Username -->
+        <p style="margin:0;font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#141414;letter-spacing:-0.16px;line-height:normal;flex-shrink:0;opacity:0;">@happyheadache</p>
+        <!-- Detail icon 1: absolute at left=175.81, top=267.81 within Image section -->
+        <div style="position:absolute;left:175.81px;top:267.81px;width:24px;height:24px;">
+          <img src="assets/images/storeez-ugc1-detail-icon.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;">
+        </div>
+        <!-- Detail icon 2: absolute at left=98, top=312 within Image section -->
+        <div style="position:absolute;left:98px;top:312px;width:24px;height:24px;">
+          <img src="assets/images/storeez-ugc1-detail-icon2.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;">
+        </div>
+        <!-- Product tooltip: absolute at left=12, top=370, 238×72px -->
+        <div style="position:absolute;left:12px;top:370px;width:238px;height:72px;background:rgba(0,0,0,0.31);border-radius:8px;padding:2px 8px 2px 2px;box-sizing:border-box;display:flex;align-items:flex-start;">
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div style="width:59px;height:68px;border-radius:6px;overflow:hidden;flex-shrink:0;">
+              <img src="assets/images/storeez-ugc1-product.png" alt="" style="width:100%;height:100%;object-fit:cover;max-width:none;display:block;">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
               <div style="display:flex;flex-direction:column;gap:4px;">
-                <div style="display:flex;flex-direction:column;gap:4px;">
-                  <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#fff;letter-spacing:-0.12px;line-height:14px;white-space:nowrap;">Сумка Rio</span>
-                  <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#fff;letter-spacing:-0.11px;line-height:14px;">120 000 ₽</span>
+                <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#fff;letter-spacing:-0.12px;line-height:14px;white-space:nowrap;">Сумка Rio</span>
+                <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#fff;letter-spacing:-0.11px;line-height:14px;">120 000 ₽</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.31);display:flex;gap:4px;align-items:center;padding:4px 6px;border-radius:5px;">
+                <div style="width:14px;height:14px;flex-shrink:0;">
+                  <img src="assets/images/storeez-ugc1-heart-icon.svg" alt="" style="width:100%;height:100%;max-width:none;display:block;">
                 </div>
-                <div style="background:rgba(255,255,255,0.31);display:flex;gap:4px;align-items:center;padding:4px 6px;border-radius:5px;">
-                  <div style="width:14px;height:14px;flex-shrink:0;">
-                    <img src="assets/images/storeez-ugc1-heart-icon.svg" alt="" style="width:100%;height:100%;max-width:none;display:block;">
-                  </div>
-                  <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#fff;letter-spacing:-0.11px;text-transform:uppercase;white-space:nowrap;">В ИЗБРАННОЕ</span>
-                </div>
+                <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#fff;letter-spacing:-0.11px;text-transform:uppercase;white-space:nowrap;">В ИЗБРАННОЕ</span>
               </div>
             </div>
           </div>
