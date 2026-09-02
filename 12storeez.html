@@ -259,6 +259,7 @@
     }
     .bylo-layer {
       position: absolute; top: 0; left: 0; width: 100%; height: 700px;
+      transition: opacity 0.25s;
     }
     .bylo-layer--stalo { z-index: 1; }
     .bylo-layer--bylo { z-index: 2; clip-path: inset(0 50% 0 0); }
@@ -272,6 +273,7 @@
       font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
       font-size: 16px; font-weight: 500; line-height: normal;
       color: #141414; white-space: nowrap;
+      opacity: 0; transition: opacity 0.25s;
     }
     .bylo-annotation p { margin: 0 0 24px; }
     .bylo-annotation--left { left: 166px; }
@@ -309,8 +311,8 @@
       font-size: 16px; font-weight: 500; line-height: normal;
       white-space: nowrap; transition: color 0.2s;
     }
-    .bylo-label--bylo { left: 300px; transform: translateX(-50%); color: #141414; }
-    .bylo-label--stalo { left: 900px; transform: translateX(-50%); color: #c8c8c8; }
+    .bylo-label--bylo { left: 300px; transform: translateX(-50%); color: #c8c8c8; }
+    .bylo-label--stalo { left: 900px; transform: translateX(-50%); color: #141414; }
 
     /* TEXT FRAME — Figma 1744:13468 */
     .text-frame {
@@ -1509,7 +1511,7 @@
     <div class="bylo-section reveal">
       <div class="bylo-wrapper" id="byloWrapper">
         <!-- Layer стало (bottom) -->
-        <div class="bylo-layer bylo-layer--stalo">
+        <div class="bylo-layer bylo-layer--stalo" id="staloLayer">
           <img class="bylo-phone bylo-phone--right" src="assets/images/storeez-stalo-phone.png" alt="Новый дизайн">
           <div class="bylo-annotation bylo-annotation--left">
             <p>Персонализированная главная</p>
@@ -1518,7 +1520,14 @@
         </div>
         <!-- Layer было (top, clipped) -->
         <div class="bylo-layer bylo-layer--bylo" id="byloLayer">
-          <img class="bylo-phone bylo-phone--left" src="assets/images/storeez-bylo-phone.png" alt="Старый дизайн">
+          <div class="bylo-phone bylo-phone--left" style="width:322px;">
+            <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
+              <video src="assets/images/storeez-screen1-bylo.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+            </div>
+            <div style="position:absolute;left:0;top:0;width:322px;height:700px;z-index:1;pointer-events:none;">
+              <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.2px;top:-18.4px;width:360px;height:736px;max-width:none;display:block;">
+            </div>
+          </div>
           <div class="bylo-annotation bylo-annotation--right">
             <p>Низкая глубина просмотра</p>
             <p>Низкая конверсия</p>
@@ -3582,23 +3591,54 @@
 
   /* BYLO-STALO SLIDER */
   (function() {
-    var wrapper = document.getElementById('byloWrapper');
-    var layer   = document.getElementById('byloLayer');
-    var handle  = document.getElementById('byloHandle');
-    var lblBilo = document.getElementById('byloLabelBilo');
-    var lblStalo= document.getElementById('byloLabelStalo');
+    var wrapper     = document.getElementById('byloWrapper');
+    var byloLayer   = document.getElementById('byloLayer');
+    var staloLayer  = document.getElementById('staloLayer');
+    var handle      = document.getElementById('byloHandle');
+    var lblBilo     = document.getElementById('byloLabelBilo');
+    var lblStalo    = document.getElementById('byloLabelStalo');
     if (!wrapper) return;
 
+    var annRight = wrapper.querySelector('.bylo-annotation--right'); // было-текст (правый)
+    var annLeft  = wrapper.querySelector('.bylo-annotation--left');  // стало-текст (левый)
+
     var dragging = false, rect;
+    var BYLO_ZONE  = 35; // pct < этого → зона "Было"
+    var STALO_ZONE = 65; // pct > этого → зона "Стало"
 
     function setPos(clientX) {
       rect = rect || wrapper.getBoundingClientRect();
       var pct = Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
-      layer.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
-      handle.style.left    = pct + '%';
-      var bilo = pct >= 50;
-      lblBilo.style.color  = bilo ? '#141414' : '#c8c8c8';
-      lblStalo.style.color = bilo ? '#c8c8c8' : '#141414';
+      handle.style.left = pct + '%';
+
+      if (pct < BYLO_ZONE) {
+        // Зона "Было": было-телефон + было-текст справа
+        byloLayer.style.clipPath = 'inset(0 0% 0 0)';
+        staloLayer.style.opacity = '0';
+        staloLayer.style.pointerEvents = 'none';
+        annRight.style.opacity = '1'; // было-текст
+        annLeft.style.opacity  = '0';
+        lblBilo.style.color  = '#141414';
+        lblStalo.style.color = '#c8c8c8';
+      } else if (pct > STALO_ZONE) {
+        // Зона "Стало": стало-телефон + стало-текст слева
+        byloLayer.style.clipPath = 'inset(0 100% 0 0)';
+        staloLayer.style.opacity = '1';
+        staloLayer.style.pointerEvents = '';
+        annRight.style.opacity = '0';
+        annLeft.style.opacity  = '1'; // стало-текст
+        lblBilo.style.color  = '#c8c8c8';
+        lblStalo.style.color = '#141414';
+      } else {
+        // Дефолт: оба телефона рядом, текст скрыт
+        byloLayer.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+        staloLayer.style.opacity = '1';
+        staloLayer.style.pointerEvents = '';
+        annRight.style.opacity = '0';
+        annLeft.style.opacity  = '0';
+        lblBilo.style.color  = '#c8c8c8';
+        lblStalo.style.color = '#141414';
+      }
     }
 
     wrapper.addEventListener('mousedown', function(e) {
