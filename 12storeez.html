@@ -2411,23 +2411,146 @@
 
     <!-- Не цепляет главная — Figma 1777:14496, 1200×806px -->
     <div class="reveal" style="position:relative;height:806px;margin-bottom:96px;">
-      <!-- Заголовок (1768:14028): y=0, h=36px -->
+      <!-- Заголовок (1768:14028): y=0 -->
       <div style="display:flex;align-items:baseline;">
         <span style="flex:0 0 50%;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;">Не цепляет главная</span>
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;">«Красивые кампейны! Но больше 2 раз не смотрю»</span>
       </div>
-      <!-- Notifications (1777:14256) 322×700px в Pain1 x=439 y=97 -->
-      <!-- PNG 2447×2183 (3x) = 816×728px (1x); overflow: ←297px аннотации, ↑18px безель -->
-      <!-- left=439-297=142, top=97-18=79 -->
-      <div style="position:absolute;left:142px;top:79px;width:816px;height:728px;pointer-events:none;">
-        <img src="assets/images/ne-tseplet-phone.png" alt="" style="display:block;width:100%;height:100%;">
+      <!-- Phone mockup (1881:9604): x=439, y=97, 322×700px -->
+      <div id="ne-tseplet-phone" style="position:absolute;left:439px;top:97px;width:322px;height:700px;">
+        <!-- Lock Screen (1881:9605): clips content, border-radius 38.448px all corners -->
+        <div style="position:absolute;inset:0 0 0.37px 0;overflow:hidden;border-radius:38.448px;">
+          <!-- Загрузка (1887:21954): bg white base, overflow clip -->
+          <div style="position:absolute;inset:0;background:#fff;overflow:hidden;">
+            <!-- Главная-2 1 (1899:22060): GIF fills full phone screen -->
+            <img src="assets/images/ne-tseplet-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+            <!-- Logo circle (1887:21956): 72.09×72.09px, center=(50%+0.4px, 50%-50.03px) -->
+            <div style="position:absolute;left:calc(50% + 0.4px);top:calc(50% - 50.03px);width:72.09px;height:72.09px;transform:translate(-50%,-50%);">
+              <img src="assets/images/ne-tseplet-logo-circle.svg" alt="" style="display:block;width:100%;height:100%;">
+            </div>
+            <!-- Logo text (1887:21957): 128.159×20.236px, center=(50%+0.8px, 50%+22.17px) -->
+            <div style="position:absolute;left:calc(50% + 0.8px);top:calc(50% + 22.17px);width:128.159px;height:20.236px;transform:translate(-50%,-50%);">
+              <img src="assets/images/ne-tseplet-logo-text.svg" alt="" style="display:block;width:100%;height:100%;">
+            </div>
+          </div>
+        </div>
+        <!-- Bezel (1881:9701): iPhone 17 Pro Silver Portrait, offset left=-19.22px top=-18.42px -->
+        <div style="position:absolute;left:0;top:0;width:322px;height:700.07px;z-index:1;pointer-events:none;">
+          <img src="assets/images/iphone17-bezel.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.915px;max-width:none;display:block;">
+        </div>
       </div>
-      <!-- AI-аватар (1777:14489): x=215, y=221.5 в Pain1 -->
-      <p style="position:absolute;left:215px;top:221px;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#bdbdbd;line-height:normal;margin:0;white-space:nowrap;">AI-аватар</p>
-      <!-- персонализация (1777:14488): x=1030, y=305 в Pain1 -->
-      <p style="position:absolute;left:1030px;top:305px;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#bdbdbd;line-height:normal;margin:0;white-space:nowrap;">персонализация</p>
-      <!-- повышение конверсии (1777:14490): x=41, y=428 в Pain1, w=86px, h=38px -->
-      <p style="position:absolute;left:41px;top:428px;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#bdbdbd;line-height:normal;margin:0;width:86px;">повышение конверсии</p>
+      <!-- AI-аватар: animated, appears at t=3.0s (injected below with #ne-tseplet-ai-caption) -->
+      <!-- персонализация (1777:14488): center-x=1091, y=305 -->
+      <p style="position:absolute;left:1091px;top:305px;transform:translateX(-50%);font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#bdbdbd;line-height:normal;margin:0;white-space:nowrap;">персонализация</p>
+      <!-- повышение конверсии (1777:14490): x=41, y=428 -->
+      <p style="position:absolute;left:41px;top:428px;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:rgba(19,19,19,0.28);line-height:normal;margin:0;width:86px;">повышение конверсии</p>
+      <!-- дополнительный слой навигации: animated (appears at t=6.84s) -->
+      <!-- понятный scroll вниз (1899:22195): text & arrow animated separately -->
+      <p id="ne-tseplet-scroll-text" style="position:absolute;left:809px;top:474px;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;white-space:nowrap;opacity:0;pointer-events:none;transition:color 0.25s;">понятный scroll вниз</p>
+      <div id="ne-tseplet-scroll-arrow" style="position:absolute;left:793px;top:474px;width:0;height:48px;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;">
+        <img src="assets/images/ne-tseplet-arrow9.svg" alt="" style="transform:rotate(90deg);width:48.5px;height:7.364px;display:block;flex-shrink:0;">
+      </div>
+      <!-- AI-аватар state (1903:22593): arrow separate from text for independent control -->
+      <div id="ne-tseplet-ai-arrow" style="position:absolute;left:282px;top:169px;width:113.447px;height:71.872px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;">
+        <img src="assets/images/ne-tseplet-arrow-ai.svg" alt="" style="transform:rotate(-8.99deg) scaleY(-1);width:107.894px;height:57px;display:block;">
+      </div>
+      <p id="ne-tseplet-ai-text" style="position:absolute;left:240.5px;top:231.5px;transform:translateX(-50%);font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;white-space:nowrap;text-align:center;opacity:0;pointer-events:none;transition:color 0.25s;">AI-аватар</p>
+      <!-- Персонализация state (1903:22596): arrow & text split for independent control -->
+      <div id="ne-tseplet-pers-arrow" style="position:absolute;left:978px;top:248px;width:113.447px;height:71.872px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;">
+        <img src="assets/images/ne-tseplet-arrow-pers.svg" alt="" style="transform:rotate(-171.01deg);width:107.894px;height:57px;display:block;">
+      </div>
+      <p id="ne-tseplet-pers-text" style="position:absolute;left:1091px;top:305px;transform:translateX(-50%);font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;white-space:nowrap;text-align:center;opacity:0;pointer-events:none;transition:color 0.25s;">персонализация</p>
+      <!-- Дополнительный слой навигации (1903:22594): arrow & text, appear at t=6.84–8.12s -->
+      <div id="ne-tseplet-nav-arrow" style="position:absolute;left:299.1px;top:551.97px;width:107.61px;height:118.672px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;">
+        <img src="assets/images/ne-tseplet-arrow8.svg" alt="" style="transform:rotate(-54deg) scaleY(-1);width:107.894px;height:57px;display:block;flex-shrink:0;">
+      </div>
+      <p id="ne-tseplet-nav-text" style="position:absolute;left:387px;top:648px;transform:translateX(-100%);font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;white-space:nowrap;text-align:right;opacity:0;pointer-events:none;transition:color 0.25s;">дополнительный слой навигации</p>
+      <script>
+      (function() {
+        var CYCLE_MS = 19500; // 585 frames × 33.33ms
+        var FADE     = 200;   // fade in/out duration ms
+
+        var scrollText = document.getElementById('ne-tseplet-scroll-text');
+        var scrollArr  = document.getElementById('ne-tseplet-scroll-arrow');
+        var aiArrow    = document.getElementById('ne-tseplet-ai-arrow');
+        var aiText     = document.getElementById('ne-tseplet-ai-text');
+        var persArr    = document.getElementById('ne-tseplet-pers-arrow');
+        var persText   = document.getElementById('ne-tseplet-pers-text');
+        var navArr     = document.getElementById('ne-tseplet-nav-arrow');
+        var navText    = document.getElementById('ne-tseplet-nav-text');
+        var phone      = document.getElementById('ne-tseplet-phone');
+        var startTime  = null;
+        var rafId      = null;
+
+        function fadeIn(t, t0) {
+          return t < t0 ? 0 : t < t0 + FADE ? (t - t0) / FADE : 1;
+        }
+        function fadeOut(t, t1) {
+          return t < t1 ? 1 : t < t1 + FADE ? (t1 + FADE - t) / FADE : 0;
+        }
+
+        function tick(now) {
+          if (startTime === null) startTime = now;
+          var t = (now - startTime) % CYCLE_MS;
+
+          // scroll text: fade in 1800ms, stays; #141414→#C8C8C8 at 2990ms
+          scrollText.style.opacity = fadeIn(t, 1800);
+          scrollText.style.color   = t >= 2990 ? '#C8C8C8' : '#141414';
+
+          // scroll arrow: fade in 1800ms, fade out 2790→2990ms
+          scrollArr.style.opacity = t < 1800 ? 0
+            : t < 1800 + FADE ? (t - 1800) / FADE
+            : fadeOut(t, 2790);
+
+          // AI arrow: fade in 3000ms, fade out 3580→3780ms
+          aiArrow.style.opacity = t < 3000 ? 0
+            : t < 3000 + FADE ? (t - 3000) / FADE
+            : fadeOut(t, 3580);
+
+          // AI text: fade in 3000ms, stays; #141414→#C8C8C8 at 3600ms
+          aiText.style.opacity = fadeIn(t, 3000);
+          aiText.style.color   = t >= 3600 ? '#C8C8C8' : '#141414';
+
+          // pers arrow: fade in 5580ms, fade out 6080→6280ms
+          persArr.style.opacity = t < 5580 ? 0
+            : t < 5580 + FADE ? (t - 5580) / FADE
+            : fadeOut(t, 6080);
+
+          // pers text: fade in 5580ms, stays; #141414→#C8C8C8 at 6280ms
+          persText.style.opacity = fadeIn(t, 5580);
+          persText.style.color   = t >= 6280 ? '#C8C8C8' : '#141414';
+
+          // nav arrow: fade in 6840ms, fade out starting 7920ms
+          navArr.style.opacity = t < 6840 ? 0
+            : t < 6840 + FADE ? (t - 6840) / FADE
+            : fadeOut(t, 7920);
+
+          // nav text: fade in 6840ms, stays; #141414→#C8C8C8 at 8120ms
+          navText.style.opacity = fadeIn(t, 6840);
+          navText.style.color   = t >= 8120 ? '#C8C8C8' : '#141414';
+
+          rafId = requestAnimationFrame(tick);
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              startTime = null;
+              if (!rafId) rafId = requestAnimationFrame(tick);
+            } else {
+              if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+              startTime = null;
+              [scrollText, scrollArr, aiArrow, aiText,
+               persArr, persText, navArr, navText].forEach(function(el) {
+                el.style.opacity = 0;
+              });
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(phone);
+      })();
+      </script>
     </div>
 
     <!-- Не знаю о полезных функциях — Figma 1777:14501, 1200×828px -->
@@ -2438,20 +2561,23 @@
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Ого! Даже не знаю о таком!»</span>
       </div>
 
-      <!-- Левый телефон (1816:10171): x=139, y=97, 324×700px — статичный скриншот "Сервисы" -->
-      <div style="position:absolute;left:139px;top:97px;width:324px;height:700px;">
-        <!-- Lock Screen: inset top=2px right=-3px bottom=-7px left=0, border-radius=38.491px -->
-        <div style="position:absolute;top:2px;right:-3px;bottom:-7px;left:0;overflow:hidden;border-radius:38.491px;">
-          <img src="assets/images/storeez-polezfunc-left.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <!-- Левый телефон (1816:10171 "Гардероб"): x=137, y=97, 322×700px -->
+      <div style="position:absolute;left:137px;top:97px;width:322px;height:700px;">
+        <!-- Lock Screen (1816:10172): inset top=2px right=-3px bottom=-6px left=0, border-radius=38.491px, overflow:hidden -->
+        <div style="position:absolute;top:2px;right:-3px;bottom:-6px;left:0;overflow:hidden;border-radius:38.491px;">
+          <!-- Сервисы 3 (1911:22600): x=1, y=0, 323×701px — анимированный GIF, центрирован -->
+          <div style="position:absolute;left:50%;top:0;width:323px;height:701px;transform:translateX(-50%);">
+            <img src="assets/images/storeez-servisy.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;">
+          </div>
         </div>
-        <!-- iPhone 17 Pro bezel: left=1px top=2px, image offset left=-19.25 top=-18.44 -->
+        <!-- Bezel (1816:10250): left=1px top=2px, w=324px h=704px, image offset left=-19.25 top=-18.44 -->
         <div style="position:absolute;left:1px;top:2px;width:324px;height:704px;z-index:1;pointer-events:none;">
           <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.25px;top:-18.44px;width:360.853px;height:737.743px;max-width:none;display:block;">
         </div>
       </div>
 
-      <!-- Правый телефон (1816:10435): x=739, y=97, 322×700px — Сервисы экран -->
-      <div style="position:absolute;left:739px;top:97px;width:322px;height:700px;">
+      <!-- Правый телефон (1816:10435): x=739, y=100, 322×700px — Сервисы экран -->
+      <div style="position:absolute;left:739px;top:100px;width:322px;height:700px;">
         <!-- Lock Screen: inset top=0 right=0 bottom=0.93px left=0, border-radius=38.448px -->
         <div style="position:absolute;top:0;right:0;bottom:0.93px;left:0;overflow:hidden;border-radius:38.448px;">
           <img src="assets/images/storeez-polezfunc-right.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
@@ -2481,12 +2607,17 @@
           <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.915px;max-width:none;display:block;">
         </div>
       </div>
-      <!-- Правый телефон — Figma 1569:8670 -->
-      <div style="position:absolute;left:739px;top:99px;width:322px;height:700px;">
+      <!-- Правый телефон (1569:8670 "UGC контент"): x=739, y=97, 322×700px -->
+      <div style="position:absolute;left:739px;top:97px;width:322px;height:700px;">
+        <!-- Lock Screen (1569:8671): inset 0 0.25px 0.47px 0, border-radius:38.418px -->
         <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
-          <img src="assets/images/storeez-pain3-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <!-- Мой-гардероб 1 (1903:22590): 322×700px -->
+          <img src="assets/images/storeez-ugc-screen-opt.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;">
         </div>
-        <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.21px;top:-18.41px;width:360.172px;height:auto;z-index:1;pointer-events:none;display:block;">
+        <!-- Bezel (1569:8679): left=0 top=0 321.753×699.533px -->
+        <div style="position:absolute;left:0;top:0;width:321.753px;height:699.533px;z-index:1;pointer-events:none;">
+          <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.21px;top:-18.41px;width:360.172px;height:736.351px;max-width:none;display:block;">
+        </div>
       </div>
     </div>
 
