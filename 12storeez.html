@@ -1448,7 +1448,7 @@
 <div class="cover">
   <div class="cover-phone">
     <div class="cover-screen">
-      <img class="cover-gif" src="assets/images/storeez-app-hero.gif" alt="">
+      <video class="cover-gif" src="assets/images/storeez-app-hero.mp4" autoplay loop muted playsinline></video>
     </div>
     <img class="cover-phone-frame" src="assets/images/storeez-iphone17-frame.png" alt="">
   </div>
@@ -1823,7 +1823,7 @@
         <!-- Expanded benchmarks -->
         <div class="bench-expanded">
           <div class="bench-phone" id="bench-phone">
-            <img class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw2.gif" alt="">
+            <video class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw2.mp4" autoplay loop muted playsinline></video>
             <img class="bench-phone-bezel" src="assets/images/benchmarks/b1-raw3.png" alt="">
             <div class="bench-pulse" id="bench-pulse">
               <div class="bench-pulse__core"></div>
@@ -1904,7 +1904,7 @@
             <!-- Center phone "Цвет сумки": x=439, y=21, 322×700 -->
             <div id="trends-phone" style="position:absolute;left:439px;top:21px;width:322px;height:700px;cursor:pointer;">
               <div style="position:absolute;inset:0 0 0.28px 0;overflow:hidden;border-radius:38.47px;background:#fafafa;">
-                <img id="trends-phone-screen" class="trends-phone-screen" src="assets/images/trends/t1-coach-bag.gif" alt="">
+                <video id="trends-phone-screen" class="trends-phone-screen" src="assets/images/trends/t1-coach-bag.mp4" autoplay loop muted playsinline></video>
               </div>
               <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.23px;top:-18.43px;width:360.64px;height:737.32px;max-width:none;display:block;z-index:1;pointer-events:none;">
               <div class="trends-pulse" id="trends-pulse">
@@ -1984,7 +1984,7 @@
                 <!-- Lamoda landscape screen (state 0) -->
                 <img id="t3-screen-lamoda" src="assets/images/trends/t3-lamoda-screen.png" alt="" style="position:absolute;width:1225px;height:735px;left:-761px;top:-16px;max-width:none;display:block;transition:opacity 0.25s ease;z-index:1;">
                 <!-- ChatGPT portrait screen (state 1) -->
-                <img id="t3-screen-chatgpt" src="assets/images/trends/t3-chatgpt-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 0.25s ease;z-index:2;">
+                <video id="t3-screen-chatgpt" src="assets/images/trends/t3-chatgpt-screen.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 0.25s ease;z-index:2;"></video>
               </div>
               <!-- iPhone bezel overlay for ChatGPT state -->
               <img id="t3-bezel" src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.916px;max-width:none;display:block;z-index:3;pointer-events:none;opacity:0;transition:opacity 0.25s ease;">
@@ -2010,7 +2010,7 @@
             <!-- Phone area: Ekonika (variant 0) and Alo (variant 1) -->
             <div id="ugc4-phone" style="position:absolute;left:439px;top:16px;width:323.605px;height:703.841px;cursor:pointer;">
               <div style="position:absolute;inset:0;overflow:hidden;border-radius:47.16px;background:#fefefe;">
-                <img id="ugc4-screen" class="ugc4-img" src="assets/images/trends/t2-ekonika-screen.gif" alt="" style="position:absolute;left:0;top:0;width:325.63px;height:703.84px;max-width:none;object-fit:cover;display:block;">
+                <video id="ugc4-screen" class="ugc4-img" src="assets/images/trends/t2-ekonika-screen.mp4" autoplay loop muted playsinline style="position:absolute;left:0;top:0;width:325.63px;height:703.84px;max-width:none;object-fit:cover;display:block;"></video>
               </div>
               <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.32px;top:-18.51px;width:362.24px;height:740.59px;max-width:none;display:block;z-index:1;pointer-events:none;">
               <div class="ugc4-pulse" id="ugc4-pulse-phone">
@@ -2257,22 +2257,26 @@
         <!-- Заголовок: Oswald 74px, x=731, y=36 -->
         <p class="mindsets-expanded-panel__title">Прагматик</p>
         <!-- Insight 1: x=30, y=68 — "Продумывает покупки и сочетаемость" -->
-        <div class="mindsets-expanded-insight" style="left:30px;top:68px;">
+        <div style="position:absolute;left:30px;top:68px;">
           <div class="mindsets-expanded-insight__line" style="left:292px;top:54px;width:111.6px;height:17.7px;">
             <img src="assets/images/mindsets-line-left.svg" style="transform:rotate(171deg);flex:none;display:block;">
           </div>
-          <p class="mindsets-expanded-insight__text">Продумывает покупки и сочетаемость</p>
+          <div class="mindsets-expanded-insight" style="left:0;top:0;">
+            <p class="mindsets-expanded-insight__text">Продумывает покупки и сочетаемость</p>
+          </div>
         </div>
         <!-- Insight 2: x=30, y=341 — "Не любит ходить по шоппинг центрам" -->
         <div class="mindsets-expanded-insight" style="left:30px;top:341px;">
           <p class="mindsets-expanded-insight__text">Не любит ходить по шоппинг центрам</p>
         </div>
         <!-- Insight 3: x=756, y=187 — "Знает свои параметры и как сядет вещь" -->
-        <div class="mindsets-expanded-insight" style="left:756px;top:187px;">
+        <div style="position:absolute;left:756px;top:187px;">
           <div class="mindsets-expanded-insight__line" style="left:-107.78px;top:25.67px;width:127.8px;height:46.5px;">
             <img src="assets/images/mindsets-line-right.svg" style="transform:rotate(20deg);flex:none;display:block;">
           </div>
-          <p class="mindsets-expanded-insight__text">Знает свои параметры и как сядет вещь</p>
+          <div class="mindsets-expanded-insight" style="left:0;top:0;">
+            <p class="mindsets-expanded-insight__text">Знает свои параметры и как сядет вещь</p>
+          </div>
         </div>
       </div>
 
@@ -2290,7 +2294,7 @@
         </div>
         <!-- Insight 2: x=30, y=359, 294×127 — "Может быть рациональным или импульсивным" (текст от bottom) -->
         <div class="mindsets-expanded-insight" style="left:30px;top:359px;">
-          <p class="mindsets-expanded-insight__text" style="bottom:11.5px;left:18.5px;">Может быть рациональным или импульсивным</p>
+          <p class="mindsets-expanded-insight__text" style="bottom:11.5px;left:18.5px;width:291px;">Может быть<br>рациональным<br>или импульсивным</p>
         </div>
         <!-- Insight 3: x=756, y=359, 294×127 — "Не так важен клиентский сервис" (текст от bottom) -->
         <div class="mindsets-expanded-insight" style="left:756px;top:359px;">
@@ -2307,7 +2311,7 @@
         <!-- Заголовок: Oswald 74px, left=729, top=36, w=321 -->
         <p class="mindsets-expanded-panel__title" style="left:729px;width:321px;">Ревизорро</p>
         <!-- Insight 1: x=30, y=68, 287×92 — "Долго присматривается" + два коннектора -->
-        <div class="mindsets-expanded-insight" style="left:30px;top:68px;width:287px;height:92px;">
+        <div style="position:absolute;left:30px;top:68px;">
           <!-- Line 143: почти горизонтальная, идёт вправо к фото -->
           <div class="mindsets-expanded-insight__line" style="left:283px;top:45px;width:142px;height:1.5px;">
             <img src="assets/images/mindsets-reviz-line-right.svg" style="transform:rotate(-0.54deg);flex:none;display:block;">
@@ -2316,7 +2320,9 @@
           <div class="mindsets-expanded-insight__line" style="left:645.92px;top:179.96px;width:89px;height:46px;">
             <img src="assets/images/mindsets-reviz-line-diag.svg" style="transform:rotate(-152.61deg);flex:none;display:block;">
           </div>
-          <p class="mindsets-expanded-insight__text" style="top:10px;bottom:auto;">Долго присматривается</p>
+          <div class="mindsets-expanded-insight" style="left:0;top:0;width:287px;height:92px;">
+            <p class="mindsets-expanded-insight__text" style="top:10px;bottom:auto;">Долго присматривается</p>
+          </div>
         </div>
         <!-- Insight 2: x=30, y=356, 287×92 — "Не любит консультантов" -->
         <div class="mindsets-expanded-insight" style="left:30px;top:356px;width:287px;height:92px;">
@@ -2337,22 +2343,26 @@
         <!-- Заголовок: Oswald 76.5px, left=637, top=36, w=413 -->
         <p class="mindsets-expanded-panel__title" style="left:637px;font-size:76.5px;letter-spacing:-1.53px;width:413px;">Искушённый</p>
         <!-- Insight 1: x=30, y=144, 294×127 — "Любит клиентский сервис" (текст от top) -->
-        <div class="mindsets-expanded-insight" style="left:30px;top:144px;">
+        <div style="position:absolute;left:30px;top:144px;">
           <div class="mindsets-expanded-insight__line" style="left:292px;top:47px;width:125.8px;height:17.7px;">
             <img src="assets/images/mindsets-iskush-line-right.svg" style="transform:rotate(-8deg);flex:none;display:block;">
           </div>
-          <p class="mindsets-expanded-insight__text" style="top:9px;bottom:auto;">Любит клиентский сервис</p>
+          <div class="mindsets-expanded-insight" style="left:0;top:0;">
+            <p class="mindsets-expanded-insight__text" style="top:9px;bottom:auto;">Любит клиентский сервис</p>
+          </div>
         </div>
         <!-- Insight 2: x=30, y=376, 294×127 — "Любит спонтанно приходить в магазин" (текст от top) -->
         <div class="mindsets-expanded-insight" style="left:30px;top:376px;">
           <p class="mindsets-expanded-insight__text" style="top:9px;bottom:auto;">Любит спонтанно приходить в магазин</p>
         </div>
         <!-- Insight 3: x=756, y=144, 294×127 — "Онлайн воспринимает как витрину" (коннектор слева, текст от bottom) -->
-        <div class="mindsets-expanded-insight" style="left:756px;top:144px;">
+        <div style="position:absolute;left:756px;top:144px;">
           <div class="mindsets-expanded-insight__line" style="left:-88px;top:52px;width:88px;height:12.4px;">
             <img src="assets/images/mindsets-iskush-line-left.svg" style="transform:rotate(-172deg) scaleY(-1);flex:none;display:block;">
           </div>
-          <p class="mindsets-expanded-insight__text">Онлайн воспринимает как витрину</p>
+          <div class="mindsets-expanded-insight" style="left:0;top:0;">
+            <p class="mindsets-expanded-insight__text">Онлайн воспринимает как витрину</p>
+          </div>
         </div>
         <!-- Insight 4: x=756, y=358, 294×164 — "Склонён к спонтанным покупкам в офлайне" (текст от top) -->
         <div class="mindsets-expanded-insight" style="left:756px;top:358px;height:164px;">
@@ -2373,11 +2383,13 @@
           <p class="mindsets-expanded-insight__text" style="bottom:11px;">Вещи висят с бирками в гардеробе</p>
         </div>
         <!-- Insight 2: x=764, y=120, 286×158 — "Мгновенно покупает понравившуюся вещь" -->
-        <div class="mindsets-expanded-insight" style="left:764px;top:120px;width:286px;height:158px;">
+        <div style="position:absolute;left:764px;top:120px;">
           <div class="mindsets-expanded-insight__line" style="left:-139px;top:15px;width:139px;height:50.6px;">
             <img src="assets/images/mindsets-kiber-line.svg" style="transform:rotate(20deg);flex:none;display:block;">
           </div>
-          <p class="mindsets-expanded-insight__text" style="bottom:7px;width:246px;">Мгновенно покупает понравившуюся вещь</p>
+          <div class="mindsets-expanded-insight" style="left:0;top:0;width:286px;height:158px;">
+            <p class="mindsets-expanded-insight__text" style="bottom:7px;width:246px;">Мгновенно покупает понравившуюся вещь</p>
+          </div>
         </div>
         <!-- Insight 3: x=764, y=334, 286×158 — "Получает удовольствие от добавления в корзину" -->
         <div class="mindsets-expanded-insight" style="left:764px;top:334px;width:286px;height:158px;">
@@ -2423,7 +2435,7 @@
           <!-- Загрузка (1887:21954): bg white base, overflow clip -->
           <div style="position:absolute;inset:0;background:#fff;overflow:hidden;">
             <!-- Главная-2 1 (1899:22060): GIF fills full phone screen -->
-            <img src="assets/images/ne-tseplet-screen.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+            <video src="assets/images/ne-tseplet-screen.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"></video>
             <!-- Logo circle (1887:21956): 72.09×72.09px, center=(50%+0.4px, 50%-50.03px) -->
             <div style="position:absolute;left:calc(50% + 0.4px);top:calc(50% - 50.03px);width:72.09px;height:72.09px;transform:translate(-50%,-50%);">
               <img src="assets/images/ne-tseplet-logo-circle.svg" alt="" style="display:block;width:100%;height:100%;">
@@ -2567,7 +2579,7 @@
         <div style="position:absolute;top:2px;right:-3px;bottom:-6px;left:0;overflow:hidden;border-radius:38.491px;">
           <!-- Сервисы 3 (1911:22600): x=1, y=0, 323×701px — анимированный GIF, центрирован -->
           <div style="position:absolute;left:50%;top:0;width:323px;height:701px;transform:translateX(-50%);">
-            <img src="assets/images/storeez-servisy.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;">
+            <video src="assets/images/storeez-servisy.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;"></video>
           </div>
         </div>
         <!-- Bezel (1816:10250): left=1px top=2px, w=324px h=704px, image offset left=-19.25 top=-18.44 -->
@@ -2595,16 +2607,55 @@
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">А как это выглядит в жизни?</span>
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«Часто иду смотреть в тг или инст вещи, как они смотрятся в жизни»</span>
       </div>
-      <!-- Левый телефон — Figma 1572:11149 -->
-      <div style="position:absolute;left:139px;top:156px;width:322px;height:703.127px;">
-        <div style="position:absolute;left:-1px;top:-60px;width:322px;height:700px;overflow:hidden;border-radius:38.448px;">
-          <div style="position:absolute;inset:0;background:#fff;"></div>
-          <div style="position:absolute;inset:0;overflow:hidden;">
-            <img src="assets/images/storeez-pain3-screen2.png" alt="" style="position:absolute;left:0;top:0.03%;width:100%;height:153.89%;max-width:none;">
+      <!-- UGC контент 1 (1931:24996): x=102, y=97, width=359, height=700 -->
+      <div style="position:absolute;left:102px;top:97px;width:359px;height:700px;">
+        <!-- Phone (1924:24946): left=37, top=0, 322×700 -->
+        <div style="position:absolute;left:37px;top:0;width:322px;height:700px;">
+          <!-- Lock Screen: inset 0 0.25px 0.47px 0, border-radius 38.418px -->
+          <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
+            <img src="assets/images/storeez-ugc1-screen.png" alt="" style="position:absolute;left:-1.41%;top:-1.23%;width:103.99%;height:102.24%;max-width:none;display:block;">
+          </div>
+          <!-- Bezel z-index:1 — renders above Image section -->
+          <div style="position:absolute;left:0;top:0;width:322px;height:700px;z-index:1;pointer-events:none;">
+            <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.21px;top:-18.41px;width:360.172px;height:736.351px;max-width:none;display:block;">
           </div>
         </div>
-        <div style="position:absolute;left:-1px;top:-58px;width:322px;height:700px;z-index:1;pointer-events:none;">
-          <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.22px;top:-18.42px;width:360.448px;height:736.915px;max-width:none;display:block;">
+        <!-- Image section (1927:24958): left=-20, top=77, width=262 — renders above Lock Screen, below Bezel -->
+        <div style="position:absolute;left:-20px;top:77px;width:262px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <!-- Photo: 262×454px -->
+          <div style="position:relative;width:262px;height:454px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+            <img src="assets/images/storeez-ugc1-photo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;display:block;pointer-events:none;">
+          </div>
+          <!-- Username -->
+          <p style="margin:0;font-family:'Inter',sans-serif;font-size:16px;font-weight:400;color:#141414;letter-spacing:-0.16px;line-height:normal;flex-shrink:0;">@happyheadache</p>
+          <!-- Detail icon 1: absolute at left=175.81, top=267.81 within Image section -->
+          <div style="position:absolute;left:175.81px;top:267.81px;width:24px;height:24px;">
+            <img src="assets/images/storeez-ugc1-detail-icon.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;">
+          </div>
+          <!-- Detail icon 2: absolute at left=98, top=312 within Image section -->
+          <div style="position:absolute;left:98px;top:312px;width:24px;height:24px;">
+            <img src="assets/images/storeez-ugc1-detail-icon2.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block;">
+          </div>
+          <!-- Product tooltip: absolute at left=12, top=370, 238×72px -->
+          <div style="position:absolute;left:12px;top:370px;width:238px;height:72px;background:rgba(0,0,0,0.31);border-radius:8px;padding:2px 8px 2px 2px;box-sizing:border-box;display:flex;align-items:flex-start;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div style="width:59px;height:68px;border-radius:6px;overflow:hidden;flex-shrink:0;">
+                <img src="assets/images/storeez-ugc1-product.png" alt="" style="width:100%;height:100%;object-fit:cover;max-width:none;display:block;">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;flex-direction:column;gap:4px;">
+                  <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#fff;letter-spacing:-0.12px;line-height:14px;white-space:nowrap;">Сумка Rio</span>
+                  <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#fff;letter-spacing:-0.11px;line-height:14px;">120 000 ₽</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.31);display:flex;gap:4px;align-items:center;padding:4px 6px;border-radius:5px;">
+                  <div style="width:14px;height:14px;flex-shrink:0;">
+                    <img src="assets/images/storeez-ugc1-heart-icon.svg" alt="" style="width:100%;height:100%;max-width:none;display:block;">
+                  </div>
+                  <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:#fff;letter-spacing:-0.11px;text-transform:uppercase;white-space:nowrap;">В ИЗБРАННОЕ</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Правый телефон (1569:8670 "UGC контент"): x=739, y=97, 322×700px -->
@@ -2612,7 +2663,7 @@
         <!-- Lock Screen (1569:8671): inset 0 0.25px 0.47px 0, border-radius:38.418px -->
         <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
           <!-- Мой-гардероб 1 (1903:22590): 322×700px -->
-          <img src="assets/images/storeez-ugc-screen-opt.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;">
+          <video src="assets/images/storeez-moi-garderob.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;"></video>
         </div>
         <!-- Bezel (1569:8679): left=0 top=0 321.753×699.533px -->
         <div style="position:absolute;left:0;top:0;width:321.753px;height:699.533px;z-index:1;pointer-events:none;">
@@ -3058,10 +3109,10 @@
       'assets/images/benchmarks/b3-screen-v2.jpg'
     ];
     var screenData = [
-      { src: 'assets/images/benchmarks/b1-raw2.gif' },
-      { src: 'assets/images/benchmarks/b2-raw4.gif' },
+      { src: 'assets/images/benchmarks/b1-raw2.mp4' },
+      { src: 'assets/images/benchmarks/b2-raw4.mp4' },
       { src: 'assets/images/benchmarks/b3-screen.jpg' },
-      { src: 'assets/images/benchmarks/b4-screen.gif' }
+      { src: 'assets/images/benchmarks/b4-screen.mp4' }
     ];
 
     function setNavVisible(el, visible) {
@@ -3077,6 +3128,7 @@
       benchScreen.classList.add('fading');
       setTimeout(function() {
         benchScreen.src = screenData[n - 1].src;
+        if (benchScreen.tagName === 'VIDEO') { benchScreen.load(); benchScreen.play(); }
         benchScreen.classList.remove('fading');
       }, 200);
       /* screens 1-2: feature #01 active (lbl1 black); screen 3: feature #02 active (lbl2 black) */
@@ -3196,8 +3248,8 @@
     if (!trendsWrapper) return;
 
     var trendsSrcs = [
-      'assets/images/trends/t1-coach-bag.gif',
-      'assets/images/trends/t1-coach-ar.gif'
+      'assets/images/trends/t1-coach-bag.mp4',
+      'assets/images/trends/t1-coach-ar.mp4'
     ];
     var trendsToggle = 0;
     var trendsFrame  = 0;
@@ -3342,6 +3394,7 @@
         trendsScreen.classList.add('fading');
         setTimeout(function() {
           trendsScreen.src = trendsSrcs[trendsToggle];
+          if (trendsScreen.tagName === 'VIDEO') { trendsScreen.load(); trendsScreen.play(); }
           trendsScreen.classList.remove('fading');
           if (trendsToggle === 0) setTrendsPulse(true);
         }, 200);
@@ -3439,8 +3492,8 @@
     }
 
     var ugcVariants = [
-      { type:'phone', screenSrc:'assets/images/trends/t2-ekonika-screen.gif', logoSrc:'assets/images/trends/t2-ekonika-logo.svg', logoW:'172px', logoH:'39px' },
-      { type:'phone', screenSrc:'assets/images/trends/t4-alo-screen.gif',     logoSrc:'assets/images/trends/t4-alo-logo.svg',     logoW:'84px',  logoH:'48px' },
+      { type:'phone', screenSrc:'assets/images/trends/t2-ekonika-screen.mp4', logoSrc:'assets/images/trends/t2-ekonika-logo.svg', logoW:'172px', logoH:'39px' },
+      { type:'phone', screenSrc:'assets/images/trends/t4-alo-screen.mp4',     logoSrc:'assets/images/trends/t4-alo-logo.svg',     logoW:'84px',  logoH:'48px' },
       { type:'coach', coachSrc :'assets/images/trends/t4-coach1-screen.png',  logoSrc:'assets/images/trends/t4-coach-logo.svg',   logoW:'168px', logoH:'20px' }
     ];
 
@@ -3453,6 +3506,7 @@
           ugcScreen.classList.add('fading');
           setTimeout(function() {
             ugcScreen.src = v.screenSrc;
+            if (ugcScreen.tagName === 'VIDEO') { ugcScreen.load(); ugcScreen.play(); }
             ugcScreen.classList.remove('fading');
           }, 200);
         }
