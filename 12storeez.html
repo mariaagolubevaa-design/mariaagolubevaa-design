@@ -2657,27 +2657,135 @@
     </div>
 
     <!-- Нечего надеть — Figma 1778:15452, 1200×809px -->
-    <div class="reveal" style="position:relative;height:809px;margin-bottom:96px;">
+    <div class="reveal" style="position:relative;height:809px;margin-bottom:96px;overflow:hidden;">
+
       <!-- Заголовок (1572:11161): y=0, h=36px -->
       <div style="display:flex;align-items:center;justify-content:space-between;">
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;">Нечего надеть</span>
         <span style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;width:600px;">«У меня много вещей с бирками. Наверное, не было ещё повода для них»</span>
       </div>
-      <!-- Телефон (1572:11164): 322×700px в x=439 y=97 -->
-      <!-- Собран из двух ассетов: Lock Screen (raw, 1.25x) + Bezel (raw, 3.75x) -->
-      <!-- Контейнер = Bezel bounds: left=439-19.22=420px, top=97-18.42=79px, 361×737px -->
-      <div style="position:absolute;left:420px;top:79px;width:361px;height:737px;pointer-events:none;">
-        <!-- Lock Screen: left=19px top=18px, 322×699px, border-radius=38.448px, overflow:hidden -->
-        <div style="position:absolute;left:19px;top:18px;width:322px;height:699px;border-radius:38.448px;overflow:hidden;background:#fff;">
-          <img src="assets/images/nechego-nadet-screen.png" alt="" style="display:block;width:100%;height:100%;object-fit:cover;">
+
+      <!-- Экраны (1969:13079): x=-249, y=97, 1698×700px — переполняет контейнер, обрезается overflow:hidden -->
+      <div style="position:absolute;left:-249px;top:97px;width:1698px;height:700px;">
+
+        <!-- Card "5" — В офис (1969:13046): x=0, y=123, 296×344px -->
+        <div style="position:absolute;left:0;top:123px;width:296px;height:344px;">
+          <div style="position:absolute;left:0;top:0;width:296px;height:344.8px;background:#f3f3f3;border-radius:6.4px;overflow:hidden;">
+            <!-- Shadow ellipse -->
+            <div style="position:absolute;left:66.6px;top:299.2px;width:144.66px;height:29.19px;">
+              <img src="assets/images/nechego-nadet-card-shadow-ellipse.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block;max-width:none;">
+            </div>
+            <!-- Photo: x=84.8, y=6.4, 126.4×332px -->
+            <div style="position:absolute;left:84.8px;top:6.4px;width:126.4px;height:332px;overflow:hidden;">
+              <img src="assets/images/nechego-nadet-card-ofis-photo.png" alt="" style="position:absolute;height:124.62%;left:-73.22%;top:-13.91%;width:245.77%;max-width:none;">
+            </div>
+            <!-- Text Group -->
+            <div style="position:absolute;left:12.8px;top:12.8px;display:flex;flex-direction:column;gap:3.2px;">
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:12.8px;font-weight:400;color:#141414;letter-spacing:0.128px;text-transform:uppercase;white-space:nowrap;line-height:normal;">В офис</p>
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:10.4px;font-weight:400;color:#7b7b7b;letter-spacing:0.104px;white-space:nowrap;line-height:normal;">5 вещей в образе</p>
+            </div>
+            <!-- Button: left=12.8px, bottom=25.6px -->
+            <div style="position:absolute;left:12.8px;bottom:25.6px;display:flex;align-items:center;gap:6.4px;background:#141414;border-radius:6.4px;padding:4px 6.4px;height:25.6px;box-sizing:border-box;">
+              <img src="assets/images/nechego-nadet-cart-icon.svg" alt="" style="width:12.8px;height:12.8px;display:block;flex-shrink:0;">
+              <span style="font-family:'Inter',Arial,sans-serif;font-size:11.2px;font-weight:400;color:white;white-space:nowrap;line-height:1.1;">Товары из образа</span>
+            </div>
+          </div>
         </div>
-        <!-- Bezel (iPhone 17 Pro Silver Portrait, 3.75x) поверх экрана -->
-        <img src="assets/images/iphone17-bezel.png" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;display:block;">
+
+        <!-- Card "1" — На прогулку (1969:13036): x=344, y=123, 296×344px -->
+        <div style="position:absolute;left:344px;top:123px;width:296px;height:344px;">
+          <div style="position:absolute;left:0;top:0;width:296px;height:344.8px;background:#f3f3f3;border-radius:6.4px;overflow:hidden;">
+            <!-- Shadow ellipse -->
+            <div style="position:absolute;left:66.6px;top:299.2px;width:144.66px;height:29.19px;">
+              <img src="assets/images/nechego-nadet-card-shadow-ellipse.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block;max-width:none;">
+            </div>
+            <!-- Photo: x=87.2, y=0, 121.6×338.4px -->
+            <div style="position:absolute;left:87.2px;top:0;width:121.6px;height:338.4px;overflow:hidden;">
+              <img src="assets/images/nechego-nadet-card-progulka-photo.png" alt="" style="position:absolute;height:137.85%;left:-99.1%;top:-19.15%;width:287.81%;max-width:none;">
+            </div>
+            <!-- Text Group -->
+            <div style="position:absolute;left:12.8px;top:12.8px;display:flex;flex-direction:column;gap:3.2px;">
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:12.8px;font-weight:400;color:#141414;letter-spacing:0.128px;text-transform:uppercase;white-space:nowrap;line-height:normal;">На прогулку</p>
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:10.4px;font-weight:400;color:#7b7b7b;letter-spacing:0.104px;white-space:nowrap;line-height:normal;">3 вещи в образе</p>
+            </div>
+            <!-- Button: left=12.8px, bottom=25.6px -->
+            <div style="position:absolute;left:12.8px;bottom:25.6px;display:flex;align-items:center;gap:6.4px;background:#141414;border-radius:6.4px;padding:4px 6.4px;height:25.6px;box-sizing:border-box;">
+              <img src="assets/images/nechego-nadet-cart-icon.svg" alt="" style="width:12.8px;height:12.8px;display:block;flex-shrink:0;">
+              <span style="font-family:'Inter',Arial,sans-serif;font-size:11.2px;font-weight:400;color:white;white-space:nowrap;line-height:1.1;">Товары из образа</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone "Notifications" (1969:13060): x=688, y=0, 322×700px -->
+        <div style="position:absolute;left:688px;top:0;width:322px;height:700px;">
+          <!-- Lock Screen: clips content with rounded corners matching bezel inner radius -->
+          <div style="position:absolute;inset:0;overflow:hidden;border-radius:38.4px;background:#fefefe;">
+            <!-- Мои луки (1969:13059): screen content, 322×700px container -->
+            <div style="position:absolute;left:0;top:0;width:322px;height:700px;overflow:hidden;">
+              <img src="assets/images/nechego-nadet-screen.png" alt="" style="position:absolute;height:101.67%;left:-6.21%;top:-1.05%;width:112.42%;max-width:none;">
+            </div>
+          </div>
+          <!-- Bezel (iPhone 17 Pro Silver): left=-19.2px, top=-18.4px, 360×736px, z-index above screen -->
+          <div style="position:absolute;left:0;top:0;width:322px;height:700px;pointer-events:none;z-index:1;">
+            <img src="assets/images/iphone17-bezel.png" alt="" style="position:absolute;left:-19.2px;top:-18.4px;width:360px;height:736px;max-width:none;display:block;">
+          </div>
+        </div>
+
+        <!-- Card "3" — На патрики (1968:26443): x=1058, y=123, 296×344px -->
+        <div style="position:absolute;left:1058px;top:123px;width:296px;height:344px;">
+          <div style="position:absolute;left:0;top:0;width:296px;height:344.8px;background:#f3f3f3;border-radius:6.4px;overflow:hidden;">
+            <!-- Shadow ellipse -->
+            <div style="position:absolute;left:66.6px;top:299.2px;width:144.66px;height:29.19px;">
+              <img src="assets/images/nechego-nadet-card-shadow-ellipse.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block;max-width:none;">
+            </div>
+            <!-- Photo: x=84.8, y=6.4, 126.4×332px -->
+            <div style="position:absolute;left:84.8px;top:6.4px;width:126.4px;height:332px;overflow:hidden;">
+              <img src="assets/images/nechego-nadet-card-patriki-photo.png" alt="" style="position:absolute;height:122.44%;left:-78.61%;top:-9.43%;width:241.2%;max-width:none;">
+            </div>
+            <!-- Text Group -->
+            <div style="position:absolute;left:12.8px;top:12.8px;display:flex;flex-direction:column;gap:3.2px;">
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:12.8px;font-weight:400;color:#141414;letter-spacing:0.128px;text-transform:uppercase;white-space:nowrap;line-height:normal;">На патрики</p>
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:10.4px;font-weight:400;color:#7b7b7b;letter-spacing:0.104px;white-space:nowrap;line-height:normal;">3 вещи в образе</p>
+            </div>
+            <!-- Button: left=10.6px, bottom=25.6px -->
+            <div style="position:absolute;left:10.6px;bottom:25.6px;display:flex;align-items:center;gap:6.4px;background:#141414;border-radius:6.4px;padding:4px 6.4px;height:25.6px;box-sizing:border-box;">
+              <img src="assets/images/nechego-nadet-cart-icon.svg" alt="" style="width:12.8px;height:12.8px;display:block;flex-shrink:0;">
+              <span style="font-family:'Inter',Arial,sans-serif;font-size:11.2px;font-weight:400;color:white;white-space:nowrap;line-height:1.1;">Товары из образа</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card "4" — В отпуск (1968:26556): x=1402, y=123, 296×344px -->
+        <div style="position:absolute;left:1402px;top:123px;width:296px;height:344px;">
+          <div style="position:absolute;left:0;top:0;width:296px;height:344.8px;background:#f3f3f3;border-radius:6.4px;overflow:hidden;">
+            <!-- Shadow ellipse -->
+            <div style="position:absolute;left:66.6px;top:299.2px;width:144.66px;height:29.19px;">
+              <img src="assets/images/nechego-nadet-card-shadow-ellipse.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block;max-width:none;">
+            </div>
+            <!-- Thumbnail (photo): x=39.2, y=-8, 196×354.4px, own border-radius clips image -->
+            <div style="position:absolute;left:39.2px;top:-8px;width:196px;height:354.4px;border-radius:6.4px;overflow:hidden;">
+              <img src="assets/images/nechego-nadet-card-otpusk-photo.png" alt="" style="position:absolute;height:133.58%;left:-41.54%;top:-19.14%;width:181.35%;max-width:none;">
+            </div>
+            <!-- Text Group -->
+            <div style="position:absolute;left:12.8px;top:12.8px;display:flex;flex-direction:column;gap:3.2px;">
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:12.8px;font-weight:400;color:#141414;letter-spacing:0.128px;text-transform:uppercase;white-space:nowrap;line-height:normal;">В отпуск</p>
+              <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:10.4px;font-weight:400;color:#7b7b7b;letter-spacing:0.104px;white-space:nowrap;line-height:normal;">3 вещи в образе</p>
+            </div>
+            <!-- Button: left=10.6px, bottom=25.6px -->
+            <div style="position:absolute;left:10.6px;bottom:25.6px;display:flex;align-items:center;gap:6.4px;background:#141414;border-radius:6.4px;padding:4px 6.4px;height:25.6px;box-sizing:border-box;">
+              <img src="assets/images/nechego-nadet-cart-icon.svg" alt="" style="width:12.8px;height:12.8px;display:block;flex-shrink:0;">
+              <span style="font-family:'Inter',Arial,sans-serif;font-size:11.2px;font-weight:400;color:white;white-space:nowrap;line-height:1.1;">Товары из образа</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text: "готовые образы на главной" (1969:13072): x=391, y=547 -->
+        <p style="position:absolute;left:391px;top:547px;margin:0;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;white-space:nowrap;line-height:normal;">готовые образы на главной</p>
+
+        <!-- Text: "вещи складываются в образы" (1969:13074): x=1095, y=547 -->
+        <p style="position:absolute;left:1095px;top:547px;width:222px;margin:0;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#9b9b9b;text-align:right;white-space:nowrap;line-height:normal;">вещи складываются в образы</p>
+
       </div>
-      <!-- вещи складываются в образы (1572:11174): x=929, y=326, w=152, #9b9b9b, text-right -->
-      <p style="position:absolute;left:929px;top:326px;width:152px;text-align:right;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#9b9b9b;line-height:normal;margin:0;">вещи складываются<br>в образы</p>
-      <!-- готовые образы на главной (1572:11175): x=118, y=530, w=119, #141414 -->
-      <p style="position:absolute;left:118px;top:530px;width:119px;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;">готовые образы<br>на главной</p>
     </div>
 
     <!-- Зачем приложение? — Figma 1778:15454: 1200×867px, container x=40 -->
@@ -2963,8 +3071,8 @@
 
 <!-- PAGINATION -->
 <div class="pagination">
-  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>Наверх</button>
-  <a class="pagination__btn" href="tingli.html">Профиль пользователя<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg></a>
+  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>НАВЕРХ</button>
+  <a class="pagination__btn" href="tingli.html">Дизайн конф<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg></a>
 </div>
 
 <!-- FOOTER -->
