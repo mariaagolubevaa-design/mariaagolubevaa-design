@@ -166,12 +166,13 @@
       border-radius: 11.94% / 5.49%;
       background: #453930;
     }
-    /* GIF at natural width (322px display, downscaled from 400px source)
-       → no upscaling at any retina scale, pixel-perfect sharpness */
     .cover-gif {
-      display: block;
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     /* Bezel: left=-19.22/322=-5.97%, top=-18.42/700=-2.63%, w=360.448/322=111.94% */
     .cover-phone-frame {
@@ -249,70 +250,6 @@
     .accordion-toggle { cursor:pointer; user-select:none; }
     .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
     .accordion-chevron.rotated { transform:rotate(180deg); }
-
-    /* BYLO-STALO COMPARISON SLIDER */
-    .bylo-section { padding-bottom: 48px; }
-    .bylo-wrapper {
-      position: relative; width: 100%; height: 766px;
-      cursor: col-resize;
-      user-select: none; -webkit-user-select: none;
-    }
-    .bylo-layer {
-      position: absolute; top: 0; left: 0; width: 100%; height: 700px;
-      transition: opacity 0.25s;
-    }
-    .bylo-layer--stalo { z-index: 1; }
-    .bylo-layer--bylo { z-index: 2; clip-path: inset(0 50% 0 0); }
-    .bylo-phone {
-      position: absolute; top: 0; width: auto; height: 700px;
-    }
-    .bylo-phone--left { left: 139px; }
-    .bylo-phone--right { left: 739px; }
-    .bylo-annotation {
-      position: absolute; top: 319px;
-      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
-      font-size: 16px; font-weight: 500; line-height: normal;
-      color: #141414; white-space: nowrap;
-      opacity: 0; transition: opacity 0.25s;
-    }
-    .bylo-annotation p { margin: 0 0 24px; }
-    .bylo-annotation--left { left: 166px; }
-    .bylo-annotation--right { left: 800px; }
-    .bylo-handle {
-      position: absolute; top: 0; left: 50%; width: 174px; height: 700px;
-      transform: translateX(-50%); z-index: 10; pointer-events: none;
-    }
-    .bylo-handle__line {
-      position: absolute; top: 0; bottom: 0; left: 50%; width: 1px;
-      background: #1e1e1c; transform: translateX(-50%);
-    }
-    .bylo-handle__track {
-      position: absolute; top: 50%; left: 0; right: 0;
-      transform: translateY(-50%);
-      display: flex; align-items: center; justify-content: space-between;
-      pointer-events: all; cursor: col-resize;
-    }
-    .bylo-arrow { width: 0; height: 0; flex-shrink: 0; }
-    .bylo-arrow--left {
-      border-top: 31px solid transparent; border-bottom: 31px solid transparent;
-      border-right: 40px solid #1e1e1c;
-    }
-    .bylo-arrow--right {
-      border-top: 31px solid transparent; border-bottom: 31px solid transparent;
-      border-left: 40px solid #1e1e1c;
-    }
-    .bylo-labels {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 66px;
-      display: flex; align-items: flex-start; padding-top: 24px;
-    }
-    .bylo-label {
-      position: absolute;
-      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
-      font-size: 16px; font-weight: 500; line-height: normal;
-      white-space: nowrap; transition: color 0.2s;
-    }
-    .bylo-label--bylo { left: 300px; transform: translateX(-50%); color: #c8c8c8; }
-    .bylo-label--stalo { left: 900px; transform: translateX(-50%); color: #141414; }
 
     /* TEXT FRAME — Figma 1744:13468 */
     .text-frame {
@@ -1429,6 +1366,30 @@
       border: 1.5px solid var(--grey2); border-radius: 32px;
       padding: 8px 16px; font-size: 16px; color: var(--grey3); font-weight: 500;
     }
+
+    /* SCREEN-CONTEXT COMPARISON SLIDER — Figma 1719:12104 */
+    .sc-section { padding-bottom: 0; }
+    .sc-wrapper { position: relative; width: 100%; height: 766px; cursor: col-resize; user-select: none; }
+    .sc-layer { position: absolute; top: 0; left: 0; width: 100%; height: 700px; transition: opacity 0.25s; }
+    .sc-layer--stalo { z-index: 1; }
+    .sc-layer--bylo { z-index: 2; clip-path: inset(-18.4px 50% -17.6px 0); }
+    .sc-phone { position: absolute; top: 0; width: 322px; height: 700px; }
+    .sc-phone--left  { left: 139px; }
+    .sc-phone--right { left: 739px; }
+    .sc-annotation { position: absolute; top: 319px; font-family: 'Inter Tight','Inter',Arial,sans-serif; font-size: 16px; font-weight: 500; color: #141414; white-space: nowrap; opacity: 0; transition: opacity 0.25s; }
+    .sc-annotation p { margin: 0 0 24px; }
+    .sc-annotation--left  { left: 166px; }
+    .sc-annotation--right { left: 800px; }
+    .sc-handle { position: absolute; top: 0; left: 50%; width: 174px; height: 700px; transform: translateX(-50%); z-index: 10; pointer-events: none; }
+    .sc-handle__line { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: #1e1e1c; transform: translateX(-50%); }
+    .sc-handle__track { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); display: flex; align-items: center; justify-content: space-between; pointer-events: all; cursor: col-resize; }
+    .sc-arrow { width: 0; height: 0; flex-shrink: 0; }
+    .sc-arrow--left { border-top: 31px solid transparent; border-bottom: 31px solid transparent; border-right: 40px solid #1e1e1c; }
+    .sc-arrow--right { border-top: 31px solid transparent; border-bottom: 31px solid transparent; border-left: 40px solid #1e1e1c; }
+    .sc-labels { position: absolute; bottom: 0; left: 0; right: 0; height: 66px; display: flex; align-items: flex-start; padding-top: 24px; }
+    .sc-label { position: absolute; font-family: 'Inter Tight','Inter',Arial,sans-serif; font-size: 16px; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
+    .sc-label--bylo  { left: 300px; transform: translateX(-50%); color: #c8c8c8; }
+    .sc-label--stalo { left: 900px; transform: translateX(-50%); color: #141414; }
   </style>
 </head>
 <body>
@@ -1450,7 +1411,7 @@
 <div class="cover">
   <div class="cover-phone">
     <div class="cover-screen">
-      <video class="cover-gif" src="assets/images/storeez-app-hero.mp4" autoplay loop muted playsinline></video>
+      <img class="cover-gif" src="assets/images/storeez-cover-screen.png" alt="">
     </div>
     <img class="cover-phone-frame" src="assets/images/storeez-iphone17-frame.png" alt="">
   </div>
@@ -1505,47 +1466,61 @@
           </p>
         </div>
 
-        <div style="height:96px;"></div>
+    <div style="height:96px;"></div>
 
-        <!-- Было / Стало — comparison slider, Figma 1719:12101 / 1719:12102 -->
-    <div class="bylo-section reveal">
-      <div class="bylo-wrapper" id="byloWrapper">
+    <!-- Screen-context — Figma 1719:12104 -->
+    <div class="sc-section reveal">
+      <div class="sc-wrapper" id="scWrapper">
+
         <!-- Layer стало (bottom) -->
-        <div class="bylo-layer bylo-layer--stalo" id="staloLayer">
-          <img class="bylo-phone bylo-phone--right" src="assets/images/storeez-stalo-phone.png" alt="Новый дизайн">
-          <div class="bylo-annotation bylo-annotation--left">
-            <p>Персонализированная главная</p>
-            <p>Цифровой аватар в готовых образах</p>
-          </div>
-        </div>
-        <!-- Layer было (top, clipped) -->
-        <div class="bylo-layer bylo-layer--bylo" id="byloLayer">
-          <div class="bylo-phone bylo-phone--left" style="width:322px;">
-            <div style="position:absolute;inset:0 0.25px 0.47px 0;overflow:hidden;border-radius:38.418px;">
-              <video src="assets/images/storeez-screen1-bylo.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+        <div class="sc-layer sc-layer--stalo" id="scStaloLayer">
+          <div class="sc-phone sc-phone--right">
+            <div style="position:absolute;inset:0;overflow:hidden;">
+              <img src="assets/images/storeez-screen2-stalo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;pointer-events:none;">
             </div>
             <div style="position:absolute;left:0;top:0;width:322px;height:700px;z-index:1;pointer-events:none;">
               <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.2px;top:-18.4px;width:360px;height:736px;max-width:none;display:block;">
             </div>
           </div>
-          <div class="bylo-annotation bylo-annotation--right">
+          <div class="sc-annotation sc-annotation--left">
+            <p>Персонализированная главная</p>
+            <p>Цифровой аватар в готовых образах</p>
+          </div>
+        </div>
+
+        <!-- Layer было (top, clipped) — rebuilt from Figma 1572:10019 -->
+        <div class="sc-layer sc-layer--bylo" id="scByloLayer">
+          <div class="sc-phone sc-phone--left">
+            <!-- Lock Screen: clips content to screen shape (Figma 1572:10021, inset 0 0 -0.2px 0, border-radius 38.4px) -->
+            <div style="position:absolute;inset:0 0 -0.2px 0;overflow:hidden;border-radius:38.4px;">
+              <img src="assets/images/storeez-screen1-bylo-opt.gif" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+            </div>
+            <!-- Bezel: iPhone 17 Pro Silver (Figma 1572:10029, PNG at left:-19.2px top:-18.4px 360×736) -->
+            <div style="position:absolute;left:0;top:0;width:322px;height:699.2px;z-index:1;pointer-events:none;">
+              <img src="assets/images/storeez-iphone17-frame.png" alt="" style="position:absolute;left:-19.2px;top:-18.4px;width:360px;height:736px;max-width:none;display:block;">
+            </div>
+          </div>
+          <div class="sc-annotation sc-annotation--right">
             <p>Низкая глубина просмотра</p>
             <p>Низкая конверсия</p>
           </div>
         </div>
+
         <!-- Slider handle -->
-        <div class="bylo-handle" id="byloHandle">
-          <div class="bylo-handle__track">
-            <div class="bylo-arrow bylo-arrow--left"></div>
-            <div class="bylo-arrow bylo-arrow--right"></div>
+        <div class="sc-handle" id="scHandle">
+          <div class="sc-handle__track">
+            <div class="sc-arrow sc-arrow--left"></div>
+            <div class="sc-arrow sc-arrow--right"></div>
           </div>
-          <div class="bylo-handle__line"></div>
+          <div class="sc-handle__line"></div>
         </div>
+
         <!-- Labels -->
-        <div class="bylo-labels">
-          <span class="bylo-label bylo-label--bylo" id="byloLabelBilo">было</span>
-          <span class="bylo-label bylo-label--stalo" id="byloLabelStalo">стало</span>
+        <div class="sc-labels">
+          <span class="sc-label sc-label--bylo"  id="scLabelBylo">было</span>
+          <span class="sc-label sc-label--stalo" id="scLabelStalo">стало</span>
         </div>
+
       </div>
     </div>
 
@@ -3030,6 +3005,71 @@
   }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+  /* SCREEN-CONTEXT SLIDER */
+  (function() {
+    var wrapper    = document.getElementById('scWrapper');
+    var byloLayer  = document.getElementById('scByloLayer');
+    var staloLayer = document.getElementById('scStaloLayer');
+    var handle     = document.getElementById('scHandle');
+    var lblBylo    = document.getElementById('scLabelBylo');
+    var lblStalo   = document.getElementById('scLabelStalo');
+    if (!wrapper) return;
+
+    var annRight = wrapper.querySelector('.sc-annotation--right');
+    var annLeft  = wrapper.querySelector('.sc-annotation--left');
+
+    var dragging = false, rect;
+    var BYLO_ZONE  = 35;
+    var STALO_ZONE = 65;
+
+    function setPos(clientX) {
+      rect = rect || wrapper.getBoundingClientRect();
+      var pct = Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
+      handle.style.left = pct + '%';
+
+      if (pct < BYLO_ZONE) {
+        byloLayer.style.clipPath = 'inset(-18.4px 0% -17.6px 0)';
+        staloLayer.style.opacity = '0';
+        staloLayer.style.pointerEvents = 'none';
+        annRight.style.opacity = '1';
+        annLeft.style.opacity  = '0';
+        lblBylo.style.color  = '#141414';
+        lblStalo.style.color = '#c8c8c8';
+      } else if (pct > STALO_ZONE) {
+        byloLayer.style.clipPath = 'inset(-18.4px 100% -17.6px 0)';
+        staloLayer.style.opacity = '1';
+        staloLayer.style.pointerEvents = '';
+        annRight.style.opacity = '0';
+        annLeft.style.opacity  = '1';
+        lblBylo.style.color  = '#c8c8c8';
+        lblStalo.style.color = '#141414';
+      } else {
+        byloLayer.style.clipPath = 'inset(-18.4px ' + (100 - pct) + '% -17.6px 0)';
+        staloLayer.style.opacity = '1';
+        staloLayer.style.pointerEvents = '';
+        annRight.style.opacity = '0';
+        annLeft.style.opacity  = '0';
+        lblBylo.style.color  = '#c8c8c8';
+        lblStalo.style.color = '#141414';
+      }
+    }
+
+    wrapper.addEventListener('mousedown', function(e) {
+      dragging = true; rect = wrapper.getBoundingClientRect(); setPos(e.clientX);
+    });
+    document.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
+    document.addEventListener('mouseup',   function()  { dragging = false; });
+
+    wrapper.addEventListener('touchstart', function(e) {
+      dragging = true; rect = wrapper.getBoundingClientRect();
+      setPos(e.touches[0].clientX); e.preventDefault();
+    }, {passive: false});
+    document.addEventListener('touchmove', function(e) {
+      if (dragging) { setPos(e.touches[0].clientX); e.preventDefault(); }
+    }, {passive: false});
+    document.addEventListener('touchend', function() { dragging = false; });
+  })();
+
   const navLinks = document.querySelectorAll('.section-nav a');
   const sections = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {
@@ -3587,74 +3627,6 @@
         showMl2((ml2Idx + 1) % ml2Variants.length);
       });
     }
-  })();
-
-  /* BYLO-STALO SLIDER */
-  (function() {
-    var wrapper     = document.getElementById('byloWrapper');
-    var byloLayer   = document.getElementById('byloLayer');
-    var staloLayer  = document.getElementById('staloLayer');
-    var handle      = document.getElementById('byloHandle');
-    var lblBilo     = document.getElementById('byloLabelBilo');
-    var lblStalo    = document.getElementById('byloLabelStalo');
-    if (!wrapper) return;
-
-    var annRight = wrapper.querySelector('.bylo-annotation--right'); // было-текст (правый)
-    var annLeft  = wrapper.querySelector('.bylo-annotation--left');  // стало-текст (левый)
-
-    var dragging = false, rect;
-    var BYLO_ZONE  = 35; // pct < этого → зона "Было"
-    var STALO_ZONE = 65; // pct > этого → зона "Стало"
-
-    function setPos(clientX) {
-      rect = rect || wrapper.getBoundingClientRect();
-      var pct = Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
-      handle.style.left = pct + '%';
-
-      if (pct < BYLO_ZONE) {
-        // Зона "Было": было-телефон + было-текст справа
-        byloLayer.style.clipPath = 'inset(0 0% 0 0)';
-        staloLayer.style.opacity = '0';
-        staloLayer.style.pointerEvents = 'none';
-        annRight.style.opacity = '1'; // было-текст
-        annLeft.style.opacity  = '0';
-        lblBilo.style.color  = '#141414';
-        lblStalo.style.color = '#c8c8c8';
-      } else if (pct > STALO_ZONE) {
-        // Зона "Стало": стало-телефон + стало-текст слева
-        byloLayer.style.clipPath = 'inset(0 100% 0 0)';
-        staloLayer.style.opacity = '1';
-        staloLayer.style.pointerEvents = '';
-        annRight.style.opacity = '0';
-        annLeft.style.opacity  = '1'; // стало-текст
-        lblBilo.style.color  = '#c8c8c8';
-        lblStalo.style.color = '#141414';
-      } else {
-        // Дефолт: оба телефона рядом, текст скрыт
-        byloLayer.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
-        staloLayer.style.opacity = '1';
-        staloLayer.style.pointerEvents = '';
-        annRight.style.opacity = '0';
-        annLeft.style.opacity  = '0';
-        lblBilo.style.color  = '#c8c8c8';
-        lblStalo.style.color = '#141414';
-      }
-    }
-
-    wrapper.addEventListener('mousedown', function(e) {
-      dragging = true; rect = wrapper.getBoundingClientRect(); setPos(e.clientX);
-    });
-    document.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
-    document.addEventListener('mouseup',   function()  { dragging = false; });
-
-    wrapper.addEventListener('touchstart', function(e) {
-      dragging = true; rect = wrapper.getBoundingClientRect();
-      setPos(e.touches[0].clientX); e.preventDefault();
-    }, {passive: false});
-    document.addEventListener('touchmove', function(e) {
-      if (dragging) { setPos(e.touches[0].clientX); e.preventDefault(); }
-    }, {passive: false});
-    document.addEventListener('touchend', function() { dragging = false; });
   })();
 
   const nav = document.querySelector('.nav');
