@@ -1475,9 +1475,9 @@
         <!-- Layer стало (bottom) -->
         <div class="sc-layer sc-layer--stalo" id="scStaloLayer">
           <div class="sc-phone sc-phone--right">
-            <!-- Lock Screen: exact 322×700 crop exported from Figma node 1959:25019, rounded corners baked as alpha -->
-            <div style="position:absolute;inset:0;background:#fefefe;">
-              <img src="assets/images/storeez-screen2-stalo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;pointer-events:none;">
+            <!-- Lock Screen: high-res 1288×2800 source, overflow:hidden clips subpixel gap, scale(1.003) ensures full coverage -->
+            <div style="position:absolute;inset:0;background:#fefefe;overflow:hidden;">
+              <img src="assets/images/storeez-screen2-stalo.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;pointer-events:none;transform:scale(1.003);transform-origin:center center;">
             </div>
             <!-- Bezel: z-index above content, no overflow:hidden so its own corners are not clipped -->
             <div style="position:absolute;left:0;top:0;width:322px;height:700px;z-index:1;pointer-events:none;">
