@@ -4,22 +4,13 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tingli — Мария Голубева</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Actay Wide';
       src: url('fonts/ActayWide-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Soyuz Grotesk';
-      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
-           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
       font-weight: 700;
       font-style: normal;
       font-display: swap;
@@ -56,7 +47,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Gilroy', Arial, sans-serif; background:#fff; color:#1e1e1c; overflow-x:hidden; margin-bottom:0; padding-bottom:0; }
-    :root { --black:#1e1e1c; --grey1:#d2d2d2; --grey2:#a5a5a4; --grey3:#787877; --purple:#cabeff; --footer-bg:#ece6d6; --page-w:1200px; --max-w:1280px; --pad:40px; }
+    :root { --black:#1e1e1c; --grey1:#d2d2d2; --grey2:#a5a5a4; --grey3:#787877; --purple:#cabeff; --footer-bg:#ece6d6; --page-w:1280px; --max-w:1280px; --pad:40px; }
 
     .nav {
       position: fixed;
@@ -91,7 +82,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-family: 'Gilroy', Arial, sans-serif;
       font-size: 24px;
       font-weight: 700;
       color: var(--black);
@@ -104,7 +95,7 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-family: 'Gilroy', Arial, sans-serif;
       font-size: 24px;
       font-weight: 700;
       color: var(--black);
@@ -113,7 +104,7 @@
     }
     .nav__about:hover { color: #B03C39; }
     .nav__link {
-      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-family: 'Gilroy', Arial, sans-serif;
       font-size: 24px;
       font-weight: 700;
       color: var(--black);
@@ -139,19 +130,22 @@
     .chip--dark { border-color:var(--grey2); color:var(--grey3); }
 
     /* SECTION NAV */
-    .section-nav { max-width:var(--page-w); margin:0 auto; padding:0 40px; display:flex; gap:48px; border-bottom:1px solid var(--grey1); margin-top:40px; }
-    .section-nav a { font-size:24px; font-weight:500; color:var(--grey2); text-decoration:none; padding-bottom:18px; border-bottom:3px solid transparent; transition:color .2s,border-color .2s; }
-    .section-nav a:hover, .section-nav a.active { color:var(--black); border-bottom-color:var(--black); font-weight:700; }
+    .section-nav { max-width:var(--page-w); margin:72px auto 0; padding:0 40px; display:flex; justify-content:space-between; align-items:center; font-family:'Inter Tight', Arial, sans-serif; font-size:24px; font-weight:500; white-space:nowrap; line-height:normal; }
+    .section-nav__left { display:flex; gap:111px; align-items:center; }
+    .section-nav__right { display:flex; gap:164px; align-items:center; }
+    .section-nav__right-inner { display:flex; justify-content:space-between; width:407px; align-items:center; }
+    .section-nav a { color:#141414; text-decoration:none; padding-bottom:18px; border-bottom:3px solid transparent; transition:color .2s,border-color .2s; }
+    .section-nav a:hover, .section-nav a.active { border-bottom-color:#141414; font-weight:500; }
 
     /* CONTENT */
     .container { max-width:var(--page-w); margin:0 auto; padding:0 40px; }
     section { padding:80px 0; }
-    .section-title { font-size:40px; font-weight:600; margin-bottom:60px; }
+    .section-title { font-family:'Inter Tight', Arial, sans-serif; font-size:40px; font-weight:500; color:#141414; line-height:1; margin-bottom:60px; }
 
     /* ABOUT GRID */
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-bottom:95px; }
-    .about-block h3 { font-family:'Gilroy',Arial,sans-serif; font-size:32px; font-weight:600; margin-bottom:16px; }
-    .about-block p { font-size:18px; line-height:1.6; }
+    .about-grid { display:grid; grid-template-columns:576px 1fr; gap:24px; margin-bottom:95px; }
+    .about-block h3 { font-family:'Inter Tight', Arial, sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; margin-bottom:24px; }
+    .about-block p { font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; }
     .about-block p strong { font-weight:700; }
 
     /* SCREENS ROW */
@@ -184,8 +178,8 @@
     .skill-card__label { font-size:18px; font-weight:500; }
 
     /* PAGINATION */
-    .pagination { display:flex; align-items:center; justify-content:space-between; padding:32px 40px; max-width:var(--page-w); margin:0 auto; border-top:1px solid var(--grey1); }
-    .pagination__btn { display:flex; align-items:center; gap:16px; font-size:24px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:inherit; }
+    .pagination { display:flex; align-items:center; justify-content:space-between; padding:32px 40px; max-width:var(--page-w); margin:0 auto; }
+    .pagination__btn { display:flex; align-items:center; gap:16px; font-size:16px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:'Inter Tight',Arial,sans-serif; }
     .pagination__btn:hover { opacity:.6; }
 
     /* FOOTER */
@@ -199,6 +193,17 @@
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s ease,transform .5s ease; }
     .reveal.visible { opacity:1; transform:none; }
     .sep { height:1px; background:var(--grey1); margin:0 40px; }
+
+    /* ACCORDION */
+    .accordion-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 0.35s ease; }
+    .accordion-body.collapsed { grid-template-rows:0fr; }
+    .accordion-inner { min-height:0; min-width:0; }
+    .accordion-body.collapsed .accordion-inner { overflow:hidden; }
+    .accordion-toggle { cursor:pointer; user-select:none; }
+    /* SVG шеврона указывает вверх (^); по умолчанию разворачиваем на 180° — показывает v (раскрыто) */
+    .accordion-chevron { transition:transform 0.35s ease; display:inline-block; transform:rotate(180deg); }
+    /* collapsed: убираем поворот → обратно ^ (свёрнуто) */
+    .accordion-chevron.rotated { transform:rotate(0deg); }
   </style>
 </head>
 <body>
@@ -235,20 +240,31 @@
 
 <!-- SECTION NAV -->
 <div class="section-nav">
-  <a href="#about" class="active">О проекте</a>
-  <a href="#process">Дизайн-процесс</a>
-  <a href="#research">Исследование</a>
-  <a href="#design">Дизайн</a>
-  <a href="#result">Результат</a>
+  <div class="section-nav__left">
+    <a href="#about" class="active">О проекте</a>
+    <a href="#process">Дизайн-процесс</a>
+  </div>
+  <div class="section-nav__right">
+    <div class="section-nav__right-inner">
+      <a href="#research">Исследование</a>
+      <a href="#design">Дизайн</a>
+    </div>
+    <a href="#result">Результат</a>
+  </div>
 </div>
 
 <!-- CONTEXT -->
-<div style="max-width:1280px; margin:0 auto; display:flex; align-items:flex-start; padding:100px 0 60px;">
-  <div style="min-width:600px; padding-left:80px; font-family:'Gilroy',Arial,sans-serif; font-weight:600; font-size:40px; color:#1e1e1c;">Контекст</div>
-  <div style="max-width:560px; font-family:'Gilroy',Arial,sans-serif; font-weight:400; font-size:20px; color:#1e1e1c; line-height:1.35;">TINGLI – образовательная платформа в&nbsp;бета-версии с&nbsp;ограниченным контентом для&nbsp;изучения китайского языка от&nbsp;Wildberries</div>
+<div style="max-width:1280px; margin:0 auto; padding:96px 40px 0; display:flex; justify-content:space-between; align-items:flex-start;">
+  <div class="accordion-toggle" data-target="context-body" style="display:flex; align-items:center; gap:24px; flex-shrink:0;">
+    <p style="font-family:'Inter Tight', Arial, sans-serif; font-weight:500; font-size:40px; color:#141414; line-height:normal; white-space:nowrap; margin:0;">Контекст</p>
+    <img src="assets/images/tingli-chevron.svg" class="accordion-chevron" width="24" height="24" alt="">
+  </div>
+  <p style="width:600px; font-family:'Inter Tight', Arial, sans-serif; font-weight:500; font-size:16px; color:#141414; line-height:normal; margin:0;">TINGLI — образовательная платформа в бета-версии с ограниченным контентом для изучения китайского языка от Wildberries & Russ</p>
 </div>
 
 <!-- CONTEXT FRAME -->
+<div class="accordion-body" id="context-body">
+  <div class="accordion-inner">
 <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
   <div style="margin-top:40px; width:1200px; height:620px; border-radius:48px; background:#CABEFF; position:relative; overflow:hidden;">
     <!-- Background blob -->
@@ -270,66 +286,68 @@
   </div>
 
 </div>
-
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <h2 class="section-title">О проекте</h2>
     <div class="about-grid reveal">
       <div class="about-block">
         <h3>Проблема</h3>
-        <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; line-height:1.5;">Невозможность отслеживать результаты обучения в&nbsp;приложении, что негативно влияет на&nbsp;пользовательский опыт</p>
+        <p>Невозможность отслеживать результаты обучения в приложении,<br>что негативно влияет на пользовательский опыт</p>
       </div>
       <div class="about-block">
         <h3>Задача</h3>
-        <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; line-height:1.5;">Создать профиль-центр, где пользователь видит прогресс, цели, уровни, и может отследить свои результаты</p>
+        <p>Создать профиль-центр, где пользователь видит прогресс, цели, уровни,<br>и может отследить свои результаты. Наши решения частично взяли<br>в реализацию, релиз был в июне. Мы предполагаем, что наши решения помогут<br>увеличить среднюю сессию в приложении и количество завершённых уроков.<br>Таким образом, мы повлияем на MAU</p>
       </div>
     </div>
 
-    <!-- Метрики -->
-    <div class="reveal" style="width:1120px; margin-top:60px; margin-bottom:0;">
-      <h3 style="font-family:'Gilroy',Arial,sans-serif; font-size:32px; font-weight:600; color:#1e1e1c; line-height:normal; margin:0 0 24px 0;">Метрики</h3>
-      <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:1.5; margin:0; width:1120px;">
-        Наши решения взяли в&nbsp;реализацию, релиз будет в&nbsp;июле. Мы предполагаем, что наши решения помогут <strong style="font-family:'Gilroy',Arial,sans-serif; font-weight:700;">увеличить среднюю сессию</strong> в&nbsp;приложении и&nbsp;<strong style="font-family:'Gilroy',Arial,sans-serif; font-weight:700;">количество завершённых уроков</strong>. Таким образом, мы повлияем на&nbsp;<strong style="font-family:'Gilroy',Arial,sans-serif; font-weight:700;">MAU</strong>
-      </p>
-    </div>
+    <!-- МОЯ РОЛЬ -->
+    <div class="reveal" style="position:relative; height:350px;">
 
-    <div class="reveal" style="position:relative; min-height:420px; margin-bottom:0; margin-top:100px;">
-      <h3 style="font-family:'Gilroy',Arial,sans-serif; font-size:40px; font-weight:600; color:#1e1e1c; position:absolute; left:0; top:0; margin:0;">Моя роль</h3>
-      <div style="position:absolute; left:0; top:72px; width:321px; height:280px; border-radius:32px; overflow:hidden;">
+      <!-- Heading -->
+      <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; margin:0; white-space:nowrap;">Моя роль</p>
+
+      <!-- Text list -->
+      <div style="position:absolute; left:0; top:68px; width:576px; display:flex; flex-direction:column; gap:16px;">
+
+        <!-- 1: 2 строки, items-start -->
+        <div style="display:flex; gap:16px; align-items:flex-start; width:576px;">
+          <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:16px; flex-shrink:0;" alt="">
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Проводила кабинетные, глубинные, полевые и дневниковых<br>исследования,</p>
+        </div>
+
+        <!-- 2: 1 строка, items-center -->
+        <div style="display:flex; gap:16px; align-items:center; width:576px;">
+          <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:14px; flex-shrink:0;" alt="">
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Собирала JBTD, зеленые и красные силы,</p>
+        </div>
+
+        <!-- 3: 2 строки, items-start -->
+        <div style="display:flex; gap:16px; align-items:flex-start; width:576px;">
+          <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:16px; flex-shrink:0;" alt="">
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Разрабатывала юзерфлоу и визуальный&nbsp;&nbsp;концепт экранов<br>Cобирала экраны в рамках концепта,</p>
+        </div>
+
+        <!-- 4: 1 строка, items-center -->
+        <div style="display:flex; gap:16px; align-items:center; width:576px;">
+          <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:14px; flex-shrink:0;" alt="">
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Сделала финальную презентацию и питчила,</p>
+        </div>
+
+        <!-- 5: 1 строка, items-center -->
+        <div style="display:flex; gap:16px; align-items:center; width:576px;">
+          <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:14px; flex-shrink:0;" alt="">
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Много практиковала китайский язык :)</p>
+        </div>
+
+      </div><!-- /text list -->
+
+      <!-- Photo -->
+      <div style="position:absolute; left:700px; top:0; width:400px; height:350px; overflow:hidden;">
         <img src="assets/images/tingli-myrole-photo.png" style="position:absolute; height:99.96%; left:-3.07%; top:0; width:116.28%; max-width:none; display:block;" alt="">
       </div>
-      <div style="position:absolute; left:550px; top:7px; width:600px; display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Проводила <strong style="font-weight:700;">анализ конкурентов</strong> и <strong style="font-weight:700;">полевые исследования</strong>,</p>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Интервьюировала <strong style="font-weight:700;">респондентов</strong>,</p>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Проводила <strong style="font-weight:700;">дневниковые исследования</strong><br>(2 недели),</p>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Собирала <strong style="font-weight:700;">JBTD</strong>, зеленые и красные силы,</p>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Разрабатывала <strong style="font-weight:700;">концепт</strong> и собирала экраны в рамках концепта,</p>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Делала <strong style="font-weight:700;">презентацию</strong> и питчила,</p>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <img src="icons/star.svg" style="width:24px; height:36px; flex-shrink:0;" alt="">
-          <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Много практиковала китайский язык :)</p>
-        </div>
-      </div>
-    </div>
+
+    </div><!-- /Моя роль -->
+
   </div>
 
   <!-- SKILLS FRAME -->
@@ -337,227 +355,63 @@
     <img src="assets/images/tingli-skills-screens.png" style="width:1200px; height:846px; display:block;" alt="">
   </div>
 </section>
+  </div><!-- /accordion-inner -->
+</div><!-- /accordion-body#context-body -->
 
 <!-- DESIGN PROCESS -->
-<section id="process">
+<section id="process" style="padding-bottom:0">
   <div class="container">
-    <h2 class="section-title">Дизайн-процесс</h2>
-    <div class="process-grid reveal">
-      <div class="process-step">
-        <div class="process-step__num">01</div>
-        <h3>Исследование</h3>
-        <p>Анализ конкурентов, гипотезы, глубинки, полевые исследования, дневники, CJM, JBTD</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step__num">02</div>
-        <h3>Дизайн</h3>
-        <p>Moodboard, Userflow, Wireframes</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step__num">03</div>
-        <h3>Тестирование</h3>
-        <p>User testing, Final results</p>
-      </div>
+    <div class="accordion-toggle" data-target="process-body" style="display:flex; align-items:center; gap:24px;">
+      <h2 class="section-title" style="margin-bottom:0">Дизайн-процесс</h2>
+      <img src="assets/images/tingli-chevron.svg" class="accordion-chevron" width="24" height="24" alt="">
     </div>
   </div>
 </section>
 
+<div class="accordion-body" id="process-body">
+  <div class="accordion-inner">
+
 <!-- ИССЛЕДОВАНИЕ -->
-<div id="research" style="max-width:1280px; margin:95px auto 0; padding:0 80px;">
-  <h2 style="font-family:'Gilroy',Arial,sans-serif; font-size:40px; font-weight:600; color:#1e1e1c; margin:0;">Исследование</h2>
-</div>
-
-<!-- КОНКУРЕНТЫ ФРЕЙМ -->
-<div style="max-width:1280px; margin:40px auto 0; padding:0 40px;">
-  <div style="width:1200px; height:640px; border-radius:48px; background:#CABEFF; position:relative; overflow:hidden;">
-    <p style="position:absolute; left:48px; top:465px; font-family:'Gilroy',Arial,sans-serif; font-size:32px; font-weight:600; color:white; margin:0; white-space:nowrap; z-index:10; transform:rotate(-90deg); transform-origin:left top;">Анализ конкурентов</p>
-
-    <!-- Carousel viewport: x=40, y=16, w=1120, h=588 -->
-    <div style="position:absolute; left:40px; top:16px; width:1120px; height:588px; overflow:hidden;">
-      <div id="ctrack" style="display:flex; width:6720px; height:610px; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);">
-
-        <!-- SLIDE 1: Chineasy -->
-        <div style="width:1120px; height:610px; flex-shrink:0; position:relative;">
-          <p style="position:absolute; left:0; width:100%; bottom:40px; font-family:'Actay Wide',sans-serif; font-size:48px; font-weight:700; color:rgba(255,255,255,0.3); white-space:nowrap; margin:0; line-height:52px; text-align:center;">Chineasy</p>
-          <!-- Phone: left=560+294-130=724 -->
-          <div style="position:absolute; left:724px; top:16px; width:260px; height:550px; border-radius:40px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-chineasy-phone.png" style="position:absolute; top:-5.12%; left:0; width:100%; height:105.12%; max-width:none; display:block;" alt="">
-          </div>
-          <div style="position:absolute; left:205px; top:104px; width:260px; height:129px; border-radius:32px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-chineasy-card.png" style="position:absolute; top:-52.56%; left:0; width:102.06%; height:458.97%; max-width:none; display:block;" alt="">
-          </div>
-          <div style="position:absolute; left:205px; top:265px; width:260px; height:131px; border-radius:32px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-chineasy-card.png" style="position:absolute; top:-143.09%; left:0; width:100%; height:436.59%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Text: top=305+119=424 -->
-          <div style="position:absolute; left:149px; top:424px; transform:translateY(-50%); background:white; padding:20px 24px;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; white-space:nowrap; margin:0; line-height:22px;">Отслеживание прогресса и трека</p>
-          </div>
-        </div>
-
-        <!-- SLIDE 2: Лаоши -->
-        <div style="width:1120px; height:610px; flex-shrink:0; position:relative;">
-          <p style="position:absolute; left:calc(50% - 96px); top:544px; transform:translateY(-50%); font-family:'Actay Wide',sans-serif; font-size:48px; font-weight:700; color:rgba(255,255,255,0.3); white-space:nowrap; margin:0; line-height:52px;">Лаоши</p>
-          <div style="position:absolute; right:136px; top:16px; width:260px; height:550px; border-radius:40px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-laoshi-phone.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="">
-          </div>
-          <!-- Card: top=calc(50%-80px), translateY(-50%) -->
-          <div style="position:absolute; left:205px; top:calc(50% - 80px); width:340px; height:122px; border-radius:40px; border:8px solid white; overflow:hidden; transform:translateY(-50%); box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-laoshi-phone.png" style="position:absolute; top:-348.11%; left:0; width:100%; height:629.19%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Text: top=calc(50%+12px), translateY(-50%) -->
-          <div style="position:absolute; left:274px; top:calc(50% + 12px); height:62px; transform:translateY(-50%); background:white; padding:20px 24px; display:flex; align-items:center;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; white-space:nowrap; margin:0;">Повторение SRS</p>
-          </div>
-        </div>
-
-        <!-- SLIDE 3: Bunpo -->
-        <div style="width:1120px; height:610px; flex-shrink:0; position:relative;">
-          <p style="position:absolute; left:calc(50% - 86px); top:544px; transform:translateY(-50%); font-family:'Actay Wide',sans-serif; font-size:48px; font-weight:700; color:rgba(255,255,255,0.3); white-space:nowrap; margin:0; line-height:52px;">Bunpo</p>
-          <!-- Right phone (no border) -->
-          <div style="position:absolute; right:136px; top:16px; width:260px; height:550px; border-radius:40px; overflow:hidden;">
-            <img src="assets/images/tingli-comp-bunpo-challenges.jpeg" style="position:absolute; top:-3.83%; left:0; width:100%; height:103.84%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Left phone (shadow, no border) -->
-          <div style="position:absolute; left:136px; top:16px; width:260px; height:550px; border-radius:40px; overflow:hidden; box-shadow:0 4px 4px rgba(0,0,0,0.25);">
-            <img src="assets/images/tingli-comp-bunpo-streak.jpeg" style="position:absolute; top:-4.34%; left:-0.03%; width:100.06%; height:108.68%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Left overlap card (no border) -->
-          <div style="position:absolute; left:44px; top:254px; width:300px; height:148px; border-radius:40px; overflow:hidden;">
-            <img src="assets/images/tingli-comp-bunpo-streak.jpeg" style="position:absolute; top:-209.35%; left:-0.01%; width:100.02%; height:428.97%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Lower right card (border) -->
-          <div style="position:absolute; left:644px; top:254px; width:258px; height:274px; border-radius:40px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-bunpo-reading.png" style="position:absolute; top:-5.23%; left:0; width:100%; height:167.49%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Text: top=305+106=411, translateY(-50%) -->
-          <div style="position:absolute; left:61px; top:calc(50% + 106px); transform:translateY(-50%); background:white; padding:20px 24px;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; white-space:nowrap; margin:0;">Челленджи и стрики</p>
-          </div>
-        </div>
-
-        <!-- SLIDE 4: Learna AI -->
-        <div style="width:1120px; height:610px; flex-shrink:0; position:relative;">
-          <!-- Watermark: translateY(-100%) → bottom at 570, top at 518 -->
-          <p style="position:absolute; left:calc(50% - 128px); top:570px; transform:translateY(-100%); font-family:'Actay Wide',sans-serif; font-size:48px; font-weight:700; color:rgba(255,255,255,0.3); white-space:nowrap; margin:0; line-height:52px;">Learna AI</p>
-          <!-- Center short phone: right:434 -->
-          <div style="position:absolute; right:434px; top:142px; width:260px; height:330px; border-radius:40px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-learna-videocall.jpeg" style="position:absolute; top:-10.76%; left:-93.98%; width:287.7%; height:177.51%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Right phone -->
-          <div style="position:absolute; right:136px; top:16px; width:260px; height:550px; border-radius:40px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-learna-select.jpeg" style="position:absolute; top:0; left:-92.53%; width:286.93%; height:100%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Left phone -->
-          <div style="position:absolute; left:136px; top:16px; width:253px; height:550px; border-radius:40px; border:8px solid white; overflow:hidden;">
-            <img src="assets/images/tingli-comp-learna-chat.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="">
-          </div>
-          <!-- Video call label: right:150 -->
-          <div style="position:absolute; right:150px; top:526px; background:white; padding:10px 16px; height:62px; display:flex; align-items:center;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; white-space:nowrap; margin:0;">Формат видеозвонка</p>
-          </div>
-          <!-- Chat label: left:184 -->
-          <div style="position:absolute; left:184px; top:526px; background:white; padding:10px 16px; height:62px; display:flex; align-items:center;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; white-space:nowrap; margin:0;">Формат чата</p>
-          </div>
-          <!-- Main text: top=calc(50%+163px), translateY(-50%) -->
-          <div style="position:absolute; left:416px; top:calc(50% + 163px); transform:translateY(-50%); background:white; padding:10px 30px;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; margin:0; line-height:normal;">Разговорная практика<br>с ИИ</p>
-          </div>
-        </div>
-
-        <!-- SLIDE 5: DeepSeek -->
-        <div style="width:1120px; height:610px; flex-shrink:0; position:relative;">
-          <!-- Watermark: translateY(-100%) → bottom at 570 -->
-          <p style="position:absolute; left:calc(50% - 133px); top:570px; transform:translateY(-100%); font-family:'Actay Wide',sans-serif; font-size:48px; font-weight:700; color:rgba(255,255,255,0.3); white-space:nowrap; margin:0; line-height:52px;">DeepSeek</p>
-          <!-- Phone: left=560+294-130=724 -->
-          <div style="position:absolute; left:724px; top:16px; width:260px; height:550px; border-radius:40px; overflow:hidden;">
-            <img src="assets/images/tingli-comp-deepseek-phone.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="">
-          </div>
-          <!-- Small card: left=560-216-157=187 -->
-          <div style="position:absolute; left:187px; top:214px; width:314px; height:140px; border-radius:32px; overflow:hidden;">
-            <img src="assets/images/tingli-comp-deepseek-phone.png" style="position:absolute; top:-113.07%; left:0; width:101.69%; height:504.71%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Text: top=calc(50%-90px), translateY(-50%) -->
-          <div style="position:absolute; left:593px; top:calc(50% - 90px); height:62px; transform:translateY(-50%); background:white; padding:10px 16px; display:flex; align-items:center;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; white-space:nowrap; margin:0;">Репетитор</p>
-          </div>
-        </div>
-
-        <!-- SLIDE 6: Книжные приложения -->
-        <div style="width:1120px; height:610px; flex-shrink:0; position:relative;">
-          <p style="position:absolute; left:50%; top:518px; transform:translateX(-50%); font-family:'Actay Wide',sans-serif; font-size:48px; font-weight:700; color:rgba(255,255,255,0.3); white-space:nowrap; margin:0; line-height:52px;">Книжные</p>
-          <!-- Right small screenshot -->
-          <div style="position:absolute; left:721px; top:129px; width:263px; height:260px; border-radius:30px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-knizhnye-challenges.jpeg" style="position:absolute; top:-4%; left:0; width:100%; height:180.63%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Left phone -->
-          <div style="position:absolute; left:136px; top:16px; width:260px; height:550px; border-radius:40px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-knizhnye-feed.jpeg" style="position:absolute; top:-2.77%; left:0; width:100%; height:102.77%; max-width:none; display:block;" alt="">
-          </div>
-          <!-- Center card -->
-          <div style="position:absolute; left:316px; top:216px; width:284px; height:220px; border-radius:30px; border:8px solid white; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 2px 6px rgba(0,0,0,0.1);">
-            <img src="assets/images/tingli-comp-knizhnye-feed.jpeg" style="position:absolute; top:-143.34%; left:0; width:100%; height:286.69%; max-width:none; display:block;" alt="">
-          </div>
-          <div style="position:absolute; left:352px; top:435px; height:62px; background:white; padding:20px 24px; display:flex; align-items:center; justify-content:center;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:24px; font-weight:400; line-height:28px; color:#1e1e1c; white-space:nowrap; margin:0;">Кастомные цели</p>
-          </div>
-          <div style="position:absolute; left:710px; top:389px; height:62px; background:white; padding:20px 24px; display:flex; align-items:center; justify-content:center;">
-            <p style="font-family:'Gilroy',Arial,sans-serif; font-size:24px; font-weight:400; line-height:28px; color:#1e1e1c; white-space:nowrap; margin:0;">Персональная лента</p>
-          </div>
-        </div>
-
-      </div><!-- /track -->
-    </div><!-- /viewport -->
-
-    <!-- Pagination dots -->
-    <div style="position:absolute; left:50%; bottom:16px; transform:translateX(-50%); display:flex; align-items:center; gap:32px; z-index:10;">
-      <div class="cpag" data-idx="0" onclick="cGoTo(0)" style="width:48px; height:16px; background:#ffffff; border-radius:8px; cursor:pointer; transition:all 0.3s;"></div>
-      <div class="cpag" data-idx="1" onclick="cGoTo(1)" style="width:16px; height:16px; background:rgba(255,255,255,0.3); border-radius:50%; cursor:pointer; transition:all 0.3s;"></div>
-      <div class="cpag" data-idx="2" onclick="cGoTo(2)" style="width:16px; height:16px; background:rgba(255,255,255,0.3); border-radius:50%; cursor:pointer; transition:all 0.3s;"></div>
-      <div class="cpag" data-idx="3" onclick="cGoTo(3)" style="width:16px; height:16px; background:rgba(255,255,255,0.3); border-radius:50%; cursor:pointer; transition:all 0.3s;"></div>
-      <div class="cpag" data-idx="4" onclick="cGoTo(4)" style="width:16px; height:16px; background:rgba(255,255,255,0.3); border-radius:50%; cursor:pointer; transition:all 0.3s;"></div>
-      <div class="cpag" data-idx="5" onclick="cGoTo(5)" style="width:16px; height:16px; background:rgba(255,255,255,0.3); border-radius:50%; cursor:pointer; transition:all 0.3s;"></div>
-    </div>
+<div id="research" style="max-width:1280px; margin:95px auto 0; padding:0 80px 0 40px;">
+  <div class="accordion-toggle" data-target="research-body" style="display:flex; align-items:center; gap:24px;">
+    <p style="font-family:'Inter Tight', Arial, sans-serif; font-weight:500; font-size:40px; color:#141414; line-height:normal; white-space:nowrap; margin:0;">Исследование</p>
+    <img src="assets/images/tingli-chevron.svg" class="accordion-chevron" width="24" height="24" alt="">
   </div>
 </div>
 
-<script>
-(function(){
-  let cur = 0, timer;
-  const track = document.getElementById('ctrack');
-  const dots = document.querySelectorAll('.cpag');
-  function cGoTo(n){
-    cur = n;
-    track.style.transform = 'translateX(-' + (n * 1120) + 'px)';
-    dots.forEach(function(d,i){
-      if(i===n){ d.style.width='48px'; d.style.borderRadius='8px'; d.style.background='#ffffff'; }
-      else { d.style.width='16px'; d.style.borderRadius='50%'; d.style.background='rgba(255,255,255,0.3)'; }
-    });
-    clearInterval(timer);
-    timer = setInterval(function(){ cGoTo((cur+1)%6); }, 4000);
-  }
-  window.cGoTo = cGoTo;
-  timer = setInterval(function(){ cGoTo((cur+1)%6); }, 4000);
-})();
-</script>
+<div class="accordion-body" id="research-body">
+  <div class="accordion-inner">
+
+  </div><!-- /accordion-inner -->
+</div><!-- /accordion-body#research-body -->
+  </div><!-- /accordion-inner -->
+</div><!-- /accordion-body#process-body -->
 
 <!-- DESIGN -->
-<section id="design">
+<section id="design" style="padding-bottom:0">
   <div class="container">
-    <h2 class="section-title">Дизайн</h2>
-
-<div style="position:relative; margin-bottom:40px;">
-      <h3 style="font-size:28px;font-weight:600;margin:0;" class="reveal">Карта навыков</h3>
-      <p style="position:absolute; left:600px; top:0; font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:1.5; margin:0; max-width:560px;">Главной задачей было – создать <strong style="font-family:'Gilroy',Arial,sans-serif;font-weight:700;font-size:20px;">профиль-центр</strong>, где пользователь видит прогресс, цели, уровни, и может отследить свои результаты. Мы выявили также потребность <strong style="font-family:'Gilroy',Arial,sans-serif;font-weight:700;font-size:20px;">в кастомизации цели</strong> и стимулировании пользователя <strong style="font-family:'Gilroy',Arial,sans-serif;font-weight:700;font-size:20px;">за счет краткосрочных прогнозов</strong>.</p>
+    <div class="accordion-toggle" data-target="design-body" style="display:flex; align-items:center; gap:24px;">
+      <h2 class="section-title" style="margin-bottom:0">Решения и дизайн</h2>
+      <img src="assets/images/tingli-chevron.svg" class="accordion-chevron" width="24" height="24" alt="">
     </div>
-    <div class="reveal" style="margin-top:200px; text-align:center;">
+  </div>
+</section>
+
+<div class="accordion-body" id="design-body">
+  <div class="accordion-inner">
+    <div class="container">
+
+<div style="position:relative; margin-top:64px; margin-bottom:40px;">
+      <h3 style="font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; white-space:nowrap; margin:0;" class="reveal">Карта навыков</h3>
+      <p style="position:absolute; left:600px; top:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:598px;">Главной задачей было создать профиль-центр, где пользователь видит<br>прогресс, цели, уровни, и может отследить свои результаты. Мы выявили<br>также потребность в кастомизации цели и стимулировании пользователя<br>за счёт краткосрочных прогнозов</p>
+    </div>
+    <div class="reveal" style="margin-top:88px; text-align:center;">
       <img src="assets/images/tingli-design-karta-navykov.png" alt="Карта навыков" style="max-width:100%; height:auto; border-radius:24px;">
     </div>
 
     <div style="position:relative; margin-top:100px; margin-bottom:40px;">
-      <h3 style="font-size:28px;font-weight:600;margin:0;" class="reveal">Не хватает общения</h3>
-      <p style="position:absolute; left:600px; top:0; font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:1.5; margin:0; max-width:560px;">Заказчик хотел бы добавить возможность общения с&nbsp;преподавателем. Мы&nbsp;предложили <strong style="font-family:'Gilroy',Arial,sans-serif;font-weight:700;font-size:20px;">развить функцию «ИИ-диалоги»</strong> — ассистент для&nbsp;переписки, созвонов и&nbsp;вопросов по&nbsp;изучению языка.</p>
+      <h3 style="font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; white-space:nowrap; margin:0;" class="reveal">Не хватает общения</h3>
+      <p style="position:absolute; left:600px; top:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; white-space:nowrap;">Заказчик хотел бы в перспективе добавить возможность общения<br>с преподавателем, но сейчас такой возможности нет, поэтому мы подумали,<br>что можно развить функцию «ИИ-диалоги» с помощью ассистента, с которым<br>можно было бы переписываться, созваниваться или задать любой вопрос<br>по изучению языка</p>
     </div>
 
     <div class="reveal" style="margin-top:170px; text-align:center;">
@@ -565,8 +419,8 @@
     </div>
 
     <div style="position:relative; margin-top:95px; margin-bottom:40px;">
-      <h3 style="font-size:28px;font-weight:600;margin:0;" class="reveal">В одном месте</h3>
-      <p style="position:absolute; left:600px; top:0; font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:1.5; margin:0; max-width:560px;">Пользователям не&nbsp;хватало <strong style="font-family:'Gilroy',Arial,sans-serif;font-weight:700;font-size:20px;">единого пространства</strong> для&nbsp;отработки лексики. Предлагаем встроить <strong style="font-family:'Gilroy',Arial,sans-serif;font-weight:700;font-size:20px;">умную камеру</strong>, которая оцифрует текст или&nbsp;отсканирует предметы и&nbsp;предложит перевод.</p>
+      <h3 style="font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; margin:0;" class="reveal">В одном месте</h3>
+      <p style="position:absolute; left:600px; top:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; white-space:nowrap;">В ходе исследования мы обнаружили, что пользователям не хватает одного<br>пространства для отработки лексики, чтобы в любой момент иметь<br>возможность вернуться и повторить всё, что накопилось. Мы предлагаем<br>встроить умную камеру, которая оцифрует текст или отсканирует предметы<br>и предложит перевод</p>
     </div>
 
     <div class="reveal" style="margin-top:175px;">
@@ -590,32 +444,36 @@
       </div>
     </div>
 
-    <div style="position:relative; margin-top:200px; margin-bottom:40px;">
-      <h3 style="font-size:28px;font-weight:600;margin:0;" class="reveal">Любитель культуры</h3>
-      <p style="position:absolute; left:600px; top:0; font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:1.5; margin:0; max-width:560px;">Китайский язык неразрывно связан с&nbsp;культурой Китая. Предлагаем визуализацию уровней с&nbsp;мифическими персонажами, сплеш-экран с&nbsp;привязкой к&nbsp;праздникам и&nbsp;важным событиям.</p>
+    <div style="position:relative; margin-top:200px; margin-bottom:0;">
+      <h3 style="font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; white-space:nowrap; margin:0;" class="reveal">Любитель культуры</h3>
+      <p style="position:absolute; left:600px; top:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:900px;">Китайский язык неразрывно связан с&nbsp;культурой Китая, поэтому для еще более<br>активного погружения мы предлагаем визуализацию уровней с&nbsp;мифическими<br>персонажами, сплеш экран с&nbsp;привязкой к&nbsp;праздникам и&nbsp;важным событиям</p>
     </div>
 
     <!-- CULTURE SCREENS -->
-    <div class="reveal" style="position:relative; height:698px; margin-top:192px;">
+    <div class="reveal" style="position:relative; height:698px; margin-top:72px;">
       <img src="assets/images/tingli-culture-phone-left.png" alt="" style="position:absolute; left:148px; top:0; width:323px; height:698px; display:block;">
       <img src="assets/images/tingli-culture-phone-right.png" alt="" style="position:absolute; left:647px; top:0; width:322px; height:698px; display:block;">
     </div>
-  </div>
-</section>
+    </div><!-- /container -->
+  </div><!-- /accordion-inner -->
+</div><!-- /accordion-body#design-body -->
 
 <!-- RESULT -->
-<section id="result" style="padding-top:16px;">
+<section id="result" style="padding-top:128px;">
   <div class="container">
     <div class="reveal" style="display:flex; align-items:flex-start; justify-content:space-between;">
-      <p style="font-family:'Gilroy',Arial,sans-serif; font-size:40px; font-weight:600; color:#1e1e1c; white-space:nowrap; text-align:center; margin:0;">Результат</p>
-      <div style="width:598px;">
-        <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">Мы решаем проблему фрагментированного опыта, где пользователю приходится использовать несколько разных приложений</p>
-        <p style="font-family:'Gilroy',Arial,sans-serif; font-size:20px; font-weight:400; color:#1e1e1c; line-height:normal; margin:0;">В итоге мы создаём не просто приложение, а устойчивую систему обучения, которая удерживает пользователя и растёт вместе с ним</p>
+      <div style="display:flex; align-items:center; gap:24px;">
+        <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:40px; font-weight:500; color:#141414; white-space:nowrap; margin:0;">Результат</p>
+        <img src="assets/images/tingli-chevron.svg" class="accordion-chevron" width="24" height="24" alt="">
+      </div>
+      <div style="width:600px;">
+        <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">Мы решаем проблему фрагментированного опыта, где пользователю не приходится использовать несколько разных приложений</p>
+        <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">В итоге мы создаём не просто приложение, а устойчивую систему обучения, которая удерживает пользователя и растёт вместе с ним</p>
       </div>
     </div>
 
     <!-- Screens mockup frame (668:20830) -->
-    <div class="reveal" style="position:relative; width:calc(100% + 80px); margin:60px -40px 0; height:950px; background:#f9e5e6; border-radius:48px; overflow:hidden;">
+    <div class="reveal" style="position:relative; width:calc(100% + 80px); margin:48px -40px 0; height:950px; background:#f9e5e6; border-radius:48px; overflow:hidden;">
 
       <!-- background vector waves -->
       <img src="assets/images/tingli-result-bg-waves.svg" alt="" aria-hidden="true" style="position:absolute; left:-2.5px; top:29px; width:1182.5px; height:683.5px; display:block;">
@@ -678,12 +536,18 @@
 <div class="pagination">
   <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     <img src="assets/images/tingli-pagination-chevron.svg" width="24" height="24" alt="" aria-hidden="true">
-    <span style="text-transform:capitalize;">наверх</span>
+    НАВЕРХ
   </button>
-  <a class="pagination__btn" href="gamification.html">
-    Геймификация в УД
-    <img src="assets/images/tingli-pagination-chevron.svg" width="24" height="24" alt="" aria-hidden="true">
-  </a>
+  <div style="display:flex; align-items:center; gap:48px;">
+    <a class="pagination__btn" href="#">
+      <img src="assets/images/tingli-pagination-chevron.svg" width="24" height="24" alt="" aria-hidden="true" style="transform:rotate(-90deg);">
+      ДИЗАЙН КОНФ
+    </a>
+    <a class="pagination__btn" href="gamification.html">
+      ГЕЙМИФИКАЦИЯ В УД
+      <img src="assets/images/tingli-pagination-chevron.svg" width="24" height="24" alt="" aria-hidden="true" style="transform:rotate(90deg);">
+    </a>
+  </div>
 </div>
 
 <footer>
@@ -711,6 +575,31 @@
   hoverZone.addEventListener('mouseleave', hideNav);
   nav.addEventListener('mouseenter', showNav);
   nav.addEventListener('mouseleave', hideNav);
+
+  // Accordion toggle (collapse/expand sections)
+  document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var body = document.getElementById(this.dataset.target);
+      if (!body) return;
+      var inner = body.querySelector('.accordion-inner');
+      var isCollapsed = body.classList.contains('collapsed');
+      var chevron = this.querySelector('.accordion-chevron');
+      if (isCollapsed) {
+        inner.style.overflow = 'hidden';
+        body.classList.remove('collapsed');
+        body.addEventListener('transitionend', function onDone(e) {
+          if (e.propertyName === 'grid-template-rows') {
+            inner.style.overflow = '';
+            body.removeEventListener('transitionend', onDone);
+          }
+        });
+      } else {
+        inner.style.overflow = 'hidden';
+        body.classList.add('collapsed');
+      }
+      if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
+    });
+  });
 </script>
 </body>
 </html>
