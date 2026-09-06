@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Дизайн конф — Мария Голубева</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Soyuz Grotesk';
+      src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
+           url('fonts/SoyuzGroteskBold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-medium.ttf') format('truetype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-semibold.ttf') format('truetype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('fonts/gilroy-bold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Gilroy', Arial, sans-serif; background: #fafafa; color: #1e1e1c; overflow-x: hidden; }
+    :root {
+      --white: #fafafa;
+      --black: #1e1e1c;
+      --grey1: #d2d2d2;
+      --grey2: #a5a5a4;
+      --grey3: #787877;
+      --footer-bg: #ece6d6;
+      --page-w: 1280px;
+      --max-w: 1280px;
+      --pad: 40px;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,254,251,.92);
+      backdrop-filter: blur(12px);
+      opacity: 0; transform: translateY(-100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav--visible { opacity: 1; transform: translateY(0); }
+    #nav-hover-zone {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 60px; z-index: 101;
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 50px var(--pad) 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative;
+    }
+    .nav__logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px; font-weight: 700; color: var(--black);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav__logo:hover { color: #B03C39; }
+    .nav__logo-icon { width: 24px; height: 24px; }
+    .nav__about {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px; font-weight: 700; color: var(--black);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav__about:hover { color: #B03C39; }
+    .nav__link {
+      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
+      font-size: 24px; font-weight: 700; color: var(--black);
+      text-decoration: none; transition: color .2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__link:hover { color: #B03C39; }
+
+    /* COVER */
+    .cover {
+      width: 100%; aspect-ratio: 1280 / 630;
+      overflow: hidden; line-height: 0;
+      position: relative; background: #fafafa;
+    }
+    .cover__laptop {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      top: 8%;
+      width: 80.2%; /* 1027/1280 */
+      height: auto;
+      display: block;
+    }
+    .cover__org {
+      position: absolute; left: 3.125%; top: 11.75%;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 1.25vw; font-weight: 500; color: #9b9b9b;
+      line-height: normal; letter-spacing: .02em;
+    }
+    .cover-chips {
+      position: absolute; left: 3.125%; top: 90%;
+      display: flex; gap: 0.75vw; align-items: center;
+    }
+    .cover-chip {
+      border: 1px solid #9b9b9b;
+      padding: 0.625vw 1vw;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 0.9375vw; font-weight: 500; color: #9b9b9b;
+      line-height: 1; white-space: nowrap;
+    }
+    .cover-site-btn {
+      position: absolute; left: 50%; top: 90%; transform: translateX(-50%);
+      display: inline-flex; align-items: center; gap: 4px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 1vw; font-weight: 500; color: #141414;
+      text-decoration: none; padding: 0.625vw 1vw;
+      transition: color .2s;
+    }
+    .cover-site-btn:hover { color: #B03C39; }
+    .cover-site-btn img { width: 1.25vw; height: 1.25vw; }
+
+    /* SECTION NAV */
+    .section-nav {
+      max-width: var(--page-w); margin: 0 auto;
+      padding: 0 40px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-top: 72px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .section-nav::-webkit-scrollbar { display: none; }
+    .section-nav__left { display: flex; align-items: flex-end; gap: 111px; }
+    .section-nav__right { display: flex; align-items: flex-end; gap: 164px; }
+    .section-nav__sub { display: flex; align-items: flex-end; gap: 164px; }
+    .section-nav a {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 24px; font-weight: 500; line-height: normal; color: #141414;
+      text-decoration: none; padding-bottom: 18px;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap; flex-shrink: 0;
+      transition: color .2s, border-color .2s;
+    }
+    .section-nav a:hover, .section-nav a.active { border-bottom-color: #141414; }
+
+    /* CONTAINER */
+    .container { max-width: var(--page-w); margin: 0 auto; padding: 0 40px; }
+    section { padding: 80px 0; }
+    #about { padding-top: 75px; }
+    #concepts { padding-top: 48px; padding-bottom: 0; }
+    #design-section { padding-top: 80px; padding-bottom: 0; }
+    #result { padding-top: 128px; }
+    .sep { height: 1px; background: var(--grey1); margin: 0 40px; }
+
+    /* CONTEXT BLOCK */
+    .context-block {
+      display: grid; grid-template-columns: 1fr 1fr; align-items: start;
+    }
+    .context-block__label {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 40px; font-weight: 500; line-height: normal; color: #141414;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .context-block__text {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; line-height: normal; font-weight: 500; color: #141414;
+    }
+
+    /* ACCORDION */
+    .accordion-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 0.35s ease; }
+    .accordion-body.collapsed { grid-template-rows:0fr; }
+    .accordion-inner { min-height:0; min-width:0; }
+    .accordion-body.collapsed .accordion-inner { overflow:hidden; }
+    .accordion-toggle { cursor:pointer; user-select:none; }
+    .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
+    .accordion-chevron.rotated { transform:rotate(180deg); }
+
+    /* SCREENSHOT BLOCK */
+    .screenshot-block {
+      max-width: var(--page-w); margin: 40px auto 0; padding: 0 40px;
+    }
+    .screenshot-block img {
+      width: 1200px; height: 750px; display: block; border-radius: 24px;
+      object-fit: cover;
+    }
+
+    /* INFO LABEL below screenshot */
+    .screenshot-caption {
+      max-width: var(--page-w); margin: 16px auto 0; padding: 0 40px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414;
+      text-align: center;
+    }
+
+    /* SECTION HEADINGS + TEXT */
+    .section-row {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      width: 100%;
+    }
+    .section-label {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; color: #141414;
+      line-height: normal; white-space: nowrap; flex-shrink: 0;
+    }
+    .section-text {
+      width: 600px; flex-shrink: 0;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; color: #141414; line-height: normal;
+    }
+    .section-text p { margin: 0; }
+
+    /* DETAILS AREA (Задача section) */
+    .details-area {
+      position: relative;
+      width: 1200px;
+      height: 400px;
+      margin-top: 64px;
+    }
+    /* Details 1 — actual site screenshot crop */
+    .details-area__left {
+      position: absolute; left: 0; top: 20px;
+      width: 600px; height: 248px;
+      overflow: hidden;
+    }
+    .details-area__left img {
+      position: absolute;
+      height: 156.45%; left: -12.29%; top: 0; width: 124.58%;
+      max-width: none; display: block;
+    }
+    /* Details 2 — empty right side placeholder area */
+    .details-area__right {
+      position: absolute; left: 640px; top: 0;
+      width: 560px; height: 296px;
+    }
+
+    /* Decorative elements */
+    .deco { position: absolute; pointer-events: none; }
+    .deco-flower2 {
+      left: 616px; top: 0;
+      width: 86px; height: 80px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .deco-flower2 img { width: 70px; height: 62px; transform: rotate(20deg); display: block; }
+    .deco-group79 {
+      right: 0; top: 0;
+      width: 130px; height: 130px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .deco-group79 img { width: 90px; height: 95px; transform: rotate(-54deg) scaleY(-1); display: block; }
+    .deco-vector {
+      right: 0; top: 150px;
+      width: 123px; height: 123px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .deco-vector img { width: 100px; height: 100px; transform: rotate(15deg); display: block; }
+    .deco-group1 {
+      left: 623px; top: 190px;
+      width: 74px; height: 76px;
+    }
+    .deco-group1 img { width: 100%; height: 100%; display: block; }
+    .deco-click {
+      left: 776px; top: 148px;
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .deco-click img { width: 22px; height: 22px; transform: rotate(33.6deg); display: block; }
+
+    /* Button mockup (site CTA mockup) */
+    .deco-btn-mockup {
+      position: absolute;
+      right: 0; top: 100px;
+      width: 230px; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .deco-btn-mockup__bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+    .deco-btn-mockup__text {
+      position: relative;
+      font-family: 'Gilroy', Arial, sans-serif;
+      font-size: 6px; font-weight: 500;
+      color: #091329;
+      letter-spacing: 0.02em;
+    }
+
+    /* Pink rectangle decoration */
+    .deco-rect {
+      position: absolute;
+      left: 820px; top: 172px;
+      width: 63px; height: 33px;
+      border: 0.422px solid #ff00bf;
+      transform: rotate(-4deg);
+    }
+
+    /* GREY PLACEHOLDERS (Концепции, Дизайн) */
+    .placeholders-row {
+      position: relative;
+      width: 1200px;
+      margin-top: 48px;
+      height: 420px;
+    }
+    .placeholder-left {
+      position: absolute; left: 0; top: 0;
+      width: 600px; height: 388px;
+      background: #d9d9d9; border-radius: 12px;
+    }
+    .placeholder-right {
+      position: absolute; left: 640px; top: 100px;
+      width: 560px; height: 339px;
+      background: #d9d9d9; border-radius: 12px;
+    }
+
+    /* Flower deco in Концепции area */
+    .deco-flower {
+      position: absolute;
+      right: 0; top: 380px;
+      width: 72px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .deco-flower img { width: 56px; height: 44px; transform: rotate(-10deg); display: block; }
+
+    /* RESULT SECTION */
+    .result-section-row {
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 40px; max-width: var(--page-w); margin: 0 auto;
+    }
+    .pagination__btn {
+      display: flex; align-items: center; gap: 16px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; text-transform: uppercase;
+      text-decoration: none; color: var(--black); cursor: pointer;
+      background: none; border: none;
+      transition: color 0.15s ease;
+    }
+    .pagination__btn:hover { color: #B03C39; }
+
+    /* FOOTER */
+    footer { background: var(--footer-bg); border-radius: 32px 32px 0 0; }
+    .footer-inner {
+      max-width: var(--page-w); margin: 0 auto;
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer__logo {
+      font-family: 'Soyuz Grotesk', Arial, sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--black); text-decoration: none;
+    }
+    .footer__nav { display: flex; gap: 132px; list-style: none; }
+    .footer__nav a {
+      font-family: 'Soyuz Grotesk', Arial, sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--black); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer__nav a:hover, .footer__logo:hover { color: #B03C39; }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s ease,transform .5s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+  </style>
+</head>
+<body>
+<div id="nav-hover-zone"></div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav__logo" href="index.html">
+      <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
+      Мария Голубева
+    </a>
+    <a class="nav__about" href="about.html">обо мне</a>
+    <a class="nav__link" href="contacts.html">контакты</a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <img class="cover__laptop" src="assets/images/designconf-laptop.png" alt="Дизайн конф — лендинг">
+
+  <!-- BHSAD label -->
+  <div class="cover__org">BHSAD</div>
+
+  <!-- Chips bottom-left -->
+  <div class="cover-chips">
+    <span class="cover-chip">лендинг</span>
+    <span class="cover-chip">адаптивы</span>
+    <span class="cover-chip">март 2026</span>
+  </div>
+
+  <!-- САЙТ button centered bottom -->
+  <a class="cover-site-btn" href="https://bhsad.ru/britankaconf" target="_blank" rel="noopener">
+    САЙТ
+    <img src="assets/images/designconf-chevron.svg" alt="" aria-hidden="true" style="transform:rotate(90deg);">
+  </a>
+</div>
+
+<!-- SECTION NAV -->
+<div class="section-nav">
+  <div class="section-nav__left">
+    <a href="#about" class="active">О проекте</a>
+    <a href="#task">Задача</a>
+  </div>
+  <div class="section-nav__right">
+    <div class="section-nav__sub">
+      <a href="#concepts">Концепции</a>
+      <a href="#design-section">Дизайн</a>
+    </div>
+    <a href="#result">Результат</a>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<section id="about" style="padding-bottom:0;">
+  <div class="container">
+    <div class="context-block accordion-toggle" data-target="context-body">
+      <div class="context-block__label">
+        Контекст
+        <img src="assets/images/designconf-chevron-up.svg" class="accordion-chevron" width="24" height="24" alt="" aria-hidden="true">
+      </div>
+      <p class="context-block__text">
+        Дизайн конф — мероприятие, проводимое Британской высшей школой дизайна для студентов и профессионалов: лекции, воркшопы, нетворкинг
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="accordion-body" id="context-body">
+  <div class="accordion-inner">
+    <!-- SITE SCREENSHOT -->
+    <div class="screenshot-block">
+      <img src="assets/images/designconf-site-screenshot.png" alt="Лендинг Дизайн конф">
+    </div>
+    <p class="screenshot-caption">Информация о мероприятии</p>
+  </div>
+</div>
+
+<!-- ЗАДАЧА -->
+<section id="task" style="padding-bottom:0;">
+  <div class="container">
+
+    <div class="section-row reveal">
+      <span class="section-label">Задача</span>
+      <div class="section-text">
+        <p>Спроектировать лендинг для ДизайнКонф для Британской высшей школы дизайна, чтобы у пользователей была возможность ознакомиться с программой мероприятия, получить ответы на частозадаваемые вопросы и зарегистрироваться</p>
+      </div>
+    </div>
+
+    <!-- Details area with decorative elements -->
+    <div class="details-area reveal">
+      <!-- Left: Details 1 image -->
+      <div class="details-area__left">
+        <img src="assets/images/designconf-details-1.png" alt="">
+      </div>
+
+      <!-- Right: empty placeholder area with decorative elements -->
+      <div class="details-area__right"></div>
+
+      <!-- Decorative elements -->
+      <div class="deco deco-flower2">
+        <img src="assets/images/designconf-flower2.svg" alt="">
+      </div>
+      <div class="deco deco-group79">
+        <img src="assets/images/designconf-group79.svg" alt="">
+      </div>
+      <div class="deco deco-vector">
+        <img src="assets/images/designconf-vector-deco.png" alt="" width="100" height="100">
+      </div>
+      <div class="deco deco-group1">
+        <img src="assets/images/designconf-group1.svg" alt="">
+      </div>
+      <div class="deco deco-click">
+        <img src="assets/images/designconf-click.svg" alt="">
+      </div>
+      <!-- Button mockup -->
+      <div class="deco-btn-mockup">
+        <img class="deco-btn-mockup__bg" src="assets/images/designconf-button-union.svg" alt="">
+        <span class="deco-btn-mockup__text">Зарегистрироваться бесплатно</span>
+      </div>
+      <!-- Pink rectangle decoration -->
+      <div class="deco-rect"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- КОНЦЕПЦИИ -->
+<section id="concepts" style="padding-bottom:80px;">
+  <div class="container">
+
+    <div class="section-row reveal">
+      <span class="section-label">Концепции</span>
+      <div class="section-text">
+        <p>За основу был взят дофаминовый дизайн и подобраны концепции для создания варианта розового и белого фрэнки</p>
+      </div>
+    </div>
+
+    <div class="placeholders-row reveal" style="height:420px;">
+      <div class="placeholder-left"></div>
+      <div class="placeholder-right" style="height:194px; top:110px;"></div>
+      <div class="deco-flower">
+        <img src="assets/images/designconf-flower.svg" alt="">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ДИЗАЙН -->
+<section id="design-section" style="padding-bottom:80px;">
+  <div class="container">
+
+    <div class="section-row reveal">
+      <span class="section-label">Дизайн</span>
+      <div class="section-text">
+        <p>В процессе создания был взят белый фрэнки за основу и были созданы адаптивы для разнообразных устройств пользователей (HD, десктоп, планшет, мобилка). Сайт был свёрстан на тильде</p>
+      </div>
+    </div>
+
+    <div class="placeholders-row reveal" style="height:430px; margin-top:64px;">
+      <div class="placeholder-left"></div>
+      <div class="placeholder-right" style="height:339px; top:91px;"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- РЕЗУЛЬТАТ -->
+<section id="result" style="padding-top:128px; padding-bottom:80px;">
+  <div class="container">
+    <div class="reveal" style="display:flex; align-items:flex-start; justify-content:space-between;">
+      <span class="section-label">Результат</span>
+      <div class="section-text">
+        <p>Спроектировала лендинг для ДизайнКонф — от структуры и концепции до финального дизайна с адаптивами. Сайт был свёрстан на тильде и опубликован на домене BHSAD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGINATION -->
+<div class="pagination">
+  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <img src="assets/images/designconf-chevron-up.svg" width="24" height="24" alt="" aria-hidden="true">
+    НАВЕРХ
+  </button>
+  <div style="display:flex; align-items:center; gap:48px;">
+    <a class="pagination__btn" href="12storeez.html">
+      <img src="assets/images/designconf-chevron-up.svg" width="24" height="24" alt="" aria-hidden="true" style="transform:rotate(-90deg);">
+      12 STOREEZ
+    </a>
+    <a class="pagination__btn" href="tingli.html">
+      ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ
+      <img src="assets/images/designconf-chevron-up.svg" width="24" height="24" alt="" aria-hidden="true" style="transform:rotate(90deg);">
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a class="footer__logo" href="index.html">мария голубева</a>
+    <ul class="footer__nav">
+      <li><a href="index.html#projects">мои проекты</a></li>
+      <li><a href="about.html">обо мне</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  /* REVEAL */
+  const obs = new IntersectionObserver(e => e.forEach(x => {
+    if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); }
+  }), { threshold: .08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* SECTION NAV active state */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.section-nav a');
+  const sObs = new IntersectionObserver(e => e.forEach(x => {
+    if (x.isIntersecting) {
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + x.target.id));
+    }
+  }), { threshold: .3 });
+  sections.forEach(s => sObs.observe(s));
+
+  /* NAV hover show/hide */
+  const nav = document.querySelector('.nav');
+  const hoverZone = document.getElementById('nav-hover-zone');
+  const showNav = () => nav.classList.add('nav--visible');
+  const hideNav = () => { if (!nav.matches(':hover') && !hoverZone.matches(':hover')) nav.classList.remove('nav--visible'); };
+  hoverZone.addEventListener('mouseenter', showNav);
+  hoverZone.addEventListener('mouseleave', hideNav);
+  nav.addEventListener('mouseenter', showNav);
+  nav.addEventListener('mouseleave', hideNav);
+
+  /* ACCORDION */
+  document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var body = document.getElementById(this.dataset.target);
+      if (!body) return;
+      var inner = body.querySelector('.accordion-inner');
+      var isCollapsed = body.classList.contains('collapsed');
+      var chevron = this.querySelector('.accordion-chevron');
+      if (isCollapsed) {
+        inner.style.overflow = 'hidden';
+        body.classList.remove('collapsed');
+        body.addEventListener('transitionend', function onDone(e) {
+          if (e.propertyName === 'grid-template-rows') {
+            inner.style.overflow = '';
+            body.removeEventListener('transitionend', onDone);
+          }
+        });
+      } else {
+        inner.style.overflow = 'hidden';
+        body.classList.add('collapsed');
+      }
+      if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
+    });
+  });
+</script>
+</body>
+</html>
