@@ -2561,12 +2561,9 @@
 
       <!-- Левый телефон (1816:10171 "Гардероб"): x=137, y=97, 322×700px -->
       <div style="position:absolute;left:137px;top:97px;width:322px;height:700px;">
-        <!-- Lock Screen (1816:10172): inset top=2px right=-3px bottom=-6px left=0, border-radius=38.491px, overflow:hidden -->
-        <div style="position:absolute;top:2px;right:-3px;bottom:-6px;left:0;overflow:hidden;border-radius:38.491px;">
-          <!-- Сервисы 3 (1911:22600): x=1, y=0, 323×701px — анимированный GIF, центрирован -->
-          <div style="position:absolute;left:50%;top:0;width:323px;height:701px;transform:translateX(-50%);">
-            <video src="assets/images/storeez-servisy.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;"></video>
-          </div>
+        <!-- Lock Screen: inset:0, border-radius=38.491px, overflow:hidden — контент строго от x=0 y=0 -->
+        <div style="position:absolute;inset:0;overflow:hidden;border-radius:38.491px;">
+          <video src="assets/images/storeez-servisy.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;"></video>
         </div>
         <!-- Bezel (1816:10250): left=1px top=2px, w=324px h=704px, image offset left=-19.25 top=-18.44 -->
         <div style="position:absolute;left:1px;top:2px;width:324px;height:704px;z-index:1;pointer-events:none;">
