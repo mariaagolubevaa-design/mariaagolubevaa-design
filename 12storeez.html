@@ -2561,8 +2561,8 @@
 
       <!-- Левый телефон (1816:10171 "Гардероб"): x=137, y=97, 322×700px -->
       <div style="position:absolute;left:137px;top:97px;width:322px;height:700px;">
-        <!-- Lock Screen: inset:0, border-radius=38.491px, overflow:hidden — контент строго от x=0 y=0 -->
-        <div style="position:absolute;inset:0;overflow:hidden;border-radius:38.491px;">
+        <!-- Lock Screen: top=0 (no gap), right=-3px bottom=-6px perекрывают края безеля -->
+        <div style="position:absolute;top:0;right:-3px;bottom:-6px;left:0;overflow:hidden;border-radius:38.491px;">
           <video src="assets/images/storeez-servisy.mp4" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;"></video>
         </div>
         <!-- Bezel (1816:10250): left=1px top=2px, w=324px h=704px, image offset left=-19.25 top=-18.44 -->
