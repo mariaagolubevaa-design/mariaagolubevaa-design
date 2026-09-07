@@ -170,20 +170,18 @@
     .hero {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 130px var(--pad) 0;
-      display: grid;
-      grid-template-columns: 304px 1fr;
-      gap: 30px;
-      align-items: center;
+      position: relative;
+      min-height: 620px;
     }
 
-    /* Photo frame — pixel-perfect per Figma node 2095:13470 (304×441px) */
+    /* Photo frame — Figma node 2095:13470: x=778, y=93 within 1280px artboard */
     .hero__photo-wrap {
-      position: relative;
+      position: absolute;
+      left: 778px;
+      top: 93px;
       width: 304px;
       height: 441px;
       overflow: visible;
-      flex-shrink: 0;
     }
 
     .hero__photo-wrap img.hero__photo {
@@ -462,11 +460,28 @@
     .footer__nav a:hover { color: #B03C39; }
     .footer__logo:hover { color: #B03C39; }
 
+    .btn-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      text-transform: uppercase;
+      padding: 0;
+      transition: color .2s;
+    }
+    .btn-top:hover { color: #FA472D; }
+
     /* ── FACTS ── */
     .facts {
-      position: relative;
-      max-width: var(--max-w);
-      margin: 340px auto 0;
+      position: absolute;
+      left: 0;
+      top: 383px;
       padding: 28px 40px 0;
     }
 
@@ -559,30 +574,30 @@
     </div>
     <img class="hero__photo" src="assets/images/hero-photo-cutout.png" alt="Мария Голубева">
   </div>
-</section>
 
-<!-- FACTS -->
-<div class="facts reveal">
-  <p class="facts__location">Москва, Россия</p>
-  <div class="facts__grid">
-    <div class="facts__cell">
-      <span class="facts__num">[01]</span>
-      <p class="facts__text">победитель хакатона<br>от Яндекс Практикума</p>
-    </div>
-    <div class="facts__cell">
-      <span class="facts__num">[02]</span>
-      <p class="facts__text">работала со Sberdevices,<br>Wildberries и 12 STOREEZ</p>
-    </div>
-    <div class="facts__cell">
-      <span class="facts__num">[03]</span>
-      <p class="facts__text">использую в работе AI:<br>Nano Banana, Kling,<br>Claude Code, VS Code</p>
-    </div>
-    <div class="facts__cell">
-      <span class="facts__num">[04]</span>
-      <p class="facts__text">работала<br>над интерфейсами<br>приложений и вебсайтов</p>
+  <!-- FACTS — x=40, y=383 в артборде 1280px -->
+  <div class="facts reveal">
+    <p class="facts__location">Москва, Россия</p>
+    <div class="facts__grid">
+      <div class="facts__cell">
+        <span class="facts__num">[01]</span>
+        <p class="facts__text">победитель хакатона<br>от Яндекс Практикума</p>
+      </div>
+      <div class="facts__cell">
+        <span class="facts__num">[02]</span>
+        <p class="facts__text">работала со Sberdevices,<br>Wildberries и 12 STOREEZ</p>
+      </div>
+      <div class="facts__cell">
+        <span class="facts__num">[03]</span>
+        <p class="facts__text">использую в работе AI:<br>Nano Banana, Kling,<br>Claude Code, VS Code</p>
+      </div>
+      <div class="facts__cell">
+        <span class="facts__num">[04]</span>
+        <p class="facts__text">работала<br>над интерфейсами<br>приложений и вебсайтов</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- PROJECTS -->
 <section class="projects" id="projects">
@@ -707,6 +722,22 @@
   </div>
 </section>
 
+
+<footer>
+  <div class="footer-inner">
+    <a class="footer__logo" href="index.html">мария голубева</a>
+    <ul class="footer__nav">
+      <li><a href="index.html">мои проекты</a></li>
+      <li><a href="about.html">обо мне</a></li>
+    </ul>
+    <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
+      </svg>
+      НАВЕРХ
+    </button>
+  </div>
+</footer>
 
 <script>
   const obs = new IntersectionObserver(entries => {
