@@ -4,12 +4,23 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Мария Голубева — UX/UI дизайнер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Soyuz Grotesk';
       src: url('fonts/Soyuz_Grotesk_Bold.otf') format('opentype'),
            url('fonts/SoyuzGroteskBold.ttf') format('truetype');
       font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Kom-post';
+      src: url('fonts/kom-post.ttf') format('truetype');
+      font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
@@ -86,7 +97,7 @@
     .nav-inner {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 50px var(--pad) 20px;
+      padding: 20px var(--pad);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -95,49 +106,71 @@
 
     .nav__logo {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--black);
+      flex-direction: column;
+      gap: 2px;
       text-decoration: none;
     }
 
-    .nav__logo-icon { width: 24px; height: 24px; }
+    .nav__logo-text {
+      font-family: 'Kom-post', cursive;
+      font-size: 32px;
+      font-weight: 400;
+      color: #fa472d;
+      line-height: 1;
+    }
 
-    .nav__about {
+    .nav__logo-sub {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: 1;
+    }
+
+    .nav__center {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--grey1);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__center-link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
       text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 16px;
       transition: color .2s;
     }
 
-    .nav__about:hover { color: var(--black); }
+    .nav__center-link:hover { color: #FA472D; }
 
-    .nav__link {
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--grey1);
+    .nav__resume {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
       text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 16px;
       transition: color .2s;
-      display: flex; align-items: center; gap: 10px;
     }
-    .nav__link img { width: 24px; height: 24px; }
 
-    .nav__link:hover { color: var(--black); }
+    .nav__resume:hover { color: #FA472D; }
+    .nav__resume:hover svg path { fill: #FA472D; }
+    .nav__resume svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     /* ── HERO ── */
     .hero {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 160px var(--pad) 0;
+      padding: 130px var(--pad) 0;
       display: grid;
       grid-template-columns: 570px 1fr;
       gap: 30px;
@@ -240,7 +273,7 @@
 
     /* ── PROJECTS ── */
     .projects {
-      margin-top: 48px;
+      margin-top: 103px;
       padding-bottom: 80px;
     }
 
@@ -371,6 +404,50 @@
     .footer__nav a:hover { color: #B03C39; }
     .footer__logo:hover { color: #B03C39; }
 
+    /* ── FACTS ── */
+    .facts {
+      max-width: var(--max-w);
+      margin: 340px auto 0;
+      padding: 28px 60px 0;
+    }
+
+    .facts__grid {
+      position: relative;
+      width: 489px;
+      height: 165px;
+    }
+
+    .facts__cell {
+      position: absolute;
+      width: 187px;
+    }
+
+    .facts__cell:nth-child(1) { left: 0;     top: 0;    }
+    .facts__cell:nth-child(2) { left: 302px; top: 0;    }
+    .facts__cell:nth-child(3) { left: 0;     top: 108px;}
+    .facts__cell:nth-child(4) { left: 302px; top: 108px;}
+
+    .facts__num {
+      display: block;
+      position: absolute;
+      top: -28px;
+      left: 0;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+    }
+
+    .facts__text {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+      white-space: nowrap;
+    }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -386,37 +463,44 @@
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav__logo" href="index.html">
-      <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
-      Мария Голубева
+      <span class="nav__logo-text">hey.marie</span>
+      <span class="nav__logo-sub">продуктовый | ux/ui дизайнер</span>
     </a>
-    <a class="nav__about" href="about.html">обо мне</a>
-    <a class="nav__link" href="contacts.html">контакты</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero reveal">
-  <div class="hero__photo-wrap">
-    <img class="hero__photo" src="assets/images/hero-photo-masha.jpeg" alt="Маша Голубева">
-    <div class="hero__bubble">Привет! Я — Маша</div>
-  </div>
-
-  <div class="hero__content">
-    <p class="hero__text">
-      UX/UI дизайнер, <strong>победитель хакатона от Яндекс Практикума</strong>
-      <img class="hero__star" src="icons/star.svg" alt="✦"><br>
-      В рамках учебных проектов работала со <strong>SberDevices</strong> и <strong>Wildberries</strong><br>
-      Работаю с мобильными приложениями<br>и вебсайтами
-      <img class="hero__star" src="icons/star.svg" alt="✦">
-    </p>
-    <a class="hero__btn" href="#projects">
-      Посмотреть
-      <svg class="hero__btn-arrow" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1.5 1L5.5 6L1.5 11" stroke="#1E1E1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="nav__center">
+      <a class="nav__center-link" href="#projects">ПРОЕКТЫ</a>
+      <a class="nav__center-link" href="about.html">ОБО МНЕ</a>
+      <a class="nav__center-link" href="contacts.html">КОНТАКТЫ</a>
+    </div>
+    <a class="nav__resume" href="about.html#resume">
+      РЕЗЮМЕ
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.929 19.071L10.343 20.485L19.071 11.757L10.343 3.029L8.929 4.443L16.243 11.757L8.929 19.071Z" fill="#141414"/>
       </svg>
     </a>
   </div>
-</section>
+</nav>
+
+<!-- FACTS -->
+<div class="facts reveal">
+  <div class="facts__grid">
+    <div class="facts__cell">
+      <span class="facts__num">[01]</span>
+      <p class="facts__text">победитель хакатона<br>от Яндекс Практикума</p>
+    </div>
+    <div class="facts__cell">
+      <span class="facts__num">[02]</span>
+      <p class="facts__text">работала со Sberdevices,<br>Wildberries и 12 STOREEZ</p>
+    </div>
+    <div class="facts__cell">
+      <span class="facts__num">[03]</span>
+      <p class="facts__text">использую в работе AI:<br>Nano Banana, Kling,<br>Claude Code, VS Code</p>
+    </div>
+    <div class="facts__cell">
+      <span class="facts__num">[04]</span>
+      <p class="facts__text">работала<br>над интерфейсами<br>приложений и вебсайтов</p>
+    </div>
+  </div>
+</div>
 
 <!-- PROJECTS -->
 <section class="projects" id="projects">
