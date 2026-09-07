@@ -172,25 +172,52 @@
       margin: 0 auto;
       padding: 130px var(--pad) 0;
       display: grid;
-      grid-template-columns: 570px 1fr;
+      grid-template-columns: 304px 1fr;
       gap: 30px;
       align-items: center;
     }
 
+    /* Photo frame — pixel-perfect per Figma node 2095:13470 (304×441px) */
     .hero__photo-wrap {
       position: relative;
-      width: 570px;
-      height: 420px;
-      border-radius: 32px;
-      overflow: hidden;
+      width: 304px;
+      height: 441px;
+      overflow: visible;
       flex-shrink: 0;
     }
 
     .hero__photo-wrap img.hero__photo {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 304px;
+      height: 439px;
       object-fit: cover;
-      object-position: center 33%;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    /* Shadow — Figma node 2093:13859: 80×20px at left:90px top:409px,
+       inner image expands by inset(-60% -15%) → 104×44px at (-12,-12) */
+    .hero__shadow {
+      position: absolute;
+      left: 90px;
+      top: 409px;
+      width: 80px;
+      height: 20px;
+      pointer-events: none;
+    }
+
+    .hero__shadow img {
+      position: absolute;
+      top: -60%;
+      right: -15%;
+      bottom: -60%;
+      left: -15%;
+      display: block;
+      max-width: none;
+      width: 130%;
+      height: 220%;
     }
 
     .hero__bubble {
@@ -523,6 +550,16 @@
     </a>
   </div>
 </nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__photo-wrap">
+    <div class="hero__shadow">
+      <img src="assets/images/hero-photo-shadow.svg" alt="" aria-hidden="true">
+    </div>
+    <img class="hero__photo" src="assets/images/hero-photo-cutout.png" alt="Мария Голубева">
+  </div>
+</section>
 
 <!-- FACTS -->
 <div class="facts reveal">
