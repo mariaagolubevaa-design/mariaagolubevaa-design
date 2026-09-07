@@ -278,16 +278,27 @@
     }
 
     .projects-scroll {
-      display: flex;
-      gap: 32px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 8px 40px 20px 104px;
+      overflow: hidden;
+      padding: 8px 0 20px 0;
     }
 
-    .projects-scroll::-webkit-scrollbar { display: none; }
+    .projects-track {
+      display: flex;
+      gap: 32px;
+      width: max-content;
+      padding-left: 104px;
+      animation: projects-marquee 25000ms linear infinite;
+      will-change: transform;
+    }
+
+    .projects-track.is-paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes projects-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(var(--projects-shift, -3320px)); }
+    }
 
     .project-card {
       min-width: 632px;
@@ -331,14 +342,15 @@
     .project-card__name {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 24px;
-      font-weight: 600;
-      font-family: 'Gilroy', 'Montserrat', sans-serif;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      letter-spacing: 0;
       margin-bottom: 4px;
     }
 
-    .project-card__name-star { width: 16px; height: 16px; }
+    .project-card__name-star { width: 12px; height: 12px; }
 
     .project-card__org {
       font-size: 20px;
@@ -348,15 +360,30 @@
       margin-bottom: 12px;
     }
 
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .project-card__desc {
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      color: #9b9b9b;
+      line-height: normal;
+      margin-bottom: 12px;
+      margin-top: 2px;
+    }
+
+    .chips { display: flex; gap: 6px; flex-wrap: wrap; }
 
     .chip {
-      border: 1.5px solid var(--grey2);
-      border-radius: 32px;
-      padding: 8px 16px;
-      font-size: 16px;
-      color: var(--grey3);
+      border: 1px solid #9b9b9b;
+      border-radius: 0;
+      padding: 0 16px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      color: #9b9b9b;
       font-weight: 500;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      box-sizing: border-box;
     }
 
     .bg-pink   { background: #ffe8e0; }
@@ -406,9 +433,22 @@
 
     /* ── FACTS ── */
     .facts {
+      position: relative;
       max-width: var(--max-w);
       margin: 340px auto 0;
-      padding: 28px 60px 0;
+      padding: 28px 40px 0;
+    }
+
+    .facts__location {
+      position: absolute;
+      left: 871px;
+      top: 146px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      white-space: nowrap;
+      line-height: 1;
     }
 
     .facts__grid {
@@ -482,6 +522,7 @@
 
 <!-- FACTS -->
 <div class="facts reveal">
+  <p class="facts__location">Москва, Россия</p>
   <div class="facts__grid">
     <div class="facts__cell">
       <span class="facts__num">[01]</span>
@@ -509,111 +550,115 @@
     <!-- 0. 12 STOREEZ -->
     <a class="project-card reveal" href="12storeez.html">
       <div class="project-card__thumb" style="background: white;">
-        <img src="assets/images/card-12storeez.png" alt="12 STOREEZ"
-          style="position:absolute;left:0;top:0;width:600px;height:435px;max-width:none;object-fit:cover;pointer-events:none;">
+        <img src="icons/star-12-lg.svg" alt="" style="position:absolute;width:90px;height:90px;top:38px;right:44px;pointer-events:none;">
+        <img src="icons/star-12-sm.svg" alt="" style="position:absolute;width:51px;height:52px;bottom:72px;left:32px;pointer-events:none;">
+        <img src="icons/star-12-xs.svg" alt="" style="position:absolute;width:43px;height:44px;top:200px;left:68px;pointer-events:none;">
+        <div style="position:absolute;width:220px;height:481px;left:50%;top:20px;transform:translateX(-50%);pointer-events:none;">
+          <div style="position:absolute;inset:0;border-radius:26px;overflow:hidden;">
+            <img src="assets/images/card-12storeez-hero.png" alt=""
+              style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <img src="assets/images/card-12storeez-phone.png" alt=""
+            style="position:absolute;left:-13px;top:-12px;width:246px;height:503px;object-fit:contain;">
+        </div>
       </div>
       <div class="project-card__name">
-        Главная страница
+        ГЛАВНАЯ СТРАНИЦА
         <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
-      <div class="project-card__org">12 STOREEZ × BHSAD</div>
+      <p class="project-card__desc">12 STOREEZ — российcкий премиальный бренд одежды. Необходимо было переосмыслить главную страницу приложения и приложения в целом</p>
       <div class="chips">
-        <span class="chip">приложение</span>
-        <span class="chip">ux/ui</span>
+        <span class="chip">12 STOREEZ</span>
+        <span class="chip">e-com</span>
         <span class="chip">B2C</span>
+        <span class="chip">приложение</span>
       </div>
     </a>
 
     <!-- 1. Дизайн конф -->
     <a class="project-card reveal" href="designconf.html">
       <div class="project-card__thumb bg-pink">
-        <!-- Laptop image centered -->
         <img src="assets/images/card-dizajn-konf.png" alt="Дизайн конф"
-          style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:685px;height:506px;max-width:none;object-fit:cover;pointer-events:none;">
-        <!-- Star decorations -->
-        <img src="icons/star-white.svg" alt=""
-          style="position:absolute;top:0;right:0;width:90px;height:90px;pointer-events:none;">
-        <img src="icons/star-white.svg" alt=""
-          style="position:absolute;top:92px;right:0;width:51px;height:52px;pointer-events:none;">
-        <img src="icons/star-white.svg" alt=""
-          style="position:absolute;top:3px;right:90px;width:43px;height:44px;pointer-events:none;">
+          style="position:absolute;left:-43px;top:-35px;width:685px;height:506px;max-width:none;pointer-events:none;">
       </div>
       <div class="project-card__name">
-        Дизайн конф
+        ДИЗАЙН КОНФ
         <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
-      <div class="project-card__org">BHSAD</div>
+      <p class="project-card__desc">БВШД проводили дизайн конференцию. Необходимо было сделать лендинг в дофаминовом стиле для того, чтобы все желающие могли ознакомиться с мероприятием и зарегистрироваться. Также были сделаны адаптивы для разных устройств</p>
       <div class="chips">
         <span class="chip">лендинг</span>
         <span class="chip">адаптивы</span>
-        <span class="chip">ui</span>
+        <span class="chip">конференция</span>
       </div>
     </a>
 
     <!-- 2. Профиль пользователя (Tingli) -->
     <a class="project-card reveal" href="tingli.html">
-      <div class="project-card__thumb bg-purple">
-        <!-- Blob vector: 527×413px, positioned per Figma (left:33px, top:14px) -->
-        <svg style="position:absolute;left:33px;top:14px;width:527px;height:413px;pointer-events:none;" viewBox="0 0 527 413" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M45.0117 125.734L440.893 45.205C444.283 44.5155 445.955 49.1627 442.904 50.7914L108.533 229.255C105.778 230.725 106.823 234.901 109.946 234.901H478.935C482.406 234.901 483.105 239.814 479.772 240.782L45.0117 367.104" stroke="white" stroke-opacity="0.3" stroke-width="90" stroke-linecap="round"/>
-        </svg>
+      <div class="project-card__thumb bg-purple" style="border-radius:0;">
+        <img src="assets/images/tingli-card-vector.svg" alt=""
+          style="position:absolute;left:33px;top:14px;width:527px;height:413px;pointer-events:none;">
         <!-- Phone: 248x488px, centered, screen image inside -->
         <div style="position:absolute;left:50%;top:16px;transform:translateX(-50%);width:248px;height:488px;border-radius:40px;overflow:hidden;pointer-events:none;">
-          <img src="assets/images/card-tingli.png" alt="Tingli"
+          <img src="assets/images/card-tingli-preview.png" alt="Tingli"
             style="position:absolute;height:129.18%;left:-66.14%;max-width:none;top:-13.91%;width:338.6%;">
         </div>
       </div>
       <div class="project-card__name">
-        Профиль пользователя
+        ПРОФИЛЬ ПОЛЬЗОВАТЕЛЬ
         <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
-      <div class="project-card__org">Tingli, Wildberries × BHSAD</div>
+      <p class="project-card__desc">TINGLI — стартап внутри экосистемы RWB. Приложение нацелено на изучение китайского языка для селлеров и не только. Необходимо было сделать профиль-центр, где можно было бы отслеживать прогресс по языковым навыкам</p>
       <div class="chips">
+        <span class="chip">Tingli, Wildberries</span>
+        <span class="chip">EdTech</span>
+        <span class="chip">B2C</span>
         <span class="chip">приложение</span>
-        <span class="chip">ux/ui</span>
       </div>
     </a>
 
     <!-- 3. Геймификация в умном доме (Sberdevices) -->
     <a class="project-card reveal" href="gamification.html">
-      <div class="project-card__thumb bg-teal">
-        <!-- Phone: 248x484px, centered, top:16px -->
+      <div class="project-card__thumb" style="border-radius:0;background:transparent;">
         <div style="position:absolute;left:50%;top:16px;transform:translateX(-50%);width:248px;height:484px;border-radius:40px;overflow:hidden;pointer-events:none;">
-          <img src="assets/images/card-gamification.png" alt="Геймификация"
+          <img src="assets/images/card-sberdevices.png" alt="Геймификация в умном доме"
             style="position:absolute;height:129.73%;left:-64.86%;max-width:none;top:-14.16%;width:337.84%;">
         </div>
       </div>
       <div class="project-card__name">
-        Геймификация в умном доме
+        ГЕЙМИФИКАЦИЯ В УМНОМ ДОМЕ
         <img class="project-card__name-star" src="icons/star.svg" alt="">
         2026
       </div>
-      <div class="project-card__org">Sberdevices × BHSAD</div>
+      <p class="project-card__desc">Sberdevices — IT-компания, которая разрабатывает умные устройства и сервисы для потребителей и бизнеса. Нашей задачей было повлиять на вовлечение пользователей через геймификацию</p>
       <div class="chips">
+        <span class="chip">Sberdevices</span>
+        <span class="chip">FinTech</span>
+        <span class="chip">B2C</span>
         <span class="chip">приложение</span>
-        <span class="chip">ux/ui</span>
       </div>
     </a>
 
     <!-- 4. Анкета для слабовидящих -->
     <a class="project-card reveal" href="hakaton.html">
-      <div class="project-card__thumb bg-grey">
+      <div class="project-card__thumb" style="border-radius:0;">
         <img src="assets/images/card-anketa.png" alt="Анкета для слабовидящих"
           style="position:absolute;left:50%;top:-26px;transform:translateX(-50%);width:685px;height:506px;max-width:none;object-fit:cover;pointer-events:none;">
       </div>
       <div class="project-card__name">
-        Анкета для слабовидящих
+        АНКЕТА ДЛЯ СЛАБОВИДЯЩИХ
         <img class="project-card__name-star" src="icons/star.svg" alt="">
         2025
       </div>
-      <div class="project-card__org">Яндекс Практикум × НРОО Инватур</div>
+      <p class="project-card__desc">НРООИ Инватур — это некоммерческая организация, которая помогает людям с инвалидностью адаптироваться к жизни. Нам предстояло адаптировать Я. Форму для слабовидящих людей таким образом, чтобы они могли без посторонней помощи её заполнять</p>
       <div class="chips">
+        <span class="chip">НРООИ Инватур</span>
+        <span class="chip">хакатон</span>
         <span class="chip">лендинг</span>
         <span class="chip">адаптивы</span>
-        <span class="chip">хакатон</span>
       </div>
     </a>
 
@@ -643,47 +688,46 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  /* ── AUTO-SCROLL projects (Figma: SMART_ANIMATE LINEAR 10s → instant reset) ── */
+  /* ── AUTO-SCROLL projects: seamless CSS marquee with DOM clone ── */
   (function () {
-    const track = document.querySelector('.projects-scroll');
-    if (!track) return;
+    const scroll = document.querySelector('.projects-scroll');
+    if (!scroll) return;
 
-    const DURATION = 25000; // ms — 2.5× slower than Figma max (10 000 ms)
-    const TARGET   = 1344;  // px — Figma x-shift from State=1 to State=2
+    const track = document.createElement('div');
+    track.className = 'projects-track';
 
-    let elapsed = 0;
-    let lastTs  = null;
-    let paused  = false;
-    let wheelTimer;
+    const origCards = Array.from(scroll.children);
+    origCards.forEach(card => track.appendChild(card));
+    scroll.appendChild(track);
 
-    track.addEventListener('mouseenter', () => { paused = true; });
-    track.addEventListener('mouseleave', () => { paused = false; });
-    track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-    track.addEventListener('touchend',   () => { setTimeout(() => { paused = false; }, 1500); }, { passive: true });
-    track.addEventListener('wheel', () => {
-      paused = true;
-      clearTimeout(wheelTimer);
-      wheelTimer = setTimeout(() => { track.scrollLeft = 0; elapsed = 0; paused = false; }, 2500);
+    // Duplicate all cards for seamless loop (clone goes after original set)
+    origCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      // Ensure clones are always visible (bypass reveal animation)
+      clone.classList.remove('reveal');
+      clone.classList.add('visible');
+      clone.querySelectorAll('.reveal').forEach(el => {
+        el.classList.remove('reveal');
+        el.classList.add('visible');
+      });
+      track.appendChild(clone);
+    });
+
+    // Shift = N cards × (cardWidth + gap): when set 1 fully exits left,
+    // set 2 is in exactly the same starting position → seamless loop
+    const N = origCards.filter(c => c.classList.contains('project-card')).length;
+    const CARD_W = 632; // matches .project-card { width: 632px }
+    const GAP    = 32;  // matches .projects-track { gap: 32px }
+    scroll.style.setProperty('--projects-shift', `-${N * (CARD_W + GAP)}px`);
+
+    // Pause on hover / touch (same behaviour as before)
+    scroll.addEventListener('mouseenter', () => track.classList.add('is-paused'));
+    scroll.addEventListener('mouseleave', () => track.classList.remove('is-paused'));
+    scroll.addEventListener('touchstart', () => track.classList.add('is-paused'), { passive: true });
+    scroll.addEventListener('touchend', () => {
+      setTimeout(() => track.classList.remove('is-paused'), 1500);
     }, { passive: true });
-
-    function tick(ts) {
-      if (!paused) {
-        if (lastTs !== null) elapsed += ts - lastTs;
-        lastTs = ts;
-
-        if (elapsed >= DURATION) {
-          track.scrollLeft = 0; // instant reset — Figma: no-transition CHANGE_TO State=1
-          elapsed = 0;
-        } else {
-          track.scrollLeft = (elapsed / DURATION) * TARGET; // LINEAR
-        }
-      } else {
-        lastTs = null;
-      }
-      requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
   })();
 </script>
 </body>
