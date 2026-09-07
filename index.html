@@ -72,7 +72,6 @@
       --grey1: #d2d2d2;
       --grey2: #a5a5a4;
       --grey3: #787877;
-      --footer-bg: #ece6d6;
       --pad: 40px;
       --max-w: 1280px;
     }
@@ -486,6 +485,32 @@
       transition: opacity .5s ease, transform .5s ease;
     }
     .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top-section {
+      display: flex;
+      justify-content: flex-start;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 32px var(--pad);
+    }
+    .back-to-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      line-height: 1;
+      transition: color .2s;
+    }
+    .back-to-top:hover { color: #FA472D; }
   </style>
 </head>
 <body>
@@ -667,7 +692,14 @@
   </div>
 </section>
 
-
+<div class="back-to-top-section">
+  <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
+    </svg>
+    НАВЕРХ
+  </button>
+</div>
 
 <script>
   const obs = new IntersectionObserver(entries => {
