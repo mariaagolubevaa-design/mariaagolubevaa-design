@@ -287,7 +287,7 @@
       gap: 32px;
       width: max-content;
       padding-left: 104px;
-      animation: projects-marquee 25000ms linear infinite;
+      animation: projects-marquee 38000ms linear infinite;
       will-change: transform;
     }
 
@@ -331,12 +331,18 @@
     }
 
 
-    .project-card:hover .project-card__name {
-      color: #B03C39;
+    .project-card:hover .project-card__name,
+    .project-card:active .project-card__name {
+      color: #FA472D;
     }
 
-    .project-card:hover .project-card__name-star {
-      filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(800%) hue-rotate(323deg) brightness(90%);
+    .project-card:active .project-card__name {
+      outline: 1px solid #141414;
+    }
+
+    .project-card:hover .project-card__name-star,
+    .project-card:active .project-card__name-star {
+      filter: brightness(0) saturate(100%) invert(54%) sepia(100%) saturate(350%) hue-rotate(330deg) brightness(120%);
     }
 
     .project-card__name {
