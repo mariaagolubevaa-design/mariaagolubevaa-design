@@ -421,61 +421,6 @@
     .bg-sand   { background: #ece6d6; }
     .bg-grey   { background: linear-gradient(148deg, #e9e9e9 7%, #d9d8d8 22%, #d9d8d8 40%, #dddddd 57%, #d8d8d8 65%, #d2d2d2 73%); }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--footer-bg);
-      border-radius: 32px 32px 0 0;
-      margin: 0;
-    }
-
-    .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 32px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer__logo {
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--black);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .footer__nav { display: flex; gap: 132px; list-style: none; }
-
-    .footer__nav a {
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--black);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .footer__nav a:hover { color: #B03C39; }
-    .footer__logo:hover { color: #B03C39; }
-
-    .btn-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter Tight', Arial, sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: #141414;
-      text-transform: uppercase;
-      padding: 0;
-      transition: color .2s;
-    }
-    .btn-top:hover { color: #FA472D; }
 
     /* ── FACTS ── */
     .facts {
@@ -723,21 +668,6 @@
 </section>
 
 
-<footer>
-  <div class="footer-inner">
-    <a class="footer__logo" href="index.html">мария голубева</a>
-    <ul class="footer__nav">
-      <li><a href="index.html">мои проекты</a></li>
-      <li><a href="about.html">обо мне</a></li>
-    </ul>
-    <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
-      </svg>
-      НАВЕРХ
-    </button>
-  </div>
-</footer>
 
 <script>
   const obs = new IntersectionObserver(entries => {
