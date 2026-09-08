@@ -4,6 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Контакты — Мария Голубева</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Soyuz Grotesk';
@@ -11,6 +14,15 @@
            url('fonts/SoyuzGroteskBold.ttf') format('truetype');
       font-weight: 700; font-style: normal; font-display: swap;
     }
+
+    @font-face {
+      font-family: 'Kom-post';
+      src: url('fonts/kom-post.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Gilroy'; src: url('fonts/gilroy-semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
@@ -39,42 +51,109 @@
       --max-w: 1280px;
     }
 
-    /* ── NAV ── */
+    /* ── NAVBAR ── */
+    .nav-trigger {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 40px;
+      z-index: 101;
+      pointer-events: auto;
+    }
+
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       background: rgba(255,254,251,.92);
       backdrop-filter: blur(12px);
+      transform: translateY(-100%);
+      pointer-events: none;
+      transition: transform 0.3s ease 0.15s;
     }
+
+    .nav-trigger:hover ~ .nav,
+    .nav:hover {
+      transform: translateY(0);
+      pointer-events: auto;
+      transition: transform 0.3s ease;
+    }
+
     .nav-inner {
-      max-width: var(--max-w); margin: 0 auto;
-      padding: 50px var(--pad) 20px;
-      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 20px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: relative;
     }
+
     .nav__logo {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'Soyuz Grotesk', sans-serif;
-      font-size: 24px; font-weight: 700;
-      color: var(--grey1); text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .nav__logo-text {
+      font-family: 'Kom-post', cursive;
+      font-size: 32px;
+      font-weight: 400;
+      color: #fa472d;
+      line-height: 1;
+    }
+
+    .nav__logo-sub {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: 1;
+    }
+
+    .nav__center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__center-link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 16px;
       transition: color .2s;
     }
-    .nav__logo-icon { width: 24px; height: 24px; }
-    .nav__logo:hover { color: var(--black); }
-    .nav__active {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      font-family: 'Soyuz Grotesk', sans-serif;
-      font-size: 24px; font-weight: 700;
-      color: var(--grey1); text-decoration: none;
+
+    .nav__center-link:hover { color: #FA472D; }
+
+    .nav__center-link--active {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .nav__resume {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 16px;
       transition: color .2s;
     }
-    .nav__active:hover { color: var(--black); }
-    .nav__link {
-      font-family: 'Soyuz Grotesk', sans-serif;
-      font-size: 24px; font-weight: 700;
-      color: var(--black); text-decoration: none;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .nav__link img { width: 24px; height: 24px; }
+
+    .nav__resume:hover { color: #FA472D; }
+    .nav__resume:hover svg path { fill: #FA472D; }
+    .nav__resume svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     /* ── MAIN ── */
     .contacts-main {
@@ -189,14 +268,24 @@
 </head>
 <body>
 
+  <div class="nav-trigger"></div>
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <a class="nav__logo" href="index.html">мария голубева</a>
-      <a class="nav__active" href="about.html">обо мне</a>
-      <a class="nav__link" href="contacts.html">
-        <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
-        контакты
+      <a class="nav__logo" href="index.html">
+        <span class="nav__logo-text">hey.marie</span>
+        <span class="nav__logo-sub">продуктовый | ux/ui дизайнер</span>
+      </a>
+      <div class="nav__center">
+        <a class="nav__center-link" href="index.html">ПРОЕКТЫ</a>
+        <a class="nav__center-link" href="about.html">ОБО МНЕ</a>
+        <a class="nav__center-link nav__center-link--active" href="contacts.html">КОНТАКТЫ</a>
+      </div>
+      <a class="nav__resume" href="about.html#resume">
+        РЕЗЮМЕ
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.46 14.94L7.45 15.89L13.54 10L7.45 4.11L6.46 5.06L11.57 10Z" fill="#141414"/>
+        </svg>
       </a>
     </div>
   </nav>
