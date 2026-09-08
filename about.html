@@ -178,44 +178,80 @@
     .edu-layout {
       max-width: var(--max-w); margin: 0 auto;
       padding: 32px var(--pad) 80px;
-      display: flex; gap: 38px; align-items: center;
-      min-height: calc(100vh - 400px);
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
     }
     .edu-photo {
       width: 607px; height: 452px;
       border-radius: 24px; overflow: hidden;
-      flex-shrink: 0; position: relative;
+      position: relative;
+      flex-shrink: 0;
+      margin-top: 79px;
     }
     .edu-photo img {
       position: absolute;
       height: 106.86%; left: -4%; top: -2.43%; width: 119.36%;
       max-width: none;
     }
-    .edu-content {
-      flex: 1;
-      display: flex; flex-direction: column; gap: 32px;
+
+    /* ── EDUCATION TEXT BLOCK ── */
+    .edu-text {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
     }
-    .edu-section {
-      display: flex; flex-direction: column; gap: 8px;
+    .edu-cpd {
+      width: 482px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
-    .edu-section h3 {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 24px; font-weight: 700;
-      color: var(--black);
+    .edu-higher {
+      width: 540px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 72px;
+    }
+    .edu-hdr-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .edu-h2 {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
     }
     .edu-group {
-      display: flex; flex-direction: column; gap: 5px;
-      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-    .edu-group + .edu-group { margin-top: 24px; }
-    .edu-item {
-      display: flex; gap: 16px; align-items: flex-start;
+    .edu-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
     }
-    .edu-item img { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
-    .edu-item p {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 20px; font-weight: 500;
-      color: var(--black); line-height: normal;
+    .edu-row--top {
+      align-items: flex-start;
+    }
+    .edu-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      display: block;
+    }
+    .edu-p {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+      flex: 1;
     }
 
     /* ── FORMAL SECTION ── */
@@ -563,64 +599,73 @@
       <div class="edu-photo">
         <img src="assets/images/about-edu-photo-maria.png" alt="Мария Голубева">
       </div>
-      <div class="edu-content">
-        <div class="edu-section">
-          <h3>Курсы повышения квалификации</h3>
-          <div class="edu-group">
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-it-prolyonka.png" alt="">
-              <p>Курс UX/UI-дизайна (512 ч.)</p>
-            </div>
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-yandex-practicum.png" alt="">
-              <p>Британская высшая школа дизайна 2026 г.</p>
-            </div>
-          </div>
-          <div class="edu-group">
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-it-prolyonka.png" alt="">
-              <p>IT Продлёнка хакатон (Победитель)</p>
-            </div>
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-yandex-practicum.png" alt="">
-              <p>Яндекс практикум 2025 г.</p>
+
+      <div class="edu-text">
+        <!-- Курсы повышения квалификации -->
+        <div class="edu-cpd">
+          <div class="edu-hdr-block">
+            <h2 class="edu-h2">Курсы повышения квалификации</h2>
+            <div class="edu-group">
+              <div class="edu-row">
+                <img class="edu-icon" src="assets/icons/edu-bullet-arrow.svg" alt="">
+                <p class="edu-p">Курс UX/UI-дизайна (512 ч.)</p>
+              </div>
+              <div class="edu-row">
+                <img class="edu-icon" src="assets/icons/edu-bullet-star-1.svg" alt="">
+                <p class="edu-p">Британская высшая школа дизайна 2026 г.</p>
+              </div>
             </div>
           </div>
           <div class="edu-group">
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-it-prolyonka.png" alt="">
-              <p>Дизайнер интерфейсов (444 ч.)</p>
+            <div class="edu-row">
+              <img class="edu-icon" src="assets/icons/edu-bullet-star-2.svg" alt="">
+              <p class="edu-p">IT Продлёнка хакатон (Победитель)</p>
             </div>
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-yandex-practicum.png" alt="">
-              <p>Яндекс практикум 2025 г.</p>
+            <div class="edu-row">
+              <img class="edu-icon" src="assets/icons/edu-bullet-star-3.svg" alt="">
+              <p class="edu-p">Яндекс практикум 2025 г.</p>
+            </div>
+          </div>
+          <div class="edu-group">
+            <div class="edu-row">
+              <img class="edu-icon" src="assets/icons/edu-bullet-star-4.svg" alt="">
+              <p class="edu-p">Дизайнер интерфейсов (444 ч.)</p>
+            </div>
+            <div class="edu-row">
+              <img class="edu-icon" src="assets/icons/edu-bullet-star-3.svg" alt="">
+              <p class="edu-p">Яндекс практикум 2025 г.</p>
             </div>
           </div>
         </div>
-        <div class="edu-section">
-          <h3>Высшее образование</h3>
-          <div class="edu-group">
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-it-prolyonka.png" alt="">
-              <p>Московский педагогический государственный университет, Москва</p>
-            </div>
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-yandex-practicum.png" alt="">
-              <p>Modern Technologies in Teaching English (in English) Магистр, 2021</p>
+
+        <!-- Высшее образование -->
+        <div class="edu-higher">
+          <div class="edu-hdr-block">
+            <h2 class="edu-h2">Высшее образование</h2>
+            <div class="edu-group">
+              <div class="edu-row edu-row--top">
+                <img class="edu-icon" src="assets/icons/edu-bullet-edu-black.svg" alt="">
+                <p class="edu-p">Московский педагогический государственный университет, Москва</p>
+              </div>
+              <div class="edu-row edu-row--top">
+                <img class="edu-icon" src="assets/icons/edu-bullet-edu-white.svg" alt="">
+                <p class="edu-p">Modern Technologies in Teaching English (in English)<br>Магистр, 2021</p>
+              </div>
             </div>
           </div>
           <div class="edu-group">
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-it-prolyonka.png" alt="">
-              <p>Московский государственный лингвистический университет, Москва</p>
+            <div class="edu-row edu-row--top">
+              <img class="edu-icon" src="assets/icons/edu-bullet-edu-black.svg" alt="">
+              <p class="edu-p">Московский государственный лингвистический университет, Москва</p>
             </div>
-            <div class="edu-item">
-              <img src="assets/images/edu-logo-yandex-practicum.png" alt="">
-              <p>Культурология со знанием английского и немецкого языка, Бакалавр, 2018</p>
+            <div class="edu-row edu-row--top">
+              <img class="edu-icon" src="assets/icons/edu-bullet-edu-white.svg" alt="">
+              <p class="edu-p">Культурология со знанием английского и немецкого языка, Бакалавр, 2018</p>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div><!-- /panelEdu -->
 
