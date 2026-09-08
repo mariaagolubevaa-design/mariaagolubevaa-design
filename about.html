@@ -283,7 +283,7 @@
     /* ── INFORMAL SECTION ── */
     .informal {
       max-width: var(--max-w); margin: 0 auto;
-      padding: 80px var(--pad) 0;
+      padding: 32px var(--pad) 0;
     }
     .informal__heading {
       display: flex; align-items: center; gap: 16px;
@@ -348,21 +348,34 @@
       object-fit: cover; max-width: none;
     }
 
-    /* Hobbies text */
+    /* Hobbies text — "В свободное время" block */
     .hobbies {
       max-width: var(--max-w); margin: 0 auto;
-      padding: 48px var(--pad) 80px;
-      display: flex; flex-direction: column; gap: 8px;
+      padding: 166px var(--pad) 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
     }
-    .hobbies__item {
-      display: flex; align-items: center; gap: 16px;
+    .hobbies__heading {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px; font-weight: 500;
+      color: #141414;
+      line-height: normal;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .hobbies__item img { width: 24px; height: 24px; flex-shrink: 0; }
-    .hobbies p, .hobbies__item p {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 24px; font-weight: 500;
-      line-height: normal; color: var(--black);
+    .hobbies__text {
+      width: 600px;
+      display: flex; flex-direction: column; gap: 4px;
+      flex-shrink: 0;
     }
+    .hobbies__text p {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500;
+      color: #141414;
+      line-height: normal;
+    }
+    .hobbies__text p:first-child { white-space: nowrap; }
 
     /* ── WORKMODE NUMBERED ITEMS ── */
     .workmode {
@@ -458,6 +471,15 @@
     </div>
   </section>
 
+  <!-- HOBBIES — В свободное время -->
+  <div class="hobbies reveal">
+    <h2 class="hobbies__heading">В свободное время</h2>
+    <div class="hobbies__text">
+      <p>Люблю путешествовать, искусство, моду, учить языки, серф и котиков</p>
+      <p>Приятно познакомиться!</p>
+    </div>
+  </div>
+
   <!-- INFORMAL SECTION -->
   <section class="informal">
     <div class="informal__slider-wrap reveal">
@@ -532,15 +554,6 @@
       </div>
     </div>
   </section>
-
-  <!-- HOBBIES -->
-  <div class="hobbies reveal">
-    <div class="hobbies__item">
-      <img src="icons/star.svg" alt="">
-      <p>Люблю путешествовать, искусство, моду, учить языки, серф и котиков!</p>
-    </div>
-    <p>Приятно познакомиться!</p>
-  </div>
 
   </div><!-- /panelFormal -->
 
