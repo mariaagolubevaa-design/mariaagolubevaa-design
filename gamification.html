@@ -6,7 +6,8 @@
   <title>Мария Голубева — Портфолио</title>
   <link rel="preload" href="fonts/kom-post.ttf" as="font" type="font/truetype">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Inter+Tight:wght@500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -95,70 +96,103 @@
     #process { padding-top: 48px; padding-bottom: 30px; }
 
     /* ── NAV ── */
+    .nav-trigger {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 40px;
+      z-index: 101;
+      pointer-events: auto;
+    }
+
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
       background: rgba(255,254,251,.92);
       backdrop-filter: blur(12px);
-      opacity: 0;
       transform: translateY(-100%);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      transition: transform 0.3s ease 0.15s;
     }
-    .nav--visible {
-      opacity: 1;
+
+    .nav-trigger:hover ~ .nav,
+    .nav:hover {
       transform: translateY(0);
+      pointer-events: auto;
+      transition: transform 0.3s ease;
     }
-    #nav-hover-zone {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 60px;
-      z-index: 101;
-    }
+
     .nav-inner {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 50px var(--pad) 20px;
+      padding: 20px var(--pad);
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: relative;
     }
+
     .nav__logo {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--black);
+      flex-direction: column;
+      gap: 2px;
       text-decoration: none;
     }
-    .nav__logo-icon { width: 24px; height: 24px; }
-    .nav__logo { transition: color .2s; }
-    .nav__logo:hover { color: #B03C39; }
-    .nav__about {
+
+    .nav__logo-text {
+      font-family: 'Kom-post', cursive;
+      font-size: 32px;
+      font-weight: 400;
+      color: #fa472d;
+      line-height: 1;
+    }
+
+    .nav__logo-sub {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: 1;
+    }
+
+    .nav__center {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--black);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__center-link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
       text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 16px;
       transition: color .2s;
     }
-    .nav__about:hover { color: #B03C39; }
-    .nav__link {
-      font-family: 'Soyuz Grotesk', 'Gilroy', Arial, sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--black);
+
+    .nav__center-link:hover { color: #FA472D; }
+
+    .nav__resume {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
       text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 16px;
       transition: color .2s;
-      display: flex; align-items: center; gap: 10px;
     }
-    .nav__link:hover { color: #B03C39; }
+
+    .nav__resume:hover { color: #FA472D; }
+    .nav__resume:hover svg path { fill: #FA472D; }
+    .nav__resume svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     /* ── COVER ── */
     .cover {
@@ -834,16 +868,26 @@
 </head>
 <body>
 
-  <!-- BACK NAV -->
-  <div id="nav-hover-zone"></div>
+  <div class="nav-trigger"></div>
+
+  <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
       <a class="nav__logo" href="index.html">
-        <img class="nav__logo-icon" src="icons/logo-star.svg" alt="">
-        Мария Голубева
+        <span class="nav__logo-text">hey.marie</span>
+        <span class="nav__logo-sub">продуктовый | ux/ui дизайнер</span>
       </a>
-      <a class="nav__about" href="about.html">обо мне</a>
-      <a class="nav__link" href="contacts.html">контакты</a>
+      <div class="nav__center">
+        <a class="nav__center-link" href="index.html">ПРОЕКТЫ</a>
+        <a class="nav__center-link" href="about.html">ОБО МНЕ</a>
+        <a class="nav__center-link" href="contacts.html">КОНТАКТЫ</a>
+      </div>
+      <a class="nav__resume" href="about.html#resume">
+        РЕЗЮМЕ
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.46 14.94L7.45 15.89L13.54 10L7.45 4.11L6.46 5.06L11.57 10Z" fill="#141414"/>
+        </svg>
+      </a>
     </div>
   </nav>
 
@@ -1927,14 +1971,6 @@
       });
     }, { threshold: 0.1 });
     revealEls.forEach(el => revealObs.observe(el));
-    const nav = document.querySelector('.nav');
-    const hoverZone = document.getElementById('nav-hover-zone');
-    const showNav = () => nav.classList.add('nav--visible');
-    const hideNav = () => { if (!nav.matches(':hover') && !hoverZone.matches(':hover')) nav.classList.remove('nav--visible'); };
-    hoverZone.addEventListener('mouseenter', showNav);
-    hoverZone.addEventListener('mouseleave', hideNav);
-    nav.addEventListener('mouseenter', showNav);
-    nav.addEventListener('mouseleave', hideNav);
 
     // Devices row auto-scroll: 25 000 ms per cycle, loops back to start
     (function() {
