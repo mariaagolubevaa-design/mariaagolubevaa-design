@@ -369,6 +369,11 @@
       max-width: var(--max-w); margin: 0 auto;
       padding: 32px var(--pad) 0;
     }
+    .workmode__items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
     .workmode__item {
       display: flex;
       flex-direction: column;
@@ -437,9 +442,15 @@
 
   <!-- WORKMODE ITEMS -->
   <section class="workmode reveal">
-    <div class="workmode__item">
-      <span class="workmode__item-label">[01]</span>
-      <p class="workmode__item-text">Программы: figma, adobe, nano banana, chat gpt, kling; claude code и VS code для вайбкодинга</p>
+    <div class="workmode__items">
+      <div class="workmode__item">
+        <span class="workmode__item-label">[01]</span>
+        <p class="workmode__item-text">Программы: figma, adobe, nano banana, chat gpt, kling; claude code и VS code для вайбкодинга</p>
+      </div>
+      <div class="workmode__item">
+        <span class="workmode__item-label">[02]</span>
+        <p class="workmode__item-text">Владею английским языком на уровне С1,<br>в прошлом учитель английского с международной квалификацией кембриджа</p>
+      </div>
     </div>
   </section>
 
