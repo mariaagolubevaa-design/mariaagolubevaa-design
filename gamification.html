@@ -74,7 +74,6 @@
       --grey2: #a5a5a4;
       --grey3: #787877;
       --cover-bg: #d6ebec;
-      --footer-bg: #ece6d6;
       --accent: #1e1e1c;
       --muted: rgba(30,30,28,.4);
       --page-width: 1200px;
@@ -656,50 +655,6 @@
     .accordion-toggle { cursor:pointer; user-select:none; }
     .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
     .accordion-chevron.rotated { transform:rotate(180deg); }
-    /* ── FOOTER ── */
-    footer {
-      background: var(--footer-bg);
-      border-radius: 32px 32px 0 0;
-      margin: 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: var(--page-width);
-      margin: 0 auto;
-      padding: 32px 40px;
-    }
-
-    .footer__logo {
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--black);
-      text-decoration: none;
-      text-transform: lowercase;
-    }
-
-    .footer__nav {
-      display: flex;
-      gap: 132px;
-      list-style: none;
-    }
-
-    .footer__nav a, .footer__nav button {
-      font-family: 'Soyuz Grotesk', 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--black);
-      text-decoration: none;
-      text-transform: lowercase;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .footer__nav a:hover, .footer__nav button:hover { opacity: .6; }
 
     /* ── SCROLL REVEAL ── */
     .reveal {
@@ -1931,16 +1886,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <a class="footer__logo" href="#">мария голубева</a>
-      <ul class="footer__nav">
-        <li><button onclick="document.getElementById('projects')?.scrollIntoView()">мои проекты</button></li>
-        <li><a href="#about-me">обо мне</a></li>
-      </ul>
-    </div>
-  </footer>
 
   <script>
     // Section nav active state on scroll
