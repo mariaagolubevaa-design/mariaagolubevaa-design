@@ -52,7 +52,7 @@
       --grey1: #d2d2d2;
       --grey2: #a5a5a4;
       --grey3: #787877;
-      --footer-bg: #ece6d6;
+
       --page-w: 1280px;
       --max-w: 1280px;
       --pad: 40px;
@@ -865,25 +865,6 @@
     .pagination__btn:hover { color: #B03C39; }
     .pagination__btn:active { color: #B03C39; opacity: .7; }
     .pagination__btn:focus-visible { outline: 2px solid #1e1e1c; outline-offset: 4px; border-radius: 2px; }
-
-    /* FOOTER */
-    footer { background: var(--footer-bg); border-radius: 32px 32px 0 0; }
-    .footer-inner {
-      max-width: var(--page-w); margin: 0 auto;
-      padding: 32px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .footer__logo {
-      font-family: 'Soyuz Grotesk', Arial, sans-serif;
-      font-size: 20px; font-weight: 700; color: var(--black); text-decoration: none;
-    }
-    .footer__nav { display: flex; gap: 132px; list-style: none; }
-    .footer__nav a {
-      font-family: 'Soyuz Grotesk', Arial, sans-serif;
-      font-size: 20px; font-weight: 700; color: var(--black); text-decoration: none;
-      transition: color .2s;
-    }
-    .footer__nav a:hover, .footer__logo:hover { color: #B03C39; }
 
     /* DESK RESEARCH */
     .desk-research {
@@ -3224,17 +3205,6 @@
   <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>НАВЕРХ</button>
   <a class="pagination__btn" href="designconf.html">Дизайн конф<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg></a>
 </div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <a class="footer__logo" href="index.html">мария голубева</a>
-    <ul class="footer__nav">
-      <li><a href="index.html#projects">мои проекты</a></li>
-      <li><a href="about.html">обо мне</a></li>
-    </ul>
-  </div>
-</footer>
 
 <!-- CJM Lightbox -->
 <div id="cjm-overlay"></div>
