@@ -364,6 +364,28 @@
       line-height: normal; color: var(--black);
     }
 
+    /* ── WORKMODE NUMBERED ITEMS ── */
+    .workmode {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 32px var(--pad) 0;
+    }
+    .workmode__item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 380px;
+    }
+    .workmode__item-label,
+    .workmode__item-text {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+    }
+    .workmode__item-label { white-space: nowrap; }
+    .workmode__item-text  { width: 380px; word-break: break-word; }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -412,6 +434,14 @@
 
   <!-- ── TAB PANEL: ФОРМАЛЬНО ── -->
   <div id="panelFormal" class="tab-panel">
+
+  <!-- WORKMODE ITEMS -->
+  <section class="workmode reveal">
+    <div class="workmode__item">
+      <span class="workmode__item-label">[01]</span>
+      <p class="workmode__item-text">Программы: figma, adobe, nano banana, chat gpt, kling; claude code и VS code для вайбкодинга</p>
+    </div>
+  </section>
 
   <!-- INFORMAL SECTION -->
   <section class="informal">
