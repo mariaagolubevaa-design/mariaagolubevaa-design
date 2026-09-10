@@ -603,16 +603,6 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <a class="footer__logo" href="index.html">мария голубева</a>
-    <ul class="footer__nav">
-      <li><a href="index.html#projects">мои проекты</a></li>
-      <li><a href="#">обо мне</a></li>
-    </ul>
-  </div>
-</footer>
-
 <script>
   const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}}),{threshold:.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));

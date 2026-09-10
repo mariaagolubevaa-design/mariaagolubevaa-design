@@ -310,17 +310,17 @@
 
     /* Dot pagination */
     .dots {
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 32px;
     }
     .dot {
-      height: 12px; border-radius: 6px;
-      background: #d2d2d2;
+      height: 8px; border-radius: 0;
+      background: #d9d9d9;
       transition: width .4s ease, background .4s ease;
-      width: 12px;
+      width: 8px; flex-shrink: 0; cursor: pointer;
     }
     .dot.active {
-      width: 36px;
-      background: #1e1e1c;
+      width: 32px;
+      background: #141414;
     }
 
     /* ── INFORMAL SECTION ── */
@@ -342,11 +342,11 @@
     /* Informal slider — each slide shows 3 photos at once */
     .informal__slider-wrap {
       display: flex; flex-direction: column; align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
     .informal__slides {
       position: relative;
-      width: 1200px; height: 590px;
+      width: 1200px; height: 540px;
     }
     .informal__slide {
       position: absolute; inset: 0;
@@ -362,45 +362,32 @@
     .slide-photo-left {
       position: absolute; left: 0; top: 22px;
       width: 370px; height: 518px;
-      border-radius: 32px; overflow: hidden;
-    }
-    .slide-photo-left img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; max-width: none;
+      border-radius: 0; overflow: hidden;
     }
     .slide-photo-center {
       position: absolute; left: 50%; top: 0;
       transform: translateX(-50%);
       width: 420px; height: 540px;
-      border-radius: 32px; overflow: hidden;
-    }
-    .slide-photo-center img {
-      position: absolute;
-      height: 106.7%; left: -0.03%; top: -6.7%; width: 100.03%;
-      max-width: none;
-    }
-    .slide-photo-center img[src="photos/4.png"] {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; max-width: none;
-      top: 0; left: 0;
+      border-radius: 0; overflow: hidden;
     }
     .slide-photo-right {
       position: absolute; right: 0; top: 22px;
       width: 370px; height: 518px;
-      border-radius: 32px; overflow: hidden;
+      border-radius: 0; overflow: hidden;
     }
-    .slide-photo-right img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; max-width: none;
-    }
+    /* Per-photo positioning (from Figma pixel-perfect export) */
+    .ip-cover        { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none; }
+    .ip-safari-c     { position: absolute; height: 106.7%;  left: -0.03%; top: -6.7%;  width: 100.03%; max-width: none; }
+    .ip-cat-s        { position: absolute; height: 102.53%; left: -3.12%; top: -1.74%; width: 107.71%; max-width: none; }
+    .ip-safari-s     { position: absolute; height: 102.87%; left: -5.27%; top: -2.54%; width: 111.53%; max-width: none; }
+    .ip-turkey-s     { position: absolute; height: 101.88%; left: -5.23%; top: -1.5%;  width: 110.47%; max-width: none; }
+    .ip-turkey-c     { position: absolute; height: 104.98%; left: -0.64%; top: -2.78%; width: 101.27%; max-width: none; }
+    .ip-cat-c        { position: absolute; height: 106.05%; left: -1.03%; top: -3.02%; width: 102.32%; max-width: none; }
 
     /* Hobbies text — "В свободное время" block */
     .hobbies {
       max-width: var(--max-w); margin: 0 auto;
-      padding: 166px var(--pad) 0;
+      padding: 122px var(--pad) 0;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -516,6 +503,24 @@
       background: #141414;
     }
 
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 32px var(--pad);
+      display: flex; align-items: center; justify-content: flex-start;
+    }
+    .pagination__btn {
+      display: flex; align-items: center; gap: 16px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500; text-transform: uppercase;
+      color: var(--black); cursor: pointer;
+      background: none; border: none; text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .pagination__btn:hover  { color: #FA472D; }
+    .pagination__btn:active { color: #FA472D; opacity: .7; }
+    .pagination__btn:focus-visible { outline: 2px solid #1e1e1c; outline-offset: 4px; border-radius: 2px; }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -618,64 +623,64 @@
   <section class="informal">
     <div class="informal__slider-wrap reveal">
       <div class="informal__slides" id="informalSlider">
-        <!-- Slide 1: 1,2,3 -->
+        <!-- Slide 1: олени | сафари | кошка -->
         <div class="informal__slide slide-active">
           <div class="slide-photo-left">
-            <img src="photos/1.png" alt="Фото 1">
+            <img class="ip-cover" src="assets/images/about-informal-deer.jpeg" alt="">
           </div>
           <div class="slide-photo-center">
-            <img src="photos/2.png" alt="Фото 2">
+            <img class="ip-safari-c" src="assets/images/about-informal-safari.jpeg" alt="">
           </div>
           <div class="slide-photo-right">
-            <img src="photos/3.png" alt="Фото 3">
+            <img class="ip-cat-s" src="assets/images/about-informal-cat.png" alt="">
           </div>
         </div>
-        <!-- Slide 2: 2,3,4 -->
+        <!-- Slide 2: турция | олени | сафари -->
         <div class="informal__slide">
           <div class="slide-photo-left">
-            <img src="photos/2.png" alt="Фото 2">
+            <img class="ip-turkey-s" src="assets/images/about-informal-turkey.png" alt="">
           </div>
           <div class="slide-photo-center">
-            <img src="photos/3.png" alt="Фото 3">
+            <img class="ip-cover" src="assets/images/about-informal-deer.jpeg" alt="">
           </div>
           <div class="slide-photo-right">
-            <img src="photos/4.png" alt="Фото 4">
+            <img class="ip-safari-s" src="assets/images/about-informal-safari.jpeg" alt="">
           </div>
         </div>
-        <!-- Slide 3: 3,4,5 -->
+        <!-- Slide 3: галерея | турция | олени -->
         <div class="informal__slide">
           <div class="slide-photo-left">
-            <img src="photos/3.png" alt="Фото 3">
+            <img class="ip-cover" src="assets/images/about-informal-gallery.png" alt="">
           </div>
           <div class="slide-photo-center">
-            <img src="photos/4.png" alt="Фото 4">
+            <img class="ip-turkey-c" src="assets/images/about-informal-turkey.png" alt="">
           </div>
           <div class="slide-photo-right">
-            <img src="photos/5.png" alt="Фото 5">
+            <img class="ip-cover" src="assets/images/about-informal-deer.jpeg" alt="">
           </div>
         </div>
-        <!-- Slide 4: 4,5,1 -->
+        <!-- Slide 4: кошка | галерея | турция -->
         <div class="informal__slide">
           <div class="slide-photo-left">
-            <img src="photos/4.png" alt="Фото 4">
+            <img class="ip-cat-s" src="assets/images/about-informal-cat.png" alt="">
           </div>
           <div class="slide-photo-center">
-            <img src="photos/5.png" alt="Фото 5">
+            <img class="ip-cover" src="assets/images/about-informal-gallery.png" alt="">
           </div>
           <div class="slide-photo-right">
-            <img src="photos/1.png" alt="Фото 1">
+            <img class="ip-turkey-s" src="assets/images/about-informal-turkey.png" alt="">
           </div>
         </div>
-        <!-- Slide 5: 5,1,2 -->
+        <!-- Slide 5: сафари | кошка | галерея -->
         <div class="informal__slide">
           <div class="slide-photo-left">
-            <img src="photos/5.png" alt="Фото 5">
+            <img class="ip-safari-s" src="assets/images/about-informal-safari.jpeg" alt="">
           </div>
           <div class="slide-photo-center">
-            <img src="photos/1.png" alt="Фото 1">
+            <img class="ip-cat-c" src="assets/images/about-informal-cat.png" alt="">
           </div>
           <div class="slide-photo-right">
-            <img src="photos/2.png" alt="Фото 2">
+            <img class="ip-cover" src="assets/images/about-informal-gallery.png" alt="">
           </div>
         </div>
       </div>
@@ -688,6 +693,11 @@
       </div>
     </div>
   </section>
+
+  <!-- BACK TO TOP -->
+  <div class="back-to-top">
+    <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>НАВЕРХ</button>
+  </div>
 
   </div><!-- /panelFormal -->
 
