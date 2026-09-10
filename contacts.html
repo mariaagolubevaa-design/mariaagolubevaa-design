@@ -171,15 +171,11 @@
       padding-top: 123px;
     }
 
-    .contacts-heading {
-      display: flex; align-items: center; gap: 16px;
-    }
-    .contacts-heading img { width: 40px; height: 40px; flex-shrink: 0; }
     .contacts-heading h1 {
-      font-family: 'Soyuz Grotesk', sans-serif;
-      font-size: 50px; font-weight: 700;
-      color: var(--black); text-transform: uppercase;
-      line-height: normal;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px; font-weight: 500;
+      color: var(--black);
+      line-height: 1;
     }
 
     .contacts-list {
@@ -193,24 +189,38 @@
     .contacts-item img { width: 24px; height: 24px; flex-shrink: 0; }
     .contacts-item p,
     .contacts-item a.label {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 20px; font-weight: 500;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500;
       color: var(--black); text-decoration: none;
-      line-height: normal;
+      line-height: 1;
     }
-    .contacts-item a.label:hover { text-decoration: underline; }
+    .contacts-item a.label {
+      color: #141414;
+      transition: color 0.2s ease;
+    }
+    .contacts-item a.label:hover { color: #FA472D; }
     .contacts-item a.tg-link {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 20px; font-weight: 500;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500;
       color: var(--black);
       text-decoration: underline;
       text-underline-offset: 2px;
+      transition: color 0.2s ease;
     }
-    .contacts-item a.tg-link:hover { opacity: .7; }
+    .contacts-item a.tg-link:hover { color: #FA472D; }
+    .contacts-item a.mail-link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px; font-weight: 500;
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s ease;
+    }
+    .contacts-item a.mail-link:hover { color: #FA472D; }
 
     /* ── PHOTO ── */
     .contacts-photo {
-      width: 606px; height: 452px;
+      width: 580px; height: 426px;
       border-radius: 24px; overflow: hidden;
       flex-shrink: 0; position: relative;
       margin-top: 123px;
@@ -266,7 +276,6 @@
 
     <div class="contacts-left">
       <div class="contacts-heading reveal">
-        <img src="icons/logo-star.svg" alt="">
         <h1>Контакты</h1>
       </div>
 
@@ -277,11 +286,15 @@
         </div>
         <div class="contacts-item reveal reveal--delay-1">
           <img src="icons/star.svg" alt="">
-          <a class="label" href="mailto:mariashikalovaa@gmail.com">Почта</a>
+          <p>Почта:&nbsp;<a class="mail-link" href="mailto:mariaa.golubevaa@gmail.com" target="_blank">mariaa.golubevaa@gmail.com</a></p>
         </div>
         <div class="contacts-item reveal reveal--delay-2">
           <img src="icons/star.svg" alt="">
           <a class="label" href="https://hh.ru/resume/279dfc0cff0e5cd9250039ed1f70434c6e7676?print=true" target="_blank">Резюме</a>
+        </div>
+        <div class="contacts-item reveal reveal--delay-2">
+          <img src="icons/star.svg" alt="">
+          <p>Линкедин</p>
         </div>
       </div>
     </div>
