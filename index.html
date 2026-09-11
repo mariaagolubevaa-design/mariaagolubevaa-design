@@ -478,6 +478,104 @@
       white-space: nowrap;
     }
 
+    /* ── MOBILE NAV BURGER ── */
+    .nav__burger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav__burger-icon { display: block; }
+    .nav__burger-icon--close { display: none; }
+    .nav__burger.is-active .nav__burger-icon--open { display: none; }
+    .nav__burger.is-active .nav__burger-icon--close { display: block; }
+
+    /* ── MOBILE MENU OVERLAY ── */
+    .nav__mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(255, 254, 251, .97);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-16px);
+      transition: opacity .3s ease, transform .3s ease, visibility 0s .3s;
+    }
+
+    .nav__mobile-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translateY(0);
+      transition: opacity .3s ease, transform .3s ease, visibility 0s 0s;
+    }
+
+    .nav__mobile-link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: #141414;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 20px 40px;
+      line-height: 1;
+      transition: color .2s;
+    }
+
+    .nav__mobile-link:active { color: #FA472D; }
+
+    .nav__mobile-menu.is-open .nav__mobile-link {
+      animation: mobile-link-in .3s ease both;
+    }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(1) { animation-delay: .06s; }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(2) { animation-delay: .12s; }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(3) { animation-delay: .18s; }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(4) { animation-delay: .24s; }
+
+    @keyframes mobile-link-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE MEDIA QUERY ── */
+    @media (max-width: 768px) {
+      :root { --pad: 20px; }
+
+      .nav-inner {
+        padding: 12px var(--pad);
+      }
+
+      .nav__logo-text {
+        font-size: 24px;
+      }
+
+      .nav__logo-sub {
+        font-size: 12px;
+      }
+
+      .nav__center,
+      .nav__resume {
+        display: none;
+      }
+
+      .nav__burger {
+        display: flex;
+      }
+    }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -533,8 +631,24 @@
         <path d="M6.46 14.94L7.45 15.89L13.54 10L7.45 4.11L6.46 5.06L11.57 10Z" fill="#141414"/>
       </svg>
     </a>
+    <button class="nav__burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+      <svg class="nav__burger-icon nav__burger-icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 7H21M3 12H21M3 17H21" stroke="#141414" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <svg class="nav__burger-icon nav__burger-icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6L18 18M18 6L6 18" stroke="#141414" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav__mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Навигация">
+  <a class="nav__mobile-link" href="#projects">ПРОЕКТЫ</a>
+  <a class="nav__mobile-link" href="about.html">ОБО МНЕ</a>
+  <a class="nav__mobile-link" href="contacts.html">КОНТАКТЫ</a>
+  <a class="nav__mobile-link" href="about.html#resume">РЕЗЮМЕ</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -702,6 +816,37 @@
 </div>
 
 <script>
+  /* ── MOBILE MENU ── */
+  (function () {
+    const burger = document.getElementById('navBurger');
+    const menu   = document.getElementById('mobileMenu');
+    if (!burger || !menu) return;
+
+    function openMenu() {
+      menu.classList.add('is-open');
+      burger.classList.add('is-active');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Закрыть меню');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      burger.classList.remove('is-active');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Открыть меню');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', () => {
+      menu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    menu.querySelectorAll('.nav__mobile-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  })();
+
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
