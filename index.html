@@ -550,6 +550,10 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Dots visible only on mobile — global default hides them;
+       mobile media query below re-shows them and must come AFTER this rule */
+    .facts__dots { display: none; }
+
     /* ── MOBILE MEDIA QUERY ── */
     @media (max-width: 768px) {
       :root { --pad: 20px; }
@@ -573,6 +577,144 @@
 
       .nav__burger {
         display: flex;
+      }
+
+      /* ── HERO / FACTS mobile ── */
+
+      /* Switch hero from absolute-coordinate canvas to vertical flex stack:
+         photo first (DOM order already correct), facts below */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        padding-top: 72px;
+        padding-bottom: 32px;
+      }
+
+      /* Photo: restore from display:none, convert from absolute px coords
+         to centered block. 58% width = ~218px at 375px — not edge-to-edge,
+         mirrors the sense of the desktop side margins. */
+      .hero__photo-wrap {
+        display: block;
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 58%;
+        max-width: 240px;
+        height: auto;
+        overflow: visible;
+        margin-bottom: 32px;
+      }
+
+      /* Photo img: let it scale with the container */
+      .hero__photo-wrap img.hero__photo {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+      }
+
+      /* Shadow used absolute pixel coords tied to desktop photo size — hide */
+      .hero__shadow {
+        display: none;
+      }
+
+      /* Facts block: remove absolute positioning, full width with side padding */
+      .facts {
+        position: relative;
+        left: auto;
+        top: auto;
+        padding: 0 20px;
+        width: 100%;
+      }
+
+      /* "Москва, Россия" — was at left:871px near the photo.
+         On mobile, show inline above the facts grid. */
+      .facts__location {
+        position: relative;
+        left: auto;
+        top: auto;
+        font-size: 12px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      /* Grid: single-area stack — all cells overlap, height = tallest cell */
+      .facts__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: auto;
+      }
+
+      /* All cells occupy the same grid slot → natural stacking */
+      .facts__cell,
+      .facts__cell:nth-child(1),
+      .facts__cell:nth-child(2),
+      .facts__cell:nth-child(3),
+      .facts__cell:nth-child(4) {
+        grid-area: 1 / 1;
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+      }
+
+      /* Number labels: switch from absolute to flow */
+      .facts__num {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 15px;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* Text: 11px = 16px × (128px column / 187px desktop column) ≈ 0.685 scale.
+         overflow-wrap + word-wrap ensure no clipped or merged words. */
+      .facts__text {
+        font-size: 15px;
+        line-height: 1.5;
+        white-space: normal;
+        text-align: left;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: normal;
+      }
+
+      .facts__text br {
+        display: none;
+      }
+      .facts__text br.facts__mob-br {
+        display: inline;
+      }
+
+      /* Facts cycling: only one cell visible at a time */
+      .facts__cell {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .facts__cell.is-active {
+        opacity: 1;
+      }
+
+      /* Pagination dots */
+      .facts__dots {
+        display: none;
+      }
+      .facts__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #d2d2d2;
+        transition: background 0.3s ease, transform 0.3s ease;
+        flex-shrink: 0;
+      }
+      .facts__dot.is-active {
+        background: #FA472D;
+        transform: scale(1.5);
       }
     }
 
@@ -664,21 +806,27 @@
     <p class="facts__location">Москва, Россия</p>
     <div class="facts__grid">
       <div class="facts__cell">
-        <span class="facts__num">[01]</span>
-        <p class="facts__text">победитель хакатона<br>от Яндекс Практикума</p>
+        <span class="facts__num">[01/04]</span>
+        <p class="facts__text">победитель хакатона <br>от Яндекс Практикума</p>
       </div>
       <div class="facts__cell">
-        <span class="facts__num">[02]</span>
-        <p class="facts__text">работала со Sberdevices,<br>Wildberries и 12 STOREEZ</p>
+        <span class="facts__num">[02/04]</span>
+        <p class="facts__text">работала со Sberdevices, <br>Wildberries и 12 STOREEZ</p>
       </div>
       <div class="facts__cell">
-        <span class="facts__num">[03]</span>
-        <p class="facts__text">использую в работе AI:<br>Nano Banana, Kling,<br>Claude Code, VS Code</p>
+        <span class="facts__num">[03/04]</span>
+        <p class="facts__text">использую в работе AI: <br>Nano Banana, Kling,<br class="facts__mob-br"> Claude Code, VS Code</p>
       </div>
       <div class="facts__cell">
-        <span class="facts__num">[04]</span>
-        <p class="facts__text">работала<br>над интерфейсами<br>приложений и вебсайтов</p>
+        <span class="facts__num">[04/04]</span>
+        <p class="facts__text">работала над интерфейсами приложений<br class="facts__mob-br"> и вебсайтов</p>
       </div>
+    </div>
+    <div class="facts__dots" aria-hidden="true">
+      <span class="facts__dot"></span>
+      <span class="facts__dot"></span>
+      <span class="facts__dot"></span>
+      <span class="facts__dot"></span>
     </div>
   </div>
 </section>
@@ -856,6 +1004,52 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── MOBILE FACTS CYCLING (dots + swipe) ── */
+  (function () {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    var cells = Array.from(document.querySelectorAll('.facts__cell'));
+    var dots  = Array.from(document.querySelectorAll('.facts__dot'));
+    if (cells.length < 2) return;
+
+    var current = 0;
+    var timer;
+
+    function showCell(idx) {
+      cells[current].classList.remove('is-active');
+      if (dots[current]) dots[current].classList.remove('is-active');
+      current = ((idx % cells.length) + cells.length) % cells.length;
+      cells[current].classList.add('is-active');
+      if (dots[current]) dots[current].classList.add('is-active');
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { showCell(current + 1); }, 7000);
+    }
+
+    showCell(0);
+    startTimer();
+
+    /* Touch swipe: horizontal gesture resets timer and switches block */
+    var factsEl = document.querySelector('.facts');
+    if (!factsEl) return;
+    var swipeStartX = 0;
+    var swipeStartY = 0;
+
+    factsEl.addEventListener('touchstart', function (e) {
+      swipeStartX = e.touches[0].clientX;
+      swipeStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    factsEl.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - swipeStartX;
+      var dy = e.changedTouches[0].clientY - swipeStartY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      showCell(dx < 0 ? current + 1 : current - 1);
+      startTimer();
+    }, { passive: true });
+  })();
 
   /* ── AUTO-SCROLL projects: seamless CSS marquee with DOM clone ── */
   (function () {
