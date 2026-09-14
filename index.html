@@ -641,25 +641,34 @@
         text-align: center;
       }
 
-      /* Grid: single-area stack — all cells overlap, height = tallest cell */
+      /* Grid: horizontal scroll-snap container */
       .facts__grid {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         width: 100%;
         height: auto;
       }
 
-      /* All cells occupy the same grid slot → natural stacking */
+      .facts__grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Each cell snaps to full width */
       .facts__cell,
       .facts__cell:nth-child(1),
       .facts__cell:nth-child(2),
       .facts__cell:nth-child(3),
       .facts__cell:nth-child(4) {
-        grid-area: 1 / 1;
+        flex: 0 0 100%;
+        scroll-snap-align: start;
         position: relative;
         left: auto;
         top: auto;
         width: 100%;
+        min-width: 0;
       }
 
       /* Number labels: switch from absolute to flow */
@@ -691,12 +700,8 @@
         display: inline;
       }
 
-      /* Facts cycling: only one cell visible at a time */
+      /* Facts cells are always fully visible — scroll-snap handles visibility */
       .facts__cell {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .facts__cell.is-active {
         opacity: 1;
       }
 
@@ -1005,49 +1010,57 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  /* ── MOBILE FACTS CYCLING (dots + swipe) ── */
+  /* ── MOBILE FACTS CYCLING (scroll-snap) ── */
   (function () {
     if (!window.matchMedia('(max-width: 768px)').matches) return;
+    var grid  = document.querySelector('.facts__grid');
     var cells = Array.from(document.querySelectorAll('.facts__cell'));
-    var dots  = Array.from(document.querySelectorAll('.facts__dot'));
-    if (cells.length < 2) return;
+    if (!grid || cells.length < 2) return;
 
     var current = 0;
     var timer;
+    var isAutoScrolling = false;
 
-    function showCell(idx) {
-      cells[current].classList.remove('is-active');
-      if (dots[current]) dots[current].classList.remove('is-active');
-      current = ((idx % cells.length) + cells.length) % cells.length;
-      cells[current].classList.add('is-active');
-      if (dots[current]) dots[current].classList.add('is-active');
+    function scrollToCell(idx) {
+      idx = ((idx % cells.length) + cells.length) % cells.length;
+      current = idx;
+      isAutoScrolling = true;
+      grid.scrollTo({ left: idx * grid.clientWidth, behavior: 'smooth' });
+      setTimeout(function () { isAutoScrolling = false; }, 700);
     }
 
     function startTimer() {
       clearInterval(timer);
-      timer = setInterval(function () { showCell(current + 1); }, 7000);
+      timer = setInterval(function () { scrollToCell(current + 1); }, 5000);
     }
 
-    showCell(0);
     startTimer();
 
-    /* Touch swipe: horizontal gesture resets timer and switches block */
-    var factsEl = document.querySelector('.facts');
-    if (!factsEl) return;
-    var swipeStartX = 0;
-    var swipeStartY = 0;
-
-    factsEl.addEventListener('touchstart', function (e) {
-      swipeStartX = e.touches[0].clientX;
-      swipeStartY = e.touches[0].clientY;
+    /* Boundary wrap: swipe forward from last cell → cycle to first */
+    var touchStartX = 0;
+    grid.addEventListener('touchstart', function (e) {
+      touchStartX = e.touches[0].clientX;
     }, { passive: true });
 
-    factsEl.addEventListener('touchend', function (e) {
-      var dx = e.changedTouches[0].clientX - swipeStartX;
-      var dy = e.changedTouches[0].clientY - swipeStartY;
-      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
-      showCell(dx < 0 ? current + 1 : current - 1);
-      startTimer();
+    grid.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (dx < -30 && current === cells.length - 1) {
+        scrollToCell(0);
+        startTimer();
+      }
+    }, { passive: true });
+
+    /* Detect manual swipe: debounced scroll event → read snap position, reset timer */
+    var scrollDebounce;
+    grid.addEventListener('scroll', function () {
+      if (isAutoScrolling) return;
+      clearTimeout(scrollDebounce);
+      scrollDebounce = setTimeout(function () {
+        var newIdx = Math.round(grid.scrollLeft / grid.clientWidth);
+        newIdx = Math.max(0, Math.min(newIdx, cells.length - 1));
+        current = newIdx;
+        startTimer();
+      }, 150);
     }, { passive: true });
   })();
 
