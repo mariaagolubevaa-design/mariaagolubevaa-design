@@ -524,6 +524,7 @@
 
     /* desktop-only / mobile-only text variants — mobile hidden by default, shown via @media below */
     .workmode__item-text--mobile { display: none; }
+    .edu-p--mobile               { display: none; }
 
     /* ── MOBILE NAV BURGER ── */
     .nav__burger {
@@ -683,12 +684,14 @@
       .workmode__item-text { width: 100%; }
       .workmode__item-text--desktop { display: none; }
       .workmode__item-text--mobile  { display: block; }
+      .edu-p--desktop               { display: none; }
+      .edu-p--mobile                { display: block; }
 
       /* ── HOBBIES ── */
       .hobbies {
         flex-direction: column;
         gap: 12px;
-        padding-top: 40px;
+        padding-top: 80px;
       }
       .hobbies__heading { font-size: 22px; }
       .hobbies__text { width: 100%; }
@@ -696,6 +699,26 @@
       .hobbies__text p:first-child { white-space: normal; }
 
       /* ── INFORMAL SLIDER (under «В свободное время») ── */
+      /* ── EDU TAB PANEL ── */
+      .edu-layout {
+        flex-direction: column;
+        padding-top: 24px;
+        padding-bottom: 40px;
+        gap: 24px;
+      }
+      .edu-photo-wrap {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 580 / 426;
+      }
+      .edu-text { margin-top: 0; }
+      .edu-cpd,
+      .edu-higher { width: 100%; }
+      .edu-higher { margin-top: 32px; }
+      .edu-h2 { font-size: 22px; }
+      .edu-p  { font-size: 15px; }
+
+      .informal { padding-top: 20px; }
       .informal__slides {
         width: 100%;
         height: auto;
@@ -813,7 +836,7 @@
       <div class="workmode__item">
         <span class="workmode__item-label">[02]</span>
         <p class="workmode__item-text workmode__item-text--desktop">Владею английским языком на уровне С1,<br>в прошлом учитель английского с международной квалификацией кембриджа</p>
-        <p class="workmode__item-text workmode__item-text--mobile">Владею английским языком на уровне С1, в прошлом учитель английского с международной квалификацией кембриджа</p>
+        <p class="workmode__item-text workmode__item-text--mobile">Владею английским языком на уровне С1,<br>в прошлом учитель английского с международной квалификацией кембриджа</p>
       </div>
       <div class="workmode__item">
         <span class="workmode__item-label">[03]</span>
@@ -971,7 +994,8 @@
               </div>
               <div class="edu-row edu-row--top">
                 <img class="edu-icon" src="assets/icons/edu-bullet-edu-white.svg" alt="">
-                <p class="edu-p">Modern Technologies in Teaching English (in English)<br>Магистр, 2021</p>
+                <p class="edu-p edu-p--desktop">Modern Technologies in Teaching English (in English)<br>Магистр, 2021</p>
+                <p class="edu-p edu-p--mobile">Modern Technologies in Teaching English<br>(in English), Магистр, 2021</p>
               </div>
             </div>
           </div>
