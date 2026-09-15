@@ -156,45 +156,51 @@
 
     /* COVER */
     .cover {
-      width: 100%; aspect-ratio: 1280 / 630;
-      overflow: hidden; line-height: 0;
-      position: relative; background: #fafafa;
+      width: 100%; aspect-ratio: 1280 / 634;
+      overflow: hidden;
+      position: relative; background: #fcd6e1;
     }
-    .cover__laptop {
+    .cover-stripe-v {
+      position: absolute; top: 0; bottom: 0;
+      width: 2px; background: #fafafa;
+    }
+    .cover-stripe-h {
+      position: absolute; left: 0; right: 0;
+      height: 2px; background: #fafafa;
+    }
+    .cover-title {
       position: absolute;
-      left: 50%; transform: translateX(-50%);
-      top: 8%;
-      width: 80.2%; /* 1027/1280 */
-      height: auto;
-      display: block;
-    }
-    .cover__org {
-      position: absolute; left: 3.125%; top: 11.75%;
+      left: 16.875%; top: 47.792%;
+      transform: translateY(-100%);
       font-family: 'Inter Tight', Arial, sans-serif;
-      font-size: 1.25vw; font-weight: 500; color: #9b9b9b;
-      line-height: normal; letter-spacing: .02em;
+      font-size: 10.15625vw; font-weight: 500;
+      color: #141414; white-space: nowrap; line-height: normal;
     }
-    .cover-chips {
-      position: absolute; left: 3.125%; top: 90%;
-      display: flex; gap: 0.75vw; align-items: center;
+    .cover-flower {
+      position: absolute;
+      left: 61.484%; top: 30.916%;
+      width: 5.469%; height: 12.303%;
     }
-    .cover-chip {
-      border: 1px solid #9b9b9b;
-      padding: 0.625vw 1vw;
+    .cover-flower img { width: 100%; height: 100%; display: block; }
+    .cover-cursor {
+      position: absolute;
+      left: 21.515%; top: 46.846%;
+      width: 4.505%; height: 9.274%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cover-cursor img { width: 69.4%; height: auto; transform: rotate(33.6deg); }
+    .cover-tag {
+      position: absolute;
+      top: 82.808%; transform: translateY(-100%);
       font-family: 'Inter Tight', Arial, sans-serif;
-      font-size: 0.9375vw; font-weight: 500; color: #9b9b9b;
-      line-height: 1; white-space: nowrap;
+      font-size: 1.25vw; font-weight: 500;
+      color: #141414; white-space: nowrap; line-height: normal;
     }
-    .cover-site-btn {
-      position: absolute; left: 50%; top: 90%; transform: translateX(-50%);
-      display: inline-flex; align-items: center; gap: 4px;
-      font-family: 'Inter Tight', Arial, sans-serif;
-      font-size: 1vw; font-weight: 500; color: #141414;
-      text-decoration: none; padding: 0.625vw 1vw;
-      transition: color .2s;
+    .cover-tag-plus {
+      position: absolute;
+      top: 76.814%; width: 1.875%; height: 3.785%;
     }
-    .cover-site-btn:hover { color: #B03C39; }
-    .cover-site-btn img { width: 1.25vw; height: 1.25vw; }
+    .cover-tag-plus img { width: 100%; height: 100%; display: block; }
 
     /* SECTION NAV */
     .section-nav {
@@ -444,23 +450,36 @@
 
 <!-- COVER -->
 <div class="cover">
-  <img class="cover__laptop" src="assets/images/designconf-laptop.png" alt="Дизайн конф — лендинг">
-
-  <!-- BHSAD label -->
-  <div class="cover__org">BHSAD</div>
-
-  <!-- Chips bottom-left -->
-  <div class="cover-chips">
-    <span class="cover-chip">лендинг</span>
-    <span class="cover-chip">адаптивы</span>
-    <span class="cover-chip">март 2026</span>
+  <!-- Vertical grid lines -->
+  <div class="cover-stripe-v" style="left:16.875%"></div>
+  <div class="cover-stripe-v" style="left:38.906%"></div>
+  <div class="cover-stripe-v" style="left:60.937%"></div>
+  <div class="cover-stripe-v" style="left:82.969%"></div>
+  <!-- Horizontal grid lines -->
+  <div class="cover-stripe-h" style="top:21.136%"></div>
+  <div class="cover-stripe-h" style="top:50%"></div>
+  <div class="cover-stripe-h" style="top:78.549%"></div>
+  <!-- Main title -->
+  <div class="cover-title">[дизайн к&nbsp;&nbsp;&nbsp;нф]</div>
+  <!-- Orange flower inside the title gap -->
+  <div class="cover-flower">
+    <img src="assets/images/designconf-cover-flower.svg" alt="">
   </div>
-
-  <!-- САЙТ button centered bottom -->
-  <a class="cover-site-btn" href="https://bhsad.ru/britankaconf" target="_blank" rel="noopener">
-    САЙТ
-    <img src="assets/images/designconf-chevron.svg" alt="" aria-hidden="true" style="transform:rotate(90deg);">
-  </a>
+  <!-- Cursor icon -->
+  <div class="cover-cursor">
+    <img src="assets/images/designconf-cover-cursor.svg" alt="">
+  </div>
+  <!-- Plus icons at grid intersections -->
+  <div class="cover-tag-plus" style="left:16.016%"><img src="assets/images/designconf-cover-plus.svg" alt=""></div>
+  <div class="cover-tag-plus" style="left:38.047%"><img src="assets/images/designconf-cover-plus.svg" alt=""></div>
+  <div class="cover-tag-plus" style="left:60.078%"><img src="assets/images/designconf-cover-plus.svg" alt=""></div>
+  <div class="cover-tag-plus" style="left:82.109%"><img src="assets/images/designconf-cover-plus.svg" alt=""></div>
+  <!-- Tag labels -->
+  <div class="cover-tag" style="left:10.234%">адаптивы</div>
+  <div class="cover-tag" style="left:30.156%">конференция</div>
+  <div class="cover-tag" style="left:50%;transform:translate(-50%,-100%)">сайт</div>
+  <div class="cover-tag" style="left:62.109%">лэндинг</div>
+  <div class="cover-tag" style="left:84.141%">март 2026</div>
 </div>
 
 <!-- SECTION NAV -->
