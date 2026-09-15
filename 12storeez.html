@@ -59,30 +59,13 @@
     }
 
     /* ── NAVBAR ── */
-    .nav-trigger {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 40px;
-      z-index: 101;
-      pointer-events: auto;
-    }
-
+    /* ── NAVBAR ── */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
       background: rgba(255,254,251,.92);
       backdrop-filter: blur(12px);
-      transform: translateY(-100%);
-      pointer-events: none;
-      transition: transform 0.3s ease 0.15s;
-    }
-
-    .nav-trigger:hover ~ .nav,
-    .nav:hover {
-      transform: translateY(0);
-      pointer-events: auto;
-      transition: transform 0.3s ease;
     }
 
     .nav-inner {
@@ -156,6 +139,78 @@
     .nav__resume:hover { color: #FA472D; }
     .nav__resume:hover svg path { fill: #FA472D; }
     .nav__resume svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ── MOBILE NAV BURGER ── */
+    .nav__burger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav__burger-icon { display: block; }
+    .nav__burger-icon--close { display: none; }
+    .nav__burger.is-active .nav__burger-icon--open { display: none; }
+    .nav__burger.is-active .nav__burger-icon--close { display: block; }
+
+    /* ── MOBILE MENU OVERLAY ── */
+    .nav__mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(255, 254, 251, .97);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-16px);
+      transition: opacity .3s ease, transform .3s ease, visibility 0s .3s;
+    }
+
+    .nav__mobile-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translateY(0);
+      transition: opacity .3s ease, transform .3s ease, visibility 0s 0s;
+    }
+
+    .nav__mobile-link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: #141414;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 20px 40px;
+      line-height: 1;
+      transition: color .2s;
+    }
+
+    .nav__mobile-link:active { color: #FA472D; }
+
+    .nav__mobile-menu.is-open .nav__mobile-link {
+      animation: mobile-link-in .3s ease both;
+    }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(1) { animation-delay: .06s; }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(2) { animation-delay: .12s; }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(3) { animation-delay: .18s; }
+    .nav__mobile-menu.is-open .nav__mobile-link:nth-child(4) { animation-delay: .24s; }
+
+    @keyframes mobile-link-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     /* COVER */
     .cover { width: 100%; aspect-ratio: 1280 / 630; overflow: hidden; line-height: 0; position: relative; background: #fafafa; }
@@ -1414,12 +1469,44 @@
     .sc-label { position: absolute; font-family: 'Inter Tight','Inter',Arial,sans-serif; font-size: 16px; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
     .sc-label--bylo  { left: 300px; transform: translateX(-50%); color: #c8c8c8; }
     .sc-label--stalo { left: 900px; transform: translateX(-50%); color: #141414; }
+
+    .context-block__text--mobile { display: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      :root { --pad: 20px; }
+      .nav-inner { padding: 12px var(--pad); }
+      .nav__logo-text { font-size: 24px; }
+      .nav__logo-sub  { font-size: 12px; }
+      .nav__center, .nav__resume { display: none; }
+      .nav__burger { display: flex; }
+      .cover { margin-top: 60px; }
+
+      /* SECTION NAV */
+      .section-nav {
+        margin-top: 40px;
+        padding: 0 20px;
+        gap: 24px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
+      .section-nav__left,
+      .section-nav__right,
+      .section-nav__sub { display: contents; }
+      .section-nav a {
+        font-size: 15px;
+        padding-bottom: 10px;
+        border-bottom-width: 2px;
+      }
+      .context-block__label { font-size: 22px; }
+      .context-block { display: block; margin-top: 20px; }
+      .context-block > div:first-child { display: none; }
+      .context-block__text--desktop { display: none; }
+      .context-block__text--mobile { display: block; font-size: 15px; white-space: normal; }
+    }
   </style>
 </head>
 <body>
-
-<!-- NAV TRIGGER -->
-<div class="nav-trigger"></div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -1429,7 +1516,7 @@
       <span class="nav__logo-sub">продуктовый | ux/ui дизайнер</span>
     </a>
     <div class="nav__center">
-      <a class="nav__center-link" href="index.html">ПРОЕКТЫ</a>
+      <a class="nav__center-link" href="index.html#projects">ПРОЕКТЫ</a>
       <a class="nav__center-link" href="about.html">ОБО МНЕ</a>
       <a class="nav__center-link" href="contacts.html">КОНТАКТЫ</a>
     </div>
@@ -1439,8 +1526,24 @@
         <path d="M6.46 14.94L7.45 15.89L13.54 10L7.45 4.11L6.46 5.06L11.57 10Z" fill="#141414"/>
       </svg>
     </a>
+    <button class="nav__burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+      <svg class="nav__burger-icon nav__burger-icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 7H21M3 12H21M3 17H21" stroke="#141414" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <svg class="nav__burger-icon nav__burger-icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6L18 18M18 6L6 18" stroke="#141414" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav__mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Навигация">
+  <a class="nav__mobile-link" href="index.html#projects">ПРОЕКТЫ</a>
+  <a class="nav__mobile-link" href="about.html">ОБО МНЕ</a>
+  <a class="nav__mobile-link" href="contacts.html">КОНТАКТЫ</a>
+  <a class="nav__mobile-link" href="about.html#resume">РЕЗЮМЕ</a>
+</div>
 
 <!-- COVER -->
 <div class="cover">
@@ -1491,13 +1594,17 @@
         <!-- Текст контекста (правая колонка через grid) -->
         <div class="context-block">
           <div></div>
-          <p class="context-block__text" style="white-space:nowrap;">
+          <p class="context-block__text context-block__text--desktop" style="white-space:nowrap;">
             12 STOREEZ — российский премиум бренд лаконичной одежды, обуви<br>
             и аксессуаров вне времени, с фокусом на натуральные материалы. У бренда<br>
             есть несколько цифровых каналов в онлайне, но нам предстояла работа<br>
             над приложением<br>
             Помимо основной задачи брифа, заказчик задался глобальным вопросом<br>
             «Зачем приложение бренду?»
+          </p>
+          <p class="context-block__text context-block__text--mobile">
+            12 STOREEZ — российский премиум бренд лаконичной одежды, обуви и аксессуаров вне времени, с фокусом на натуральные материалы. У бренда есть несколько цифровых каналов в онлайне, но нам предстояла работа над приложением<br>
+            Помимо основной задачи брифа, заказчик задался глобальным вопросом «Зачем приложение бренду?»
           </p>
         </div>
 
@@ -3226,6 +3333,39 @@
     </div>
   </div>
 </div>
+
+<script>
+/* ── MOBILE MENU ── */
+(function () {
+  const burger = document.getElementById('navBurger');
+  const menu   = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+
+  function openMenu() {
+    menu.classList.add('is-open');
+    burger.classList.add('is-active');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Закрыть меню');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    burger.classList.remove('is-active');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Открыть меню');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    menu.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  menu.querySelectorAll('.nav__mobile-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+})();
+</script>
 
 <script>
   const obs = new IntersectionObserver(entries => {
