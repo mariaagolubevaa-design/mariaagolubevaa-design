@@ -1473,6 +1473,7 @@
     .context-block__text--mobile { display: none; }
     .text-frame__body--mobile { display: none; }
     .myrole-new__item-text--mobile { display: none; }
+    .dp-block__col-desc--mobile { display: none; }
 
     /* ── MOBILE BYLO/STALO TAB SWITCHER ── */
     .sc-mobile { display: none; }
@@ -1588,6 +1589,13 @@
       .text-frame__body--mobile { display: block; }
       .text-frame__body p { line-height: 1.4; margin-bottom: 4px; }
       .text-frame__body p:last-child { margin-bottom: 0; }
+      /* DP BLOCK */
+      .dp-block__header { font-size: 22px; margin-bottom: 24px; }
+      .dp-block__cols { grid-template-columns: 1fr; }
+      .dp-block__col-title { font-size: 22px; }
+      .dp-block__col-desc { font-size: 15px; }
+      .dp-block__col-desc--desktop { display: none; }
+      .dp-block__col-desc--mobile { display: block; }
       /* MY ROLE */
       .myrole-new { position: static; height: auto; display: flex; flex-direction: column; gap: 20px; }
       .myrole-new__heading { position: static; font-size: 22px; white-space: normal; }
@@ -1601,6 +1609,123 @@
       .myrole-new__photo-bl img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: 100%; top: 0; left: 0; object-fit: cover; }
       .myrole-new__photo-br { position: relative; flex: 1; aspect-ratio: 1/1; height: auto; top: auto; left: auto; transform: none; width: auto; overflow: hidden; }
       .myrole-new__photo-br img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+      /* ── DESK RESEARCH ── */
+      .desk-research {
+        display: flex !important; flex-direction: column !important;
+        height: auto !important; margin-bottom: 24px !important; overflow: visible !important;
+      }
+      .desk-research.competitor-open,
+      .desk-research.bench-open,
+      .desk-research.trends-open { margin-bottom: 24px !important; }
+      .dr-wrapper {
+        position: static !important; left: auto !important; top: auto !important;
+        width: 100% !important; height: auto !important; transition: none !important;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      .dr-wrapper.dr-expanded,
+      .dr-wrapper.bench-open,
+      .dr-wrapper.trends-open { background: #fafafa; }
+      .dr-card {
+        position: relative !important; width: 100% !important; height: 56px !important;
+        display: flex !important; align-items: center !important; transform: none !important;
+      }
+      .dr-wrapper.dr-expanded .dr-card,
+      .dr-wrapper.bench-open .dr-card,
+      .dr-wrapper.trends-open .dr-card { transform: none !important; z-index: auto; }
+      .dr-title {
+        position: static !important; width: auto !important; height: auto !important;
+        font-size: 15px !important; padding: 0 16px !important; flex: 1;
+      }
+      .dr-bar { display: none !important; }
+      .dr-wrapper.dr-inactive { pointer-events: auto !important; }
+
+      /* Конкуренты: scrollable table */
+      .dr-competitors-table {
+        position: static !important; width: 100% !important; height: auto !important;
+        max-height: 0; overflow-x: auto; overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        transition: opacity 0.25s ease, max-height 0.4s ease;
+      }
+      .dr-wrapper.dr-expanded .dr-competitors-table { max-height: 300px !important; }
+
+      /* Бенчмарки */
+      .bench-expanded { position: relative !important; inset: auto !important; display: none; }
+      .dr-wrapper.bench-open .bench-expanded { display: block !important; padding: 20px 0; opacity: 1 !important; }
+      #bench-phone {
+        position: relative !important; left: auto !important; top: auto !important;
+        width: 65% !important; max-width: 200px !important; height: auto !important;
+        margin: 0 auto !important; aspect-ratio: 322/700; display: block;
+      }
+      .bench-phone-screen { border-radius: 11.94% / 5.49% !important; }
+      .bench-label { display: none !important; }
+      .bench-logo-1, .bench-logo-2, .bench-logo-3, .bench-logo-4 { display: none !important; }
+      .bench-nav {
+        position: absolute !important; top: 50% !important;
+        transform: translateY(-50%) !important; width: 44px !important; height: 44px !important;
+      }
+      #bench-nav-l { left: 4px !important; right: auto !important; }
+      #bench-nav-r { right: 4px !important; left: auto !important; }
+
+      /* Тренды */
+      .trends-expanded { position: relative !important; inset: auto !important; display: none; }
+      .dr-wrapper.trends-open .trends-expanded { display: block !important; opacity: 1 !important; }
+      .trends-frame {
+        position: relative !important; inset: auto !important;
+        display: none !important; padding: 20px 0; overflow: hidden;
+      }
+      .trends-frame.tf-active { display: block !important; }
+      .trends-label { display: none !important; }
+      #trends-frame-1 > div:not(#trends-phone) { display: none !important; }
+      #trends-phone, #ml2-phone, #t3-phone, #ugc4-phone {
+        position: relative !important; left: auto !important; top: auto !important;
+        width: 65% !important; max-width: 200px !important; height: auto !important;
+        margin: 0 auto !important; aspect-ratio: 322/700; display: block;
+      }
+      #trends-frame-5 > div:first-of-type {
+        position: relative !important; left: auto !important; top: auto !important;
+        width: 65% !important; max-width: 200px !important; height: auto !important;
+        margin: 0 auto !important; aspect-ratio: 322/700; display: block;
+      }
+      #ugc4-coach {
+        position: relative !important; left: auto !important; top: auto !important;
+        width: 90% !important; height: auto !important;
+        aspect-ratio: 660/617; margin: 0 auto !important; overflow: hidden;
+      }
+      #trends-phone > div:first-child,
+      #ml2-phone > div:first-child,
+      #t3-phone > div:first-child,
+      #ugc4-phone > div:first-child,
+      #trends-frame-5 > div:first-of-type > div:first-child {
+        border-radius: 11.94% / 5.49% !important;
+      }
+      #trends-phone > img,
+      #ml2-phone > img,
+      #ugc4-phone > img,
+      #trends-frame-5 > div:first-of-type > img {
+        left: -5.97% !important; top: -2.63% !important;
+        width: 111.94% !important; height: auto !important;
+      }
+      #t3-bezel {
+        left: -5.97% !important; top: -2.63% !important;
+        width: 111.94% !important; height: auto !important;
+      }
+      #t3-screen-lamoda {
+        width: 100% !important; height: 100% !important;
+        left: 0 !important; top: 0 !important; object-fit: cover !important;
+      }
+      .trends-nav {
+        position: absolute !important; top: 50% !important;
+        transform: translateY(-50%) !important; width: 44px !important; height: 44px !important;
+      }
+      [id^="trends-nav-l"] { left: 4px !important; right: auto !important; }
+      [id^="trends-nav-r"] { right: 4px !important; left: auto !important; }
+      #bench-phone:hover .bench-pulse.visible,
+      #trends-phone:hover .trends-pulse.visible,
+      #ml2-phone:hover .ml2-pulse.visible,
+      #t3-phone:hover .t3-pulse.visible,
+      #ugc4-phone:hover .ugc4-pulse.visible,
+      #ugc4-coach:hover .ugc4-pulse.visible { opacity: 1; }
     }
   </style>
 </head>
@@ -1921,11 +2046,13 @@
       <div class="accordion-body" id="process-body"><div class="accordion-inner"><div class="dp-block__cols">
         <div class="dp-block__col dp-block__col--active">
           <div class="dp-block__col-title">01 Исследование</div>
-          <p class="dp-block__col-desc">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM<br>по 5 LOK, Майндсеты</p>
+          <p class="dp-block__col-desc dp-block__col-desc--desktop">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM<br>по 5 LOK, Майндсеты</p>
+          <p class="dp-block__col-desc dp-block__col-desc--mobile">Деск ресерч, гипотезы, глубинки, полевые исследования, ЮТ текущего приложения, CJM по 5 LOK, Майндсеты</p>
         </div>
         <div class="dp-block__col dp-block__col--inactive">
           <div class="dp-block__col-title">02 Дизайн</div>
-          <p class="dp-block__col-desc">Генерация идей, Приоритизация через колич<br>по Кано, Юзерфлоу, Вайрфреймы, Экраны,<br>Генерация инфографики, Прототипирование</p>
+          <p class="dp-block__col-desc dp-block__col-desc--desktop">Генерация идей, Приоритизация через колич<br>по Кано, Юзерфлоу, Вайрфреймы, Экраны,<br>Генерация инфографики, Прототипирование</p>
+          <p class="dp-block__col-desc dp-block__col-desc--mobile">Генерация идей, Приоритизация через колич по Кано, Юзерфлоу, Вайрфреймы, Экраны, Генерация инфографики, Прототипирование</p>
         </div>
         <div class="dp-block__col dp-block__col--inactive">
           <div class="dp-block__col-title">03 Тестирование</div>
@@ -4586,6 +4713,13 @@
       if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
     });
   });
+
+  /* Mobile: hide bench pulse on any tap inside bench-expanded */
+  (function() {
+    var bx = document.querySelector('.bench-expanded');
+    var bp = document.getElementById('bench-pulse');
+    if (bx && bp) bx.addEventListener('click', function() { bp.classList.remove('visible'); });
+  })();
 
 </script>
 
