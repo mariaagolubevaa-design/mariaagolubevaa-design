@@ -1471,6 +1471,8 @@
     .sc-label--stalo { left: 900px; transform: translateX(-50%); color: #141414; }
 
     .context-block__text--mobile { display: none; }
+    .text-frame__body--mobile { display: none; }
+    .myrole-new__item-text--mobile { display: none; }
 
     /* ── MOBILE BYLO/STALO TAB SWITCHER ── */
     .sc-mobile { display: none; }
@@ -1576,8 +1578,29 @@
       .context-block > div:first-child { display: none; }
       .context-block__text--desktop { display: none; }
       .context-block__text--mobile { display: block; font-size: 15px; white-space: normal; }
+      .container { padding-left: 20px; padding-right: 20px; }
       .sc-section { display: none; }
       .sc-mobile { display: block; padding: 0; }
+      .text-frame { grid-template-columns: 1fr; row-gap: 32px; }
+      .text-frame__label { font-size: 22px; white-space: normal; }
+      .text-frame__body { font-size: 15px; }
+      .text-frame__body--desktop { display: none; }
+      .text-frame__body--mobile { display: block; }
+      .text-frame__body p { line-height: 1.4; margin-bottom: 4px; }
+      .text-frame__body p:last-child { margin-bottom: 0; }
+      /* MY ROLE */
+      .myrole-new { position: static; height: auto; display: flex; flex-direction: column; gap: 20px; }
+      .myrole-new__heading { position: static; font-size: 22px; white-space: normal; }
+      .myrole-new__list { position: static; width: 100%; left: auto; top: auto; }
+      .myrole-new__item-text { font-size: 15px; line-height: 1.4; }
+      .myrole-new__item-text--desktop { display: none; }
+      .myrole-new__item-text--mobile { display: block; }
+      .myrole-new__photo-top { position: static; width: 100%; height: auto; aspect-ratio: 478/282; }
+      .myrole-new__photos-row { position: static; width: 100%; height: auto; display: flex; gap: 8px; top: auto; left: auto; }
+      .myrole-new__photo-bl { position: relative; flex: 1; aspect-ratio: 1/1; height: auto; top: auto; width: auto; }
+      .myrole-new__photo-bl img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: 100%; top: 0; left: 0; object-fit: cover; }
+      .myrole-new__photo-br { position: relative; flex: 1; aspect-ratio: 1/1; height: auto; top: auto; left: auto; transform: none; width: auto; overflow: hidden; }
+      .myrole-new__photo-br img { width: 100%; height: 100%; object-fit: cover; display: block; }
     }
   </style>
 </head>
@@ -1785,29 +1808,43 @@
     <div class="text-frame reveal">
       <div class="text-frame__card">
         <div class="text-frame__label">Проблема</div>
-        <div class="text-frame__body">
+        <div class="text-frame__body text-frame__body--desktop">
           <p>[01]&nbsp; Низкая глубина просмотра на главной – CTR 3 баннера</p>
+          <p>[02] Низкая конверсия с главной страницы</p>
+          <p>[03] Зачем бренду вообще приложение?</p>
+        </div>
+        <div class="text-frame__body text-frame__body--mobile">
+          <p>[01] Низкая глубина просмотра на главной –<br>CTR 3 баннера</p>
           <p>[02] Низкая конверсия с главной страницы</p>
           <p>[03] Зачем бренду вообще приложение?</p>
         </div>
       </div>
       <div class="text-frame__card">
         <div class="text-frame__label">Задача</div>
-        <div class="text-frame__body">
+        <div class="text-frame__body text-frame__body--desktop">
           <p>Спроектировать самобытный и современный главный экран приложения,<br>который эффектно презентует товары и остаётся интуитивным<br>для пользователя</p>
+        </div>
+        <div class="text-frame__body text-frame__body--mobile">
+          <p>Спроектировать самобытный и современный главный экран приложения, который эффектно презентует товары и остаётся интуитивным для пользователя</p>
         </div>
       </div>
       <div class="text-frame__card">
         <div class="text-frame__label">Ограничения</div>
-        <div class="text-frame__body">
+        <div class="text-frame__body text-frame__body--desktop">
           <p>Главная должна быть красивой,</p>
           <p>но обязана продавать<br>но не должна превращаться в витрину маркетплейса</p>
+        </div>
+        <div class="text-frame__body text-frame__body--mobile">
+          <p>Главная должна быть красивой, но обязана продавать, но не должна превращаться в витрину маркетплейса</p>
         </div>
       </div>
       <div class="text-frame__card">
         <div class="text-frame__label">Метрики</div>
-        <div class="text-frame__body">
+        <div class="text-frame__body text-frame__body--desktop">
           <p>Наши решения должны повлиять на увеличение количества покупок<br>(CR to purchase), увеличить глубину просмотра на главной (CTR) и добавление<br>в корзину или вишлист (Add to cart, Add to wishlist) сразу с главной страницы приложения</p>
+        </div>
+        <div class="text-frame__body text-frame__body--mobile">
+          <p>Наши решения должны повлиять на увеличение количества покупок (CR to purchase), увеличить глубину просмотра на главной (CTR) и добавление в корзину или вишлист (Add to cart, Add to wishlist) сразу с главной страницы приложения</p>
         </div>
       </div>
     </div>
@@ -1833,11 +1870,13 @@
         </div>
         <div class="myrole-new__item">
           <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
-          <p class="myrole-new__item-text">Генерировала инфографику и видео для презентации<br>в Nano Banana, ChatGPT и Kling,</p>
+          <p class="myrole-new__item-text myrole-new__item-text--desktop">Генерировала инфографику и видео для презентации<br>в Nano Banana, ChatGPT и Kling,</p>
+          <p class="myrole-new__item-text myrole-new__item-text--mobile">Генерировала инфографику и видео для презентации в Nano Banana, ChatGPT и Kling,</p>
         </div>
         <div class="myrole-new__item">
           <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
-          <p class="myrole-new__item-text">Разрабатывала визуальный концепт финальной презентации и питчила<br>на всех этапах,</p>
+          <p class="myrole-new__item-text myrole-new__item-text--desktop">Разрабатывала визуальный концепт финальной презентации и питчила<br>на всех этапах,</p>
+          <p class="myrole-new__item-text myrole-new__item-text--mobile">Разрабатывала визуальный концепт финальной презентации и питчила на всех этапах,</p>
         </div>
         <div class="myrole-new__item">
           <img class="myrole-new__star" src="assets/icons/myrole-star.svg" alt="">
