@@ -1472,6 +1472,79 @@
 
     .context-block__text--mobile { display: none; }
 
+    /* ── MOBILE BYLO/STALO TAB SWITCHER ── */
+    .sc-mobile { display: none; }
+    .sc-mobile__tabs {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+    .sc-mobile__tab {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #c8c8c8;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0 0 8px;
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
+      line-height: 1;
+    }
+    .sc-mobile__tab.is-active { color: #141414; border-bottom-color: #141414; }
+    .sc-mobile__pane { display: none; }
+    .sc-mobile__pane.is-active { display: block; animation: scFadeIn .3s ease; }
+    @keyframes scFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .sc-mobile__phone-wrap {
+      position: relative;
+      width: 72%;
+      max-width: 230px;
+      margin: 0 auto;
+      aspect-ratio: 322 / 700;
+    }
+    .sc-mobile__screen {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 11.94% / 5.49%;
+      background: #453930;
+    }
+    .sc-mobile__screen--stalo { background: #fefefe; }
+    .sc-mobile__screen img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .sc-mobile__screen--stalo img {
+      object-fit: fill;
+      transform: scale(1.003);
+      transform-origin: center center;
+    }
+    .sc-mobile__frame {
+      position: absolute;
+      left: -5.97%;
+      top: -2.63%;
+      width: 111.94%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .sc-mobile__frame img { width: 100%; height: auto; display: block; }
+    .sc-mobile__ann {
+      margin-top: 20px;
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #141414;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .sc-mobile__ann p { margin: 0 0 6px; }
+    .sc-mobile__ann p:last-child { margin-bottom: 0; }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       :root { --pad: 20px; }
@@ -1503,6 +1576,8 @@
       .context-block > div:first-child { display: none; }
       .context-block__text--desktop { display: none; }
       .context-block__text--mobile { display: block; font-size: 15px; white-space: normal; }
+      .sc-section { display: none; }
+      .sc-mobile { display: block; padding: 0; }
     }
   </style>
 </head>
@@ -1665,6 +1740,44 @@
           <span class="sc-label sc-label--stalo" id="scLabelStalo">стало</span>
         </div>
 
+      </div>
+    </div>
+
+    <!-- Было/Стало mobile tab switcher (mobile only) -->
+    <div class="sc-mobile">
+      <div class="sc-mobile__tabs">
+        <button class="sc-mobile__tab is-active" data-tab="bylo">было</button>
+        <button class="sc-mobile__tab" data-tab="stalo">стало</button>
+      </div>
+      <!-- Pane: было -->
+      <div class="sc-mobile__pane is-active" id="scMobileBylo">
+        <div class="sc-mobile__phone-wrap">
+          <div class="sc-mobile__screen">
+            <img src="assets/images/storeez-screen1-bylo-opt.gif" alt="Было">
+          </div>
+          <div class="sc-mobile__frame">
+            <img src="assets/images/storeez-iphone17-frame.png" alt="">
+          </div>
+        </div>
+        <div class="sc-mobile__ann">
+          <p>Низкая глубина просмотра</p>
+          <p>Низкая конверсия</p>
+        </div>
+      </div>
+      <!-- Pane: стало -->
+      <div class="sc-mobile__pane" id="scMobileStalo">
+        <div class="sc-mobile__phone-wrap">
+          <div class="sc-mobile__screen sc-mobile__screen--stalo">
+            <img src="assets/images/storeez-screen2-stalo.png" alt="Стало">
+          </div>
+          <div class="sc-mobile__frame">
+            <img src="assets/images/storeez-iphone17-frame.png" alt="">
+          </div>
+        </div>
+        <div class="sc-mobile__ann">
+          <p>Персонализированная главная</p>
+          <p>Цифровой аватар в готовых образах</p>
+        </div>
       </div>
     </div>
 
@@ -3372,6 +3485,21 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── MOBILE БЫЛО/СТАЛО TABS ── */
+  (function () {
+    var tabs  = document.querySelectorAll('.sc-mobile__tab');
+    var panes = document.querySelectorAll('.sc-mobile__pane');
+    if (!tabs.length) return;
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var key = tab.dataset.tab;
+        var targetId = 'scMobile' + key[0].toUpperCase() + key.slice(1);
+        tabs.forEach(function(t) { t.classList.toggle('is-active', t === tab); });
+        panes.forEach(function(p) { p.classList.toggle('is-active', p.id === targetId); });
+      });
+    });
+  })();
 
   /* SCREEN-CONTEXT SLIDER */
   (function() {
