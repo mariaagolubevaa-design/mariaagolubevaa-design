@@ -562,6 +562,14 @@
       white-space: nowrap;
       line-height: normal;
     }
+    .color-flower-group { cursor: pointer; }
+    @keyframes color-flower-spin-click {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(720deg); }
+    }
+    .color-flower-group img.spinning {
+      animation: color-flower-spin-click 1s ease-out forwards;
+    }
 
     /* REVEAL */
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s ease,transform .5s ease; }
@@ -895,6 +903,16 @@
     }
   }), { threshold: .3 });
   sections.forEach(s => sObs.observe(s));
+
+  /* COLOR FLOWER SPIN */
+  document.querySelectorAll('.color-flower-group').forEach(function(group) {
+    group.addEventListener('click', function() {
+      var img = group.querySelector('img');
+      img.classList.remove('spinning');
+      void img.offsetWidth; /* force reflow — reset animation state */
+      img.classList.add('spinning');
+    });
+  });
 
   /* CONCEPTS CAROUSEL */
   (function () {
