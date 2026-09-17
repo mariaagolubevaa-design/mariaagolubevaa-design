@@ -479,7 +479,7 @@
       max-width: none;
       display: block;
     }
-    .concepts-label {
+    .concepts-label-shared {
       position: absolute;
       left: 814px;
       top: calc(50% + 9px);
@@ -487,11 +487,11 @@
       font-family: 'Inter Tight', sans-serif;
       font-weight: 500;
       font-size: 16px;
-      color: #000;
-      white-space: nowrap;
-      line-height: 1;
+      color: #141414;
+      line-height: normal;
       transition: opacity 0.2s ease;
     }
+    .concepts-label-shared p { margin: 0; white-space: nowrap; }
     .concepts-arrow-svg {
       position: absolute;
       left: 778px;
@@ -500,19 +500,6 @@
       height: 54px;
       transition: top 0.35s ease, opacity 0.35s ease;
     }
-    .concepts-label-multi {
-      position: absolute;
-      left: 804px;
-      top: calc(50% + 19px);
-      transform: translateY(-100%);
-      font-family: 'Inter Tight', sans-serif;
-      font-weight: 500;
-      font-size: 16px;
-      color: #000;
-      line-height: normal;
-      transition: opacity 0.2s ease;
-    }
-    .concepts-label-multi p { margin: 0; white-space: nowrap; }
 
     /* RESULT SECTION */
     .result-section-row {
@@ -824,11 +811,7 @@
 
         <!-- Shared overlay: единственные стрелка и лейбл для всех состояний -->
         <img class="concepts-arrow-svg" id="concepts-arrow" src="assets/images/concepts-arrow.svg" alt="">
-        <span class="concepts-label" id="concepts-label">форма для спикеров</span>
-        <div class="concepts-label-multi" id="concepts-label-multi" style="display:none;opacity:0;">
-          <p>фигура для FAQ была вдохновлена</p>
-          <p>акцентным шрифтом</p>
-        </div>
+        <div class="concepts-label-shared" id="concepts-label">форма для спикеров</div>
 
       </div>
 
@@ -920,45 +903,38 @@
   /* CONCEPTS CAROUSEL */
   (function () {
     var slides = document.querySelectorAll('.concepts-slide');
-    var arrow = document.getElementById('concepts-arrow');
-    var labelSingle = document.getElementById('concepts-label');
-    var labelMulti = document.getElementById('concepts-label-multi');
+    var arrow  = document.getElementById('concepts-arrow');
+    var label  = document.getElementById('concepts-label');
     var cur = 0;
+    var FADE = 200; /* matches transition: opacity 0.2s */
 
+    /* Figma coords per state */
     var slideData = [
-      { text: 'форма для спикеров', multi: false, arrowTop: '196px', arrowOpacity: '1' },
-      { text: 'оформление текста',  multi: false, arrowTop: '196px', arrowOpacity: '1' },
-      { text: 'формы на странице',  multi: false, arrowTop: '203px', arrowOpacity: '1' },
-      {                             multi: true,                      arrowOpacity: '0' }
+      { html: 'форма для спикеров',
+        left: '814px', top: 'calc(50% + 9px)',  arrowTop: '196px', arrowShow: true  },
+      { html: 'оформление текста',
+        left: '814px', top: 'calc(50% + 9px)',  arrowTop: '196px', arrowShow: true  },
+      { html: 'формы на странице',
+        left: '814px', top: 'calc(50% + 9px)',  arrowTop: '203px', arrowShow: true  },
+      { html: '<p>фигура для FAQ была вдохновлена</p><p>акцентным шрифтом</p>',
+        left: '804px', top: 'calc(50% + 19px)', arrowShow: false }
     ];
 
     function applyOverlay(idx) {
       var d = slideData[idx];
 
-      /* Arrow: CSS transition animates position and opacity smoothly */
+      /* Arrow: CSS transition handles smooth move/fade */
       if (d.arrowTop) arrow.style.top = d.arrowTop;
-      arrow.style.opacity = d.arrowOpacity;
+      arrow.style.opacity = d.arrowShow ? '1' : '0';
 
-      if (d.multi) {
-        /* Fade out single label, then show multi */
-        labelSingle.style.opacity = '0';
-        setTimeout(function () {
-          labelMulti.style.display = 'block';
-          requestAnimationFrame(function () { labelMulti.style.opacity = '1'; });
-        }, 220);
-      } else {
-        /* Hide multi if coming from slide 4 */
-        if (labelMulti.style.display === 'block') {
-          labelMulti.style.opacity = '0';
-          setTimeout(function () { labelMulti.style.display = 'none'; }, 220);
-        }
-        /* Quick fade out → swap text → fade in */
-        labelSingle.style.opacity = '0';
-        setTimeout(function () {
-          labelSingle.textContent = d.text;
-          labelSingle.style.opacity = '1';
-        }, 220);
-      }
+      /* Label: fade out → swap content + position (invisible) → fade in */
+      label.style.opacity = '0';
+      setTimeout(function () {
+        label.style.left    = d.left;
+        label.style.top     = d.top;
+        label.innerHTML     = d.html;
+        label.style.opacity = '1';
+      }, FADE + 20);
     }
 
     function next() {
