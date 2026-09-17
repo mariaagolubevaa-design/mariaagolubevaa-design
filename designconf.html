@@ -447,6 +447,73 @@
     }
     .deco-flower img { width: 56px; height: 44px; transform: rotate(-10deg); display: block; }
 
+    /* CONCEPTS CAROUSEL */
+    .concepts-wrap {
+      position: relative;
+      width: 1200px;
+      margin-top: 48px;
+      height: 420px;
+    }
+    .concepts-carousel {
+      position: relative;
+      width: 1200px;
+      height: 388px;
+      overflow: hidden;
+    }
+    .concepts-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .concepts-slide--active { opacity: 1; }
+    .concepts-slide__left {
+      position: absolute;
+      left: 0; top: 0;
+      width: 640px; height: 388px;
+    }
+    .concepts-img-frame {
+      position: absolute;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .concepts-img-frame img {
+      position: absolute;
+      max-width: none;
+      display: block;
+    }
+    .concepts-label {
+      position: absolute;
+      left: 814px;
+      top: calc(50% + 9px);
+      transform: translateY(-100%);
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .concepts-arrow-svg {
+      position: absolute;
+      left: 778px;
+      top: 196px;
+      width: 112px;
+      height: 54px;
+    }
+    .concepts-label-multi {
+      position: absolute;
+      left: 804px;
+      top: calc(50% + 19px);
+      transform: translateY(-100%);
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000;
+      line-height: normal;
+    }
+    .concepts-label-multi p { margin: 0; white-space: nowrap; }
+
     /* RESULT SECTION */
     .result-section-row {
       display: flex; align-items: flex-start; justify-content: space-between;
@@ -690,12 +757,77 @@
       </div>
     </div>
 
-    <div class="placeholders-row reveal" style="height:420px;">
-      <div class="placeholder-left"></div>
-      <div class="placeholder-right" style="height:194px; top:110px;"></div>
+    <div class="concepts-wrap reveal">
+
+      <div class="concepts-carousel">
+
+        <!-- Слайд 1: Форма для спикеров -->
+        <div class="concepts-slide concepts-slide--active">
+          <div class="concepts-slide__left" style="background:rgba(216,171,251,0.3);">
+            <div class="concepts-img-frame" style="left:29px;top:47px;width:582px;height:293px;">
+              <img src="assets/images/concepts-handmad.png" alt="" style="width:113.83%;height:149.49%;left:-6.92%;top:-23.55%;">
+            </div>
+          </div>
+          <span class="concepts-label">форма для спикеров</span>
+          <img class="concepts-arrow-svg" src="assets/images/concepts-arrow.svg" alt="">
+        </div>
+
+        <!-- Слайд 2: Оформление текста -->
+        <div class="concepts-slide">
+          <div class="concepts-slide__left" style="background:rgba(188,213,78,0.4);">
+            <div class="concepts-img-frame" style="left:29px;top:52px;width:582px;height:284px;">
+              <img src="assets/images/concepts-text-format.png" alt="" style="width:103.92%;height:155.19%;left:-2.04%;top:-27.24%;">
+            </div>
+          </div>
+          <span class="concepts-label">оформление текста</span>
+          <img class="concepts-arrow-svg" src="assets/images/concepts-arrow.svg" alt="">
+        </div>
+
+        <!-- Слайд 3: Формы на странице -->
+        <div class="concepts-slide">
+          <div class="concepts-slide__left">
+            <img src="assets/images/concepts-brand.png" alt="" style="position:absolute;left:0;top:0;width:310px;height:388px;object-fit:cover;">
+            <div class="concepts-img-frame" style="left:368px;top:0;width:272px;height:388px;">
+              <img src="assets/images/concepts-fashion.png" alt="" style="width:100%;height:124.61%;left:0;top:-12.15%;">
+            </div>
+          </div>
+          <span class="concepts-label">формы на странице</span>
+          <img class="concepts-arrow-svg" src="assets/images/concepts-arrow.svg" alt="">
+        </div>
+
+        <!-- Слайд 4: Фигура FAQ -->
+        <div class="concepts-slide">
+          <div class="concepts-slide__left" style="background:transparent;">
+            <div class="concepts-img-frame" style="left:29px;top:62px;width:359px;height:132px;">
+              <img src="assets/images/concepts-designconf.png" alt="" style="width:124.58%;height:173.99%;left:-12.29%;top:-9.42%;">
+            </div>
+            <div class="concepts-img-frame" style="left:149px;top:218px;width:43px;height:47px;">
+              <img src="assets/images/concepts-designconf.png" alt="" style="width:1040.13%;height:488.66%;left:-377.04%;top:-186.02%;">
+            </div>
+            <div style="position:absolute;left:288px;top:219px;width:320px;height:48px;">
+              <img src="assets/images/concepts-qa.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 20px 0 12px;gap:8px;">
+                <span style="font-family:'Gilroy',sans-serif;font-weight:800;font-size:7.5px;color:#fff;flex:1;">Что, если у меня нет базы в дизайне?</span>
+                <img src="assets/images/concepts-click.svg" alt="" style="width:13px;height:14px;transform:rotate(33.6deg);flex-shrink:0;">
+              </div>
+            </div>
+            <div style="position:absolute;left:408px;top:292px;width:200px;height:43px;">
+              <img src="assets/images/concepts-btn.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;">
+              <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Gilroy',sans-serif;font-weight:500;font-size:4px;color:#091329;white-space:nowrap;">Зарегистрироваться бесплатно</span>
+            </div>
+          </div>
+          <div class="concepts-label-multi">
+            <p>фигура для FAQ была вдохновлена</p>
+            <p>акцентным шрифтом</p>
+          </div>
+        </div>
+
+      </div>
+
       <div class="deco-flower">
         <img src="assets/images/designconf-flower.svg" alt="">
       </div>
+
     </div>
 
   </div>
@@ -766,6 +898,18 @@
     }
   }), { threshold: .3 });
   sections.forEach(s => sObs.observe(s));
+
+  /* CONCEPTS CAROUSEL */
+  (function () {
+    var slides = document.querySelectorAll('.concepts-slide');
+    var cur = 0;
+    function next() {
+      slides[cur].classList.remove('concepts-slide--active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('concepts-slide--active');
+    }
+    setInterval(next, 4000);
+  })();
 
   /* ACCORDION */
   document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
