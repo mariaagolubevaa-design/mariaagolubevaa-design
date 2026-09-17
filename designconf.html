@@ -490,6 +490,7 @@
       color: #000;
       white-space: nowrap;
       line-height: 1;
+      transition: opacity 0.2s ease;
     }
     .concepts-arrow-svg {
       position: absolute;
@@ -497,6 +498,7 @@
       top: 196px;
       width: 112px;
       height: 54px;
+      transition: top 0.35s ease, opacity 0.35s ease;
     }
     .concepts-label-multi {
       position: absolute;
@@ -508,6 +510,7 @@
       font-size: 16px;
       color: #000;
       line-height: normal;
+      transition: opacity 0.2s ease;
     }
     .concepts-label-multi p { margin: 0; white-space: nowrap; }
 
@@ -773,8 +776,6 @@
               <img src="assets/images/concepts-handmad.png" alt="" style="width:113.83%;height:149.49%;left:-6.92%;top:-23.55%;">
             </div>
           </div>
-          <span class="concepts-label">форма для спикеров</span>
-          <img class="concepts-arrow-svg" src="assets/images/concepts-arrow.svg" alt="">
         </div>
 
         <!-- Слайд 2: Оформление текста -->
@@ -784,8 +785,6 @@
               <img src="assets/images/concepts-text-format.png" alt="" style="width:103.92%;height:155.19%;left:-2.04%;top:-27.24%;">
             </div>
           </div>
-          <span class="concepts-label">оформление текста</span>
-          <img class="concepts-arrow-svg" src="assets/images/concepts-arrow.svg" alt="">
         </div>
 
         <!-- Слайд 3: Формы на странице -->
@@ -796,8 +795,6 @@
               <img src="assets/images/concepts-fashion.png" alt="" style="width:100%;height:124.61%;left:0;top:-12.15%;">
             </div>
           </div>
-          <span class="concepts-label">формы на странице</span>
-          <img class="concepts-arrow-svg" src="assets/images/concepts-arrow.svg" alt="" style="top:203px;">
         </div>
 
         <!-- Слайд 4: Фигура FAQ -->
@@ -821,10 +818,14 @@
               <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Gilroy',sans-serif;font-weight:500;font-size:4px;color:#091329;white-space:nowrap;">Зарегистрироваться бесплатно</span>
             </div>
           </div>
-          <div class="concepts-label-multi">
-            <p>фигура для FAQ была вдохновлена</p>
-            <p>акцентным шрифтом</p>
-          </div>
+        </div>
+
+        <!-- Shared overlay: единственные стрелка и лейбл для всех состояний -->
+        <img class="concepts-arrow-svg" id="concepts-arrow" src="assets/images/concepts-arrow.svg" alt="">
+        <span class="concepts-label" id="concepts-label">форма для спикеров</span>
+        <div class="concepts-label-multi" id="concepts-label-multi" style="display:none;opacity:0;">
+          <p>фигура для FAQ была вдохновлена</p>
+          <p>акцентным шрифтом</p>
         </div>
 
       </div>
@@ -917,12 +918,54 @@
   /* CONCEPTS CAROUSEL */
   (function () {
     var slides = document.querySelectorAll('.concepts-slide');
+    var arrow = document.getElementById('concepts-arrow');
+    var labelSingle = document.getElementById('concepts-label');
+    var labelMulti = document.getElementById('concepts-label-multi');
     var cur = 0;
+
+    var slideData = [
+      { text: 'форма для спикеров', multi: false, arrowTop: '196px', arrowOpacity: '1' },
+      { text: 'оформление текста',  multi: false, arrowTop: '196px', arrowOpacity: '1' },
+      { text: 'формы на странице',  multi: false, arrowTop: '203px', arrowOpacity: '1' },
+      {                             multi: true,                      arrowOpacity: '0' }
+    ];
+
+    function applyOverlay(idx) {
+      var d = slideData[idx];
+
+      /* Arrow: CSS transition animates position and opacity smoothly */
+      if (d.arrowTop) arrow.style.top = d.arrowTop;
+      arrow.style.opacity = d.arrowOpacity;
+
+      if (d.multi) {
+        /* Fade out single label, then show multi */
+        labelSingle.style.opacity = '0';
+        setTimeout(function () {
+          labelMulti.style.display = 'block';
+          requestAnimationFrame(function () { labelMulti.style.opacity = '1'; });
+        }, 220);
+      } else {
+        /* Hide multi if coming from slide 4 */
+        if (labelMulti.style.display === 'block') {
+          labelMulti.style.opacity = '0';
+          setTimeout(function () { labelMulti.style.display = 'none'; }, 220);
+        }
+        /* Quick fade out → swap text → fade in */
+        labelSingle.style.opacity = '0';
+        setTimeout(function () {
+          labelSingle.textContent = d.text;
+          labelSingle.style.opacity = '1';
+        }, 220);
+      }
+    }
+
     function next() {
       slides[cur].classList.remove('concepts-slide--active');
       cur = (cur + 1) % slides.length;
       slides[cur].classList.add('concepts-slide--active');
+      applyOverlay(cur);
     }
+
     setInterval(next, 4000);
   })();
 
