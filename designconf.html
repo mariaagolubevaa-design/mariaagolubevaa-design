@@ -176,12 +176,16 @@
       font-size: 10.15625vw; font-weight: 500;
       color: #141414; white-space: nowrap; line-height: normal;
     }
+    @keyframes cover-flower-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
     .cover-flower {
       position: absolute;
       left: 61.484%; top: 30.916%;
       width: 5.469%; height: 12.303%;
     }
-    .cover-flower img { width: 100%; height: 100%; display: block; }
+    .cover-flower img { width: 100%; height: 100%; display: block; animation: cover-flower-spin 10s linear infinite; }
     .cover-cursor {
       position: absolute;
       left: 21.515%; top: 46.846%;
