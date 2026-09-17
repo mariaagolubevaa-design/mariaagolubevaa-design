@@ -472,6 +472,8 @@
       line-height: normal;
     }
 
+    .facts__num--mobile { display: none; }
+
     .facts__text {
       font-family: 'Inter Tight', Arial, sans-serif;
       font-size: 16px;
@@ -684,6 +686,9 @@
         margin-bottom: 4px;
       }
 
+      .facts__num--desktop { display: none; }
+      .facts__num--mobile  { display: block; position: relative; top: auto; left: auto; }
+
       /* Text: 11px = 16px × (128px column / 187px desktop column) ≈ 0.685 scale.
          overflow-wrap + word-wrap ensure no clipped or merged words. */
       .facts__text {
@@ -859,19 +864,19 @@
     <p class="facts__location">Москва, Россия</p>
     <div class="facts__grid">
       <div class="facts__cell">
-        <span class="facts__num">[01/04]</span>
+        <span class="facts__num facts__num--desktop">[01]</span><span class="facts__num facts__num--mobile">[01/04]</span>
         <p class="facts__text">победитель хакатона <br>от Яндекс Практикума</p>
       </div>
       <div class="facts__cell">
-        <span class="facts__num">[02/04]</span>
+        <span class="facts__num facts__num--desktop">[02]</span><span class="facts__num facts__num--mobile">[02/04]</span>
         <p class="facts__text">работала со Sberdevices, <br>Wildberries и 12 STOREEZ</p>
       </div>
       <div class="facts__cell">
-        <span class="facts__num">[03/04]</span>
+        <span class="facts__num facts__num--desktop">[03]</span><span class="facts__num facts__num--mobile">[03/04]</span>
         <p class="facts__text">использую в работе AI: <br>Nano Banana, Kling,<br class="facts__mob-br"> Claude Code, VS Code</p>
       </div>
       <div class="facts__cell">
-        <span class="facts__num">[04/04]</span>
+        <span class="facts__num facts__num--desktop">[04]</span><span class="facts__num facts__num--mobile">[04/04]</span>
         <p class="facts__text">работала над интерфейсами приложений<br class="facts__mob-br"> и вебсайтов</p>
       </div>
     </div>
