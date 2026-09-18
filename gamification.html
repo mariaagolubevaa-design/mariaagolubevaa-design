@@ -93,7 +93,8 @@
 
     section { padding: 80px 0; }
     #about { padding-top: 75px; }
-    #process { padding-top: 48px; padding-bottom: 30px; }
+    #process { padding-top: 80px; padding-bottom: 30px; }
+    #research { padding-top: 42px; }
 
     /* ── NAV ── */
     .nav-trigger {
@@ -500,49 +501,71 @@
     /* ── DESIGN PROCESS ── */
     .process-grid {
       position: relative;
-      min-height: 220px;
+      min-height: 160px;
       margin-bottom: 0;
+    }
+
+    .process-line-grey {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #9b9b9b;
+    }
+
+    .process-line-black {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 361px;
+      height: 3px;
+      background: #141414;
+      transition: left 0.35s ease, width 0.35s ease;
     }
 
     .process-step {
       position: absolute;
+      top: 0;
       display: flex;
       flex-direction: column;
       gap: 16px;
+      color: #9b9b9b;
+      transition: color 0.35s ease;
     }
 
-    .process-step:nth-child(1) {
-      top: 0;
-      left: 0;
-      right: 824px;
-    }
-
-    .process-step:nth-child(2) {
-      top: 48px;
-      left: calc(50% - 148px);
-      width: 296px;
-    }
+    .process-step--active { color: #141414; }
 
     .process-step:nth-child(3) {
-      top: 96px;
-      right: 0;
-      width: 296px;
+      left: 0;
+      width: 361px;
+    }
+
+    .process-step:nth-child(4) {
+      left: 404px;
+      width: 320px;
+    }
+
+    .process-step:nth-child(5) {
+      left: 759px;
+      width: 361px;
     }
 
     .process-step h3 {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--black);
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: inherit;
       margin: 0;
+      line-height: 1;
     }
 
     .process-step p {
-      font-family: 'Gilroy', sans-serif;
-      font-size: 18px;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 16px;
       font-weight: 500;
       line-height: normal;
-      color: var(--black);
+      color: inherit;
       margin: 0;
     }
 
@@ -1418,23 +1441,23 @@
         <!-- Text list -->
         <div style="position:absolute; left:40px; top:92px; width:576px; display:flex; flex-direction:column; gap:16px;">
           <div style="display:flex; gap:16px; align-items:flex-start;">
-            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0;">
             <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Проводила кабинетные, глубинные, количественные и полевые исследования,</p>
           </div>
           <div style="display:flex; gap:16px; align-items:flex-start;">
-            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0;">
             <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Изучила фреймворки по геймификации (Октализ) и типологию игроков по Бартлу,</p>
           </div>
-          <div style="display:flex; gap:16px; align-items:flex-start;">
-            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+          <div style="display:flex; gap:16px; align-items:center;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0;">
             <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Собирала CJM, Userstories и персоны,</p>
           </div>
-          <div style="display:flex; gap:16px; align-items:flex-start;">
-            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+          <div style="display:flex; gap:16px; align-items:center;">
+            <img src="assets/images/gamification-myrole-star.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0;">
             <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Собирала экраны по предложенному концепту,</p>
           </div>
-          <div style="display:flex; gap:16px; align-items:flex-start;">
-            <img src="assets/images/gamification-myrole-star1.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0; margin-top:2px;">
+          <div style="display:flex; gap:16px; align-items:center;">
+            <img src="assets/images/gamification-myrole-star1.svg" width="24" height="36" alt="" aria-hidden="true" style="flex-shrink:0;">
             <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; width:524px;">Собирала презентацию и пичтила</p>
           </div>
         </div>
@@ -1458,17 +1481,19 @@
       <h2 class="section-title accordion-toggle" style="margin-bottom:24px;" data-target="process-body">Дизайн-процесс<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#1E1E1C"/></svg></h2>
 
       <div class="accordion-body" id="process-body"><div class="accordion-inner"><div class="process-grid reveal">
-        <div class="process-step">
+        <div class="process-line-grey"></div>
+        <div class="process-line-black"></div>
+        <div class="process-step process-step--active">
           <h3>01 Исследование</h3>
-          <p>Анализ конкурентов, Гипотезы, Полевые исследования, Глубинки, CJM, Userstories</p>
+          <p>Деск ресерч, гипотезы, глубинки, полевые исследования, CJM, Юзерсторис, типология игроков, персоны</p>
         </div>
-        <div class="process-step">
+        <div class="process-step process-step--inactive">
           <h3>02 Дизайн</h3>
-          <p>Мудборд, Юзерфлоу, Компоненты, Вайрфреймы, Макеты</p>
+          <p>Генерация идей, Приоритизация через колич, Юзерфлоу, Вайрфреймы, Экраны, Генерация инфографики, Прототипирование</p>
         </div>
-        <div class="process-step">
+        <div class="process-step process-step--inactive">
           <h3>03 Тестирование</h3>
-          <p>3 итерации ЮТ, Подведение итогов</p>
+          <p>ЮТ, Развитие решений, Итоги</p>
         </div>
       </div></div></div>
     </div>
@@ -2064,6 +2089,32 @@
       if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
     });
   });
+  </script>
+
+  <script>
+  /* Дизайн-процесс: цикл 01 → 02 → 03 → 01 … каждые 1500ms */
+  (function() {
+    var cols = document.querySelectorAll('#process .process-step');
+    if (cols.length !== 3) return;
+    var blackLine = document.querySelector('#process .process-line-black');
+    var positions = [
+      { left: 0,   width: 361 },
+      { left: 404, width: 320 },
+      { left: 759, width: 361 }
+    ];
+    var active = 0;
+    setInterval(function() {
+      cols[active].classList.remove('process-step--active');
+      cols[active].classList.add('process-step--inactive');
+      active = (active + 1) % 3;
+      cols[active].classList.remove('process-step--inactive');
+      cols[active].classList.add('process-step--active');
+      if (blackLine) {
+        blackLine.style.left  = positions[active].left  + 'px';
+        blackLine.style.width = positions[active].width + 'px';
+      }
+    }, 1500);
+  })();
   </script>
 </body>
 </html>
