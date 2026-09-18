@@ -209,56 +209,47 @@
       top: 24px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 140px;
+      font-family: 'Gilroy', sans-serif;
+      font-size: 149px;
       font-weight: 600;
       color: rgba(255,255,255,.5);
       text-transform: uppercase;
       white-space: nowrap;
       pointer-events: none;
-      letter-spacing: 2.8px;
+      letter-spacing: 2.98px;
       line-height: 1;
     }
 
-    .cover__info {
+    .cover__info-item {
       position: absolute;
-      top: 161px;
-      left: 39px;
-      width: 651px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      top: 163px;
+      font-family: 'Inter Tight', Arial, sans-serif;
       font-size: 16px;
       font-weight: 500;
-      color: var(--black);
+      color: #141414;
       white-space: nowrap;
     }
-
-    .cover__info-left { display: flex; gap: 16px; }
-
-    .cover__info-right {
-      display: flex;
-      width: 363px;
-      justify-content: space-between;
-    }
+    .cover__info-item--1 { left: 40px; }
+    .cover__info-item--2 { left: 237px; }
+    .cover__info-item--3 { left: 439px; }
 
     .cover__headline {
       position: absolute;
-      left: 55px;
-      top: 342px;
-      font-size: 40px;
-      font-weight: 600;
+      left: 40px;
+      top: 368px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 500;
       line-height: normal;
-      color: var(--black);
+      color: #141414;
     }
-
-    .cover__headline strong { font-weight: 700; }
 
     .cover__underline {
       position: absolute;
-      left: 113px;
-      top: 431px;
-      width: 486px;
-      height: 5px;
+      left: 83px;
+      top: 433px;
+      width: 356px;
+      height: 6.5px;
       display: block;
     }
 
@@ -273,10 +264,85 @@
       overflow: hidden;
     }
 
-    .cover__phone img {
+    .cover__phone > video,
+    .cover__phone > img:first-child {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    /* Phone UI chrome overlays */
+    .cover__phone-statusbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 21px 24px 19px;
+      pointer-events: none;
+    }
+    .cover__phone-statusbar-time {
+      font-family: -apple-system, 'SF Pro', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 22px;
+    }
+    .cover__phone-statusbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .cover__phone-chrome {
+      position: absolute;
+      top: 61px;
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,.5);
+      border-radius: 100px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .cover__phone-back {
+      left: 14px;
+      padding: 10px;
+    }
+    .cover__phone-back img {
+      display: block;
+      width: 24px;
+      height: 24px;
+      transform: rotate(180deg);
+    }
+    .cover__phone-charge {
+      left: 268px;
+      padding: 12px 12px 12px 10px;
+      gap: 6px;
+    }
+    .cover__phone-charge-text {
+      font-family: -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #080808;
+      line-height: 18px;
+      letter-spacing: -0.28px;
+    }
+    .cover__phone-charge img {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+    .cover__phone-info {
+      left: 340px;
+      padding: 10px;
+    }
+    .cover__phone-info img {
+      display: block;
+      width: 24px;
+      height: 24px;
     }
 
     /* ── SECTION NAV ── */
@@ -849,22 +915,38 @@
   <!-- COVER -->
   <div class="cover">
     <p class="cover__bg-title">ГЕЙМИФИКАЦИЯ</p>
-    <div class="cover__info">
-      <div class="cover__info-left">
-        <span>Sberdevices</span>
-        <span>BHSAD</span>
-      </div>
-      <div class="cover__info-right">
-        <span>приложение</span>
-        <span>ноябрь 2025 – январь 2026</span>
-      </div>
-    </div>
+    <span class="cover__info-item cover__info-item--1">Sberdevices</span>
+    <span class="cover__info-item cover__info-item--2">приложение</span>
+    <span class="cover__info-item cover__info-item--3">ноябрь 2025 – январь 2026</span>
     <h1 class="cover__headline">
-      Новый взгляд <br>на <strong>приложение умного дома</strong>
+      Новый взгляд<br>на приложение умного дома
     </h1>
     <img class="cover__underline" src="assets/images/gamification-cover-underline.svg" alt="" aria-hidden="true">
     <div class="cover__phone">
       <img src="assets/images/gamification-cover-phone.gif" alt="Скриншот приложения">
+      <!-- Status bar -->
+      <div class="cover__phone-statusbar">
+        <span class="cover__phone-statusbar-time">9:41</span>
+        <div class="cover__phone-statusbar-icons">
+          <img src="assets/images/gamification-cover-phone-cellular.svg" width="19" height="12" alt="">
+          <img src="assets/images/gamification-cover-phone-wifi.svg" width="17" height="12" alt="">
+          <img src="assets/images/gamification-cover-phone-battery.svg" width="27" height="13" alt="">
+        </div>
+      </div>
+      <!-- Back button -->
+      <div class="cover__phone-chrome cover__phone-back">
+        <img src="assets/images/gamification-cover-phone-back.svg" alt="">
+      </div>
+      <!-- Charge badge -->
+      <div class="cover__phone-chrome cover__phone-charge">
+        <span class="cover__phone-charge-text">52</span>
+        <img src="assets/images/gamification-cover-phone-charge.svg" alt="">
+      </div>
+      <!-- Info button -->
+      <div class="cover__phone-chrome cover__phone-info">
+        <img src="assets/images/gamification-cover-phone-info.svg" alt="">
+      </div>
+      <!-- "Дом вашей мечты" text -->
       <div style="position:absolute; left:50%; top:136px; transform:translateX(-50%) rotate(-5deg); width:247px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
         <p style="font-family:'Caveat',cursive; font-size:48px; font-weight:400; line-height:34px; color:#080808; opacity:0.6; text-align:center; width:242px; margin:0;">Дом вашей мечты</p>
       </div>
