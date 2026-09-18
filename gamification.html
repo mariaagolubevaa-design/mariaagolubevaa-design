@@ -427,14 +427,21 @@
 
     /* ── DEVICES ROW ── */
     .devices-row {
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .devices-track {
       display: flex;
       gap: 76px;
       align-items: flex-end;
-      margin-bottom: 24px;
-      overflow-x: auto;
-      scrollbar-width: none;
+      width: max-content;
+      animation: devices-marquee 22000ms linear infinite;
     }
-    .devices-row::-webkit-scrollbar { display: none; }
+    .devices-track.is-paused { animation-play-state: paused; }
+    @keyframes devices-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
 
     .device-card {
       display: flex;
@@ -1992,22 +1999,32 @@
     }, { threshold: 0.1 });
     revealEls.forEach(el => revealObs.observe(el));
 
-    // Devices row auto-scroll: 18 000 ms per cycle, loops back to start
+    // Devices row — seamless CSS marquee with DOM clone
     (function() {
-      var el = document.getElementById('devicesScroll');
-      if (!el) return;
-      var DURATION = 18000;
-      var startTime = null;
-      function tick(ts) {
-        if (!startTime) startTime = ts;
-        var maxScroll = el.scrollWidth - el.clientWidth;
-        if (maxScroll > 0) {
-          var progress = ((ts - startTime) % DURATION) / DURATION;
-          el.scrollLeft = progress * maxScroll;
-        }
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
+      var row = document.getElementById('devicesScroll');
+      if (!row) return;
+
+      var track = document.createElement('div');
+      track.className = 'devices-track';
+
+      var origCards = Array.from(row.children);
+      origCards.forEach(function(card) { track.appendChild(card); });
+      row.appendChild(track);
+
+      origCards.forEach(function(card) {
+        var clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.remove('reveal');
+        clone.classList.add('visible');
+        clone.querySelectorAll('.reveal').forEach(function(el) {
+          el.classList.remove('reveal');
+          el.classList.add('visible');
+        });
+        track.appendChild(clone);
+      });
+
+      row.addEventListener('mouseenter', function() { track.classList.add('is-paused'); });
+      row.addEventListener('mouseleave', function() { track.classList.remove('is-paused'); });
     })();
 
     // Persona card click → toggle speech bubble
