@@ -353,22 +353,14 @@
     /* SECTION NAV */
     .section-nav {
       max-width: var(--page-w); margin: 0 auto;
-      padding: 0 40px; display: flex; justify-content: space-between; align-items: flex-end;
+      padding: 0 40px;
+      display: flex; align-items: flex-end;
       margin-top: 72px;
       overflow-x: auto; scrollbar-width: none;
     }
     .section-nav::-webkit-scrollbar { display: none; }
-    .section-nav__left {
-      display: flex; align-items: flex-end; gap: 111px;
-    }
-    .section-nav__right {
-      display: flex; align-items: flex-end; gap: 164px;
-    }
-    .section-nav__sub {
-      display: flex; align-items: flex-end; gap: 164px;
-    }
     .section-nav a {
-      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-family: 'Inter Tight', sans-serif;
       font-size: 24px; font-weight: 500; line-height: normal;
       color: #141414;
       text-decoration: none; padding-bottom: 18px;
@@ -376,6 +368,10 @@
       white-space: nowrap; flex-shrink: 0;
       transition: color .2s, border-color .2s;
     }
+    .section-nav a:nth-child(1) { margin-right: 111px; }
+    .section-nav a:nth-child(2) { margin-right: 111px; }
+    .section-nav a:nth-child(3) { margin-right: 164px; }
+    .section-nav a:nth-child(4) { margin-right: 164px; }
     .section-nav a:hover, .section-nav a.active { border-bottom-color: #141414; font-weight: 500; }
 
     /* ── SECTION TITLES ── */
@@ -957,17 +953,11 @@
 
   <!-- SECTION NAV -->
   <div class="section-nav">
-    <div class="section-nav__left">
-      <a href="#about" class="active">О проекте</a>
-      <a href="#process">Дизайн-процесс</a>
-    </div>
-    <div class="section-nav__right">
-      <div class="section-nav__sub">
-        <a href="#research">Исследование</a>
-        <a href="#design">Дизайн</a>
-      </div>
-      <a href="#result">Результат</a>
-    </div>
+    <a href="#about" class="active">О проекте</a>
+    <a href="#process">Дизайн-процесс</a>
+    <a href="#research">Исследование</a>
+    <a href="#design">Дизайн</a>
+    <a href="#result">Результат</a>
   </div>
 
   <!-- ABOUT PROJECT -->
