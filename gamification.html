@@ -1992,11 +1992,11 @@
     }, { threshold: 0.1 });
     revealEls.forEach(el => revealObs.observe(el));
 
-    // Devices row auto-scroll: 25 000 ms per cycle, loops back to start
+    // Devices row auto-scroll: 18 000 ms per cycle, loops back to start
     (function() {
       var el = document.getElementById('devicesScroll');
       if (!el) return;
-      var DURATION = 25000;
+      var DURATION = 18000;
       var startTime = null;
       function tick(ts) {
         if (!startTime) startTime = ts;
