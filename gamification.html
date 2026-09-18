@@ -194,11 +194,15 @@
     .nav__resume svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     /* ── COVER ── */
+    .cover-bg {
+      background: var(--cover-bg);
+      width: 100%;
+      overflow: hidden;
+    }
     .cover {
       margin: 20px auto;
       max-width: var(--page-width);
-      background: var(--cover-bg);
-      border-radius: var(--radius-card);
+      border-radius: 0;
       overflow: hidden;
       position: relative;
       height: 700px;
@@ -913,6 +917,7 @@
   </nav>
 
   <!-- COVER -->
+  <div class="cover-bg">
   <div class="cover">
     <p class="cover__bg-title">ГЕЙМИФИКАЦИЯ</p>
     <span class="cover__info-item cover__info-item--1">Sberdevices</span>
@@ -951,6 +956,7 @@
         <p style="font-family:'Caveat',cursive; font-size:48px; font-weight:400; line-height:34px; color:#080808; opacity:0.6; text-align:center; width:242px; margin:0;">Дом вашей мечты</p>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- SECTION NAV -->
