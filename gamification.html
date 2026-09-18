@@ -92,6 +92,7 @@
     }
 
     section { padding: 80px 0; }
+    #about { padding-top: 75px; }
     #process { padding-top: 48px; padding-bottom: 30px; }
 
     /* ── NAV ── */
@@ -348,6 +349,34 @@
       width: 24px;
       height: 24px;
     }
+
+    /* SECTION NAV */
+    .section-nav {
+      max-width: var(--page-w); margin: 0 auto;
+      padding: 0 40px; display: flex; justify-content: space-between; align-items: flex-end;
+      margin-top: 72px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .section-nav::-webkit-scrollbar { display: none; }
+    .section-nav__left {
+      display: flex; align-items: flex-end; gap: 111px;
+    }
+    .section-nav__right {
+      display: flex; align-items: flex-end; gap: 164px;
+    }
+    .section-nav__sub {
+      display: flex; align-items: flex-end; gap: 164px;
+    }
+    .section-nav a {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 24px; font-weight: 500; line-height: normal;
+      color: #141414;
+      text-decoration: none; padding-bottom: 18px;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap; flex-shrink: 0;
+      transition: color .2s, border-color .2s;
+    }
+    .section-nav a:hover, .section-nav a.active { border-bottom-color: #141414; font-weight: 500; }
 
     /* ── SECTION TITLES ── */
     .section-title {
@@ -924,6 +953,21 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <!-- SECTION NAV -->
+  <div class="section-nav">
+    <div class="section-nav__left">
+      <a href="#about" class="active">О проекте</a>
+      <a href="#process">Дизайн-процесс</a>
+    </div>
+    <div class="section-nav__right">
+      <div class="section-nav__sub">
+        <a href="#research">Исследование</a>
+        <a href="#design">Дизайн</a>
+      </div>
+      <a href="#result">Результат</a>
+    </div>
   </div>
 
   <!-- ABOUT PROJECT -->
@@ -1932,6 +1976,21 @@
 
 
   <script>
+    // Section nav active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.section-nav a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navItems.forEach(item => {
+            item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(s => sectionObserver.observe(s));
+
     // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
     const revealObs = new IntersectionObserver((entries) => {
