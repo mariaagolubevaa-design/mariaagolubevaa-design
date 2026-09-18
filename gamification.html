@@ -403,24 +403,27 @@
     }
 
     .about-block h3 {
-      font-family: 'Gilroy', Arial, sans-serif;
-      font-size: 32px;
-      font-weight: 600;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 500;
       color: var(--black);
       margin: 0;
     }
 
     .about-block p {
-      font-family: 'Gilroy', Arial, sans-serif;
-      font-size: 20px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
       font-weight: 500;
       line-height: normal;
-      letter-spacing: -0.4px;
       color: var(--black);
       margin: 0;
     }
 
-    .about-block p strong { font-weight: 700; letter-spacing: 0; }
+    .about-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
     /* ── DEVICES ROW ── */
     .devices-row {
@@ -1020,14 +1023,14 @@
       <div class="about-grid reveal">
         <div class="about-block">
           <h3>Проблема</h3>
-          <div>
-            <p>1 Пользователи <strong>мало знают про экосистему</strong> умных устройств Сбер и думают, что умные устройства — это что‑то сложное</p>
-            <p>2 <strong>Недостаточно вовлечены в сценарии</strong> и другую функциональность устройств</p>
+          <div class="about-texts">
+            <p>[01] Пользователи мало знают про экосистему умных устройств Сбер<br>и думают, что умные устройства — это что‑то сложное</p>
+            <p>[02] Недостаточно вовлечены в сценарии и другую функциональность<br>устройств</p>
           </div>
         </div>
         <div class="about-block">
           <h3>Задача</h3>
-          <p><strong>Спроектировать геймифицированный опыт </strong>пользователей со Сбер устройствами</p>
+          <p>Спроектировать геймифицированный опыт пользователей со Сбер<br>устройствами, чтобы повлиять на Engagement rate, Stickness и CSI</p>
         </div>
       </div>
 
