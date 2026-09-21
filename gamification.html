@@ -1994,9 +1994,36 @@
 
       <!-- Pain 4 — Figma 276:11304 + 1549:6687 -->
       <div class="pain-section reveal">
-        <img src="assets/images/pain4-header.png"
-             alt="Боль 4 — Нет ощущения прогресса. Хочется большей персональности"
-             style="width:100%;height:auto;display:block;border-radius:59px;">
+        <!-- Pain 4 header: Figma 276:11304, 1200×160px strip, bg #d6ebec -->
+        <div style="position:relative;height:160px;margin-bottom:0;">
+          <!-- 1200px positioning context aligned to container left edge (left:-40px) -->
+          <div style="position:absolute;top:0;left:-40px;width:1200px;height:160px;">
+            <!-- Background strip #d6ebec -->
+            <div style="position:absolute;inset:0;background:#d6ebec;"></div>
+            <!-- "Боль 4": Inter Tight Medium 30px, line-height:1, bottom at y=60 -->
+            <p style="position:absolute;left:20px;top:60px;transform:translateY(-100%);margin:0;font-family:'Inter Tight',Arial,sans-serif;font-size:30px;font-weight:500;line-height:1;color:#141414;white-space:nowrap;">Боль 4</p>
+            <!-- Body: Inter Tight Medium 16px, line-height:1, bottom at y=114, width≈460px -->
+            <p style="position:absolute;left:20px;top:114px;transform:translateY(-100%);margin:0;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:1;color:#141414;">Нет ощущения прогресса<br>Хочется большей персональности</p>
+            <!-- MegaMarket logo: 191×72px, centered at x=590.5 (left edge=495px), top=24px -->
+            <div style="position:absolute;left:495px;top:24px;width:191px;height:72px;overflow:hidden;">
+              <img src="assets/images/pain4-megamarket.svg" alt="МегаМаркет" style="display:block;width:191px;height:72px;">
+            </div>
+            <!-- "Интеграция": Kom-post Regular 32px, rotated 9.83deg, center at x=492.5+72=564.5px, top=81px -->
+            <div style="position:absolute;left:492px;top:81px;width:144px;height:56px;display:flex;align-items:center;justify-content:center;">
+              <p style="font-family:'Kom-post',cursive;font-size:32px;font-weight:400;line-height:32px;color:#141414;transform:rotate(9.83deg);white-space:nowrap;margin:0;">Интеграция</p>
+            </div>
+            <!-- Arrow under "комбинатор": Figma inset [30.63%,17.35%,28.2%,73.33%] of 1200×160 -->
+            <!-- left=880px, top=49px, width=112px, height=66px -->
+            <div style="position:absolute;left:880px;top:49px;width:112px;height:66px;display:flex;align-items:center;justify-content:center;">
+              <img src="assets/images/pain4-kombinator-arrow.svg" alt="" aria-hidden="true"
+                   style="display:block;width:100px;height:38px;transform:rotate(-20.83deg) skewX(11.41deg);">
+            </div>
+            <!-- "комбинатор": Kom-post Regular 32px, rotated -12.46deg, left=916px, top=24px -->
+            <div style="position:absolute;left:916px;top:24px;width:154px;height:64px;display:flex;align-items:center;justify-content:center;">
+              <p style="font-family:'Kom-post',cursive;font-size:32px;font-weight:400;line-height:32px;color:#141414;transform:rotate(-12.46deg);white-space:nowrap;margin:0;">комбинатор</p>
+            </div>
+          </div>
+        </div>
         <!-- Screens: Figma 1549:6687, 1108×896px, no scroll -->
         <div style="position:relative;width:1108px;height:896px;margin-top:48px;">
           <!-- Left screen: 317:7988, left=0, top=226, 244×526px, r=35px -->
@@ -2026,9 +2053,23 @@
           <img src="assets/images/pain5-screen-right.png"
                alt="Семейный доступ — правый экран"
                style="position:absolute;left:747px;top:198px;width:233px;height:500px;border-radius:32px;border:1.144px solid #fff;display:block;">
-          <img src="assets/images/pain5-header.png"
-               alt="Боль 5 — Настройки ограничены"
-               style="position:absolute;left:396px;top:0;width:514px;height:154px;display:block;">
+          <!-- Pain 5 header: Figma 1731:13153, 514×130px, bg #d6ebec -->
+          <div style="position:absolute;left:396px;top:0;width:514px;height:130px;">
+            <div style="position:absolute;inset:0;background:#d6ebec;"></div>
+            <!-- "Боль 5": Inter Tight Medium 30px, LH 100%, bottom at y=60 -->
+            <p style="position:absolute;left:20px;top:60px;transform:translateY(-100%);margin:0;font-family:'Inter Tight',Arial,sans-serif;font-size:30px;font-weight:500;line-height:1;color:#141414;white-space:nowrap;">Боль 5</p>
+            <!-- "Настройки ограничены": Inter Tight Medium 16px, LH 100%, bottom at y=92 -->
+            <p style="position:absolute;left:20px;top:92px;transform:translateY(-100%);margin:0;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:1;color:#141414;white-space:nowrap;">Настройки ограничены</p>
+            <!-- "комбинатор": Kom-post Regular 32px, rotate -12.46deg, left=309.74px, top=15.15px -->
+            <div style="position:absolute;left:309.74px;top:15.15px;width:154.348px;height:63.83px;display:flex;align-items:center;justify-content:center;">
+              <p style="font-family:'Kom-post',cursive;font-size:32px;font-weight:400;line-height:32px;color:#141414;transform:rotate(-12.46deg);white-space:nowrap;margin:0;">комбинатор</p>
+            </div>
+            <!-- Arrow: Figma inset [47.42%,17.6%,11.42%,62.99%] of 514×130 → left=324px, top=62px, 99×54px -->
+            <div style="position:absolute;left:324px;top:62px;width:99px;height:54px;display:flex;align-items:center;justify-content:center;">
+              <img src="assets/images/pain5-kombinator-arrow.svg" alt="" aria-hidden="true"
+                   style="display:block;width:91px;height:34px;transform:rotate(-16.04deg) skewX(8.71deg);">
+            </div>
+          </div>
         </div>
       </div>
       </div></div>
