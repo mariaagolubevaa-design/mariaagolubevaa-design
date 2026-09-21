@@ -732,6 +732,7 @@
       font-size: 16px;
       font-weight: 500;
       text-decoration: none;
+      text-transform: uppercase;
       color: var(--black);
       cursor: pointer;
       background: none;
@@ -2077,12 +2078,16 @@
     </div>
   </section>
 
-  <!-- РЕЗУЛЬТАТ — Figma 1300:5611, 1120×163px -->
+  <!-- РЕЗУЛЬТАТ — Figma 1300:5611, original 1200×96px -->
   <section id="result" style="padding-top:128px;">
     <div class="container">
-      <div style="position:relative;height:163px;">
-        <h2 style="position:absolute;left:0;top:0;font-family:'Inter Tight',sans-serif;font-weight:500;font-size:40px;color:#141414;margin:0;line-height:normal;">Результат</h2>
-        <p style="position:absolute;left:50%;top:0;width:600px;font-family:'Inter Tight',sans-serif;font-weight:500;font-size:16px;color:#141414;line-height:normal;margin:0;">В итоге, приложение умного дома становится не просто приложением для подключения новых устройств, а карманным помощником по дому, который помогает визуализировать даже самые смелые мечты о доме, в котором можно в игровой форме узнавать об экосистеме, давать задания по дому детям и устанавливать себе напоминания</p>
+      <div style="position:relative;height:96px;">
+        <!-- Результат: flex items-center — вертикально центрирован в 96px (Figma node 284:9823) -->
+        <div style="position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;">
+          <h2 style="font-family:'Inter Tight',sans-serif;font-weight:500;font-size:40px;color:#141414;margin:0;line-height:normal;white-space:nowrap;">Результат</h2>
+        </div>
+        <!-- Текст: top:0, line-height:normal (leading-[normal] по Figma, node 260:10119/260:10120) -->
+        <p style="position:absolute;left:50%;top:0;width:600px;font-family:'Inter Tight',sans-serif;font-weight:500;font-size:16px;color:#141414;line-height:normal;margin:0;">В итоге, приложение умного дома становится не просто приложением<br>для подключения новых устройств, а карманным помощником по дому, который<br>помогает визуализировать даже самые смелые мечты о доме, в котором можно<br>в игровой форме узнавать об экосистеме, давать задания по дому детям<br>и устанавливать себе напоминания</p>
       </div>
     </div>
   </section>
@@ -2091,7 +2096,7 @@
   <div class="pagination">
     <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>Наверх</button>
     <div style="display:flex;gap:40px;">
-      <a class="pagination__btn" href="tingli.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(-90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>Tingli</a>
+      <a class="pagination__btn" href="tingli.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(-90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg>Профиль пользователя</a>
       <a class="pagination__btn" href="hakaton.html">Хакатон<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><g transform="translate(12,12) rotate(90) translate(-7.071,-4.243)"><path d="M12.728 8.486L14.142 7.072L7.072 0L0 7.072L1.414 8.486L7.071 2.829L12.728 8.486Z" fill="currentColor"/></g></svg></a>
     </div>
   </div>
