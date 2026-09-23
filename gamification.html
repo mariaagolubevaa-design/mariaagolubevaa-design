@@ -1898,16 +1898,28 @@
         </div>
 
         <!-- Pain 4 Mockups: 2 phones (Figma 2207:14267, 2207:14247, 322×700px) -->
-        <!-- Phone 1 (x=129): Tasks left | Phone 2 (x=729): Tasks right — gap 278px -->
+        <!-- Phone 1 (x=129): AR room view left | Phone 2 (x=729): Catalogue right — gap 278px -->
         <div style="display:flex;justify-content:center;gap:278px;margin-top:61px;margin-bottom:96px;">
 
-          <!-- Phone 1 (Figma 2207:14267) -->
-          <img src="assets/images/pain4-left-screen.png" alt="" aria-hidden="true"
-               style="width:361px;height:737px;display:block;flex-shrink:0;pointer-events:none;">
+          <!-- Phone 1 (Figma 2207:14267) — GIF "Настройте уют" room view -->
+          <div style="position:relative;width:322px;height:700px;flex-shrink:0;">
+            <div style="position:absolute;inset:0;overflow:hidden;border-radius:38.45px;">
+              <img src="assets/images/pain4-left-screen.gif" alt="" aria-hidden="true"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+            </div>
+            <img src="assets/images/pain4-phone-bezel.png" alt="" aria-hidden="true"
+                 style="position:absolute;left:-19.5px;top:-18.5px;width:361px;height:737px;display:block;pointer-events:none;mix-blend-mode:multiply;-webkit-mix-blend-mode:multiply;">
+          </div>
 
-          <!-- Phone 2 (Figma 2207:14247) -->
-          <img src="assets/images/pain4-right-screen.png" alt="" aria-hidden="true"
-               style="width:361px;height:737px;display:block;flex-shrink:0;pointer-events:none;">
+          <!-- Phone 2 (Figma 2207:14247) — Catalogue "Моя мебель (3)" + МегаМаркет -->
+          <div style="position:relative;width:322px;height:700px;flex-shrink:0;">
+            <div style="position:absolute;inset:0;overflow:hidden;border-radius:38.45px;">
+              <img src="assets/images/pain4-screen-right.png" alt="" aria-hidden="true"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+            </div>
+            <img src="assets/images/pain4-phone-bezel.png" alt="" aria-hidden="true"
+                 style="position:absolute;left:-19.5px;top:-18.5px;width:361px;height:737px;display:block;pointer-events:none;mix-blend-mode:multiply;-webkit-mix-blend-mode:multiply;">
+          </div>
 
         </div>
       </div>
