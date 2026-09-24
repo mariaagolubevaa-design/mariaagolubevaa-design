@@ -7,3 +7,4 @@ debug-*.png
 debug2-*.png
 figma-*.png
 *.gif
+!assets/images/pain4-left-screen.gif
