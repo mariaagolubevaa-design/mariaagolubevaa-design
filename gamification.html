@@ -1896,12 +1896,26 @@
             <p style="position:absolute;right:0;bottom:0;font-family:'Kom-post',cursive;font-size:28px;font-weight:400;color:#9b9b9b;transform:rotate(-12deg);transform-origin:right bottom;white-space:nowrap;margin:0;line-height:normal;">комбинатор</p>
           </div>
         </div>
+      </div>
 
-        <!-- Pain 4 Mockups: 2 phones (Figma 2207:14247, 2207:14267, 322×700px) -->
-        <!-- Phone 1 (x=129): Catalogue left | Phone 2 (x=729): AR room view right — gap 278px -->
+      <!-- Pain 5 — Figma 2218:28977 -->
+      <div class="pain-section reveal">
+        <!-- Pain 5 text: «/5 + хединг» слева | описание справа | стикер -->
+        <div style="display:grid;grid-template-columns:560px 600px;align-items:start;margin-bottom:0;position:relative;">
+          <div style="font-family:'Inter Tight',sans-serif;font-size:30px;font-weight:500;color:#141414;line-height:1;margin:0;">
+            <p style="margin:0;white-space:nowrap;">/5</p>
+            <p style="margin:0;white-space:nowrap;">нет ощущения прогресса</p>
+          </div>
+          <div style="width:600px;position:relative;padding-bottom:52px;">
+            <p style="font-family:'Inter Tight',sans-serif;font-size:16px;font-weight:500;line-height:normal;margin:0;color:#141414;">За баллы, которые пользователь получает за ежедневные заходы в приложение или выполнение заданий, можно развивать дом: улучшать мебель, добавлять комнаты, где живёт аватар, чтобы дать пользователю наглядный и постоянно растущий результат его активности. Дом становится видимым отражением прогресса</p>
+            <p style="position:absolute;right:0;bottom:0;font-family:'Kom-post',cursive;font-size:28px;font-weight:400;color:#9b9b9b;transform:rotate(-8deg);transform-origin:right bottom;white-space:nowrap;margin:0;line-height:32px;">комбинатор</p>
+          </div>
+        </div>
+
+        <!-- Pain 5 Mockups: 2 phones "Выбор мебели" + "Настройте уют" (Figma 2207:14247, 2219:29067) -->
         <div style="display:flex;justify-content:center;gap:278px;margin-top:61px;margin-bottom:96px;">
 
-          <!-- Phone 1 (Figma 2219:29067) — Catalogue "Моя мебель (3)" + МегаМаркет -->
+          <!-- Phone 1 — Catalogue "Выбор мебели" (Figma 2219:29067) -->
           <div style="position:relative;width:322px;height:700px;flex-shrink:0;">
             <div style="position:absolute;inset:-2px;overflow:hidden;border-radius:38.45px;">
               <img src="assets/images/pain4-screen-right.png" alt="" aria-hidden="true"
@@ -1911,7 +1925,7 @@
                  style="position:absolute;left:-19.5px;top:-18.5px;width:361px;height:737px;display:block;pointer-events:none;mix-blend-mode:multiply;-webkit-mix-blend-mode:multiply;">
           </div>
 
-          <!-- Phone 2 (Figma 2207:14247) — AR room view "Настройте уют" -->
+          <!-- Phone 2 — AR room view "Настройте уют" (Figma 2207:14247) -->
           <div style="position:relative;width:322px;height:700px;flex-shrink:0;">
             <div style="position:absolute;inset:-2px;overflow:hidden;border-radius:38.45px;">
               <img src="assets/images/pain4-left-screen.gif" alt="" aria-hidden="true"
@@ -1985,12 +1999,14 @@
   <!-- РЕЗУЛЬТАТ — Figma 1300:5611, original 1200×96px -->
   <section id="result" style="padding-top:64px;padding-bottom:64px;">
     <div class="container">
-      <!-- Результат: Figma node 284:9823 -->
-      <h2 class="section-title accordion-toggle" style="margin-bottom:0;" data-target="result-body">Результат<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#141414"/></svg></h2>
-      <div class="accordion-body" id="result-body"><div class="accordion-inner">
-        <!-- Текст: line-height:normal (node 260:10119/260:10120), выровнен по правой половине -->
-        <p style="margin-left:50%;width:600px;font-family:'Inter Tight',sans-serif;font-weight:500;font-size:16px;color:#141414;line-height:normal;margin-top:0;">В итоге, приложение умного дома становится не просто приложением<br>для подключения новых устройств, а карманным помощником по дому, который<br>помогает визуализировать даже самые смелые мечты о доме, в котором можно<br>в игровой форме узнавать об экосистеме, давать задания по дому детям<br>и устанавливать себе напоминания</p>
-      </div></div>
+      <!-- Результат: Figma node 1300:5611 — flex-row so heading and text share the same top-0 baseline -->
+      <div style="display:flex;align-items:flex-start;">
+        <h2 class="section-title accordion-toggle" style="margin-bottom:0;flex:1;" data-target="result-body">Результат<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#141414"/></svg></h2>
+        <div class="accordion-body" id="result-body" style="width:600px;flex-shrink:0;"><div class="accordion-inner">
+          <!-- Текст: node 260:10120, 600px = Figma exact, word-wrap natural -->
+          <p style="font-family:'Inter Tight',sans-serif;font-weight:500;font-size:16px;color:#141414;line-height:normal;margin:0;">В итоге, приложение умного дома становится не просто приложением<br>для подключения новых устройств, а карманным помощником по дому, который<br>помогает визуализировать даже самые смелые мечты о доме, в котором можно<br>в игровой форме узнавать об экосистеме, давать задания по дому детям<br>и устанавливать себе напоминания</p>
+        </div></div>
+      </div>
     </div>
   </section>
 
