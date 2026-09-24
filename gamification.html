@@ -354,7 +354,7 @@
     /* SECTION NAV */
     .section-nav {
       max-width: var(--page-w); margin: 0 auto;
-      padding: 0 40px;
+      padding: 0;
       display: flex; align-items: flex-end;
       margin-top: 72px;
       overflow-x: auto; scrollbar-width: none;
@@ -369,10 +369,10 @@
       white-space: nowrap; flex-shrink: 0;
       transition: color .2s, border-color .2s;
     }
-    .section-nav a:nth-child(1) { margin-right: 91px; }
-    .section-nav a:nth-child(2) { margin-right: 91px; }
-    .section-nav a:nth-child(3) { margin-right: 144px; }
-    .section-nav a:nth-child(4) { margin-right: 144px; }
+    .section-nav a:nth-child(1) { margin-right: 111px; }
+    .section-nav a:nth-child(2) { margin-right: 111px; }
+    .section-nav a:nth-child(3) { margin-right: 164px; }
+    .section-nav a:nth-child(4) { margin-right: 164px; }
     .section-nav a:hover, .section-nav a.active { border-bottom-color: #141414; font-weight: 500; }
 
     /* ── SECTION TITLES ── */
@@ -502,7 +502,7 @@
     .process-grid {
       position: relative;
       min-height: 160px;
-      margin-bottom: 0;
+      margin: 0 -40px;
     }
 
     .process-line-grey {
@@ -542,12 +542,12 @@
     }
 
     .process-step:nth-child(4) {
-      left: 404px;
+      left: 440px;
       width: 320px;
     }
 
     .process-step:nth-child(5) {
-      left: 759px;
+      left: 839px;
       width: 361px;
     }
 
@@ -572,8 +572,8 @@
     /* ── RESEARCH ── */
     .competitors-row {
       display: flex;
-      gap: 80px;
-      margin-bottom: 96px;
+      gap: 120px;
+      margin: 0 -40px 96px;
       align-items: flex-start;
     }
 
@@ -1002,7 +1002,7 @@
   <section id="about">
     <div class="container">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:60px;">
-        <h2 class="section-title accordion-toggle" style="margin-bottom:0;" data-target="about-body">О проекте
+        <h2 class="section-title accordion-toggle" style="margin-bottom:0;margin-left:-40px;" data-target="about-body">О проекте
           <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#141414"/></svg>
         </h2>
         <div style="background:#d6ebec; border-radius:16px 16px 16px 0; padding:10px 20px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:1; letter-spacing:0; color:#141414; white-space:nowrap;">
@@ -1480,7 +1480,7 @@
   <!-- DESIGN PROCESS -->
   <section id="process">
     <div class="container">
-      <h2 class="section-title accordion-toggle" style="margin-bottom:72px;" data-target="process-body">Дизайн-процесс<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#141414"/></svg></h2>
+      <h2 class="section-title accordion-toggle" style="margin-bottom:72px;margin-left:-40px;" data-target="process-body">Дизайн-процесс<svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M6.34305 7.75716L4.92905 9.17116L11.999 16.2432L19.071 9.17116L17.657 7.75716L12 13.4142L6.34305 7.75716Z" fill="#141414"/></svg></h2>
 
       <div class="accordion-body" id="process-body"><div class="accordion-inner"><div class="process-grid reveal">
         <div class="process-line-grey"></div>
@@ -1514,7 +1514,7 @@
       </div>
       <div class="accordion-body" id="research-body"><div class="accordion-inner">
 
-      <h3 style="font-family:'Inter Tight',Arial,sans-serif;font-size:30px;font-weight:500;line-height:normal;margin-bottom:40px;" class="reveal">Анализ конкурентов</h3>
+      <h3 style="font-family:'Inter Tight',Arial,sans-serif;font-size:30px;font-weight:500;line-height:normal;margin-bottom:40px;margin-left:-40px;" class="reveal">Анализ конкурентов</h3>
 
       <div class="competitors-row reveal">
         <div class="competitors-col">
@@ -1554,12 +1554,12 @@
       <!-- Interviews card -->
       <div class="interviews-card reveal">
         <!-- Heading: left 40, top 110 -->
-        <h3 style="position:absolute;left:calc((100vw - var(--page-width)) / 2 + 40px);top:40px;font-family:'Inter Tight',sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;margin:0;line-height:1;">Глубинные интервью</h3>
+        <h3 style="position:absolute;left:calc((100vw - var(--page-width)) / 2);top:40px;font-family:'Inter Tight',sans-serif;font-size:30px;font-weight:500;color:#141414;white-space:nowrap;margin:0;line-height:1;">Глубинные интервью</h3>
 
         <!-- Body text 1: x=0 y=108 w=576 in Figma frame (frame x=40 in artboard) -->
-        <p style="position:absolute;left:calc((100vw - var(--page-width)) / 2 + 40px);top:108px;width:576px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;">За время проектирования мы провели 24 глубинных интервью и опросили 120 респондентов на количественном опросе. Основная часть пользователей имеет более 2 устройств УД, но были и те, у кого нет устройств совсем или, напротив, более 5 устройств</p>
+        <p style="position:absolute;left:calc((100vw - var(--page-width)) / 2);top:108px;width:576px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;">За время проектирования мы провели 24 глубинных интервью и опросили 120 респондентов на количественном опросе. Основная часть пользователей имеет более 2 устройств УД, но были и те, у кого нет устройств совсем или, напротив, более 5 устройств</p>
         <!-- Body text 2: x=0 y=200 w=576 in Figma frame -->
-        <p style="position:absolute;left:calc((100vw - var(--page-width)) / 2 + 40px);top:200px;width:576px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;">Пользователи используют умные устройства как криптоферму, устройство для слежки за женой или делают приятно умной лентой рыбкам!</p>
+        <p style="position:absolute;left:calc((100vw - var(--page-width)) / 2);top:200px;width:576px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:normal;margin:0;">Пользователи используют умные устройства как криптоферму, устройство для слежки за женой или делают приятно умной лентой рыбкам!</p>
 
         <!-- Quote 1: Figma left=746.78 top=23.2 w=324.60 h=55.85 rotate=-3deg -->
         <div style="position:absolute;left:calc((100vw - var(--page-width)) / 2 + 746.78px);top:23px;width:324.6px;height:55.85px;display:flex;align-items:center;justify-content:center;">
@@ -1604,7 +1604,7 @@
       <h3 style="font-family:'Inter Tight',sans-serif;font-size:30px;font-weight:500;color:#141414;margin:96px 0 0 -40px;line-height:1;">Персоны</h3>
 
       <!-- Persona cards row -->
-      <div style="display:flex;gap:17.5px;margin-top:48px;align-items:flex-start;padding-bottom:5px;position:relative;">
+      <div style="display:flex;justify-content:space-between;margin:48px -40px 0;align-items:flex-start;padding-bottom:5px;position:relative;">
 
         <!-- Card 1: Кинестетик 262×194 -->
         <div class="persona-card" style="position:relative;width:262px;flex-shrink:0;">
@@ -2130,8 +2130,8 @@
     var blackLine = document.querySelector('#process .process-line-black');
     var positions = [
       { left: 0,   width: 361 },
-      { left: 404, width: 320 },
-      { left: 759, width: 361 }
+      { left: 440, width: 320 },
+      { left: 839, width: 361 }
     ];
     var active = 0;
     setInterval(function() {
