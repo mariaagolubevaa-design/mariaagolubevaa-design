@@ -1743,8 +1743,62 @@
 
       <!-- Контекст diagram (1310:12408) -->
       <div class="kontekst-diagram-scroll" style="overflow-x:auto; overflow-y:hidden; width:calc(100% + 80px); margin-left:-40px; scrollbar-width:none; margin-bottom:96px;">
-        <div style="display:block; width:1525px; padding:0 40px 0;">
-          <img src="assets/images/kontekst-diagram-2phones.png" alt="Флоу геймификации: два ключевых экрана — точка входа и главный экран" style="display:block; width:965px; height:auto;">
+        <div style="position:relative; display:block; width:1740px; padding:0 40px 0 0; height:794px;">
+          <!-- Phones 1 & 2 flat image -->
+          <img src="assets/images/kontekst-diagram-2phones.png" alt="Флоу геймификации: два ключевых экрана — точка входа и главный экран" style="display:block; width:965px; height:794px;">
+
+          <!-- Label 3: «Выход из игры» (1310:11824) — between phones 2 and 3 -->
+          <div style="position:absolute;left:966px;top:48px;width:210px;height:46px;box-sizing:border-box;background:#fafafa;border:1.5px solid #9b9b9b;padding:8px 12px;display:flex;align-items:flex-start;justify-content:center;">
+            <p style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:500;color:#141414;text-align:center;margin:0;line-height:normal;white-space:pre-wrap;">Выход из игры<br>(Переход к главной Салюта)</p>
+          </div>
+
+          <!-- Arrow Vector 3 (1310:11831) — phone 2 → phone 3 -->
+          <img src="assets/images/kontekst-arrow-v3.svg" alt="" aria-hidden="true"
+               style="position:absolute;left:1071px;top:90px;width:105px;height:25px;display:block;">
+
+          <!-- Label 4: «Переход в задания» (1310:11818) — between phones 2 and 3 -->
+          <div style="position:absolute;left:984px;top:495px;width:192px;height:76px;box-sizing:border-box;background:#fafafa;border:1.5px solid #9b9b9b;padding:8px 12px;display:flex;align-items:flex-start;justify-content:center;">
+            <p style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:500;color:#141414;text-align:center;margin:0;line-height:normal;word-break:break-word;">Переход в задания (Выполняются для получения заряда + Знакомство с возможностями уд)</p>
+          </div>
+
+          <!-- Vector 4 (1310:11828) — arrow toward labels 5-7 -->
+          <img src="assets/images/kontekst-arrow-v4.svg" alt="" aria-hidden="true"
+               style="position:absolute;left:1078px;top:571px;width:98px;height:29px;display:block;">
+
+          <!-- Phone 3: Main scroll 3 (2244:24776) — x=1231 Figma → 1192 CSS -->
+          <div style="position:absolute;left:1192px;top:48px;width:322px;height:700px;">
+            <!-- Screen content clipped to phone corner radius -->
+            <div style="position:absolute;inset:0;overflow:hidden;border-radius:38.45px;">
+              <img src="assets/images/kontekst-main-scroll-3.png" alt="" aria-hidden="true"
+                   style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;">
+            </div>
+            <!-- Phone bezel overlay -->
+            <img src="assets/images/pain1-gamification-bezel.png" alt="" aria-hidden="true"
+                 style="position:absolute;left:-19.22px;top:-18.42px;width:360.45px;height:736.92px;display:block;pointer-events:none;">
+          </div>
+
+          <!-- Label 5: «Информация об игре» (1310:11822) — right of phone 3 -->
+          <div style="position:absolute;left:1530px;top:48px;width:137px;height:42px;box-sizing:border-box;background:#fafafa;border:1.5px solid #9b9b9b;padding:6px 9px;display:flex;align-items:center;align-content:stretch;justify-content:center;">
+            <p style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:500;color:#141414;margin:0;line-height:normal;word-break:break-word;width:119px;flex-shrink:0;text-align:center;">Информация об игре (контент онбординга)</p>
+          </div>
+
+          <!-- Label 7: «Переход к комнатам» (1310:11820) — right of phone 3 -->
+          <div style="position:absolute;left:1530px;top:460px;width:131px;height:57px;box-sizing:border-box;background:#fafafa;border:1.5px solid #9b9b9b;padding:6px 9px;">
+            <p style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:500;color:#141414;margin:0;line-height:normal;word-break:break-word;">Переход к комнатам и аватарам внутри</p>
+          </div>
+
+          <!-- Label 6: «Достижения внутри игры» (1310:11826) — right of phone 3 -->
+          <div style="position:absolute;left:1530px;top:574px;width:131px;height:42px;box-sizing:border-box;background:#fafafa;border:1.5px solid #9b9b9b;padding:6px 9px;">
+            <p style="font-family:'Inter Tight',sans-serif;font-size:12px;font-weight:500;color:#141414;margin:0;line-height:normal;word-break:break-word;">Достижения внутри игры</p>
+          </div>
+
+          <!-- Vector 5 (1310:11829) — arrow to label 7 -->
+          <img src="assets/images/kontekst-arrow-v5.svg" alt="" aria-hidden="true"
+               style="position:absolute;left:1598px;top:513px;width:84px;height:24px;display:block;">
+
+          <!-- Vector 6 (1310:11830) — arrow to label 6 -->
+          <img src="assets/images/kontekst-arrow-v6.svg" alt="" aria-hidden="true"
+               style="position:absolute;left:1604px;top:614px;width:84px;height:24px;display:block;">
         </div>
       </div>
 
