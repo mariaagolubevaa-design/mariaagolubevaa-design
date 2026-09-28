@@ -1131,112 +1131,12 @@
             <!-- Description 3 copy (OB2→OB3) — exact clone of etalon Description 3; DOM after img → text above arrow -->
             <div style="position:absolute; top:342px; left:1411px; background:#fafafa; box-shadow:inset 0 0 0 1.5px #9b9b9b; padding:8px 12px; font-family:'Inter Tight',Arial,sans-serif; font-size:12px; font-weight:500; line-height:normal; color:#141414; white-space:nowrap; text-align:center;">Инфа об игре<br>Переход по клику</div>
 
-            <!-- Screen 4: Onboarding 3 – "Выполняйте задания" -->
-            <div style="position:relative; width:233px; height:500px; border-radius:24px; overflow:hidden; flex-shrink:0;">
-              <!-- Background -->
-              <img src="assets/images/ob3-bg.png" alt=""
-                   style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:bottom; pointer-events:none;">
-
-              <!-- Content card – размеры и glass как в OB4: left:9px right:9px padding:14px blur(14px) -->
-              <div style="position:absolute; left:9px; right:9px; top:287.75px; border-radius:18px; padding:14px; display:flex; flex-direction:column; gap:14px;
-                   background:rgba(255,255,255,0.2);
-                   backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
-                <!-- Text block – Figma: gap=4.577px -->
-                <div style="display:flex; flex-direction:column; gap:4.58px;">
-                  <p style="color:white; font-size:17.16px; font-weight:400; letter-spacing:-0.34px; line-height:18.31px; font-family:'Inter',Arial,sans-serif; margin:0;">Выполняйте задания</p>
-                  <p style="color:rgba(255,255,255,0.7); font-size:10.3px; line-height:normal; font-family:'Inter',Arial,sans-serif; margin:0;">Выполняйте задания от Сбера или члена семьи и получайте энергию</p>
-                </div>
-                <!-- Pagination row – Figma: justify-between, h=27.46 -->
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <!-- Left arrow: GLASS blur=8.58 -->
-                  <div style="position:relative; width:27.46px; height:27.46px; border-radius:57.21px; overflow:hidden; flex-shrink:0;
-                       backdrop-filter:blur(8.58px); -webkit-backdrop-filter:blur(8.58px);">
-                    <div style="position:absolute; inset:0; background:rgba(255,255,255,0.5);"></div>
-                    <div style="position:absolute; inset:0; background:white; mix-blend-mode:saturation;"></div>
-                    <div style="position:absolute; inset:0; background:#999999; mix-blend-mode:overlay;"></div>
-                    <div style="position:absolute; inset:0; background:#45aeff;"></div>
-                    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
-                      <svg width="13.73" height="13.73" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                  </div>
-                  <!-- 3/3 text: Inter Regular 10.297px, white opacity 0.56 -->
-                  <span style="color:rgba(255,255,255,0.56); font-size:10.3px; font-family:'Inter',Arial,sans-serif;">3/3</span>
-                  <!-- Right arrow: opacity=0 -->
-                  <div style="width:27.46px; height:27.46px; border-radius:57.21px; background:rgba(255,255,255,0.5); opacity:0; flex-shrink:0;"></div>
-                </div>
-                <!-- Divider – Figma: h=0.572, white opacity=0.3, no margin (flex gap handles spacing) -->
-                <div style="height:0.57px; background:rgba(255,255,255,0.3); border-radius:11.44px;"></div>
-                <!-- Button «Выбрать свой дом» – как OB4: rgba(255,255,255,0.8) -->
-                <div style="background:rgba(255,255,255,0.8); border-radius:57px; padding:9px; text-align:center; font-size:8px; font-weight:600; color:#080808; font-family:'Gilroy',Arial,sans-serif;">Выбрать свой дом</div>
-              </div>
-
-              <!-- Status Bar – Figma: x=0 y=1 w=233 h=34 -->
-              <div style="position:absolute; top:1px; left:0; width:233px; height:34px; display:flex; align-items:center; justify-content:space-between; padding:12.01px 13.73px 10.87px; box-sizing:border-box;">
-                <span style="color:white; font-size:9.73px; font-weight:600; font-family:system-ui,sans-serif; line-height:12.59px;">9:41</span>
-                <span style="color:white; font-size:7px; letter-spacing:1px;">●●●</span>
-              </div>
-
-              <!-- Home indicator – Figma: y=485.12, bar: w=80.66 h=2.29, bottom≈5.44px from edge -->
-              <div style="position:absolute; bottom:5px; left:50%; transform:translateX(-50%); width:80.66px; height:2.29px; background:rgba(245,245,245,0.96); border-radius:100px;"></div>
-
-              <!-- Furniture – Figma: x=11.15 y=114.42 w=211.67 h=164.76 (above Content in z) -->
-              <!-- Positioned as: left=calc(50%+0.49px), translateX(-50%) = left:11.15px -->
-              <div style="position:absolute; top:114.42px; left:11.15px; width:211.67px; height:164.76px; overflow:hidden;">
-                <!-- Kettle: bounding-box wrapper 109.987×109.987 at (0,0), card centered, rotate -20deg -->
-                <!-- Fill order: gradient ON TOP of white 0.5 (Figma fills[0]=white0.5 bottom, fills[1]=gradient top) -->
-                <div style="position:absolute; left:0; top:0; width:109.987px; height:109.987px; display:flex; align-items:center; justify-content:center;">
-                  <div style="width:85.812px; height:85.812px; border-radius:18.31px; overflow:hidden; transform:rotate(-20deg); flex-shrink:0;
-                       background:linear-gradient(190.73deg,rgba(222,206,39,0.3) 7.96%,rgba(255,255,255,0) 92.04%),rgba(255,255,255,0.5);
-                       backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
-                    <div style="position:absolute; left:9.73px; top:6.86px; width:66.11px; height:72.18px; overflow:hidden;">
-                      <img src="assets/images/ob3-kettle.png" alt="" style="position:absolute; width:75.54%; height:84.63%; left:12.23%; top:7.69%; object-fit:cover;">
-                    </div>
-                  </div>
-                </div>
-                <!-- Chair: bounding-box wrapper 109.987×109.987 at right=-0.15px top=0, card centered, rotate +20deg -->
-                <div style="position:absolute; right:-0.15px; top:0; width:109.987px; height:109.987px; display:flex; align-items:center; justify-content:center;">
-                  <div style="width:85.812px; height:85.812px; border-radius:18.31px; overflow:hidden; transform:rotate(20deg); flex-shrink:0;
-                       background:linear-gradient(190.73deg,rgba(222,152,39,0.3) 7.96%,rgba(255,255,255,0) 92.04%),rgba(255,255,255,0.5);
-                       backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
-                    <div style="position:absolute; left:9.73px; top:6.86px; width:66.11px; height:72.18px; overflow:hidden;">
-                      <img src="assets/images/ob3-chair.png" alt="" style="position:absolute; width:80.38%; height:120.06%; left:9.22%; top:-4.83%; object-fit:cover;">
-                    </div>
-                  </div>
-                </div>
-                <!-- Fridge: bounding-box wrapper 96.92×96.92, centered horiz, bottom=0.33px, card rotate -8deg -->
-                <div style="position:absolute; bottom:0.33px; left:calc(50% - 0.17px); transform:translateX(-50%); width:96.92px; height:96.92px; display:flex; align-items:center; justify-content:center;">
-                  <div style="width:85.812px; height:85.812px; border-radius:18.31px; overflow:hidden; transform:rotate(-8deg); flex-shrink:0;
-                       background:linear-gradient(190.73deg,rgba(222,39,142,0.3) 7.96%,rgba(255,255,255,0) 92.04%),rgba(255,255,255,0.5);
-                       backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
-                    <div style="position:absolute; left:9.73px; top:6.87px; width:66.11px; height:72.18px; overflow:hidden;">
-                      <img src="assets/images/ob3-fridge.png" alt="" style="position:absolute; width:37.38%; height:89.21%; left:31.31%; top:5.4%; object-fit:cover;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Header – Figma: x=11.15 y=36.04 w=211.67 h=25.17 (topmost z) -->
-              <div style="position:absolute; top:36.04px; left:11.15px; width:211.67px; height:25.17px; display:flex; justify-content:space-between; align-items:center;">
-                <!-- Close button: w=25.17 h=25.17, white0.5, GLASS Frost=2.86 Refraction=60 Depth=17 -->
-                <div style="width:25.17px; height:25.17px; border-radius:57.21px; overflow:hidden; display:flex; align-items:center; justify-content:center; flex-shrink:0;
-                     background:rgba(255,255,255,0.5);
-                     backdrop-filter:blur(2.86px) saturate(160%); -webkit-backdrop-filter:blur(2.86px) saturate(160%);
-                     box-shadow:0 2px 17px rgba(0,0,0,0.12);">
-                  <svg width="11.44" height="11.44" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#080808" stroke-width="2" stroke-linecap="round"/></svg>
-                </div>
-                <!-- Progress bars: Figma gap=4.577px, each bar w=57.21px h=3.43px -->
-                <div style="display:flex; gap:4.58px; align-items:center;">
-                  <!-- Bar 1: full white -->
-                  <div style="width:57.21px; height:3.43px; border-radius:57.21px; background:white;"></div>
-                  <!-- Bar 2: full white -->
-                  <div style="width:57.21px; height:3.43px; border-radius:57.21px; background:white;"></div>
-                  <!-- Bar 3: ~46% filled (26.316/57.21) -->
-                  <div style="width:57.21px; height:3.43px; border-radius:57.21px; background:rgba(255,255,255,0.4); overflow:hidden;">
-                    <div style="width:46.01%; height:100%; background:white; border-radius:57.21px;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!-- Screen 4: Onboarding 3 (2286:28600) — PNG export from Figma 2x -->
+            <img src="assets/images/gamification-ob-onboarding3-2x.png"
+                 srcset="assets/images/gamification-ob-onboarding3-2x.png 2x"
+                 width="322" height="700"
+                 alt="Онбординг 3 — Выполняйте задания"
+                 style="width:322px; height:700px; border-radius:38.45px; display:block; flex-shrink:0; margin-top:16px;">
 
             <!-- Arrow 4 – 206px -->
             <div style="width:206px; height:500px; flex-shrink:0; position:relative;">
