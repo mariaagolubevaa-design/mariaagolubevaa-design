@@ -1120,14 +1120,16 @@
                  alt="Онбординг 2"
                  style="width:322px; height:700px; border-radius:38.45px; display:block; flex-shrink:0; margin-top:16px; margin-left:208px;">
 
-            <!-- Arrow 3 – 205px -->
-            <div style="width:205px; height:500px; flex-shrink:0; position:relative; overflow:visible;">
-              <div style="position:absolute; top:334px; left:51px; background:white; border:1.716px solid black; border-radius:1.716px; padding:3.43px 5.15px; font-family:'Inter',Arial,sans-serif; font-size:10.3px; line-height:1.3; color:black; white-space:nowrap;">Инфа об игре<br>Переход по клику</div>
-              <svg style="position:absolute; top:344px; left:-4px; width:209.38px; height:12.64px;" viewBox="0 0 209.38 12.6382" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.43601 3.74478C2.00385 3.74478 0.858115 4.88893 0.858115 6.31912C0.858115 7.74931 2.00385 8.89347 3.43601 8.89347C4.86817 8.89347 6.0139 7.74931 6.0139 6.31912C6.0139 4.88893 4.86817 3.74478 3.43601 3.74478Z" fill="white"/>
-                <path d="M209.129 6.9259C209.464 6.59079 209.464 6.04746 209.129 5.71234L203.668 0.251336C203.332 -0.0837786 202.789 -0.0837786 202.454 0.251336C202.119 0.586451 202.119 1.12978 202.454 1.46489L207.308 6.31912L202.454 11.1734C202.119 11.5085 202.119 12.0518 202.454 12.3869C202.789 12.722 203.332 12.722 203.668 12.3869L209.129 6.9259ZM0.858115 6.31912H1.71623C1.71623 5.36397 2.47665 4.60289 3.43601 4.60289V3.74478V2.88666C1.53104 2.88666 0 4.41389 0 6.31912H0.858115ZM3.43601 3.74478V4.60289C4.39536 4.60289 5.15579 5.36397 5.15579 6.31912H6.0139H6.87202C6.87202 4.41389 5.34098 2.88666 3.43601 2.88666V3.74478ZM6.0139 6.31912H5.15579C5.15579 7.27428 4.39536 8.03535 3.43601 8.03535V8.89347V9.75158C5.34098 9.75158 6.87202 8.22435 6.87202 6.31912H6.0139ZM3.43601 8.89347V8.03535C2.47665 8.03535 1.71623 7.27428 1.71623 6.31912H0.858115H0C0 8.22435 1.53104 9.75158 3.43601 9.75158V8.89347ZM6.0139 6.31912V7.17724H208.522V6.31912V5.46101H6.0139V6.31912Z" fill="black"/>
-              </svg>
-            </div>
+            <!-- Arrow 3 – 205px (arrow and label removed; container kept to preserve spacing) -->
+            <div style="width:205px; height:500px; flex-shrink:0; position:relative; overflow:visible;"></div>
+
+            <!-- Vector 3 copy (OB2→OB3) — same SVG, same offsets as etalon OB1→OB2 -->
+            <!-- left=1372.05: OB2 right edge (838.05+208+322) + 4px offset; top/size identical to etalon -->
+            <img src="assets/images/gamification-flow-vector3.svg" alt="" aria-hidden="true"
+                 style="position:absolute; top:364px; left:1372.05px; width:200px; height:11.0459px; display:block; overflow:visible;">
+
+            <!-- Description 3 copy (OB2→OB3) — exact clone of etalon Description 3; DOM after img → text above arrow -->
+            <div style="position:absolute; top:342px; left:1411px; background:#fafafa; box-shadow:inset 0 0 0 1.5px #9b9b9b; padding:8px 12px; font-family:'Inter Tight',Arial,sans-serif; font-size:12px; font-weight:500; line-height:normal; color:#141414; white-space:nowrap; text-align:center;">Инфа об игре<br>Переход по клику</div>
 
             <!-- Screen 4: Onboarding 3 – "Выполняйте задания" -->
             <div style="position:relative; width:233px; height:500px; border-radius:24px; overflow:hidden; flex-shrink:0;">
