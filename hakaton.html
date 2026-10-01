@@ -181,6 +181,7 @@
     .back-btn__icon--left svg  { transform: rotate(-90deg); }
     .back-btn__icon--right svg { transform: rotate(90deg); }
     .nav-btn-group { display:flex; align-items:center; gap:48px; }
+    .back-btn--top { background:none; border:none; padding:0; }
 
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s,transform .5s; }
     .reveal.visible { opacity:1; transform:none; }
@@ -633,14 +634,14 @@
 
 <!-- NAV BUTTONS -->
 <div class="nav-btn-wrap">
-  <a class="back-btn" href="javascript:history.back()">
-    <span class="back-btn__icon back-btn__icon--left">
+  <button class="back-btn back-btn--top" type="button" onclick="scrollToPageTop()">
+    <span class="back-btn__icon">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
       </svg>
     </span>
-    НАЗАД
-  </a>
+    НАВЕРХ
+  </button>
   <div class="nav-btn-group">
     <a class="back-btn" href="gamification.html">
       <span class="back-btn__icon back-btn__icon--left">
@@ -662,6 +663,14 @@
 </div>
 
 <script>
+  function scrollToPageTop() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.scrollTo(0, 0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
   (function() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var letters = Array.from(document.querySelectorAll('.cov-letter'));
