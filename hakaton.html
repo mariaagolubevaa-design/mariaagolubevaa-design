@@ -157,12 +157,6 @@
     .pagination__btn { display:flex; align-items:center; gap:12px; font-size:24px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:inherit; }
     .pagination__btn:hover { opacity:.6; }
 
-    footer { background:var(--footer-bg); border-radius:32px 32px 0 0; margin:0; }
-    .footer-inner { max-width:var(--page-w); margin:0 auto; padding:32px 40px; display:flex; align-items:center; justify-content:space-between; }
-    .footer__logo { font-size:20px; font-weight:700; color:var(--black); text-decoration:none; }
-    .footer__nav { display:flex; gap:132px; list-style:none; }
-    .footer__nav a { font-size:20px; font-weight:700; color:var(--black); text-decoration:none; }
-
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s,transform .5s; }
     .reveal.visible { opacity:1; transform:none; }
     .sep { height:1px; background:var(--grey1); margin:0 40px; }
@@ -623,16 +617,6 @@
     <a class="pagination__btn" href="mendi.html">Mendi →</a>
   </div>
 </div>
-
-<footer>
-  <div class="footer-inner">
-    <a class="footer__logo" href="index.html">мария голубева</a>
-    <ul class="footer__nav">
-      <li><a href="index.html#projects">мои проекты</a></li>
-      <li><a href="#">обо мне</a></li>
-    </ul>
-  </div>
-</footer>
 
 <script>
   const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}}),{threshold:.08});
