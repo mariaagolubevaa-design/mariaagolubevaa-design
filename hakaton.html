@@ -129,6 +129,8 @@
     .cov-line--l { left:calc(50% - 493px); }
     .cov-line--r { left:calc(50% + 79px); }
     .cov-title { position:absolute; left:calc(50% - 543px); bottom:calc(50% - 61px); font-family:'Inter Tight',Arial,sans-serif; font-size:60px; font-weight:500; color:#141414; white-space:nowrap; line-height:1; }
+    .cov-letter { color:#9B9B9B; transition:color 0.3s; }
+    @media (prefers-reduced-motion: reduce) { .cov-letter { color:#141414 !important; transition:none; } }
     .cov-desc { position:absolute; left:calc(50% + 129px); top:calc(50% + 24px); transform:translateY(-50%); width:345px; display:flex; align-items:center; }
     .cov-paren { font-family:'Inter',Arial,sans-serif; font-size:50px; font-weight:400; color:#141414; line-height:1; flex-shrink:0; }
     .cov-desc-text { font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; text-align:center; line-height:1.15; flex:1; margin:0; }
@@ -461,7 +463,7 @@
   <span class="cov-tag cov-tag--c">СЕНТЯБРЬ 2025</span>
   <img class="cov-line cov-line--r" src="images/hakaton/cover-line.svg" alt="" width="405" height="1">
   <span class="cov-tag cov-tag--r">ЯП ХАКАТОН</span>
-  <div class="cov-title">НРОИ ИНВАТУР</div>
+  <div class="cov-title" aria-label="НРООИ ИНВАТУР"><span aria-hidden="true" class="cov-letter" style="color:#141414">Н</span><span aria-hidden="true" class="cov-letter">Р</span><span aria-hidden="true" class="cov-letter">О</span><span aria-hidden="true" class="cov-letter">О</span><span aria-hidden="true" class="cov-letter">И</span> <span aria-hidden="true" class="cov-letter">И</span><span aria-hidden="true" class="cov-letter">Н</span><span aria-hidden="true" class="cov-letter">В</span><span aria-hidden="true" class="cov-letter">А</span><span aria-hidden="true" class="cov-letter">Т</span><span aria-hidden="true" class="cov-letter">У</span><span aria-hidden="true" class="cov-letter">Р</span></div>
   <div class="cov-desc">
     <span class="cov-paren">(</span>
     <p class="cov-desc-text">Форма для незрячих<br>и слабовидящих<br>людей</p>
@@ -660,6 +662,25 @@
 </div>
 
 <script>
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var letters = Array.from(document.querySelectorAll('.cov-letter'));
+    var total = letters.length;
+    var STEP = 150, TRANS = 300, PAUSE = 1000;
+    function cycle() {
+      for (var i = 1; i < total; i++) {
+        (function(idx) {
+          setTimeout(function() { letters[idx].style.color = '#141414'; }, idx * STEP);
+        })(i);
+      }
+      setTimeout(function() {
+        for (var i = 1; i < total; i++) { letters[i].style.color = ''; }
+        setTimeout(cycle, TRANS);
+      }, (total - 1) * STEP + TRANS + PAUSE);
+    }
+    cycle();
+  })();
+
   const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}}),{threshold:.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
