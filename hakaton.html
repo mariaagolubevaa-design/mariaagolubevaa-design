@@ -18,7 +18,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Gilroy','Montserrat','Inter',Arial,sans-serif; background:#fff; color:#1e1e1c; overflow-x:hidden; margin-bottom:0; padding-bottom:0; }
+    body { font-family: 'Gilroy','Montserrat','Inter',Arial,sans-serif; background:#fafafa; color:#1e1e1c; overflow-x:hidden; margin-bottom:0; padding-bottom:0; }
     :root { --black:#1e1e1c; --grey1:#d2d2d2; --grey2:#a5a5a4; --footer-bg:#ece6d6; --page-w:1200px; --max-w:1280px; --pad:40px; }
 
     .nav-trigger {
@@ -128,7 +128,7 @@
     .cov-line { position:absolute; top:81px; display:block; }
     .cov-line--l { left:calc(50% - 493px); }
     .cov-line--r { left:calc(50% + 79px); }
-    .cov-title { position:absolute; left:calc(50% - 519px); bottom:calc(50% - 61px); font-family:'Inter Tight',Arial,sans-serif; font-size:60px; font-weight:500; color:#141414; white-space:nowrap; line-height:1; }
+    .cov-title { position:absolute; left:calc(50% - 543px); bottom:calc(50% - 61px); font-family:'Inter Tight',Arial,sans-serif; font-size:60px; font-weight:500; color:#141414; white-space:nowrap; line-height:1; }
     .cov-desc { position:absolute; left:calc(50% + 129px); top:calc(50% + 24px); transform:translateY(-50%); width:345px; display:flex; align-items:center; }
     .cov-paren { font-family:'Inter',Arial,sans-serif; font-size:50px; font-weight:400; color:#141414; line-height:1; flex-shrink:0; }
     .cov-desc-text { font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; text-align:center; line-height:1.15; flex:1; margin:0; }
@@ -150,12 +150,35 @@
     .solution-card ol { list-style:decimal; padding-left:32px; }
     .solution-card li { font-size:24px; line-height:1.5; margin-bottom:8px; }
 
-    .result-imgs { display:flex; gap:32px; flex-wrap:wrap; margin-bottom:60px; }
-    .result-imgs img { border-radius:24px; max-height:400px; object-fit:contain; flex:1; min-width:300px; }
 
-    .pagination { display:flex; align-items:center; justify-content:space-between; padding:32px 40px; max-width:var(--page-w); margin:0 auto; border-top:1px solid var(--grey1); }
-    .pagination__btn { display:flex; align-items:center; gap:12px; font-size:24px; font-weight:500; text-decoration:none; color:var(--black); cursor:pointer; background:none; border:none; font-family:inherit; }
-    .pagination__btn:hover { opacity:.6; }
+
+
+    /* NAV BUTTONS */
+    .nav-btn-wrap { max-width:var(--page-w); margin:0 auto; padding:32px 0; display:flex; align-items:center; justify-content:space-between; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: #FA472D; }
+    .back-btn__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    .back-btn__icon--left svg  { transform: rotate(-90deg); }
+    .back-btn__icon--right svg { transform: rotate(90deg); }
+    .nav-btn-group { display:flex; align-items:center; gap:48px; }
 
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s,transform .5s; }
     .reveal.visible { opacity:1; transform:none; }
@@ -559,13 +582,10 @@
   </div>
 </section>
 
-<div class="sep"></div>
-
 <!-- DESIGN -->
 <section id="design">
   <div class="container">
-    <h2 class="section-title">Решения по реализации</h2>
-    <p style="font-size:18px;color:var(--grey2);margin-bottom:40px;" class="reveal">В разработке</p>
+
     <div class="solutions-grid reveal">
       <div class="solution-card">
         <h3>Frontend</h3>
@@ -592,29 +612,50 @@
         </ol>
       </div>
     </div>
-    <div style="text-align:center;font-size:40px;font-weight:700;margin-bottom:40px;">Лендинг + Бот</div>
+
   </div>
 </section>
-
-<div class="sep"></div>
 
 <!-- RESULT -->
 <section id="result">
   <div class="container">
-    <h2 class="section-title">Результат</h2>
-    <div class="result-imgs reveal">
-      <img src="https://www.figma.com/api/mcp/asset/882730d1-63b8-42c7-812c-6c62dcde4aa1" alt="Результат 1">
-      <img src="https://www.figma.com/api/mcp/asset/90e1fb4e-cd09-4632-97f7-b42d5bfbc4d1" alt="Результат 2">
+
+    <!-- РЕЗУЛЬТАТ heading -->
+    <div class="design-process-heading" style="margin-top:0;">
+      <h2 class="about-heading__title">Результат</h2>
+      <img class="about-heading__chevron" src="images/hakaton/about-chevron.svg" alt="" width="24" height="24">
     </div>
+
   </div>
 </section>
 
-<!-- PAGINATION -->
-<div class="pagination">
-  <button class="pagination__btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ наверх</button>
-  <div style="display:flex;gap:40px;">
-    <a class="pagination__btn" href="gamification.html">← Геймификация в УД</a>
-    <a class="pagination__btn" href="mendi.html">Mendi →</a>
+<!-- NAV BUTTONS -->
+<div class="nav-btn-wrap">
+  <a class="back-btn" href="javascript:history.back()">
+    <span class="back-btn__icon back-btn__icon--left">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
+      </svg>
+    </span>
+    НАЗАД
+  </a>
+  <div class="nav-btn-group">
+    <a class="back-btn" href="gamification.html">
+      <span class="back-btn__icon back-btn__icon--left">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
+        </svg>
+      </span>
+      ГЕЙМИФИКАЦИЯ В УД
+    </a>
+    <a class="back-btn" href="12storeez.html">
+      12 STOREEZ
+      <span class="back-btn__icon back-btn__icon--right">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="currentColor"/>
+        </svg>
+      </span>
+    </a>
   </div>
 </div>
 
@@ -649,5 +690,6 @@
     document.addEventListener('touchend',  function()  { dragging = false; });
   })();
 </script>
+
 </body>
 </html>
