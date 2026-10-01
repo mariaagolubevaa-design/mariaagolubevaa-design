@@ -666,7 +666,7 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var letters = Array.from(document.querySelectorAll('.cov-letter'));
     var total = letters.length;
-    var STEP = 150, TRANS = 300, PAUSE = 1000;
+    var STEP = 300, TRANS = 300, PAUSE = 2000;
     function cycle() {
       for (var i = 1; i < total; i++) {
         (function(idx) {
