@@ -246,10 +246,21 @@
       transition: transform 0.4s ease;
       will-change: transform;
     }
-    .anketa__slide-img {
+    .anketa__slide {
       flex-shrink: 0;
       width: 100%;
       height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .anketa__slide--blurred { filter: blur(5px); }
+    .anketa__slide-img {
+      position: absolute;
+      top: -0.65%;
+      left: 0;
+      width: 100%;
+      height: 101.29%;
       object-fit: cover;
       object-position: center top;
       display: block;
@@ -412,7 +423,12 @@
       </div>
       <div class="anketa__slider" id="anketaSlider">
         <div class="anketa__track" id="anketaTrack">
-          <img class="anketa__slide-img" src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма">
+          <div class="anketa__slide">
+            <img class="anketa__slide-img" src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма">
+          </div>
+          <div class="anketa__slide anketa__slide--blurred">
+            <img class="anketa__slide-img" src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма — размытый вид">
+          </div>
         </div>
         <div class="anketa__nav" aria-hidden="true">
           <button class="anketa__btn" id="anketaPrev" aria-label="Предыдущий слайд">
@@ -553,7 +569,7 @@
     var track = document.getElementById('anketaTrack');
     var numEl = document.getElementById('anketaNum');
     if (!slider || !track) return;
-    var slides = track.querySelectorAll('.anketa__slide-img');
+    var slides = track.querySelectorAll('.anketa__slide');
     var total = slides.length;
     if (!total) return;
     var current = 0;
