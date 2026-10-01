@@ -144,14 +144,6 @@
     .section-title { font-size:40px; font-weight:600; margin-bottom:60px; }
 
 
-.screens-row { display:flex; gap:24px; overflow-x:auto; padding-bottom:16px; margin:40px 0; }
-    .screen-img { flex-shrink:0; width:282px; border-radius:16px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.1); }
-    .screen-img img { width:100%; display:block; }
-
-    .audience-list { list-style:none; margin-bottom:60px; }
-    .audience-list li { display:flex; gap:32px; align-items:baseline; font-size:24px; margin-bottom:24px; }
-    .audience-list li .num { font-size:50px; font-weight:700; flex-shrink:0; width:48px; }
-
     .solutions-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; margin-bottom:60px; }
     .solution-card { border:2px solid var(--black); border-radius:20px; padding:40px; }
     .solution-card h3 { font-size:40px; font-weight:700; margin-bottom:24px; }
@@ -341,6 +333,7 @@
     .task-blocks {
       display: grid;
       grid-template-columns: 600px 1fr;
+      row-gap: 48px;
       margin-left: -40px;
     }
     .task-block {
@@ -362,6 +355,22 @@
       color: #141414;
       line-height: normal;
       word-break: break-word;
+    }
+    .task-block--col2 {
+      grid-column: 2;
+    }
+    .task-block__list-sep {
+      letter-spacing: 3.2px;
+    }
+    .br-desktop { display: none; }
+    @media (min-width: 1024px) { .br-desktop { display: inline; } }
+
+    .design-process-heading {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-left: -40px;
+      margin-top: 72px;
     }
 
     /* PAGE NAVIGATION */
@@ -518,12 +527,26 @@
     <div class="task-blocks">
       <div class="task-block">
         <p class="task-block__title">Проблема</p>
-        <p class="task-block__body">Слабовидящим и незрячим пользователям сложно самостоятельно заполнять стандартные Я. Формы. Скринридер последовательно озвучивает вопросы и варианты ответа, из-за чего элементы сливаются в один поток. Пользователю сложно понять структуру формы и найти нужный чекбокс</p>
+        <p class="task-block__body">Слабовидящим и незрячим пользователям сложно самостоятельно заполнять <span class="br-desktop"><br></span>стандартные Я. Формы. Скринридер последовательно озвучивает вопросы <span class="br-desktop"><br></span>и варианты ответа, из-за чего элементы сливаются в один поток. <span class="br-desktop"><br></span>Пользователю сложно понять структуру формы и найти нужный чекбокс.</p>
       </div>
       <div class="task-block">
         <p class="task-block__title">Цель</p>
         <p class="task-block__body">Сделать анкетирование доступным для слабовидящих и незрячих пользователей с учётом принципов A11y</p>
       </div>
+      <div class="task-block">
+        <p class="task-block__title">Задача</p>
+        <p class="task-block__body">Спроектировать чат-бота для проведения анкетирования</p>
+      </div>
+      <div class="task-block task-block--col2">
+        <p class="task-block__title">Ограничения</p>
+        <p class="task-block__body"><span>(01)</span><span class="task-block__list-sep"> </span>Стандартные ограничения по A11Y<br>(02) Вопрос должен быть один на странице и озвучиваться<br>(03) Реализация должна была быть через чат-бот в тг</p>
+      </div>
+    </div>
+
+    <!-- ДИЗАЙН-ПРОЦЕСС heading -->
+    <div class="design-process-heading">
+      <h2 class="about-heading__title">Дизайн-процесс</h2>
+      <img class="about-heading__chevron" src="images/hakaton/about-chevron.svg" alt="" width="24" height="24">
     </div>
 
   </div>
@@ -532,25 +555,13 @@
 <!-- RESEARCH -->
 <section id="research">
   <div class="container">
-    <h2 class="section-title">Исследование</h2>
-    <p style="font-size:18px;color:var(--grey2);margin-bottom:40px;" class="reveal">*Скриншоты по A11y</p>
 
-    <div class="screens-row reveal">
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/a32dbfeb-be49-44e0-b9dc-8e52f2642281" alt="Экран 1"></div>
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/2a6b1701-1f34-422a-8ea1-2a38d53503de" alt="Экран 2"></div>
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/2f425b21-5e35-4460-8641-5966401b1b9c" alt="Экран 3"></div>
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/d2297ac6-68c3-4cc0-8ff7-aa3deead6de7" alt="Экран 4"></div>
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/06ca7f8d-a1e3-46a0-b4a5-6f6a249a1333" alt="Экран 5"></div>
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/6ecdf96c-8b1d-49cb-b607-0b0479cdef1e" alt="Экран 6"></div>
-      <div class="screen-img"><img src="https://www.figma.com/api/mcp/asset/2d2dcb6b-b0bd-4e50-a3c1-b07aca34766e" alt="Экран 7"></div>
+    <!-- ИССЛЕДОВАНИЕ heading -->
+    <div class="design-process-heading" style="margin-top:0;">
+      <h2 class="about-heading__title">Исследование</h2>
+      <img class="about-heading__chevron" src="images/hakaton/about-chevron.svg" alt="" width="24" height="24">
     </div>
 
-    <h3 style="font-size:32px;font-weight:600;margin-bottom:32px;" class="reveal">Целевая аудитория</h3>
-    <ul class="audience-list reveal">
-      <li><span class="num">1</span><span>Незрячие и слабовидящие люди, проходящие программу профориентации некоммерческой аудитории</span></li>
-      <li><span class="num">2</span><span>Слабовидящие сотрудники некоммерческой организации, проводящие анкетирование</span></li>
-      <li><span class="num">3</span><span>Зрячие сотрудники НКО, которые формируют исходные формы с ответами</span></li>
-    </ul>
   </div>
 </section>
 
