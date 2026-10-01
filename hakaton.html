@@ -7,7 +7,7 @@
   <link rel="preload" href="fonts/kom-post.ttf" as="font" type="font/truetype">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Kom-post';
@@ -120,16 +120,23 @@
     .nav__resume svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     /* COVER */
-    .cover { background:#eaeaea; position:relative; height:627px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .cover__laptop { width:710px; height:361px; object-fit:cover; }
-    .cover__header { position:absolute; top:50px; left:80px; right:80px; display:flex; align-items:center; justify-content:space-between; }
-    .cover__logos { display:flex; gap:16px; }
-    .cover__logos img { width:38px; height:38px; object-fit:contain; }
-    .cover__subtitle { font-size:24px; font-weight:600; color:var(--grey2); text-transform:uppercase; }
-    .cover__info { position:absolute; left:80px; bottom:60px; }
-    .cover__info h1 { font-size:40px; font-weight:700; margin-bottom:12px; max-width:742px; }
-    .chips { display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; }
-    .chip { border:1.5px solid var(--grey2); border-radius:32px; padding:8px 16px; font-size:16px; color:#787877; font-weight:500; }
+    .cover { background:#fff; position:relative; height:690px; overflow:hidden; }
+    .cov-tag { position:absolute; top:48px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; text-transform:uppercase; white-space:nowrap; line-height:1; display:inline-block; }
+    .cov-tag--l { left:calc(50% - 512px); transform:translateX(-100%); }
+    .cov-tag--c { left:calc(50% + 61px); transform:translateX(-100%); }
+    .cov-tag--r { left:calc(50% + 600px); transform:translateX(-100%); }
+    .cov-line { position:absolute; top:57px; display:block; }
+    .cov-line--l { left:calc(50% - 493px); }
+    .cov-line--r { left:calc(50% + 79px); }
+    .cov-title { position:absolute; left:calc(50% - 519px); bottom:calc(50% - 37px); font-family:'Inter Tight',Arial,sans-serif; font-size:60px; font-weight:500; color:#141414; white-space:nowrap; line-height:1; }
+    .cov-desc { position:absolute; left:calc(50% + 129px); top:50%; transform:translateY(-50%); width:345px; display:flex; align-items:center; }
+    .cov-paren { font-family:'Inter',Arial,sans-serif; font-size:50px; font-weight:400; color:#141414; line-height:1; flex-shrink:0; }
+    .cov-desc-text { font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; text-align:center; line-height:1.15; flex:1; margin:0; }
+    .cov-a11y { position:absolute; left:calc(50% - 596px); top:555px; width:80px; height:43px; display:flex; align-items:center; justify-content:center; }
+    .cov-a11y__oval { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:70px; height:33px; display:block; }
+    .cov-a11y__label { position:relative; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; text-transform:uppercase; line-height:1; }
+    .cov-btn { position:absolute; left:calc(50% + 508px); top:555px; display:flex; align-items:center; gap:16px; padding:10px 16px; border-radius:32px; text-decoration:none; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; text-transform:uppercase; white-space:nowrap; }
+    .cov-btn__icon { width:24px; height:24px; transform:rotate(90deg); display:block; flex-shrink:0; }
 
     .section-nav { max-width:var(--page-w); margin:0 auto; padding:0 40px; display:flex; gap:48px; border-bottom:1px solid var(--grey1); margin-top:40px; }
     .section-nav a { font-size:24px; font-weight:500; color:var(--grey2); text-decoration:none; padding-bottom:18px; border-bottom:3px solid transparent; transition:color .2s; }
@@ -204,26 +211,25 @@
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover__header">
-    <div class="cover__logos">
-      <img src="https://www.figma.com/api/mcp/asset/302dd2ee-bdbd-472a-8a83-4d0e9f5fff54" alt="Яндекс">
-      <img src="https://www.figma.com/api/mcp/asset/9e2e2665-6e58-4bad-aabf-ae9ff1d18df7" alt="Яндекс Практикум">
-    </div>
-    <span class="cover__subtitle">Хакатон IT Продлёнка 2025</span>
+  <span class="cov-tag cov-tag--l">АДАПТИВЫ</span>
+  <img class="cov-line cov-line--l" src="images/hakaton/cover-line.svg" alt="" width="405" height="1">
+  <span class="cov-tag cov-tag--c">СЕНТЯБРЬ 2025</span>
+  <img class="cov-line cov-line--r" src="images/hakaton/cover-line.svg" alt="" width="405" height="1">
+  <span class="cov-tag cov-tag--r">ЯП ХАКАТОН</span>
+  <div class="cov-title">НРОИ ИНВАТУР</div>
+  <div class="cov-desc">
+    <span class="cov-paren">(</span>
+    <p class="cov-desc-text">Форма для незрячих<br>и слабовидящих<br>людей</p>
+    <span class="cov-paren">)</span>
   </div>
-  <img class="cover__laptop" src="https://www.figma.com/api/mcp/asset/77b62fd1-bf9f-4c1b-9bae-cc6989b8ad97" alt="Анкета">
-  <div class="cover__info">
-    <h1>Чат-бот для незрячих и слабовидящих людей НРО «Инватур»</h1>
-    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:16px;">
-      <div class="chips">
-        <span class="chip">лендинг</span>
-        <span class="chip">адаптивы</span>
-        <span class="chip">хакатон</span>
-        <span class="chip">сентябрь 2025</span>
-      </div>
-      <a href="https://invatur.rassokha.pro/choose-form" target="_blank" style="border:1px solid #1e1e1c;border-radius:32px;padding:10px 20px;font-size:20px;font-weight:500;color:#1e1e1c;text-decoration:none;white-space:nowrap;">Сайт ›</a>
-    </div>
+  <div class="cov-a11y">
+    <img class="cov-a11y__oval" src="images/hakaton/cover-a11y-ellipse.svg" alt="">
+    <span class="cov-a11y__label">A11Y</span>
   </div>
+  <a class="cov-btn" href="https://invatur.rassokha.pro/choose-form" target="_blank">
+    САЙТ
+    <img class="cov-btn__icon" src="images/hakaton/cover-chevron.svg" alt="">
+  </a>
 </div>
 
 <!-- SECTION NAV -->
