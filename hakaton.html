@@ -319,15 +319,49 @@
       cursor: ew-resize;
     }
     .anketa__captions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: relative;
+      height: 20px;
       font-family: 'Inter Tight', Arial, sans-serif;
       font-size: 16px;
       font-weight: 500;
       color: var(--black);
       line-height: normal;
       white-space: nowrap;
+    }
+    .anketa__captions span:first-child {
+      position: absolute;
+      left: 197px;
+    }
+    .anketa__captions span:last-child {
+      position: absolute;
+      left: 776px;
+    }
+
+    /* ПРОБЛЕМА + ЦЕЛЬ */
+    .task-blocks {
+      display: grid;
+      grid-template-columns: 600px 1fr;
+      margin-left: -40px;
+    }
+    .task-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .task-block__title {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+    }
+    .task-block__body {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #141414;
+      line-height: normal;
+      word-break: break-word;
     }
 
     /* PAGE NAVIGATION */
@@ -477,6 +511,18 @@
       <div class="anketa__captions">
         <span>пользователь с обычным зрением</span>
         <span>слабовидящий пользователь</span>
+      </div>
+    </div>
+
+    <!-- ПРОБЛЕМА + ЦЕЛЬ -->
+    <div class="task-blocks">
+      <div class="task-block">
+        <p class="task-block__title">Проблема</p>
+        <p class="task-block__body">Слабовидящим и незрячим пользователям сложно самостоятельно заполнять стандартные Я. Формы. Скринридер последовательно озвучивает вопросы и варианты ответа, из-за чего элементы сливаются в один поток. Пользователю сложно понять структуру формы и найти нужный чекбокс</p>
+      </div>
+      <div class="task-block">
+        <p class="task-block__title">Цель</p>
+        <p class="task-block__body">Сделать анкетирование доступным для слабовидящих и незрячих пользователей с учётом принципов A11y</p>
       </div>
     </div>
 
