@@ -139,11 +139,7 @@
     .cov-btn:hover { color:#FA472D; }
     .cov-btn__icon { width:24px; height:24px; transform:rotate(90deg); display:block; flex-shrink:0; }
 
-    .section-nav { max-width:var(--page-w); margin:0 auto; padding:0 40px; display:flex; gap:48px; border-bottom:1px solid var(--grey1); margin-top:40px; }
-    .section-nav a { font-size:24px; font-weight:500; color:var(--grey2); text-decoration:none; padding-bottom:18px; border-bottom:3px solid transparent; transition:color .2s; }
-    .section-nav a:hover,.section-nav a.active { color:var(--black); border-bottom-color:var(--black); font-weight:700; }
-
-    .container { max-width:var(--page-w); margin:0 auto; padding:0 40px; }
+.container { max-width:var(--page-w); margin:0 auto; padding:0 40px; }
     section { padding:80px 0; }
     .section-title { font-size:40px; font-weight:600; margin-bottom:60px; }
 
@@ -184,6 +180,44 @@
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .5s,transform .5s; }
     .reveal.visible { opacity:1; transform:none; }
     .sep { height:1px; background:var(--grey1); margin:0 40px; }
+
+    /* PAGE NAVIGATION */
+    .page-nav__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .page-nav__left {
+      display: flex;
+      align-items: center;
+      gap: 111px;
+      flex-shrink: 0;
+    }
+    .page-nav__right {
+      display: flex;
+      align-items: center;
+      gap: 164px;
+      flex-shrink: 0;
+    }
+    .page-nav__mid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 407px;
+    }
+    .page-nav__link {
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #9b9b9b;
+      text-decoration: none;
+      white-space: nowrap;
+      line-height: normal;
+    }
+    .page-nav__link--active { color: #141414; }
   </style>
 </head>
 <body>
@@ -233,13 +267,21 @@
   </a>
 </div>
 
-<!-- SECTION NAV -->
-<div class="section-nav">
-  <a href="#about" class="active">О проекте</a>
-  <a href="#process">Дизайн-процесс</a>
-  <a href="#research">Исследование</a>
-  <a href="#design">Дизайн</a>
-  <a href="#result">Результат</a>
+<!-- NAVIGATION -->
+<div class="page-nav">
+  <div class="page-nav__inner">
+    <div class="page-nav__left">
+      <a class="page-nav__link page-nav__link--active" href="#about">О проекте</a>
+      <a class="page-nav__link" href="#">Дизайн-процесс</a>
+    </div>
+    <div class="page-nav__right">
+      <div class="page-nav__mid">
+        <a class="page-nav__link" href="#research">Исследование</a>
+        <a class="page-nav__link" href="#design">Дизайн</a>
+      </div>
+      <a class="page-nav__link" href="#result">Результат</a>
+    </div>
+  </div>
 </div>
 
 <!-- ABOUT -->
