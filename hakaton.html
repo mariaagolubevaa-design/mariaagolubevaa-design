@@ -249,29 +249,22 @@
       font-weight: 500;
       line-height: normal;
     }
-    .anketa__slider {
+    .anketa__compare {
       position: relative;
       border-radius: 16px;
       overflow: hidden;
       height: 614px;
-      touch-action: pan-y;
+      touch-action: none;
+      cursor: ew-resize;
+      user-select: none;
+      -webkit-user-select: none;
     }
-    .anketa__track {
-      display: flex;
-      height: 100%;
-      transition: transform 0.4s ease;
-      will-change: transform;
+    .anketa__compare-normal,
+    .anketa__compare-blurred {
+      position: absolute;
+      inset: 0;
     }
-    .anketa__slide {
-      flex-shrink: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-    }
-    .anketa__slide--blurred { filter: blur(5px); }
-    .anketa__slide-img {
+    .anketa__compare-normal img {
       position: absolute;
       top: -0.65%;
       left: 0;
@@ -281,40 +274,50 @@
       object-position: center top;
       display: block;
     }
-    .anketa__nav {
+    .anketa__compare-blurred {
+      overflow: hidden;
+    }
+    .anketa__compare-blurred img {
+      position: absolute;
+      top: calc(-0.65% - 12px);
+      left: -12px;
+      width: calc(100% + 24px);
+      height: calc(101.29% + 24px);
+      object-fit: cover;
+      object-position: center top;
+      filter: blur(20px);
+      display: block;
+    }
+    .anketa__compare-handle {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 50%;
+      width: 2px;
       transform: translateX(-50%);
-      width: 130px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      z-index: 2;
       pointer-events: none;
     }
-    .anketa__divider {
+    .anketa__compare-line {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 1px;
+      inset: 0;
       background: #141414;
     }
-    .anketa__btn {
-      pointer-events: auto;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
+    .anketa__compare-knob {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #141414;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.2s;
-      position: relative;
-      z-index: 1;
+      pointer-events: auto;
+      cursor: ew-resize;
     }
-    .anketa__btn:hover { opacity: 0.5; }
     .anketa__captions {
       display: flex;
       justify-content: space-between;
@@ -454,27 +457,21 @@
           <span class="anketa__label-num" id="anketaNum">(01)</span>
         </div>
       </div>
-      <div class="anketa__slider" id="anketaSlider">
-        <div class="anketa__track" id="anketaTrack">
-          <div class="anketa__slide">
-            <img class="anketa__slide-img" src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма">
-          </div>
-          <div class="anketa__slide anketa__slide--blurred">
-            <img class="anketa__slide-img" src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма — размытый вид">
-          </div>
+      <div class="anketa__compare" id="anketaCompare">
+        <div class="anketa__compare-normal">
+          <img src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма — обычное зрение">
         </div>
-        <div class="anketa__nav" aria-hidden="true">
-          <button class="anketa__btn" id="anketaPrev" aria-label="Предыдущий слайд">
-            <svg width="24" height="40" viewBox="0 0 23.474 39.424" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M23.474 39.424L23.474 0L0 19.712L23.474 39.424Z" fill="#141414" stroke="#141414"/>
+        <div class="anketa__compare-blurred" id="anketaBlurred">
+          <img src="images/hakaton/anketa-slide-1.png" alt="Стандартная Яндекс форма — слабовидящий">
+        </div>
+        <div class="anketa__compare-handle" id="anketaHandle" aria-hidden="true">
+          <div class="anketa__compare-line"></div>
+          <div class="anketa__compare-knob">
+            <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 1L1 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 1L21 7L15 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
-          <div class="anketa__divider"></div>
-          <button class="anketa__btn" id="anketaNext" aria-label="Следующий слайд">
-            <svg width="24" height="40" viewBox="0 0 23.474 39.424" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 39.424L0 0L23.474 19.712L0 39.424Z" fill="#141414" stroke="#141414"/>
-            </svg>
-          </button>
+          </div>
         </div>
       </div>
       <div class="anketa__captions">
@@ -584,32 +581,31 @@
   const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}}),{threshold:.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  // Анкета slider
+  // Анкета before/after compare
   (function() {
-    var slider = document.getElementById('anketaSlider');
-    var track = document.getElementById('anketaTrack');
-    var numEl = document.getElementById('anketaNum');
-    if (!slider || !track) return;
-    var slides = track.querySelectorAll('.anketa__slide');
-    var total = slides.length;
-    if (!total) return;
-    var current = 0;
-    var startX = 0;
+    var compare = document.getElementById('anketaCompare');
+    var blurred = document.getElementById('anketaBlurred');
+    var handle  = document.getElementById('anketaHandle');
+    if (!compare || !blurred || !handle) return;
 
-    function goTo(n) {
-      current = ((n % total) + total) % total;
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
-      if (numEl) numEl.textContent = '(' + String(current + 1).padStart(2, '0') + ')';
+    var dragging = false;
+
+    function setPos(clientX) {
+      var rect = compare.getBoundingClientRect();
+      var pct  = Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100));
+      blurred.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      handle.style.left = pct + '%';
     }
 
-    document.getElementById('anketaPrev').addEventListener('click', function() { goTo(current - 1); });
-    document.getElementById('anketaNext').addEventListener('click', function() { goTo(current + 1); });
+    setPos(compare.getBoundingClientRect().left + compare.getBoundingClientRect().width * 0.5);
 
-    slider.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend', function(e) {
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
-    });
+    compare.addEventListener('mousedown',  function(e) { dragging = true; setPos(e.clientX); e.preventDefault(); });
+    document.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
+    document.addEventListener('mouseup',   function()  { dragging = false; });
+
+    compare.addEventListener('touchstart', function(e) { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchmove', function(e) { if (dragging) { setPos(e.touches[0].clientX); e.preventDefault(); } }, { passive: false });
+    document.addEventListener('touchend',  function()  { dragging = false; });
   })();
 </script>
 </body>
