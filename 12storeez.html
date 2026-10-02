@@ -1729,6 +1729,7 @@
       }
       [id^="trends-nav-l"] { left: 4px !important; right: auto !important; }
       [id^="trends-nav-r"] { right: 4px !important; left: auto !important; }
+      br.desktop-only { display: none; }
       #bench-phone:hover .bench-pulse.visible,
       #trends-phone:hover .trends-pulse.visible,
       #ml2-phone:hover .ml2-pulse.visible,
@@ -2556,24 +2557,24 @@
     </div></div><!-- /dr-inner /dr-body -->
 
     <!-- Глубинки -->
-    <div class="reveal" style="margin-top:96px;display:flex;align-items:flex-start;justify-content:space-between;">
-      <div style="display:flex;gap:16px;align-items:center;flex-shrink:0;">
-        <div style="flex:none;transform:rotate(180deg);width:24px;height:24px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/>
-          </svg>
-        </div>
-        <p style="font-family:'Inter Tight',Arial,sans-serif;font-size:30px;font-weight:500;line-height:1;color:#000000;white-space:nowrap;font-style:normal;flex-shrink:0;">Глубинки</p>
-      </div>
+    <button class="dr-toggle reveal" id="gl-toggle" aria-expanded="true" aria-controls="gl-body" style="margin-top:96px;">
+      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+      <span class="text-frame__label">Глубинки</span>
+    </button>
+
+    <div class="dr-body" id="gl-body" style="margin-bottom:96px;"><div class="dr-inner">
+
+    <div style="display:flex;justify-content:flex-end;">
       <div style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:1;color:#141414;width:600px;flex-shrink:0;font-style:normal;">
         <p style="margin:0;line-height:1;">В ходе глубинок нам нужно было узнать опыт онлайн-шоппинга респондентов</p>
         <p style="margin:0;line-height:1;">и опыта использования приложения 12 STOREEZ и других fashion-приложений</p>
-        <p style="margin:0;line-height:1;">Нам было важно узнать, что и как выбирают в онлайне, что предпочитают при покупках в онлайне, с какими барьерами сталкиваются, чего не хватает в онлайне, какой паттерн поведения в приложении. Со списком вопросов можно ознакомиться по ссылке<br>Мы искали респондентов по следующей выборке:</p>
+        <p style="margin:0;line-height:1;">Нам было важно узнать, что и как выбирают в онлайне, что предпочитают<br class="desktop-only">при покупках в онлайне, с какими барьерами сталкиваются, чего не хватает<br class="desktop-only">в онлайне, какой паттерн поведения в приложении.</p>
+        <p style="margin:16px 0 0;line-height:1;">Со списком вопросов можно ознакомиться по ссылке<br>Мы искали респондентов по следующей выборке:</p>
       </div>
     </div>
 
     <!-- Глубинки photo frame -->
-    <div class="reveal" style="position:relative;margin-top:48px;margin-bottom:96px;margin-left:-40px;width:1280px;height:630px;overflow:hidden;background:#fefefe;">
+    <div class="reveal" style="position:relative;margin-top:48px;margin-left:-40px;width:1280px;height:630px;overflow:hidden;background:#fefefe;">
       <!-- Background photo -->
       <img src="assets/images/glubin-photo.webp" alt="Глубинки — интервью" style="position:absolute;left:0;top:0;width:100%;height:auto;pointer-events:none;">
       <!-- 22 ИНТЕРВЬЮ -->
@@ -2605,9 +2606,16 @@ farfetch)</p>
       </div>
     </div>
 
+    </div></div><!-- /dr-inner /dr-body (Глубинки) -->
+
     <!-- ЮТ -->
-    <div class="ut-block reveal">
-      <div class="ut-block__title">Юзабилити тестирование</div>
+    <button class="dr-toggle reveal" id="ut-toggle" aria-expanded="true" aria-controls="ut-body">
+      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+      <span class="text-frame__label">Юзабилити тестирование</span>
+    </button>
+
+    <div class="dr-body" id="ut-body"><div class="dr-inner">
+    <div class="ut-block">
       <div class="ut-block__photo">
         <img src="assets/images/ut-photo.png" alt="Юзабилити тестирование">
       </div>
@@ -2637,6 +2645,7 @@ farfetch)</p>
         </div>
       </div>
     </div>
+    </div></div><!-- /dr-inner /dr-body -->
 
     <!-- CJM -->
     <div style="margin-bottom:0;" class="reveal">
@@ -4810,6 +4819,30 @@ farfetch)</p>
       var expanded = drToggle.getAttribute('aria-expanded') === 'true';
       drToggle.setAttribute('aria-expanded', String(!expanded));
       drBody.classList.toggle('collapsed');
+    });
+  })();
+
+  /* Юзабилити тестирование accordion */
+  (function () {
+    var utToggle = document.getElementById('ut-toggle');
+    var utBody   = document.getElementById('ut-body');
+    if (!utToggle || !utBody) return;
+    utToggle.addEventListener('click', function () {
+      var expanded = utToggle.getAttribute('aria-expanded') === 'true';
+      utToggle.setAttribute('aria-expanded', String(!expanded));
+      utBody.classList.toggle('collapsed');
+    });
+  })();
+
+  /* Глубинки accordion */
+  (function () {
+    var glToggle = document.getElementById('gl-toggle');
+    var glBody   = document.getElementById('gl-body');
+    if (!glToggle || !glBody) return;
+    glToggle.addEventListener('click', function () {
+      var expanded = glToggle.getAttribute('aria-expanded') === 'true';
+      glToggle.setAttribute('aria-expanded', String(!expanded));
+      glBody.classList.toggle('collapsed');
     });
   })();
 
