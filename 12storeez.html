@@ -2607,43 +2607,53 @@ farfetch)</p>
     </div><!-- /gl flex wrapper -->
 
     <!-- ЮТ -->
-    <button class="dr-toggle reveal" id="ut-toggle" aria-expanded="true" aria-controls="ut-body">
-      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
-      <span class="text-frame__label">Юзабилити тестирование</span>
-    </button>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:96px;">
 
-    <div class="dr-body" id="ut-body"><div class="dr-inner">
-    <div class="ut-block">
-      <div class="ut-block__photo">
-        <img src="assets/images/ut-photo.png" alt="Юзабилити тестирование">
-      </div>
-      <div class="ut-block__desc">
-        <p>Параллельно с глубинками, мы провели 17 ЮТ всего текущего приложения<br>с упором на главную страницу</p>
-        <p>Нам важно было понять с какими трудностями сталкивается постоянный<br>клиент пользующийся приложением и те, кто видят приложение впервые,<br>но пользуются приложениями конкурентов</p>
-      </div>
-      <div class="ut-block__item" style="top:187px;">
-        <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-        <div class="ut-block__item-text">
-          <p>6 из 17 респондентов</p>
-          <p>не считывали возможность клика по баннеру на главной</p>
+      <!-- Левая колонка: toggle + текст (оба сворачиваются) -->
+      <div style="width:576px;flex-shrink:0;">
+        <button class="dr-toggle reveal" id="ut-toggle" aria-expanded="true" aria-controls="ut-body ut-text-body" style="width:auto;margin-bottom:0;flex-shrink:0;">
+          <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+          <span class="text-frame__label">Юзабилити тестирование</span>
+        </button>
+        <div class="dr-body" id="ut-text-body"><div class="dr-inner">
+          <div style="position:relative;height:364px;">
+            <div class="ut-block__desc" style="top:32px;">
+              <p>Параллельно с глубинками, мы провели 17 ЮТ всего текущего приложения<br>с упором на главную страницу</p>
+              <p>Нам важно было понять с какими трудностями сталкивается постоянный<br>клиент пользующийся приложением и те, кто видят приложение впервые,<br>но пользуются приложениями конкурентов</p>
+            </div>
+            <div class="ut-block__item" style="top:151px;">
+              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
+              <div class="ut-block__item-text">
+                <p>6 из 17 респондентов</p>
+                <p>не считывали возможность клика по баннеру на главной</p>
+              </div>
+            </div>
+            <div class="ut-block__item" style="top:205px;">
+              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
+              <div class="ut-block__item-text">
+                <p>2 из 17 респондентов</p>
+                <p>не считывали таббар на баннере и воспринимали как обычный текст</p>
+              </div>
+            </div>
+            <div class="ut-block__item" style="top:259px;">
+              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
+              <div class="ut-block__item-text">
+                <p>4 из 17 респондентов</p>
+                <p>хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
+              </div>
+            </div>
+          </div>
+        </div></div><!-- /dr-inner /ut-text-body -->
+      </div><!-- /левая колонка -->
+
+      <!-- Правая колонка: фото (сворачивается) -->
+      <div class="dr-body" id="ut-body" style="width:600px;flex-shrink:0;"><div class="dr-inner">
+        <div class="ut-block__photo" style="position:relative;right:auto;top:auto;">
+          <img src="assets/images/ut-photo.png" alt="Юзабилити тестирование">
         </div>
-      </div>
-      <div class="ut-block__item" style="top:241px;">
-        <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-        <div class="ut-block__item-text">
-          <p>2 из 17 респондентов</p>
-          <p>не считывали таббар на баннере и воспринимали как обычный текст</p>
-        </div>
-      </div>
-      <div class="ut-block__item" style="top:295px;">
-        <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-        <div class="ut-block__item-text">
-          <p>4 из 17 респондентов</p>
-          <p>хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
-        </div>
-      </div>
-    </div>
-    </div></div><!-- /dr-inner /dr-body -->
+      </div></div><!-- /dr-inner /ut-body -->
+
+    </div><!-- /ЮТ flex wrapper -->
 
     <!-- CJM -->
     <div style="margin-bottom:0;" class="reveal">
@@ -4822,13 +4832,15 @@ farfetch)</p>
 
   /* Юзабилити тестирование accordion */
   (function () {
-    var utToggle = document.getElementById('ut-toggle');
-    var utBody   = document.getElementById('ut-body');
+    var utToggle   = document.getElementById('ut-toggle');
+    var utBody     = document.getElementById('ut-body');
+    var utTextBody = document.getElementById('ut-text-body');
     if (!utToggle || !utBody) return;
     utToggle.addEventListener('click', function () {
       var expanded = utToggle.getAttribute('aria-expanded') === 'true';
       utToggle.setAttribute('aria-expanded', String(!expanded));
       utBody.classList.toggle('collapsed');
+      if (utTextBody) utTextBody.classList.toggle('collapsed');
     });
   })();
 
