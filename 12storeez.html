@@ -60,12 +60,29 @@
 
     /* ── NAVBAR ── */
     /* ── NAVBAR ── */
+    .nav-trigger {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 40px;
+      z-index: 101;
+      pointer-events: auto;
+    }
+
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(255,254,251,.92);
-      backdrop-filter: blur(12px);
+      background: #fafafa;
+      transform: translateY(-100%);
+      pointer-events: none;
+      transition: transform 0.3s ease 0.15s;
+    }
+
+    .nav-trigger:hover ~ .nav,
+    .nav:hover {
+      transform: translateY(0);
+      pointer-events: auto;
+      transition: transform 0.3s ease;
     }
 
     .nav-inner {
@@ -1742,6 +1759,7 @@
 <body>
 
 <!-- NAV -->
+<div class="nav-trigger"></div>
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav__logo" href="index.html">
@@ -2737,9 +2755,16 @@ farfetch)</p>
 
     <div style="height:96px;"></div>
 
+    <!-- Майндсеты -->
+    <button class="dr-toggle reveal" id="mindsets-toggle" aria-expanded="true" aria-controls="mindsets-body">
+      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+      <span class="text-frame__label">Майндсеты</span>
+    </button>
+
+    <div class="dr-body" id="mindsets-body"><div class="dr-inner">
+
     <!-- Майндсеты текст -->
     <div class="mindsets-text reveal">
-      <p class="mindsets-text__title">Майндсеты</p>
       <div class="mindsets-text__body">
         <p>Мы разложили наших респондентов на оси координат по формату:<br>Те, кто склонён к импульсивным покупкам и продумывать покупки;<br>Те, кто предпочитает онлайн офлайну и наоборот</p>
         <p><br>Для проектирования решений мы выбрали 3 майндсета:</p>
@@ -2957,6 +2982,8 @@ farfetch)</p>
         </div>
       </div>
     </div>
+
+    </div></div><!-- /dr-inner /dr-body (Майндсеты) -->
 
     </div></div><!-- /accordion-inner /accordion-body -->
 
@@ -4922,6 +4949,18 @@ farfetch)</p>
       var expanded = glToggle.getAttribute('aria-expanded') === 'true';
       glToggle.setAttribute('aria-expanded', String(!expanded));
       glBody.classList.toggle('collapsed');
+    });
+  })();
+
+  /* Майндсеты accordion */
+  (function () {
+    var msToggle = document.getElementById('mindsets-toggle');
+    var msBody   = document.getElementById('mindsets-body');
+    if (!msToggle || !msBody) return;
+    msToggle.addEventListener('click', function () {
+      var expanded = msToggle.getAttribute('aria-expanded') === 'true';
+      msToggle.setAttribute('aria-expanded', String(!expanded));
+      msBody.classList.toggle('collapsed');
     });
   })();
 
