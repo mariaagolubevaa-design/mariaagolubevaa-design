@@ -302,26 +302,22 @@
     }
 
     .projects-scroll {
-      overflow: hidden;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      cursor: grab;
       padding: 8px 0 20px 0;
     }
+
+    .projects-scroll::-webkit-scrollbar { display: none; }
+
+    .projects-scroll.is-dragging { cursor: grabbing; }
 
     .projects-track {
       display: flex;
       gap: 32px;
       width: max-content;
       padding-left: 104px;
-      animation: projects-marquee 44000ms linear infinite;
-      will-change: transform;
-    }
-
-    .projects-track.is-paused {
-      animation-play-state: paused;
-    }
-
-    @keyframes projects-marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(var(--projects-shift, -3320px)); }
     }
 
     .project-card {
@@ -1122,24 +1118,24 @@
     }, { passive: true });
   })();
 
-  /* ── AUTO-SCROLL projects: seamless CSS marquee with DOM clone ── */
+  /* ── AUTO-SCROLL projects: JS RAF + seamless scrollLeft loop ── */
   (function () {
     if (window.matchMedia('(max-width: 768px)').matches) return;
     const scroll = document.querySelector('.projects-scroll');
     if (!scroll) return;
 
+    // Build track
     const track = document.createElement('div');
     track.className = 'projects-track';
-
     const origCards = Array.from(scroll.children);
     origCards.forEach(card => track.appendChild(card));
     scroll.appendChild(track);
 
-    // Duplicate all cards for seamless loop (clone goes after original set)
+    // Clone cards for seamless loop
+    const N = origCards.filter(c => c.classList.contains('project-card')).length;
     origCards.forEach(card => {
       const clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
-      // Ensure clones are always visible (bypass reveal animation)
       clone.classList.remove('reveal');
       clone.classList.add('visible');
       clone.querySelectorAll('.reveal').forEach(el => {
@@ -1149,20 +1145,106 @@
       track.appendChild(clone);
     });
 
-    // Shift = N cards × (cardWidth + gap): when set 1 fully exits left,
-    // set 2 is in exactly the same starting position → seamless loop
-    const N = origCards.filter(c => c.classList.contains('project-card')).length;
-    const CARD_W = 632; // matches .project-card { width: 632px }
-    const GAP    = 32;  // matches .projects-track { gap: 32px }
-    scroll.style.setProperty('--projects-shift', `-${N * (CARD_W + GAP)}px`);
+    const CARD_W  = 632;
+    const GAP     = 32;
+    const ONE_SET = N * (CARD_W + GAP); // 5 × 664 = 3320px
+    const SPEED   = ONE_SET / 25000;    // px/ms
 
-    // Pause on hover / touch (same behaviour as before)
-    scroll.addEventListener('mouseenter', () => track.classList.add('is-paused'));
-    scroll.addEventListener('mouseleave', () => track.classList.remove('is-paused'));
-    scroll.addEventListener('touchstart', () => track.classList.add('is-paused'), { passive: true });
-    scroll.addEventListener('touchend', () => {
-      setTimeout(() => track.classList.remove('is-paused'), 1500);
+    let pos = 0;
+    let lastTime = null;
+    let manualActive = false;
+    let resumeTimer = null;
+
+    function wrap(p) {
+      return ((p % ONE_SET) + ONE_SET) % ONE_SET;
+    }
+
+    function tick(now) {
+      if (manualActive) {
+        lastTime = now; // keep in sync so resume has no time-jump
+      } else {
+        if (lastTime !== null) {
+          pos = wrap(pos + SPEED * (now - lastTime));
+          scroll.scrollLeft = pos;
+        }
+        lastTime = now;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    function pauseAuto() {
+      manualActive = true;
+      clearTimeout(resumeTimer);
+    }
+
+    function resumeAuto(delay) {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        pos = wrap(scroll.scrollLeft);
+        manualActive = false;
+      }, delay || 0);
+    }
+
+    // Hover pause / resume
+    scroll.addEventListener('mouseenter', () => pauseAuto());
+    scroll.addEventListener('mouseleave', () => resumeAuto(0));
+
+    // Trackpad (deltaX) or mouse wheel + Shift (deltaY)
+    scroll.addEventListener('wheel', (e) => {
+      const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      if (!isHorizontal && !e.shiftKey) return;
+      e.preventDefault();
+      pauseAuto();
+      pos = wrap(pos + (isHorizontal ? e.deltaX : e.deltaY));
+      scroll.scrollLeft = pos;
+      resumeAuto(1500);
+    }, { passive: false });
+
+    // Mouse drag
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartPos = 0;
+
+    scroll.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragStartPos = pos;
+      pauseAuto();
+      scroll.classList.add('is-dragging');
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      pos = wrap(dragStartPos + dragStartX - e.clientX);
+      scroll.scrollLeft = pos;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      scroll.classList.remove('is-dragging');
+      resumeAuto(1500);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    let touchStartPos = 0;
+
+    scroll.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartPos = pos;
+      pauseAuto();
     }, { passive: true });
+
+    scroll.addEventListener('touchmove', (e) => {
+      pos = wrap(touchStartPos + touchStartX - e.touches[0].clientX);
+      scroll.scrollLeft = pos;
+    }, { passive: true });
+
+    scroll.addEventListener('touchend', () => resumeAuto(1500), { passive: true });
   })();
 </script>
 </body>
