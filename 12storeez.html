@@ -349,6 +349,15 @@
     .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
     .accordion-chevron.rotated { transform:rotate(180deg); }
 
+    /* Деск ресерч accordion */
+    .dr-toggle { display:flex; align-items:center; gap:16px; margin-bottom:48px; background:none; border:none; padding:0; cursor:pointer; font:inherit; text-align:left; width:100%; }
+    .dr-chevron { flex-shrink:0; transform:rotate(180deg); transition:transform 300ms ease; }
+    .dr-toggle[aria-expanded="false"] .dr-chevron { transform:rotate(90deg); }
+    .dr-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 300ms ease; }
+    .dr-body.collapsed { grid-template-rows:0fr; }
+    .dr-inner { min-height:0; }
+    .dr-body.collapsed .dr-inner { overflow:hidden; }
+
     /* TEXT FRAME — Figma 1744:13468 */
     .text-frame {
       display: grid;
@@ -2075,10 +2084,12 @@
 
     <div class="accordion-body" id="research-body"><div class="accordion-inner">
 
-    <div class="reveal" style="display:flex;align-items:center;gap:16px;margin-bottom:48px;">
-      <img src="icons/chevron-up.svg" alt="" aria-hidden="true" width="24" height="24" style="transform:rotate(180deg);flex-shrink:0;">
-      <p class="text-frame__label">Деск ресерч</p>
-    </div>
+    <button class="dr-toggle reveal" id="dr-toggle" aria-expanded="true" aria-controls="dr-body">
+      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+      <span class="text-frame__label">Деск ресерч</span>
+    </button>
+
+    <div class="dr-body" id="dr-body"><div class="dr-inner">
 
     <!-- Деск ресерч -->
     <div class="desk-research reveal">
@@ -2540,6 +2551,8 @@
         <div class="brand-pill" style="width:235.034px;padding:10.207px 22.069px;"><img src="assets/images/brand-ekunika.svg" alt="Экника" style="width:190.86px;height:43.586px;display:block;"></div>
       </div>
     </div>
+
+    </div></div><!-- /dr-inner /dr-body -->
 
     <!-- ЮТ -->
     <div class="ut-block reveal">
@@ -4718,6 +4731,18 @@
       if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
     });
   });
+
+  /* Деск ресерч accordion */
+  (function () {
+    var drToggle = document.getElementById('dr-toggle');
+    var drBody   = document.getElementById('dr-body');
+    if (!drToggle || !drBody) return;
+    drToggle.addEventListener('click', function () {
+      var expanded = drToggle.getAttribute('aria-expanded') === 'true';
+      drToggle.setAttribute('aria-expanded', String(!expanded));
+      drBody.classList.toggle('collapsed');
+    });
+  })();
 
   /* Mobile: hide bench pulse on any tap inside bench-expanded */
   (function() {
