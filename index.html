@@ -892,15 +892,19 @@
     <!-- 0. 12 STOREEZ -->
     <a class="project-card reveal" href="12storeez.html">
       <div class="project-card__thumb" style="background: white;">
-        <img src="icons/star-12-lg.svg" alt="" style="position:absolute;width:90px;height:90px;top:38px;right:44px;pointer-events:none;">
-        <img src="icons/star-12-sm.svg" alt="" style="position:absolute;width:51px;height:52px;bottom:72px;left:32px;pointer-events:none;">
-        <img src="icons/star-12-xs.svg" alt="" style="position:absolute;width:43px;height:44px;top:200px;left:68px;pointer-events:none;">
+        <img src="icons/star-12-lg.svg" alt="" style="position:absolute;width:90px;height:90px;top:0;right:0;pointer-events:none;">
+        <img src="icons/star-12-sm.svg" alt="" style="position:absolute;width:51px;height:52px;top:92px;right:0;pointer-events:none;">
+        <img src="icons/star-12-xs.svg" alt="" style="position:absolute;width:43px;height:44px;top:3px;left:463px;pointer-events:none;">
         <div style="position:absolute;width:220px;height:481px;left:50%;top:20px;transform:translateX(-50%);pointer-events:none;">
           <div style="position:absolute;inset:0;border-radius:26px;overflow:hidden;">
-            <img src="assets/images/card-12storeez-hero.png" alt=""
-              style="width:100%;height:100%;object-fit:cover;display:block;">
+            <!-- статичный мокап: все секции приложения -->
+            <img src="assets/images/card-12storeez-screen@2x.webp" alt=""
+              style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            <!-- GIF-слой: анимированная хиро-секция (зона анимации по макету) -->
+            <img src="assets/images/storeez-hero-3x.gif" alt=""
+              style="position:absolute;top:0;left:0;width:100%;height:170px;object-fit:cover;object-position:top center;pointer-events:none;">
           </div>
-          <img src="assets/images/card-12storeez-phone.png" alt=""
+          <img src="assets/images/storeez-iphone17-frame.png" alt=""
             style="position:absolute;left:-13px;top:-12px;width:246px;height:503px;object-fit:contain;">
         </div>
       </div>
