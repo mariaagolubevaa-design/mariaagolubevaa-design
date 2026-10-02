@@ -2245,6 +2245,7 @@
         <div class="bench-expanded">
           <div class="bench-phone" id="bench-phone">
             <video class="bench-phone-screen" id="bench-phone-screen" src="assets/images/benchmarks/b1-raw2.mp4" autoplay loop muted playsinline></video>
+            <img class="bench-phone-screen" id="bench-phone-screen-img" src="" alt="" style="display:none;">
             <img class="bench-phone-bezel" src="assets/images/benchmarks/b1-raw3.png" alt="">
             <div class="bench-pulse" id="bench-pulse">
               <div class="bench-pulse__core"></div>
@@ -3813,7 +3814,8 @@
   (function() {
     var benchWrapper = document.getElementById('benchmarks-wrapper');
     var benchCard    = document.getElementById('benchmarks-card');
-    var benchScreen  = document.getElementById('bench-phone-screen');
+    var benchScreen    = document.getElementById('bench-phone-screen');
+    var benchScreenImg = document.getElementById('bench-phone-screen-img');
     var benchLbl1    = document.getElementById('bench-lbl-1');
     var benchLbl2    = document.getElementById('bench-lbl-2');
     var benchLogo1   = document.getElementById('bench-logo-1');
@@ -3829,6 +3831,24 @@
     function setBenchPulse(visible) {
       if (!benchPulse) return;
       benchPulse.classList.toggle('visible', visible);
+    }
+
+    function isImgSrc(src) { return /\.(jpe?g|png|gif|webp)$/i.test(src); }
+    function setBenchSrc(src) {
+      var img = isImgSrc(src);
+      benchScreen.style.display = img ? 'none' : '';
+      benchScreenImg.style.display = img ? '' : 'none';
+      if (img) {
+        benchScreenImg.src = src;
+      } else {
+        benchScreen.src = src;
+        benchScreen.load();
+        benchScreen.play();
+      }
+    }
+    function fadeBenchScreen(add) {
+      benchScreen.classList.toggle('fading', add);
+      benchScreenImg.classList.toggle('fading', add);
     }
 
     var currentScreen = 1;
@@ -3854,11 +3874,10 @@
       bench3Toggle = 0;
       benchPhone.style.cursor = n === 3 ? 'pointer' : '';
       currentScreen = n;
-      benchScreen.classList.add('fading');
+      fadeBenchScreen(true);
       setTimeout(function() {
-        benchScreen.src = screenData[n - 1].src;
-        if (benchScreen.tagName === 'VIDEO') { benchScreen.load(); benchScreen.play(); }
-        benchScreen.classList.remove('fading');
+        setBenchSrc(screenData[n - 1].src);
+        fadeBenchScreen(false);
       }, 200);
       /* screens 1-2: feature #01 active (lbl1 black); screen 3: feature #02 active (lbl2 black) */
       if (n <= 2) {
@@ -3893,7 +3912,7 @@
       currentScreen = 1;
       bench3Toggle = 0;
       benchPhone.style.cursor = '';
-      benchScreen.src = screenData[0].src;
+      setBenchSrc(screenData[0].src);
       benchLbl1.classList.remove('inactive');
       benchLbl2.classList.add('inactive');
       benchLogo1.style.opacity = '1';
@@ -3944,10 +3963,10 @@
       if (currentScreen !== 3) return;
       bench3Toggle = 1 - bench3Toggle;
       setBenchPulse(true);
-      benchScreen.classList.add('fading');
+      fadeBenchScreen(true);
       setTimeout(function() {
-        benchScreen.src = bench3Srcs[bench3Toggle];
-        benchScreen.classList.remove('fading');
+        setBenchSrc(bench3Srcs[bench3Toggle]);
+        fadeBenchScreen(false);
       }, 200);
     });
   })();
