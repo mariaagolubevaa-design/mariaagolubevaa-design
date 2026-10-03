@@ -2756,21 +2756,22 @@ farfetch)</p>
     <div style="height:96px;"></div>
 
     <!-- Майндсеты -->
-    <button class="dr-toggle reveal" id="mindsets-toggle" aria-expanded="true" aria-controls="mindsets-body">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:72px;">
+    <button class="dr-toggle reveal" id="mindsets-toggle" aria-expanded="true" aria-controls="mindsets-body mindsets-text-body" style="width:auto;margin-bottom:0;flex-shrink:0;">
       <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
       <span class="text-frame__label">Майндсеты</span>
     </button>
 
-    <div class="dr-body" id="mindsets-body"><div class="dr-inner">
-
-    <!-- Майндсеты текст -->
-    <div class="mindsets-text reveal">
-      <div class="mindsets-text__body">
+    <div class="dr-body" id="mindsets-text-body" style="width:600px;flex-shrink:0;"><div class="dr-inner">
+      <div class="mindsets-text__body reveal">
         <p>Мы разложили наших респондентов на оси координат по формату:<br>Те, кто склонён к импульсивным покупкам и продумывать покупки;<br>Те, кто предпочитает онлайн офлайну и наоборот</p>
         <p><br>Для проектирования решений мы выбрали 3 майндсета:</p>
         <p>прагматик и кибершопоголик — те, кто любит онлайн, потому что наш продукт<br>в онлайне; искушённый, потому что он самый лояльный майндсет и готов<br>ко всему, что делает бренд</p>
       </div>
-    </div>
+    </div></div>
+    </div><!-- /mindsets flex wrapper -->
+
+    <div class="dr-body" id="mindsets-body"><div class="dr-inner">
 
     <!-- Майндсеты диаграмма -->
     <div class="mindsets-diagram reveal">
@@ -4954,13 +4955,15 @@ farfetch)</p>
 
   /* Майндсеты accordion */
   (function () {
-    var msToggle = document.getElementById('mindsets-toggle');
-    var msBody   = document.getElementById('mindsets-body');
+    var msToggle   = document.getElementById('mindsets-toggle');
+    var msBody     = document.getElementById('mindsets-body');
+    var msTextBody = document.getElementById('mindsets-text-body');
     if (!msToggle || !msBody) return;
     msToggle.addEventListener('click', function () {
       var expanded = msToggle.getAttribute('aria-expanded') === 'true';
       msToggle.setAttribute('aria-expanded', String(!expanded));
       msBody.classList.toggle('collapsed');
+      if (msTextBody) msTextBody.classList.toggle('collapsed');
     });
   })();
 
