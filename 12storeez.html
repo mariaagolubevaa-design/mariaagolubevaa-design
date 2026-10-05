@@ -791,14 +791,14 @@
     .ut-insights__slide.is-active { display:block; }
     .ut-insights__num { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:40px; font-weight:500; color:#222; line-height:1; margin:0 0 16px; }
     .ut-insights__text { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:16px; font-weight:500; color:#222; line-height:normal; margin:0; }
-    .ut-insights-block__phone { position:absolute; left:755px; top:-2px; width:310px; height:674px; transition:width 0.3s, height 0.3s, left 0.3s; }
-    .ut-insights-block__screen { position:absolute; top:38px; left:-1px; right:-1px; bottom:-1px; border-radius:3px; overflow:hidden; background:#111111; }
+    .ut-insights-block__phone { position:absolute; left:755px; top:-2px; width:322px; height:700px; transform:scale(0.9627); transform-origin:top left; }
+    .ut-insights-block__screen { position:absolute; inset:-2px; border-radius:22px; overflow:hidden; background:#111111; clip-path:inset(0 round 22px); isolation:isolate; }
     .ut-insights__screen-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity 0.3s; }
     .ut-insights__screen-img.is-active { opacity:1; }
     #ut-insights-screen .ut-insights__screen-img:nth-child(2) { filter: blur(4px); }
-    #ut-insights-photo-2 { position:absolute; left:654px; top:569px; width:303px; height:75px; border-radius:27px; display:block; opacity:0; transition:opacity 0.3s; pointer-events:none; }
+    #ut-insights-photo-2 { position:absolute; left:634px; top:591px; width:315px; height:78px; border-radius:28px; display:block; opacity:0; transition:opacity 0.3s; pointer-events:none; }
     #ut-insights-photo-2.is-active { opacity:1; }
-    .ut-insights-block__bezel { position:absolute; left:-18px; top:-17px; width:347px; height:709px; pointer-events:none; display:block; z-index:2; }
+    .ut-insights-block__bezel { position:absolute; left:-19px; top:-18px; width:360px; height:737px; pointer-events:none; display:block; z-index:2; }
     .ut-insights-block__dots { position:absolute; left:50%; transform:translateX(-50%); top:662px; display:flex; align-items:center; gap:32px; }
     .ut-insights__dot { background:#d9d9d9; border:none; padding:0; cursor:pointer; height:8px; width:8px; flex-shrink:0; transition:width 0.2s, background 0.2s; }
     .ut-insights__dot.is-active { background:#141414; width:32px; }
@@ -806,7 +806,7 @@
     .ut-insights-block__phone.is-clickable { cursor: pointer; }
     #ut-insights-screen-1b {
       position: absolute; inset: 0;
-      border-radius: 21px;
+      border-radius: 22px;
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
@@ -828,11 +828,8 @@
     .ut-insights-block__phone.is-clickable:hover .ut-ins-pulse.visible { opacity: 0; }
     /* Второй экран слайда 1: кружок у иконки закрытия (верхний левый) */
     .ut-ins-pulse--screen1b { left: 5.2%; top: 10.4%; }
-    /* Слайд 4 — оригинальный размер мокапа */
-    .ut-insights-block__phone.is-slide4 { width:322px; height:700px; left:739px; }
-    .ut-insights-block__phone.is-slide4 .ut-insights-block__screen { top:40px; }
-    .ut-insights-block__phone.is-slide4 .ut-insights-block__bezel { left:-19px; top:-18px; width:360px; height:737px; }
-    .ut-insights-block__phone.is-slide4 #ut-insights-screen-1b { border-radius:22px; }
+    /* Слайд 4 — мокап скрыт */
+    .ut-insights-block__phone.is-slide4 { display:none; }
     .ut-ins-pulse__core,
     .ut-ins-pulse__wave {
       position: absolute;
