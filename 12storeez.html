@@ -2810,7 +2810,7 @@ farfetch)</p>
             <div class="ut-insights-block__screen" id="ut-insights-screen">
               <img class="ut-insights__screen-img is-active" src="assets/images/ut-insights-screen-1.png" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-2.png" alt="">
-              <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-3.png" alt="">
+              <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-3.gif" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-4.png" alt="">
             </div>
             <img id="ut-insights-screen-1b" src="assets/images/ut-insights-screen-1b.png" alt="">
@@ -5110,6 +5110,7 @@ farfetch)</p>
       slides[current].classList.add('is-active');
       dots[current].classList.add('is-active');
       if (screens[current]) screens[current].classList.add('is-active');
+      if (current === 2 && screens[2]) { var s = screens[2]; var orig = s.src; s.src = ''; s.src = orig; }
       if (photo2) photo2.classList.toggle('is-active', current === 1);
       if (insightsPhone) insightsPhone.classList.toggle('is-clickable', current === 0);
       if (insightsPulse) insightsPulse.classList.toggle('visible', current === 0);
