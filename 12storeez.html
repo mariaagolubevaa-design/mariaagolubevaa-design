@@ -799,6 +799,41 @@
     .ut-insights-block__dots { position:absolute; left:50%; transform:translateX(-50%); top:670px; display:flex; align-items:center; gap:32px; }
     .ut-insights__dot { background:#d9d9d9; border:none; padding:0; cursor:pointer; height:8px; width:8px; flex-shrink:0; transition:width 0.2s, background 0.2s; }
     .ut-insights__dot.is-active { background:#141414; width:32px; }
+    /* Инсайты — кликабельный мокап (слайд 1) */
+    .ut-insights-block__phone.is-clickable { cursor: pointer; }
+    #ut-insights-screen-1b {
+      position: absolute; inset: 0;
+      border-radius: 22px;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    #ut-insights-screen-1b.is-active { opacity: 1; }
+    .ut-ins-pulse {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .ut-ins-pulse.visible { opacity: 1; }
+    .ut-insights-block__phone.is-clickable:hover .ut-ins-pulse.visible { opacity: 0; }
+    .ut-ins-pulse__core,
+    .ut-ins-pulse__wave {
+      position: absolute;
+      inset: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #FA472D;
+      transform-origin: center;
+    }
+    .ut-ins-pulse__wave { animation: bench-ripple 1.6s ease-out infinite; }
+    .ut-ins-pulse__wave--2 { animation-delay: 0.75s; }
     .brands-track {
       display: flex; align-items: center; gap: 32px;
       width: max-content;
@@ -1776,7 +1811,8 @@
       #ml2-phone:hover .ml2-pulse.visible,
       #t3-phone:hover .t3-pulse.visible,
       #ugc4-phone:hover .ugc4-pulse.visible,
-      #ugc4-coach:hover .ugc4-pulse.visible { opacity: 1; }
+      #ugc4-coach:hover .ugc4-pulse.visible,
+      #ut-insights-phone:hover .ut-ins-pulse.visible { opacity: 1; }
     }
   </style>
 </head>
@@ -2767,12 +2803,18 @@ farfetch)</p>
             <img src="assets/images/benchmarks/b1-chevron.svg" alt="" style="transform:rotate(90deg);display:block;">
           </button>
 
-          <div class="ut-insights-block__phone">
+          <div class="ut-insights-block__phone is-clickable" id="ut-insights-phone">
             <div class="ut-insights-block__screen" id="ut-insights-screen">
               <img class="ut-insights__screen-img is-active" src="assets/images/ut-insights-screen-1.png" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-2.png" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-3.png" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-4.png" alt="">
+            </div>
+            <img id="ut-insights-screen-1b" src="assets/images/ut-insights-screen-1b.png" alt="">
+            <div class="ut-ins-pulse visible" id="ut-ins-pulse">
+              <div class="ut-ins-pulse__core"></div>
+              <div class="ut-ins-pulse__wave ut-ins-pulse__wave--1"></div>
+              <div class="ut-ins-pulse__wave ut-ins-pulse__wave--2"></div>
             </div>
             <img class="ut-insights-block__bezel" src="assets/images/iphone17-bezel.png" alt="">
           </div>
@@ -5048,18 +5090,41 @@ farfetch)</p>
     var next    = document.getElementById('ut-insights-next');
     if (!slides.length || !prev || !next) return;
     var current = 0;
+    var screen1b      = document.getElementById('ut-insights-screen-1b');
+    var insightsPulse = document.getElementById('ut-ins-pulse');
+    var insightsPhone = document.getElementById('ut-insights-phone');
+    var slide1Toggle  = 0;
     function goTo(n) {
       slides[current].classList.remove('is-active');
       dots[current].classList.remove('is-active');
       if (screens[current]) screens[current].classList.remove('is-active');
+      slide1Toggle = 0;
+      if (screen1b) screen1b.classList.remove('is-active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('is-active');
       dots[current].classList.add('is-active');
       if (screens[current]) screens[current].classList.add('is-active');
+      if (insightsPhone) insightsPhone.classList.toggle('is-clickable', current === 0);
+      if (insightsPulse) insightsPulse.classList.toggle('visible', current === 0);
     }
     prev.addEventListener('click', function () { goTo(current - 1); });
     next.addEventListener('click', function () { goTo(current + 1); });
     dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); }); });
+    if (insightsPhone) {
+      insightsPhone.addEventListener('click', function(e) {
+        if (current !== 0) return;
+        e.stopPropagation();
+        slide1Toggle = 1 - slide1Toggle;
+        if (insightsPulse) insightsPulse.classList.add('visible');
+        if (slide1Toggle === 1) {
+          if (screens[0]) screens[0].classList.remove('is-active');
+          setTimeout(function() { if (screen1b) screen1b.classList.add('is-active'); }, 200);
+        } else {
+          if (screen1b) screen1b.classList.remove('is-active');
+          setTimeout(function() { if (screens[0]) screens[0].classList.add('is-active'); }, 200);
+        }
+      });
+    }
   })();
 
   /* Mobile: hide bench pulse on any tap inside bench-expanded */
