@@ -822,10 +822,12 @@
       pointer-events: none;
       z-index: 12;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, left 0.3s ease, top 0.3s ease;
     }
     .ut-ins-pulse.visible { opacity: 1; }
     .ut-insights-block__phone.is-clickable:hover .ut-ins-pulse.visible { opacity: 0; }
+    /* Второй экран слайда 1: кружок у иконки закрытия (верхний левый) */
+    .ut-ins-pulse--screen1b { left: 5.2%; top: 10.4%; }
     /* Слайд 4 — оригинальный размер мокапа */
     .ut-insights-block__phone.is-slide4 { width:322px; height:700px; left:739px; }
     .ut-insights-block__phone.is-slide4 .ut-insights-block__screen { border-radius:22px; clip-path:inset(0 round 22px); }
@@ -5111,6 +5113,7 @@ farfetch)</p>
       if (screens[current]) screens[current].classList.remove('is-active');
       slide1Toggle = 0;
       if (screen1b) screen1b.classList.remove('is-active');
+      if (insightsPulse) insightsPulse.classList.remove('ut-ins-pulse--screen1b');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('is-active');
       dots[current].classList.add('is-active');
@@ -5132,9 +5135,11 @@ farfetch)</p>
         if (insightsPulse) insightsPulse.classList.add('visible');
         if (slide1Toggle === 1) {
           if (screens[0]) screens[0].classList.remove('is-active');
+          if (insightsPulse) insightsPulse.classList.add('ut-ins-pulse--screen1b');
           setTimeout(function() { if (screen1b) screen1b.classList.add('is-active'); }, 200);
         } else {
           if (screen1b) screen1b.classList.remove('is-active');
+          if (insightsPulse) insightsPulse.classList.remove('ut-ins-pulse--screen1b');
           setTimeout(function() { if (screens[0]) screens[0].classList.add('is-active'); }, 200);
         }
       });
