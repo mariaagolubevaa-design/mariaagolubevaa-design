@@ -779,16 +779,23 @@
       line-height: normal; width: 546px;
     }
     .ut-block__item-text p { margin: 0; }
-    /* Инсайты carousel */
-    .ut-insights__body { display:flex; align-items:center; }
-    .ut-insights__nav { width:64px; height:64px; background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:opacity 0.2s; }
-    .ut-insights__nav:hover { opacity:0.6; }
-    .ut-insights__slides { flex:1; min-width:0; }
+    /* Инсайты standalone block */
+    .ut-insights-block { position:relative; width:1200px; height:716px; }
+    .ut-insights-block__title { position:absolute; left:0; top:0; font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; white-space:nowrap; margin:0; }
+    .ut-insights-block__nav { position:absolute; top:50%; transform:translateY(-50%); width:64px; height:64px; background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:opacity 0.2s; }
+    .ut-insights-block__nav:hover { opacity:0.6; }
+    .ut-insights-block__nav--prev { left:0; }
+    .ut-insights-block__nav--next { right:0; }
+    .ut-insights-block__slides { position:absolute; left:calc(50% - 302.5px); top:50%; transform:translateY(-50%); width:351px; }
     .ut-insights__slide { display:none; }
     .ut-insights__slide.is-active { display:block; }
-    .ut-insights__num { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:40px; font-weight:500; color:#141414; line-height:1; margin:0 0 16px; }
-    .ut-insights__text { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; }
-    .ut-insights__dots { display:flex; align-items:center; gap:32px; margin-top:32px; padding-left:64px; }
+    .ut-insights__num { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:40px; font-weight:500; color:#222; line-height:1; margin:0 0 16px; }
+    .ut-insights__text { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:16px; font-weight:500; color:#222; line-height:normal; margin:0; }
+    .ut-insights-block__phone { position:absolute; left:calc(50% + 300px); transform:translateX(-50%); top:0; width:322px; height:700px; }
+    .ut-insights-block__screen { position:absolute; inset:0; border-radius:22px; overflow:hidden; background:#fefefe; }
+    .ut-insights-block__screen img { width:100%; height:100%; object-fit:cover; display:block; }
+    .ut-insights-block__bezel { position:absolute; left:-19px; top:-18px; width:360px; height:737px; pointer-events:none; display:block; }
+    .ut-insights-block__dots { position:absolute; left:50%; transform:translateX(-50%); top:692px; display:flex; align-items:center; gap:32px; }
     .ut-insights__dot { background:#d9d9d9; border:none; padding:0; cursor:pointer; height:8px; width:8px; flex-shrink:0; transition:width 0.2s, background 0.2s; }
     .ut-insights__dot.is-active { background:#141414; width:32px; }
     .brands-track {
@@ -2680,11 +2687,11 @@ farfetch)</p>
     </div><!-- /gl flex wrapper -->
 
     <!-- ЮТ -->
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:96px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
 
       <!-- Левая колонка: toggle + текст (оба сворачиваются) -->
       <div style="width:576px;flex-shrink:0;">
-        <button class="dr-toggle reveal" id="ut-toggle" aria-expanded="true" aria-controls="ut-body ut-text-body" style="width:auto;margin-bottom:0;flex-shrink:0;">
+        <button class="dr-toggle reveal" id="ut-toggle" aria-expanded="true" aria-controls="ut-body ut-text-body ut-insights-body" style="width:auto;margin-bottom:0;flex-shrink:0;">
           <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
           <span class="text-frame__label">Юзабилити тестирование AS IS</span>
         </button>
@@ -2714,42 +2721,6 @@ farfetch)</p>
               </div>
             </div>
           </div>
-          <!-- Инсайты (inside ЮТ accordion) -->
-          <div style="margin-top:72px;">
-            <p style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;line-height:normal;color:#141414;margin:0 0 32px;white-space:nowrap;">Инсайты</p>
-            <div class="ut-insights__body">
-              <button class="ut-insights__nav" id="ut-insights-prev" aria-label="Предыдущий инсайт">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
-              </button>
-              <div class="ut-insights__slides" id="ut-insights-slides">
-                <div class="ut-insights__slide is-active">
-                  <p class="ut-insights__num">6/17</p>
-                  <p class="ut-insights__text">не считывали возможность клика по баннеру на главной</p>
-                </div>
-                <div class="ut-insights__slide">
-                  <p class="ut-insights__num">2/17</p>
-                  <p class="ut-insights__text">не считывали таббар на баннере и воспринимали как обычный текст</p>
-                </div>
-                <div class="ut-insights__slide">
-                  <p class="ut-insights__num">4/17</p>
-                  <p class="ut-insights__text">хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
-                </div>
-                <div class="ut-insights__slide">
-                  <p class="ut-insights__num">16/17</p>
-                  <p class="ut-insights__text">сразу уходят с главной страницы в бургер меню, чтобы посмотреть интересующий раздел</p>
-                </div>
-              </div>
-              <button class="ut-insights__nav" id="ut-insights-next" aria-label="Следующий инсайт">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(90deg)"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
-              </button>
-            </div>
-            <div class="ut-insights__dots" id="ut-insights-dots">
-              <button class="ut-insights__dot is-active" data-index="0" aria-label="Инсайт 1"></button>
-              <button class="ut-insights__dot" data-index="1" aria-label="Инсайт 2"></button>
-              <button class="ut-insights__dot" data-index="2" aria-label="Инсайт 3"></button>
-              <button class="ut-insights__dot" data-index="3" aria-label="Инсайт 4"></button>
-            </div>
-          </div>
         </div></div><!-- /dr-inner /ut-text-body -->
       </div><!-- /левая колонка -->
 
@@ -2761,6 +2732,56 @@ farfetch)</p>
       </div></div><!-- /dr-inner /ut-body -->
 
     </div><!-- /ЮТ flex wrapper -->
+
+    <!-- Инсайты: отдельный блок на всю ширину, сворачивается вместе с аккордеоном -->
+    <div class="dr-body" id="ut-insights-body" style="margin-bottom:96px;">
+      <div class="dr-inner" style="padding-top:72px;">
+        <div class="ut-insights-block">
+          <p class="ut-insights-block__title">Инсайты</p>
+
+          <button class="ut-insights-block__nav ut-insights-block__nav--prev" id="ut-insights-prev" aria-label="Предыдущий инсайт">
+            <img src="assets/icons/insights-chevron.svg" alt="" width="24" height="24" style="transform:rotate(-90deg)">
+          </button>
+
+          <div class="ut-insights-block__slides" id="ut-insights-slides">
+            <div class="ut-insights__slide is-active">
+              <p class="ut-insights__num">6/17</p>
+              <p class="ut-insights__text">не считывали возможность клика по баннеру на главной</p>
+            </div>
+            <div class="ut-insights__slide">
+              <p class="ut-insights__num">2/17</p>
+              <p class="ut-insights__text">не считывали таббар на баннере и воспринимали как обычный текст</p>
+            </div>
+            <div class="ut-insights__slide">
+              <p class="ut-insights__num">4/17</p>
+              <p class="ut-insights__text">хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
+            </div>
+            <div class="ut-insights__slide">
+              <p class="ut-insights__num">16/17</p>
+              <p class="ut-insights__text">сразу уходят с главной страницы в бургер меню, чтобы посмотреть интересующий раздел</p>
+            </div>
+          </div>
+
+          <button class="ut-insights-block__nav ut-insights-block__nav--next" id="ut-insights-next" aria-label="Следующий инсайт">
+            <img src="assets/icons/insights-chevron.svg" alt="" width="24" height="24" style="transform:rotate(90deg)">
+          </button>
+
+          <div class="ut-insights-block__phone">
+            <div class="ut-insights-block__screen">
+              <img src="assets/images/ut-insights-app-screen.png" alt="12storeez приложение">
+            </div>
+            <img class="ut-insights-block__bezel" src="assets/images/iphone17-bezel.png" alt="">
+          </div>
+
+          <div class="ut-insights-block__dots" id="ut-insights-dots">
+            <button class="ut-insights__dot is-active" data-index="0" aria-label="Инсайт 1"></button>
+            <button class="ut-insights__dot" data-index="1" aria-label="Инсайт 2"></button>
+            <button class="ut-insights__dot" data-index="2" aria-label="Инсайт 3"></button>
+            <button class="ut-insights__dot" data-index="3" aria-label="Инсайт 4"></button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /ut-insights-body -->
 
     <!-- CJM -->
     <div style="margin-bottom:0;" class="reveal">
@@ -4962,15 +4983,17 @@ farfetch)</p>
 
   /* Юзабилити тестирование accordion */
   (function () {
-    var utToggle   = document.getElementById('ut-toggle');
-    var utBody     = document.getElementById('ut-body');
-    var utTextBody = document.getElementById('ut-text-body');
+    var utToggle       = document.getElementById('ut-toggle');
+    var utBody         = document.getElementById('ut-body');
+    var utTextBody     = document.getElementById('ut-text-body');
+    var utInsightsBody = document.getElementById('ut-insights-body');
     if (!utToggle || !utBody) return;
     utToggle.addEventListener('click', function () {
       var expanded = utToggle.getAttribute('aria-expanded') === 'true';
       utToggle.setAttribute('aria-expanded', String(!expanded));
       utBody.classList.toggle('collapsed');
-      if (utTextBody) utTextBody.classList.toggle('collapsed');
+      if (utTextBody)     utTextBody.classList.toggle('collapsed');
+      if (utInsightsBody) utInsightsBody.classList.toggle('collapsed');
     });
   })();
 
