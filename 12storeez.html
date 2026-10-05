@@ -795,6 +795,8 @@
     .ut-insights-block__screen { position:absolute; inset:0; border-radius:22px; overflow:hidden; background:#fefefe; }
     .ut-insights__screen-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity 0.3s; }
     .ut-insights__screen-img.is-active { opacity:1; }
+    #ut-insights-photo-2 { position:absolute; left:634px; top:591px; width:315px; height:78px; border-radius:28px; display:block; opacity:0; transition:opacity 0.3s; pointer-events:none; }
+    #ut-insights-photo-2.is-active { opacity:1; }
     .ut-insights-block__bezel { position:absolute; left:-19px; top:-18px; width:360px; height:737px; pointer-events:none; display:block; }
     .ut-insights-block__dots { position:absolute; left:50%; transform:translateX(-50%); top:670px; display:flex; align-items:center; gap:32px; }
     .ut-insights__dot { background:#d9d9d9; border:none; padding:0; cursor:pointer; height:8px; width:8px; flex-shrink:0; transition:width 0.2s, background 0.2s; }
@@ -2818,6 +2820,8 @@ farfetch)</p>
             </div>
             <img class="ut-insights-block__bezel" src="assets/images/iphone17-bezel.png" alt="">
           </div>
+
+          <img id="ut-insights-photo-2" src="assets/images/ut-insights-photo-2.webp" width="315" height="78" alt="">
 
           <div class="ut-insights-block__dots" id="ut-insights-dots">
             <button class="ut-insights__dot is-active" data-index="0" aria-label="Инсайт 1"></button>
@@ -5091,6 +5095,7 @@ farfetch)</p>
     if (!slides.length || !prev || !next) return;
     var current = 0;
     var screen1b      = document.getElementById('ut-insights-screen-1b');
+    var photo2        = document.getElementById('ut-insights-photo-2');
     var insightsPulse = document.getElementById('ut-ins-pulse');
     var insightsPhone = document.getElementById('ut-insights-phone');
     var slide1Toggle  = 0;
@@ -5104,6 +5109,7 @@ farfetch)</p>
       slides[current].classList.add('is-active');
       dots[current].classList.add('is-active');
       if (screens[current]) screens[current].classList.add('is-active');
+      if (photo2) photo2.classList.toggle('is-active', current === 1);
       if (insightsPhone) insightsPhone.classList.toggle('is-clickable', current === 0);
       if (insightsPulse) insightsPulse.classList.toggle('visible', current === 0);
     }
