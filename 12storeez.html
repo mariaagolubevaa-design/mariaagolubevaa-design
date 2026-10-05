@@ -779,6 +779,18 @@
       line-height: normal; width: 546px;
     }
     .ut-block__item-text p { margin: 0; }
+    /* Инсайты carousel */
+    .ut-insights__body { display:flex; align-items:center; }
+    .ut-insights__nav { width:64px; height:64px; background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:opacity 0.2s; }
+    .ut-insights__nav:hover { opacity:0.6; }
+    .ut-insights__slides { flex:1; min-width:0; }
+    .ut-insights__slide { display:none; }
+    .ut-insights__slide.is-active { display:block; }
+    .ut-insights__num { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:40px; font-weight:500; color:#141414; line-height:1; margin:0 0 16px; }
+    .ut-insights__text { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0; }
+    .ut-insights__dots { display:flex; align-items:center; gap:32px; margin-top:32px; padding-left:64px; }
+    .ut-insights__dot { background:#d9d9d9; border:none; padding:0; cursor:pointer; height:8px; width:8px; flex-shrink:0; transition:width 0.2s, background 0.2s; }
+    .ut-insights__dot.is-active { background:#141414; width:32px; }
     .brands-track {
       display: flex; align-items: center; gap: 32px;
       width: max-content;
@@ -2703,35 +2715,39 @@ farfetch)</p>
             </div>
           </div>
           <!-- Инсайты (inside ЮТ accordion) -->
-          <div style="margin-top:48px;position:relative;height:300px;">
-            <p style="position:absolute;left:0;top:0;font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;line-height:normal;color:#141414;margin:0;white-space:nowrap;">Инсайты</p>
-            <div class="ut-block__item" style="top:68px;">
-              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-              <div class="ut-block__item-text">
-                <p>6 из 17 респондентов</p>
-                <p>не считывали возможность клика по баннеру на главной</p>
+          <div style="margin-top:72px;">
+            <p style="font-family:'Inter Tight','Inter',Arial,sans-serif;font-size:30px;font-weight:500;line-height:normal;color:#141414;margin:0 0 32px;white-space:nowrap;">Инсайты</p>
+            <div class="ut-insights__body">
+              <button class="ut-insights__nav" id="ut-insights-prev" aria-label="Предыдущий инсайт">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+              </button>
+              <div class="ut-insights__slides" id="ut-insights-slides">
+                <div class="ut-insights__slide is-active">
+                  <p class="ut-insights__num">6/17</p>
+                  <p class="ut-insights__text">не считывали возможность клика по баннеру на главной</p>
+                </div>
+                <div class="ut-insights__slide">
+                  <p class="ut-insights__num">2/17</p>
+                  <p class="ut-insights__text">не считывали таббар на баннере и воспринимали как обычный текст</p>
+                </div>
+                <div class="ut-insights__slide">
+                  <p class="ut-insights__num">4/17</p>
+                  <p class="ut-insights__text">хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
+                </div>
+                <div class="ut-insights__slide">
+                  <p class="ut-insights__num">16/17</p>
+                  <p class="ut-insights__text">сразу уходят с главной страницы в бургер меню, чтобы посмотреть интересующий раздел</p>
+                </div>
               </div>
+              <button class="ut-insights__nav" id="ut-insights-next" aria-label="Следующий инсайт">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(90deg)"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+              </button>
             </div>
-            <div class="ut-block__item" style="top:122px;">
-              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-              <div class="ut-block__item-text">
-                <p>2 из 17 респондентов</p>
-                <p>не считывали таббар на баннере и воспринимали как обычный текст</p>
-              </div>
-            </div>
-            <div class="ut-block__item" style="top:176px;">
-              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-              <div class="ut-block__item-text">
-                <p>4 из 17 респондентов</p>
-                <p>хотят смотреть новый кампейн на главной, но не готовы это делать более 2 раз</p>
-              </div>
-            </div>
-            <div class="ut-block__item" style="top:242px;">
-              <img class="ut-block__star" src="assets/icons/myrole-star.svg" alt="">
-              <div class="ut-block__item-text">
-                <p>16 из 17 респондентов</p>
-                <p>сразу уходят с главной страницы в бургер меню, чтобы посмотреть интересующий раздел</p>
-              </div>
+            <div class="ut-insights__dots" id="ut-insights-dots">
+              <button class="ut-insights__dot is-active" data-index="0" aria-label="Инсайт 1"></button>
+              <button class="ut-insights__dot" data-index="1" aria-label="Инсайт 2"></button>
+              <button class="ut-insights__dot" data-index="2" aria-label="Инсайт 3"></button>
+              <button class="ut-insights__dot" data-index="3" aria-label="Инсайт 4"></button>
             </div>
           </div>
         </div></div><!-- /dr-inner /ut-text-body -->
@@ -4994,6 +5010,26 @@ farfetch)</p>
       msBody.classList.toggle('collapsed');
       if (msTextBody) msTextBody.classList.toggle('collapsed');
     });
+  })();
+
+  /* Инсайты carousel (ЮТ) */
+  (function () {
+    var slides = document.querySelectorAll('#ut-insights-slides .ut-insights__slide');
+    var dots   = document.querySelectorAll('#ut-insights-dots .ut-insights__dot');
+    var prev   = document.getElementById('ut-insights-prev');
+    var next   = document.getElementById('ut-insights-next');
+    if (!slides.length || !prev || !next) return;
+    var current = 0;
+    function goTo(n) {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+    prev.addEventListener('click', function () { goTo(current - 1); });
+    next.addEventListener('click', function () { goTo(current + 1); });
+    dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); }); });
   })();
 
   /* Mobile: hide bench pulse on any tap inside bench-expanded */
