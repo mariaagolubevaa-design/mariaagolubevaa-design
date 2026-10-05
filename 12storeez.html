@@ -786,14 +786,15 @@
     .ut-insights-block__nav:hover { opacity:0.6; }
     .ut-insights-block__nav--prev { left:0; }
     .ut-insights-block__nav--next { right:0; }
-    .ut-insights-block__slides { position:absolute; left:calc(50% - 302.5px); top:50%; transform:translateY(-50%); width:351px; }
+    .ut-insights-block__slides { position:absolute; left:calc(50% - 302.5px); top:50%; transform:translate(-50%, -50%); width:351px; }
     .ut-insights__slide { display:none; }
     .ut-insights__slide.is-active { display:block; }
     .ut-insights__num { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:40px; font-weight:500; color:#222; line-height:1; margin:0 0 16px; }
     .ut-insights__text { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:16px; font-weight:500; color:#222; line-height:normal; margin:0; }
     .ut-insights-block__phone { position:absolute; left:calc(50% + 300px); transform:translateX(-50%); top:0; width:322px; height:700px; }
     .ut-insights-block__screen { position:absolute; inset:0; border-radius:22px; overflow:hidden; background:#fefefe; }
-    .ut-insights-block__screen img { width:100%; height:100%; object-fit:cover; display:block; }
+    .ut-insights__screen-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity 0.3s; }
+    .ut-insights__screen-img.is-active { opacity:1; }
     .ut-insights-block__bezel { position:absolute; left:-19px; top:-18px; width:360px; height:737px; pointer-events:none; display:block; }
     .ut-insights-block__dots { position:absolute; left:50%; transform:translateX(-50%); top:692px; display:flex; align-items:center; gap:32px; }
     .ut-insights__dot { background:#d9d9d9; border:none; padding:0; cursor:pointer; height:8px; width:8px; flex-shrink:0; transition:width 0.2s, background 0.2s; }
@@ -2767,8 +2768,11 @@ farfetch)</p>
           </button>
 
           <div class="ut-insights-block__phone">
-            <div class="ut-insights-block__screen">
-              <img src="assets/images/ut-insights-app-screen.png" alt="12storeez приложение">
+            <div class="ut-insights-block__screen" id="ut-insights-screen">
+              <img class="ut-insights__screen-img is-active" src="assets/images/ut-insights-screen-1.png" alt="">
+              <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-2.png" alt="">
+              <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-3.png" alt="">
+              <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-4.png" alt="">
             </div>
             <img class="ut-insights-block__bezel" src="assets/images/iphone17-bezel.png" alt="">
           </div>
@@ -5037,18 +5041,21 @@ farfetch)</p>
 
   /* Инсайты carousel (ЮТ) */
   (function () {
-    var slides = document.querySelectorAll('#ut-insights-slides .ut-insights__slide');
-    var dots   = document.querySelectorAll('#ut-insights-dots .ut-insights__dot');
-    var prev   = document.getElementById('ut-insights-prev');
-    var next   = document.getElementById('ut-insights-next');
+    var slides  = document.querySelectorAll('#ut-insights-slides .ut-insights__slide');
+    var dots    = document.querySelectorAll('#ut-insights-dots .ut-insights__dot');
+    var screens = document.querySelectorAll('#ut-insights-screen .ut-insights__screen-img');
+    var prev    = document.getElementById('ut-insights-prev');
+    var next    = document.getElementById('ut-insights-next');
     if (!slides.length || !prev || !next) return;
     var current = 0;
     function goTo(n) {
       slides[current].classList.remove('is-active');
       dots[current].classList.remove('is-active');
+      if (screens[current]) screens[current].classList.remove('is-active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('is-active');
       dots[current].classList.add('is-active');
+      if (screens[current]) screens[current].classList.add('is-active');
     }
     prev.addEventListener('click', function () { goTo(current - 1); });
     next.addEventListener('click', function () { goTo(current + 1); });
