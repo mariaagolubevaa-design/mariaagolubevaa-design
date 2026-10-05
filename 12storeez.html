@@ -792,7 +792,7 @@
     .ut-insights__num { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:40px; font-weight:500; color:#222; line-height:1; margin:0 0 16px; }
     .ut-insights__text { font-family:'Inter Tight','Inter',Arial,sans-serif; font-size:16px; font-weight:500; color:#222; line-height:normal; margin:0; }
     .ut-insights-block__phone { position:absolute; left:755px; top:-2px; width:322px; height:700px; transform:scale(0.9627); transform-origin:top left; }
-    .ut-insights-block__screen { position:absolute; inset:-2px; border-radius:22px; overflow:hidden; background:#111111; clip-path:inset(0 round 22px); isolation:isolate; }
+    .ut-insights-block__screen { position:absolute; top:-2px; right:-2px; bottom:-7px; left:-2px; border-radius:22px; overflow:hidden; background:#111111; clip-path:inset(2px round 38.44px); isolation:isolate; }
     .ut-insights__screen-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity 0.3s; }
     .ut-insights__screen-img.is-active { opacity:1; }
     #ut-insights-screen .ut-insights__screen-img:nth-child(2) { filter: blur(4px); }
@@ -806,9 +806,9 @@
     .ut-insights-block__phone.is-clickable { cursor: pointer; }
     #ut-insights-screen-1b {
       position: absolute; inset: 0;
-      border-radius: 22px;
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: top center;
       display: block;
       opacity: 0;
       transition: opacity 0.3s;
@@ -2816,8 +2816,8 @@ farfetch)</p>
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-2.png" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-3.gif" alt="">
               <img class="ut-insights__screen-img" src="assets/images/ut-insights-screen-4.png" alt="">
+              <img id="ut-insights-screen-1b" src="assets/images/ut-insights-screen-1b.png" alt="">
             </div>
-            <img id="ut-insights-screen-1b" src="assets/images/ut-insights-screen-1b.png" alt="">
             <div class="ut-ins-pulse visible" id="ut-ins-pulse">
               <div class="ut-ins-pulse__core"></div>
               <div class="ut-ins-pulse__wave ut-ins-pulse__wave--1"></div>
