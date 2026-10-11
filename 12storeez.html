@@ -336,8 +336,8 @@
     /* #about: nav bottom y=731 + padding-bottom 18 + border 3 = 752; Context y=827 → 827-752=75px */
     #about { padding-top: 75px; }
     #process { padding-bottom: 0; }
-    #research { padding-top: 128px; }
-    #design { padding-top: 48px; }
+    #research { padding-top: 128px; padding-bottom: 0; }
+    #design { padding-top: 128px; }
     .section-title { font-size: 40px; font-weight: 600; margin-bottom: 48px; }
     .sep { height: 1px; background: var(--grey1); margin: 0 40px; }
 
@@ -361,6 +361,7 @@
     .accordion-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 0.35s ease; }
     .accordion-body.collapsed { grid-template-rows:0fr; }
     .accordion-inner { min-height:0; min-width:0; }
+    #research-body > .accordion-inner { padding-bottom:4px; }
     .accordion-body.collapsed .accordion-inner { overflow:hidden; }
     .accordion-toggle { cursor:pointer; user-select:none; }
     .accordion-chevron { transition:transform 0.35s ease; display:inline-block; }
@@ -3107,6 +3108,65 @@ farfetch)</p>
   </div>
 </section>
 
+<!-- Приоритизация frame (Figma 2454:18091, 1200×510px) -->
+<div id="priori-frame" style="max-width:1280px;margin:48px auto 0;padding:0 40px;">
+  <div style="position:relative;height:510px;overflow:hidden;">
+    <!-- «Главная» -->
+    <span style="position:absolute;left:313px;top:287px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:19px;white-space:nowrap;">Главная</span>
+    <!-- «Приложение» -->
+    <span style="position:absolute;left:852px;top:287px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:19px;white-space:nowrap;">Приложение</span>
+    <!-- 7 ОПРОС ПО КАНО -->
+    <div style="position:absolute;left:16px;bottom:28px;display:flex;align-items:center;gap:8px;text-transform:uppercase;">
+      <span style="font-family:'Oswald',sans-serif;font-size:80px;font-weight:400;color:#c8c8c8;letter-spacing:-1.6px;line-height:1;text-box:trim-both cap alphabetic;-webkit-text-box:trim-both cap alphabetic;">7</span>
+      <p style="margin:0;font-family:'Oswald',sans-serif;font-size:34px;font-weight:400;color:#222222;letter-spacing:-0.68px;line-height:1.13;text-align:right;text-box:trim-both cap alphabetic;-webkit-text-box:trim-both cap alphabetic;">ОПРОС<br>ПО КАНО</p>
+    </div>
+
+    <!-- Badge 1 (Главная) — появляется на шаге 2 -->
+    <div id="priori-badge-1" style="position:absolute;left:206px;top:12px;width:274px;height:498px;opacity:0;transform:translateY(-12px);transition:opacity 0.6s ease-in-out,transform 0.6s ease-in-out;">
+      <!-- Фото: верхний клип (ланъяр + верхняя часть карточки) -->
+      <div style="position:absolute;top:0;left:0;width:274px;height:391px;overflow:hidden;pointer-events:none;">
+        <img src="assets/images/badge-photo.png" alt="" style="position:absolute;left:-126px;top:0;width:524px;max-width:none;display:block;">
+      </div>
+      <!-- Фото: нижний клип (нижняя часть карточки) -->
+      <div style="position:absolute;top:349px;left:0;width:274px;height:149px;overflow:hidden;pointer-events:none;">
+        <img src="assets/images/badge-photo.png" alt="" style="position:absolute;left:-126px;top:-214px;width:524px;max-width:none;display:block;">
+      </div>
+      <!-- Текст на бейдже -->
+      <div style="position:absolute;left:32px;top:252px;display:flex;flex-direction:column;gap:4px;">
+        <span class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">Персонализация</span>
+        <span class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">UGC</span>
+        <span class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">Готовые образы</span>
+        <span id="pb1-strikethrough" class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">Стримы</span>
+      </div>
+      <!-- Штрихкод -->
+      <img src="assets/images/badge-barcode.png" alt="" style="position:absolute;left:32px;top:370px;width:201px;height:65px;display:block;max-width:none;">
+      <p style="position:absolute;left:32px;top:434px;margin:0;font-family:'Inter',Arial,sans-serif;font-size:17.7px;font-weight:400;color:#222;letter-spacing:-0.89px;text-transform:uppercase;white-space:pre;">18  07 20 26    18  07  2026</p>
+    </div>
+
+    <!-- Badge 2 (Приложение) — появляется на шаге 3 -->
+    <div id="priori-badge-2" style="position:absolute;left:763px;top:12px;width:274px;height:498px;opacity:0;transform:translateY(-12px);transition:opacity 0.6s ease-in-out,transform 0.6s ease-in-out;">
+      <!-- Фото: верхний клип -->
+      <div style="position:absolute;top:0;left:0;width:274px;height:391px;overflow:hidden;pointer-events:none;">
+        <img src="assets/images/badge-photo.png" alt="" style="position:absolute;left:-126px;top:0;width:524px;max-width:none;display:block;">
+      </div>
+      <!-- Фото: нижний клип -->
+      <div style="position:absolute;top:349px;left:0;width:274px;height:149px;overflow:hidden;pointer-events:none;">
+        <img src="assets/images/badge-photo.png" alt="" style="position:absolute;left:-126px;top:-214px;width:524px;max-width:none;display:block;">
+      </div>
+      <!-- Текст на бейдже -->
+      <div style="position:absolute;left:32px;top:252px;display:flex;flex-direction:column;gap:8px;">
+        <span class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">Гардероб</span>
+        <span class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">Делиться</span>
+        <span class="pb-item" style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;line-height:normal;white-space:nowrap;color:#141414;transition:color 0.6s ease-in-out;">Умный вишлист</span>
+      </div>
+      <!-- Штрихкод -->
+      <img src="assets/images/badge-barcode.png" alt="" style="position:absolute;left:32px;top:370px;width:201px;height:65px;display:block;max-width:none;">
+      <p style="position:absolute;left:32px;top:434px;margin:0;font-family:'Inter',Arial,sans-serif;font-size:17.7px;font-weight:400;color:#222;letter-spacing:-0.89px;text-transform:uppercase;white-space:pre;">18  07 20 26    18  07  2026</p>
+    </div>
+
+  </div>
+</div>
+
 <!-- DESIGN -->
 <section id="design" style="padding-bottom:0;">
   <div class="container">
@@ -5166,7 +5226,62 @@ farfetch)</p>
     if (bx && bp) bx.addEventListener('click', function() { bp.classList.remove('visible'); });
   })();
 
+  /* Приоритизация: анимация бейджей (4 шага, автозапуск при попадании в viewport) */
+  (function () {
+    var frame  = document.getElementById('priori-frame');
+    var badge1 = document.getElementById('priori-badge-1');
+    var badge2 = document.getElementById('priori-badge-2');
+    if (!frame || !badge1 || !badge2) return;
+
+    var items1  = badge1.querySelectorAll('.pb-item');
+    var items2  = badge2.querySelectorAll('.pb-item');
+    /* шаг 4: левый бейдж — зелёный × 3, красный зачёркнутый × 1; правый — зелёный × 3 */
+    var colors1 = ['#1b7950', '#1b7950', '#1b7950', '#ef0420'];
+    var colors2 = ['#1b7950', '#1b7950', '#1b7950'];
+
+    function showBadge(el) {
+      el.style.opacity   = '1';
+      el.style.transform = 'translateY(0)';
+    }
+
+    function applyStep4() {
+      items1.forEach(function (el, i) {
+        el.style.color = colors1[i];
+        if (i === 3) el.style.textDecoration = 'line-through';
+      });
+      items2.forEach(function (el, i) { el.style.color = colors2[i]; });
+    }
+
+    /* prefers-reduced-motion: сразу показать финальный шаг без переходов */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      badge1.style.transition = 'none';
+      badge2.style.transition = 'none';
+      items1.forEach(function (el) { el.style.transition = 'none'; });
+      items2.forEach(function (el) { el.style.transition = 'none'; });
+      showBadge(badge1);
+      showBadge(badge2);
+      applyStep4();
+      return;
+    }
+
+    var played = false;
+    var observer = new IntersectionObserver(function (entries) {
+      if (played || !entries[0].isIntersecting) return;
+      played = true;
+      observer.disconnect();
+      /* шаг 2: бейдж 1 появляется через 1s паузы, переход 0.6s */
+      setTimeout(function () { showBadge(badge1); }, 1000);
+      /* шаг 3: бейдж 2 через 1s + 0.6s + 1s */
+      setTimeout(function () { showBadge(badge2); }, 2600);
+      /* шаг 4: смена цветов через 2.6s + 0.6s + 1s */
+      setTimeout(function () { applyStep4(); },      4200);
+    }, { threshold: 0.3 });
+
+    observer.observe(frame);
+  })();
+
 </script>
+
 
 </body>
 </html>
