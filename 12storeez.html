@@ -3111,13 +3111,16 @@ farfetch)</p>
 <!-- Приоритизация frame (Figma 2454:18091, 1200×510px) -->
 <div id="priori-frame" style="max-width:1280px;margin:48px auto 0;padding:0 40px;">
   <div style="position:relative;height:510px;overflow:hidden;">
-    <!-- «Главная» -->
-    <span style="position:absolute;left:313px;top:287px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:19px;white-space:nowrap;">Главная</span>
+    <!-- «Главный экран» -->
+    <span style="position:absolute;left:313px;top:287px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:19px;white-space:nowrap;">Главный экран</span>
     <!-- «Приложение» -->
     <span style="position:absolute;left:852px;top:287px;font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;line-height:19px;white-space:nowrap;">Приложение</span>
-    <!-- 7 ОПРОС ПО КАНО -->
+    <!-- 7/6 ОПРОС ПО КАНО -->
     <div style="position:absolute;left:16px;bottom:28px;display:flex;align-items:center;gap:8px;text-transform:uppercase;">
-      <span style="font-family:'Oswald',sans-serif;font-size:80px;font-weight:400;color:#c8c8c8;letter-spacing:-1.6px;line-height:1;text-box:trim-both cap alphabetic;-webkit-text-box:trim-both cap alphabetic;">7</span>
+      <span id="priori-counter" style="position:relative;display:inline-block;font-family:'Oswald',sans-serif;font-size:80px;font-weight:400;color:#c8c8c8;letter-spacing:-1.6px;">
+        <span id="priori-n7" style="display:block;line-height:1;text-align:right;text-box:trim-both cap alphabetic;-webkit-text-box:trim-both cap alphabetic;transition:opacity 0.6s ease-in-out,transform 0.6s ease-in-out;">7</span>
+        <span id="priori-n6" style="display:block;position:absolute;top:0;right:0;line-height:1;text-box:trim-both cap alphabetic;-webkit-text-box:trim-both cap alphabetic;opacity:0;transform:translateY(200%);transition:opacity 0.6s ease-in-out,transform 0.6s ease-in-out;">6</span>
+      </span>
       <p style="margin:0;font-family:'Oswald',sans-serif;font-size:34px;font-weight:400;color:#222222;letter-spacing:-0.68px;line-height:1.13;text-align:right;text-box:trim-both cap alphabetic;-webkit-text-box:trim-both cap alphabetic;">ОПРОС<br>ПО КАНО</p>
     </div>
 
@@ -5226,58 +5229,138 @@ farfetch)</p>
     if (bx && bp) bx.addEventListener('click', function() { bp.classList.remove('visible'); });
   })();
 
-  /* Приоритизация: анимация бейджей (4 шага, автозапуск при попадании в viewport) */
+  /* Приоритизация: анимация бейджей (4 шага, цикл, viewport-пауза) */
   (function () {
     var frame  = document.getElementById('priori-frame');
     var badge1 = document.getElementById('priori-badge-1');
     var badge2 = document.getElementById('priori-badge-2');
-    if (!frame || !badge1 || !badge2) return;
+    var n7     = document.getElementById('priori-n7');
+    var n6     = document.getElementById('priori-n6');
+    if (!frame || !badge1 || !badge2 || !n7 || !n6) return;
 
     var items1  = badge1.querySelectorAll('.pb-item');
     var items2  = badge2.querySelectorAll('.pb-item');
-    /* шаг 4: левый бейдж — зелёный × 3, красный зачёркнутый × 1; правый — зелёный × 3 */
     var colors1 = ['#1b7950', '#1b7950', '#1b7950', '#ef0420'];
     var colors2 = ['#1b7950', '#1b7950', '#1b7950'];
 
-    function showBadge(el) {
-      el.style.opacity   = '1';
-      el.style.transform = 'translateY(0)';
-    }
-
-    function applyStep4() {
-      items1.forEach(function (el, i) {
-        el.style.color = colors1[i];
-        if (i === 3) el.style.textDecoration = 'line-through';
-      });
-      items2.forEach(function (el, i) { el.style.color = colors2[i]; });
-    }
-
-    /* prefers-reduced-motion: сразу показать финальный шаг без переходов */
+    /* prefers-reduced-motion: сразу шаг 4 без анимации */
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      badge1.style.transition = 'none';
-      badge2.style.transition = 'none';
-      items1.forEach(function (el) { el.style.transition = 'none'; });
-      items2.forEach(function (el) { el.style.transition = 'none'; });
-      showBadge(badge1);
-      showBadge(badge2);
-      applyStep4();
+      badge1.style.transition = 'none'; badge1.style.opacity = '1'; badge1.style.transform = 'translateY(0)';
+      badge2.style.transition = 'none'; badge2.style.opacity = '1'; badge2.style.transform = 'translateY(0)';
+      items1.forEach(function (el, i) { el.style.transition = 'none'; el.style.color = colors1[i]; if (i === 3) el.style.textDecoration = 'line-through'; });
+      items2.forEach(function (el, i) { el.style.transition = 'none'; el.style.color = colors2[i]; });
+      n7.style.transition = 'none'; n7.style.opacity = '0'; n7.style.transform = 'translateY(-100%)';
+      n6.style.transition = 'none'; n6.style.opacity = '1'; n6.style.transform = 'translateY(0)';
       return;
     }
 
-    var played = false;
+    var timers = [];
+    var active = false;
+
+    function after(ms, fn) { var t = setTimeout(fn, ms); timers.push(t); }
+
+    function resetState() {
+      var noTr = 'none';
+      badge1.style.transition = noTr; badge2.style.transition = noTr;
+      n7.style.transition = noTr;     n6.style.transition = noTr;
+      items1.forEach(function (el) { el.style.transition = noTr; });
+      items2.forEach(function (el) { el.style.transition = noTr; });
+
+      badge1.style.opacity = '0'; badge1.style.transform = 'translateY(-12px)';
+      badge2.style.opacity = '0'; badge2.style.transform = 'translateY(-12px)';
+      items1.forEach(function (el, i) { el.style.color = '#141414'; el.style.textDecoration = 'none'; });
+      items2.forEach(function (el)    { el.style.color = '#141414'; });
+      n7.style.opacity = '1'; n7.style.transform = 'translateY(0)';
+      n6.style.opacity = '0'; n6.style.transform = 'translateY(200%)';
+
+      void badge1.offsetHeight; /* принудительный reflow */
+
+      var tr6 = 'opacity 0.6s ease-in-out,transform 0.6s ease-in-out';
+      badge1.style.transition = tr6; badge2.style.transition = tr6;
+      n7.style.transition = tr6;     n6.style.transition = tr6;
+      items1.forEach(function (el) { el.style.transition = 'color 0.6s ease-in-out'; });
+      items2.forEach(function (el) { el.style.transition = 'color 0.6s ease-in-out'; });
+    }
+
+    function runCycle() {
+      timers.forEach(clearTimeout); timers = [];
+      resetState();
+
+      /* шаг 2 (t=1000ms): badge1 появляется */
+      after(1000, function () {
+        badge1.style.opacity = '1'; badge1.style.transform = 'translateY(0)';
+      });
+      /* шаг 3 (t=2600ms): badge2 появляется */
+      after(2600, function () {
+        badge2.style.opacity = '1'; badge2.style.transform = 'translateY(0)';
+      });
+      /* шаг 4 (t=4200ms): цвета + цифра 7→6 */
+      after(4200, function () {
+        items1.forEach(function (el, i) { el.style.color = colors1[i]; if (i === 3) el.style.textDecoration = 'line-through'; });
+        items2.forEach(function (el, i) { el.style.color = colors2[i]; });
+        n7.style.opacity = '0'; n7.style.transform = 'translateY(-100%)';
+        n6.style.opacity = '1'; n6.style.transform = 'translateY(0)';
+      });
+      /* пауза 8s после шага 4 → бейджи исчезают за 0.4s */
+      after(12800, function () {
+        badge1.style.transition = 'opacity 0.4s ease-in-out,transform 0.4s ease-in-out';
+        badge2.style.transition = 'opacity 0.4s ease-in-out,transform 0.4s ease-in-out';
+        badge1.style.opacity = '0';
+        badge2.style.opacity = '0';
+      });
+      /* рестарт цикла */
+      after(13200, function () { if (active) runCycle(); });
+    }
+
     var observer = new IntersectionObserver(function (entries) {
-      if (played || !entries[0].isIntersecting) return;
-      played = true;
-      observer.disconnect();
-      /* шаг 2: бейдж 1 появляется через 1s паузы, переход 0.6s */
-      setTimeout(function () { showBadge(badge1); }, 1000);
-      /* шаг 3: бейдж 2 через 1s + 0.6s + 1s */
-      setTimeout(function () { showBadge(badge2); }, 2600);
-      /* шаг 4: смена цветов через 2.6s + 0.6s + 1s */
-      setTimeout(function () { applyStep4(); },      4200);
+      if (entries[0].isIntersecting) {
+        if (!active) { active = true; runCycle(); }
+      } else {
+        active = false;
+        timers.forEach(clearTimeout); timers = [];
+      }
     }, { threshold: 0.3 });
 
     observer.observe(frame);
+  })();
+
+  /* Приоритизация: измерение gap и фиксация ширины счётчика */
+  (function () {
+    var counter = document.getElementById('priori-counter');
+    var n7      = document.getElementById('priori-n7');
+    var n6      = document.getElementById('priori-n6');
+    if (!counter || !n7 || !n6) return;
+    var kanoP = counter.parentElement && counter.parentElement.querySelector('p');
+    if (!kanoP) return;
+
+    document.fonts.ready.then(function () {
+      /* Шаг 1 — «7» видна (исходное состояние) */
+      var r7 = n7.getBoundingClientRect();
+      var rp = kanoP.getBoundingClientRect();
+      console.log('[Кано] Шаг 1 (цифра 7): gap =', (rp.left - r7.right).toFixed(2), 'px');
+
+      /* Временно переключаем на «6» для замера */
+      n6.style.transition = 'none';
+      n7.style.transition = 'none';
+      n7.style.opacity = '0';
+      n6.style.opacity = '1';
+      n6.style.transform = 'translateY(0)';
+      void counter.offsetHeight;
+      var r6 = n6.getBoundingClientRect();
+      console.log('[Кано] Шаг 4 (цифра 6): gap =', (rp.left - r6.right).toFixed(2), 'px');
+
+      /* Восстанавливаем исходное состояние */
+      n6.style.opacity = '0';
+      n6.style.transform = 'translateY(200%)';
+      n7.style.opacity = '1';
+      n7.style.transition = 'opacity 0.6s ease-in-out,transform 0.6s ease-in-out';
+      n6.style.transition = 'opacity 0.6s ease-in-out,transform 0.6s ease-in-out';
+
+      /* Фиксируем ширину контейнера по максимальной цифре */
+      var maxW = Math.max(n7.offsetWidth, n6.offsetWidth);
+      counter.style.width = maxW + 'px';
+      console.log('[Кано] Ширина контейнера зафиксирована:', maxW, 'px');
+    });
   })();
 
 </script>
