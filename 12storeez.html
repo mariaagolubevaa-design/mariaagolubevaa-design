@@ -1822,6 +1822,11 @@
       #ugc4-coach:hover .ugc4-pulse.visible,
       #ut-insights-phone:hover .ut-ins-pulse.visible { opacity: 1; }
     }
+  br.br-xl { display: none; }
+  @media (min-width: 1200px) {
+    br.br-xl { display: block; }
+    .priori-nowrap { white-space: nowrap; overflow: visible; }
+  }
   </style>
 </head>
 <body>
@@ -3097,8 +3102,8 @@ farfetch)</p>
         <div style="font-family:'Inter Tight',Arial,sans-serif;font-size:16px;font-weight:500;color:#141414;font-style:normal;letter-spacing:0;">
           <p style="margin:0;line-height:normal;">В ходе работы мы сформировали идеи не только для главной страницы,<br class="desktop-only"> но и для улучшения пользовательского опыта внутри приложения. Это помогло<br class="desktop-only"> понять, какие сценарии стоит вынести на главную и улучшить опыт в целом.</p>
           <p style="margin:0;line-height:normal;">В итоге наибольшую поддержку получили 6 идей: персонализация, UGC-<br class="desktop-only">контент, готовые образы, товары из вишлиста и корзины и другие сценарии.</p>
-          <p style="margin:0;line-height:normal;">Наименьшую поддержку получили стримы со стилистами, поэтому от этой идеи<br class="desktop-only"> мы отказались</p>
-          <p style="margin:0;line-height:normal;">Далее объединили выбранные идеи в единую архитектуру решений и перешли<br class="desktop-only"> к их проработке в интерфейсе</p>
+          <p class="priori-nowrap" style="margin:0;line-height:normal;">Наименьшую поддержку получили стримы со стилистами, поэтому от этой идеи<br class="br-xl">мы отказались</p>
+          <p style="margin:0;line-height:normal;">Далее объединили выбранные идеи в единую архитектуру решений и перешли к их проработке в интерфейсе</p>
         </div>
       </div></div>
     </div>
@@ -3172,7 +3177,7 @@ farfetch)</p>
 <section id="design" style="padding-bottom:0;">
   <div class="container">
 
-    <div class="dp-block__header accordion-toggle reveal" style="margin-bottom:24px;" data-target="design-body">
+    <div class="dp-block__header accordion-toggle reveal" style="margin-bottom:12px;" data-target="design-body">
       Решения и дизайн
       <svg class="accordion-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
         <path d="M6 9L12 15L18 9" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
