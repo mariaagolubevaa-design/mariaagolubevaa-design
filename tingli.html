@@ -482,6 +482,48 @@
 
     <div class="dr-body" id="dr-body"><div class="dr-inner">
 
+    <div style="position:relative; min-height:173px;">
+    <!-- Прямые – visible only when «Деск ресерч» is expanded -->
+    <div id="pryamye-frame" style="position:absolute; left:117px; top:24px; width:156px; height:149px;">
+      <div style="position:absolute; left:-1px; top:0; width:146.145px; height:90.692px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-20deg); width:138.781px; height:46px; background:#FFC260; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:-9px; top:25.49px; width:161.285px; height:96.203px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-20deg); width:154.894px; height:46px; background:#FFC260; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:15px; top:66px; width:137.893px; height:87.688px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-20deg); width:130px; height:46px; background:#FFC260; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:45px; top:calc(50% + 14.5px); transform:translateY(-100%); font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#000000; line-height:normal; white-space:nowrap;">Прямые</div>
+    </div>
+    <!-- Косвенные – visible only when «Деск ресерч» is expanded -->
+    <div id="kosvenye-frame" style="position:absolute; left:524px; top:24px; width:153px; height:149px;">
+      <div style="position:absolute; left:0.75px; top:0; width:146.145px; height:90.692px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-160deg) scaleY(-1); width:138.781px; height:46px; background:#FF9FBB; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:-6.39px; top:25.49px; width:161.285px; height:96.203px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-160deg) scaleY(-1); width:154.894px; height:46px; background:#FF9FBB; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:-7px; top:66px; width:137.893px; height:87.688px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-160deg) scaleY(-1); width:130px; height:46px; background:#FF9FBB; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:35px; top:calc(50% + 14.5px); transform:translateY(-100%); font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#000000; line-height:normal; white-space:nowrap;">Косвенные</div>
+    </div>
+    <!-- Другие – visible only when «Деск ресерч» is expanded -->
+    <div id="drugiye-frame" style="position:absolute; left:930px; top:24px; width:153px; height:149px;">
+      <div style="position:absolute; left:-1px; top:0; width:146.145px; height:90.692px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-20deg); width:138.781px; height:46px; background:#CABEFF; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:-9px; top:25.49px; width:161.285px; height:96.203px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-20deg); width:154.894px; height:46px; background:#CABEFF; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:15px; top:66px; width:137.893px; height:87.688px; display:flex; align-items:center; justify-content:center;">
+        <div style="transform:rotate(-20deg); width:130px; height:46px; background:#CABEFF; border-radius:30px;"></div>
+      </div>
+      <div style="position:absolute; left:49px; top:calc(50% + 14.5px); transform:translateY(-100%); font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#000000; line-height:normal; white-space:nowrap;">Другие</div>
+    </div>
+    </div>
+
     </div></div><!-- /dr-inner /dr-body -->
 
     </div><!-- /container 1280 -->
@@ -699,6 +741,7 @@
       if (drSideText) drSideText.classList.toggle('hidden', expanded);
     });
   })();
+
 </script>
 </body>
 </html>
