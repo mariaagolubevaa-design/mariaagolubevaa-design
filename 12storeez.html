@@ -290,12 +290,24 @@
       border-radius: 20px;
       background: #453930;
     }
+    /* GIF covers hero zone only (top 65.9% of screen, same ratio as card on index.html) */
     .cover-gif {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: 65.9%;
       object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    /* UI overlay — transparent in hero zone, opaque below (same asset as card on index.html) */
+    .cover-ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
       display: block;
     }
     /* Bezel: left=-19.22/322=-5.97%, top=-18.42/700=-2.63%, w=360.448/322=111.94% */
@@ -1884,7 +1896,8 @@
 <div class="cover">
   <div class="cover-phone">
     <div class="cover-screen">
-      <img class="cover-gif" src="assets/images/storeez-cover-screen.png" alt="">
+      <img class="cover-gif" src="assets/images/storeez-hero-3x.gif" alt="">
+      <img class="cover-ui" src="assets/images/card-12storeez-ui@2x.png" alt="">
     </div>
     <img class="cover-phone-frame" src="assets/images/storeez-iphone17-frame.png" alt="">
   </div>
