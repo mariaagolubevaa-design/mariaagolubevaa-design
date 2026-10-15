@@ -261,64 +261,25 @@
       display: block;
     }
 
-    /* Phone mockup — Figma node 1593:16886 "Notifications" */
-    /* x=479,y=32,w=322,h=700 in 1280×630 Cover → centered, top=5.08%, w=25.16% */
-    .cover-phone {
+    /* Cover phone mockup — container scales 220px card layers to 25.16% cover width */
+    .cover-mockup-wrap {
       position: absolute;
       left: 50%;
       top: 5.08%;
-      width: 25.16%;
       transform: translateX(-50%);
-      aspect-ratio: 322 / 700;
-      /* Fills Dynamic Island transparent zone (cover-phone y=0–12) with screen colour */
-      background: #453930;
+      width: 25.16%;
+      container-type: inline-size;
+      overflow: visible;
     }
-    /*
-      Screen window in storeez-iphone17-frame.png (cover-phone coords):
-        top=40.3px, left≈0, right≈321.8px, bottom≈699.9px, corner r≈18.6px
-      left/right=-5.97% matches frame extension (≈19.2px) so border-radius 20px clip
-      at cover-phone x=0 resolves at y≈0.5px — fills Dynamic Island corner with gif,
-      not cover-phone background. bottom=-2px: 2px overlap under frame bezel.
-    */
-    .cover-screen {
+    /* Inner 220×481px card — same as index.html card, scaled to fill wrap via cqw */
+    .cover-mockup-inner {
       position: absolute;
+      width: 220px;
+      height: 481px;
+      left: 50%;
       top: 0;
-      left: -5.97%;
-      right: -5.97%;
-      bottom: -2px;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #453930;
-    }
-    /* GIF covers hero zone only (top 65.9% of screen, same ratio as card on index.html) */
-    .cover-gif {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 65.9%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-    }
-    /* UI overlay — transparent in hero zone, opaque below (same asset as card on index.html) */
-    .cover-ui {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    /* Bezel: left=-19.22/322=-5.97%, top=-18.42/700=-2.63%, w=360.448/322=111.94% */
-    .cover-phone-frame {
-      position: absolute;
-      left: -5.97%;
-      top: -2.63%;
-      width: 111.94%;
-      height: auto;
-      display: block;
-      z-index: 1;
+      transform: translateX(-50%) scale(calc(100cqw / 220px));
+      transform-origin: top center;
       pointer-events: none;
     }
 
@@ -1894,12 +1855,54 @@
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-phone">
-    <div class="cover-screen">
-      <img class="cover-gif" src="assets/images/storeez-hero-3x.gif" alt="">
-      <img class="cover-ui" src="assets/images/card-12storeez-ui@2x.png" alt="">
+  <div class="cover-mockup-wrap">
+    <div class="cover-mockup-inner">
+      <div style="position:absolute;inset:0;border-radius:26px;overflow:hidden;">
+        <!-- Layer 1: GIF hero background fills hero zone -->
+        <img src="assets/images/storeez-hero-3x.gif" alt=""
+          style="position:absolute;top:0;left:0;width:100%;height:65.9%;object-fit:cover;object-position:top center;display:block;">
+        <!-- Layer 2: UI overlay — transparent in hero zone, white section below -->
+        <img src="assets/images/card-12storeez-ui@2x.png" alt=""
+          style="position:absolute;top:0;left:0;width:100%;height:auto;display:block;">
+        <!-- Layer 3: Status bar — белые иконки, прозрачный фон, поверх GIF -->
+        <!-- padding-left:14.1%=31px (центр времени 40px), padding-right:10.9%=24px (центр иконок 177px), align-items:center → вертикальный центр 14.5px — по Figma node 1573:12679 -->
+        <div aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:29px;z-index:3;pointer-events:none;display:flex;align-items:center;padding:0 10.9% 0 14.1%;box-sizing:border-box;justify-content:space-between;">
+          <span style="color:white;font-size:8.5px;font-weight:590;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',Inter,sans-serif;letter-spacing:-0.15px;line-height:1;">9:41</span>
+          <div style="display:flex;align-items:center;gap:3px;">
+            <!-- Signal bars 9×7 (Figma) -->
+            <svg width="9" height="7" viewBox="0 0 10.4814 6.67447" fill="white" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.4814 0.625732C10.4814 0.28015 10.2207 0 9.89909 0H9.31679C8.9952 0 8.73449 0.28015 8.73449 0.625732V6.04874C8.73449 6.39432 8.9952 6.67447 9.31679 6.67447H9.89909C10.2207 6.67447 10.4814 6.39432 10.4814 6.04874V0.625732ZM6.42306 1.33489H7.00536C7.32696 1.33489 7.58766 1.62177 7.58766 1.97564V6.03372C7.58766 6.3876 7.32696 6.67447 7.00536 6.67447H6.42306C6.10147 6.67447 5.84077 6.3876 5.84077 6.03372V1.97564C5.84077 1.62177 6.10147 1.33489 6.42306 1.33489ZM4.05833 2.78102H3.47603C3.15443 2.78102 2.89373 3.07155 2.89373 3.42993V6.02556C2.89373 6.38394 3.15443 6.67447 3.47603 6.67447H4.05833C4.37992 6.67447 4.64063 6.38394 4.64063 6.02556V3.42993C4.64063 3.07155 4.37992 2.78102 4.05833 2.78102ZM1.1646 4.11592H0.5823C0.260704 4.11592 0 4.4023 0 4.75556V6.03483C0 6.3881 0.260704 6.67447 0.5823 6.67447H1.1646C1.48619 6.67447 1.7469 6.3881 1.7469 6.03483V4.75556C1.7469 4.4023 1.48619 4.11592 1.1646 4.11592Z"/></svg>
+            <!-- WiFi 9×7 (Figma) -->
+            <svg width="9" height="7" viewBox="0 0 9.35774 6.73009" fill="white" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.67912 1.34636C6.03685 1.34641 7.34266 1.84978 8.32666 2.75243C8.40076 2.82212 8.5192 2.82124 8.59218 2.75046L9.30048 2.06072C9.33744 2.02483 9.35804 1.9762 9.35773 1.9256C9.35743 1.87501 9.33623 1.82662 9.29885 1.79114C6.71616 -0.597046 2.64168 -0.597046 0.0589884 1.79114C0.0215764 1.82659 0.000349252 1.87497 4.27116e-06 1.92556C-0.00034071 1.97616 0.0202249 2.0248 0.0571502 2.06072L0.765662 2.75046C0.838594 2.82134 0.957122 2.82222 1.03118 2.75243C2.0153 1.84973 3.32126 1.34635 4.67912 1.34636ZM4.67729 3.65023C5.41826 3.65018 6.13279 3.92955 6.68203 4.43403C6.75632 4.50563 6.87334 4.50408 6.94576 4.43053L7.64849 3.71032C7.6855 3.67254 7.70604 3.62129 7.7055 3.56804C7.70497 3.51478 7.68341 3.46397 7.64565 3.42696C5.97309 1.84883 3.38291 1.84883 1.71035 3.42696C1.67257 3.46397 1.65101 3.51481 1.65052 3.56808C1.65002 3.62135 1.67063 3.67259 1.70771 3.71032L2.41024 4.43053C2.48266 4.50408 2.59968 4.50563 2.67397 4.43403C3.22285 3.92988 3.93681 3.65054 4.67729 3.65023ZM6.05539 5.17525C6.05644 5.23276 6.03621 5.2882 5.99947 5.3285L4.81122 6.66855C4.77638 6.70793 4.72889 6.73009 4.67934 6.73009C4.62979 6.73009 4.5823 6.70793 4.54747 6.66855L3.35902 5.3285C3.3223 5.28817 3.30211 5.23271 3.30319 5.1752C3.30428 5.11769 3.32656 5.06323 3.36477 5.02468C4.12363 4.30741 5.23505 4.30741 5.99392 5.02468C6.0321 5.06326 6.05434 5.11773 6.05539 5.17525Z"/></svg>
+            <!-- Battery 14×7 (Figma) -->
+            <svg width="14" height="7" viewBox="0 0 15.5612 7.09678" fill="none" xmlns="http://www.w3.org/2000/svg"><rect opacity="0.35" x="0.272953" y="0.272953" width="13.1017" height="6.55087" rx="2.07444" stroke="white" stroke-width="0.545906"/><path opacity="0.4" d="M14.1935 2.45658V4.6814C14.6329 4.49297 14.9185 4.05463 14.9185 3.56899C14.9185 3.08335 14.6329 2.64501 14.1935 2.45658" fill="white"/><rect x="1.09181" y="1.09181" width="11.464" height="4.91315" rx="1.36476" fill="white"/></svg>
+          </div>
+        </div>
+        <!-- Layer 4: Смотреть коллекцию + стрелка + иконка звука -->
+        <div aria-hidden="true" style="position:absolute;top:55.78%;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 8.734px;opacity:0.8;pointer-events:none;">
+          <div style="display:flex;gap:4.367px;align-items:center;">
+            <span style="font-family:'Inter',sans-serif;font-size:8.734px;font-weight:400;color:#ffffff;letter-spacing:-0.0873px;line-height:6.551px;white-space:nowrap;">Смотреть коллекцию</span>
+            <svg width="7.643" height="7.643" viewBox="0 0 5.7322 4.77694" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0;"><path d="M5.66215 2.55745L3.51265 4.70695C3.46783 4.75176 3.40705 4.77694 3.34367 4.77694C3.2803 4.77694 3.21951 4.75176 3.1747 4.70695C3.12988 4.66214 3.10471 4.60135 3.10471 4.53797C3.10471 4.4746 3.12988 4.41381 3.1747 4.369L4.91669 2.6273H0.238834C0.175491 2.6273 0.114743 2.60214 0.0699528 2.55735C0.0251628 2.51256 0 2.45181 0 2.38847C0 2.32513 0.0251628 2.26438 0.0699528 2.21959C0.114743 2.1748 0.175491 2.14964 0.238834 2.14964H4.91669L3.1747 0.407941C3.12988 0.363127 3.10471 0.302344 3.10471 0.238967C3.10471 0.175589 3.12988 0.114807 3.1747 0.0699917C3.21951 0.0251767 3.2803 0 3.34367 0C3.40705 0 3.46783 0.0251767 3.51265 0.0699917L5.66215 2.2195C5.68436 2.24168 5.70197 2.26802 5.71399 2.29701C5.72601 2.32601 5.7322 2.35708 5.7322 2.38847C5.7322 2.41986 5.72601 2.45094 5.71399 2.47993C5.70197 2.50892 5.68436 2.53526 5.66215 2.55745Z" fill="white"/></svg>
+          </div>
+          <div style="width:24.02px;height:24.02px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="10.918" height="10.918" viewBox="0 0 8.18859 8.87064" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;"><path d="M5.94995 0.0344766C5.89257 0.00651823 5.8285 -0.00478597 5.76502 0.00184847C5.70154 0.00848291 5.6412 0.03279 5.59084 0.0720077L2.61224 2.38827H0.682382C0.501403 2.38827 0.327837 2.46016 0.199865 2.58813C0.0718936 2.71611 0 2.88967 0 3.07065V5.80018C0 5.98116 0.0718936 6.15472 0.199865 6.2827C0.327837 6.41067 0.501403 6.48256 0.682382 6.48256H2.61224L5.59084 8.79882C5.64125 8.83801 5.70163 8.86226 5.76514 8.86883C5.82864 8.8754 5.89271 8.86402 5.95007 8.83599C6.00743 8.80795 6.05577 8.76439 6.0896 8.71024C6.12343 8.6561 6.14139 8.59355 6.14144 8.52971V0.341122C6.14145 0.277203 6.1235 0.214567 6.08965 0.160352C6.05579 0.106136 6.00738 0.062521 5.94995 0.0344766ZM0.682382 3.07065H2.38834V5.80018H0.682382V3.07065ZM5.45906 7.83197L3.07072 5.97461V2.89622L5.45906 1.03886V7.83197ZM8.18859 4.43542C8.18889 4.85102 8.0372 5.25239 7.7621 5.5639C7.70182 5.63014 7.61791 5.67002 7.52849 5.67493C7.43907 5.67985 7.3513 5.64941 7.28412 5.59018C7.21694 5.53096 7.17575 5.44769 7.16942 5.35836C7.1631 5.26902 7.19215 5.18078 7.25031 5.11268C7.41487 4.92578 7.50566 4.68529 7.50566 4.43627C7.50566 4.18724 7.41487 3.94676 7.25031 3.75986C7.21985 3.72638 7.19635 3.68719 7.18118 3.64454C7.16602 3.6019 7.15949 3.55667 7.16197 3.51148C7.16445 3.46629 7.1759 3.42205 7.19565 3.38132C7.2154 3.3406 7.24306 3.30422 7.27701 3.27429C7.31095 3.24435 7.35052 3.22148 7.39339 3.20698C7.43627 3.19249 7.4816 3.18667 7.52674 3.18987C7.57189 3.19307 7.61595 3.20521 7.65635 3.2256C7.69676 3.24599 7.7327 3.27422 7.7621 3.30863C8.03657 3.61985 8.1882 4.02045 8.18859 4.43542Z" fill="white"/></svg>
+          </div>
+        </div>
+        <!-- Layer 5: Индикаторы карусели (6 полосок) -->
+        <div aria-hidden="true" style="position:absolute;top:62.13%;left:0;width:100%;height:13.102px;display:flex;align-items:center;padding:4.367px 8.734px;box-sizing:border-box;pointer-events:none;">
+          <div style="display:flex;gap:6.551px;height:1.092px;width:100%;">
+            <div style="flex:1;min-width:0;background:#ffffff;"></div>
+            <div style="flex:1;min-width:0;background:#a0a0a0;"></div>
+            <div style="flex:1;min-width:0;background:#a0a0a0;"></div>
+            <div style="flex:1;min-width:0;background:#a0a0a0;"></div>
+            <div style="flex:1;min-width:0;background:#a0a0a0;"></div>
+            <div style="flex:1;min-width:0;background:#a0a0a0;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- phone frame with transparent screen -->
+      <img src="assets/images/storeez-iphone17-frame.png" alt=""
+        style="position:absolute;left:-5.9%;top:-2.5%;width:111.8%;height:104.6%;object-fit:contain;pointer-events:none;">
     </div>
-    <img class="cover-phone-frame" src="assets/images/storeez-iphone17-frame.png" alt="">
   </div>
   <div class="cover-chips-new">
     <span class="cover-chip-new">приложение</span>
