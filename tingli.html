@@ -254,6 +254,34 @@
     .dr-body.collapsed { grid-template-rows:0fr; }
     .dr-inner { min-height:0; min-width:0; }
     .dr-body.collapsed .dr-inner { overflow:hidden; }
+
+    /* FRAME CAPTIONS (hover) */
+    .frame-caption {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0;
+      color: #000;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+    #pryamye-frame:hover .frame-caption,
+    #kosvenye-frame:hover .frame-caption,
+    #drugiye-frame:hover .frame-caption,
+    #pryamye-frame.caption-visible .frame-caption,
+    #kosvenye-frame.caption-visible .frame-caption,
+    #drugiye-frame.caption-visible .frame-caption {
+      opacity: 1;
+    }
+
     .text-frame__label {
       font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
       font-size: 30px; font-weight: 500; line-height: normal;
@@ -495,6 +523,7 @@
         <div style="transform:rotate(-20deg); width:130px; height:46px; background:#FFC260; border-radius:30px;"></div>
       </div>
       <div style="position:absolute; left:45px; top:calc(50% + 14.5px); transform:translateY(-100%); font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#000000; line-height:normal; white-space:nowrap;">Прямые</div>
+      <span class="frame-caption">приложения для изучения китайского</span>
     </div>
     <!-- Косвенные – visible only when «Деск ресерч» is expanded -->
     <div id="kosvenye-frame" style="position:absolute; left:524px; top:24px; width:153px; height:149px;">
@@ -508,6 +537,7 @@
         <div style="transform:rotate(-160deg) scaleY(-1); width:130px; height:46px; background:#FF9FBB; border-radius:30px;"></div>
       </div>
       <div style="position:absolute; left:35px; top:calc(50% + 14.5px); transform:translateY(-100%); font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#000000; line-height:normal; white-space:nowrap;">Косвенные</div>
+      <span class="frame-caption">EdTech в целом</span>
     </div>
     <!-- Другие – visible only when «Деск ресерч» is expanded -->
     <div id="drugiye-frame" style="position:absolute; left:930px; top:24px; width:153px; height:149px;">
@@ -521,6 +551,7 @@
         <div style="transform:rotate(-20deg); width:130px; height:46px; background:#CABEFF; border-radius:30px;"></div>
       </div>
       <div style="position:absolute; left:49px; top:calc(50% + 14.5px); transform:translateY(-100%); font-family:'Inter Tight', Arial, sans-serif; font-size:16px; font-weight:500; color:#000000; line-height:normal; white-space:nowrap;">Другие</div>
+      <span class="frame-caption">личные кабинеты</span>
     </div>
     </div>
 
@@ -727,6 +758,23 @@
       if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
     });
   });
+
+  /* Touch: toggle captions on tap */
+  (function () {
+    var captionFrames = ['pryamye-frame', 'kosvenye-frame', 'drugiye-frame'];
+    captionFrames.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        var wasActive = el.classList.contains('caption-visible');
+        captionFrames.forEach(function (fid) {
+          document.getElementById(fid).classList.remove('caption-visible');
+        });
+        if (!wasActive) el.classList.add('caption-visible');
+      }, { passive: false });
+    });
+  })();
 
   /* Деск ресерч accordion */
   (function () {
