@@ -598,7 +598,12 @@
         <p>преподаватели китайского языка</p>
       </div>
     </div>
-    <div class="dr-body" id="glubinki-body"><div class="dr-inner"></div></div>
+    <div class="dr-body" id="glubinki-body"><div class="dr-inner">
+      <div id="glubinki-photos" style="margin-top:48px; display:flex; height:322px; border-top:5px solid #141414; border-bottom:5px solid #141414; box-sizing:border-box;">
+        <img src="assets/images/tingli-glubinki-photo-1.png" style="flex:0 0 600px; height:100%; display:block;" alt="">
+        <img src="assets/images/tingli-glubinki-photo-2.png" style="flex:0 0 600px; height:100%; display:block;" alt="">
+      </div>
+    </div></div>
 
     </div><!-- /container 1280 -->
 
@@ -868,6 +873,29 @@
       ioOnce.observe(drBody);
     }
   })();
+
+  /* Глубинки фото: замер getBoundingClientRect */
+  window.measureGlubinkiPhotos = function () {
+    var sideText = document.getElementById('glubinki-side-text');
+    var photos   = document.getElementById('glubinki-photos');
+    if (!sideText || !photos) { console.warn('элементы не найдены'); return; }
+    var tRect = sideText.getBoundingClientRect();
+    var pRect = photos.getBoundingClientRect();
+    var gap   = pRect.top - (tRect.top + tRect.height);
+    var ph1   = photos.children[0].getBoundingClientRect();
+    var ph2   = photos.children[1].getBoundingClientRect();
+    var rows = [
+      ['', 'Макет', 'Страница'],
+      ['Отступ текст→фото', '48px', Math.round(gap) + 'px'],
+      ['Фото 1: ширина',   '600px', Math.round(ph1.width) + 'px'],
+      ['Фото 1: высота',   '322px', Math.round(ph1.height) + 'px'],
+      ['Фото 2: ширина',   '600px', Math.round(ph2.width) + 'px'],
+      ['Фото 2: высота',   '322px', Math.round(ph2.height) + 'px'],
+      ['Зазор между фото', '0px',   Math.round(ph2.left - ph1.right) + 'px'],
+    ];
+    console.table(rows);
+    console.log('Фото 1 left от вьюпорта:', Math.round(ph1.left), '| Фото 2 left:', Math.round(ph2.left));
+  };
 
   /* Глубинки accordion */
   (function () {
