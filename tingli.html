@@ -259,6 +259,24 @@
       font-size: 30px; font-weight: 500; line-height: normal;
       color: #141414; white-space: nowrap;
     }
+    .dr-header { position: relative; }
+    .dr-side-text {
+      position: absolute;
+      left: 600px;
+      top: 0;
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: normal;
+      color: #141414;
+      transition: opacity 300ms ease;
+      pointer-events: none;
+    }
+    .dr-side-text p { margin: 0; }
+    .dr-side-text.hidden { opacity: 0; }
   </style>
 </head>
 <body>
@@ -451,10 +469,16 @@
 
     <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
 
-    <button class="dr-toggle reveal" id="dr-toggle" aria-expanded="true" aria-controls="dr-body" style="margin-top:72px;">
-      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
-      <span class="text-frame__label">Деск ресерч</span>
-    </button>
+    <div class="dr-header" style="margin-top:72px;">
+      <button class="dr-toggle reveal" id="dr-toggle" aria-expanded="true" aria-controls="dr-body">
+        <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+        <span class="text-frame__label">Деск ресерч</span>
+      </button>
+      <div class="dr-side-text" id="dr-side-text">
+        <p>Проанализировали прямых (изучение китайский язык), косвенных конкурентов (EdTech в целом) и личные кабинеты в приложениях</p>
+        <p>Посмотреть полный список анализа можно здесь</p>
+      </div>
+    </div>
 
     <div class="dr-body" id="dr-body"><div class="dr-inner">
 
@@ -664,13 +688,15 @@
 
   /* Деск ресерч accordion */
   (function () {
-    var drToggle = document.getElementById('dr-toggle');
-    var drBody   = document.getElementById('dr-body');
+    var drToggle   = document.getElementById('dr-toggle');
+    var drBody     = document.getElementById('dr-body');
+    var drSideText = document.getElementById('dr-side-text');
     if (!drToggle || !drBody) return;
     drToggle.addEventListener('click', function () {
       var expanded = drToggle.getAttribute('aria-expanded') === 'true';
       drToggle.setAttribute('aria-expanded', String(!expanded));
       drBody.classList.toggle('collapsed');
+      if (drSideText) drSideText.classList.toggle('hidden', expanded);
     });
   })();
 </script>
