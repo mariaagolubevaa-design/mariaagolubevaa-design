@@ -255,6 +255,31 @@
     .dr-inner { min-height:0; min-width:0; }
     .dr-body.collapsed .dr-inner { overflow:hidden; }
 
+    /* FRAME HOVER: pointer + scale */
+    #pryamye-frame,
+    #kosvenye-frame,
+    #drugiye-frame {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #pryamye-frame:hover,
+    #kosvenye-frame:hover,
+    #drugiye-frame:hover {
+      transform: scale(1.03);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #pryamye-frame,
+      #kosvenye-frame,
+      #drugiye-frame {
+        transition: none;
+      }
+      #pryamye-frame:hover,
+      #kosvenye-frame:hover,
+      #drugiye-frame:hover {
+        transform: none;
+      }
+    }
+
     /* FRAME CAPTIONS (hover) */
     .frame-caption {
       position: absolute;
@@ -305,6 +330,8 @@
     }
     .dr-side-text p { margin: 0; }
     .dr-side-text.hidden { opacity: 0; }
+    .lbr { display: none; }
+    @media (min-width: 1200px) { .lbr { display: block; } }
   </style>
 </head>
 <body>
@@ -557,6 +584,22 @@
 
     </div></div><!-- /dr-inner /dr-body -->
 
+    <!-- ГЛУБИНКИ -->
+    <div class="dr-header" style="margin-top:96px; min-height:200px;">
+      <button class="dr-toggle reveal" id="glubinki-toggle" aria-expanded="true" aria-controls="glubinki-body">
+        <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+        <span class="text-frame__label">Глубинки</span>
+      </button>
+      <div class="dr-side-text" id="glubinki-side-text">
+        <p>Провели 24 глубинных интервью об опыте изучения китайского языка<span class="lbr"></span>в т.ч. с использованием приложений: как выбирают онлайн-обучение,<span class="lbr"></span>что мешает, с какими барьерами сталкиваются, чего не хватает и для чего<span class="lbr"></span>пользуются приложениями</p>
+        <p>Со списком вопросов можно ознакомиться по ссылке</p>
+        <p><br>Мы искали респондентов по следующей выборке:</p>
+        <p>изучающие китайский язык;<br>изучающие другие восточные языки;</p>
+        <p>преподаватели китайского языка</p>
+      </div>
+    </div>
+    <div class="dr-body" id="glubinki-body"><div class="dr-inner"></div></div>
+
     </div><!-- /container 1280 -->
 
   </div><!-- /accordion-inner -->
@@ -565,7 +608,7 @@
 </div><!-- /accordion-body#process-body -->
 
 <!-- DESIGN -->
-<section id="design" style="padding-bottom:0">
+<section id="design" style="padding-top:128px; padding-bottom:0">
   <div class="container">
     <div class="accordion-toggle" data-target="design-body" style="display:flex; align-items:center; gap:24px;">
       <h2 class="section-title" style="margin-bottom:0">Решения и дизайн</h2>
@@ -782,11 +825,61 @@
     var drBody     = document.getElementById('dr-body');
     var drSideText = document.getElementById('dr-side-text');
     if (!drToggle || !drBody) return;
+
+    var SESSION_KEY = 'tingli-dr-captions-shown';
+    var autoShowDone = !!sessionStorage.getItem(SESSION_KEY);
+
+    function runAutoShow() {
+      if (autoShowDone) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { autoShowDone = true; return; }
+      autoShowDone = true;
+      sessionStorage.setItem(SESSION_KEY, '1');
+      var frames = [
+        document.getElementById('pryamye-frame'),
+        document.getElementById('kosvenye-frame'),
+        document.getElementById('drugiye-frame')
+      ];
+      var delay = 0;
+      frames.forEach(function (frame) {
+        if (!frame) return;
+        var showAt = delay;
+        var hideAt = delay + 1000;
+        setTimeout(function () { frame.classList.add('caption-visible'); }, showAt);
+        setTimeout(function () { frame.classList.remove('caption-visible'); }, hideAt);
+        delay = hideAt + 300;
+      });
+    }
+
     drToggle.addEventListener('click', function () {
       var expanded = drToggle.getAttribute('aria-expanded') === 'true';
       drToggle.setAttribute('aria-expanded', String(!expanded));
       drBody.classList.toggle('collapsed');
       if (drSideText) drSideText.classList.toggle('hidden', expanded);
+      if (!expanded && !autoShowDone) setTimeout(runAutoShow, 350);
+    });
+
+    /* Если секция изначально открыта — показать при первом попадании в viewport */
+    if (!autoShowDone && drToggle.getAttribute('aria-expanded') === 'true') {
+      var ioOnce = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { obs.disconnect(); setTimeout(runAutoShow, 400); }
+        });
+      }, { threshold: 0.3 });
+      ioOnce.observe(drBody);
+    }
+  })();
+
+  /* Глубинки accordion */
+  (function () {
+    var toggle   = document.getElementById('glubinki-toggle');
+    var body     = document.getElementById('glubinki-body');
+    var sideText = document.getElementById('glubinki-side-text');
+    if (!toggle || !body) return;
+    toggle.addEventListener('click', function () {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      body.classList.toggle('collapsed');
+      if (sideText) sideText.classList.toggle('hidden', expanded);
     });
   })();
 
