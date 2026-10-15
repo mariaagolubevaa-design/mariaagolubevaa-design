@@ -245,6 +245,20 @@
     .accordion-chevron { transition:transform 0.35s ease; display:inline-block; transform:rotate(180deg); }
     /* collapsed: убираем поворот → обратно ^ (свёрнуто) */
     .accordion-chevron.rotated { transform:rotate(0deg); }
+
+    /* Деск ресерч accordion */
+    .dr-toggle { display:flex; align-items:center; gap:16px; margin-bottom:48px; background:none; border:none; padding:0; cursor:pointer; font:inherit; text-align:left; width:100%; }
+    .dr-chevron { flex-shrink:0; transform:rotate(180deg); transition:transform 300ms ease; }
+    .dr-toggle[aria-expanded="false"] .dr-chevron { transform:rotate(90deg); }
+    .dr-body { display:grid; grid-template-rows:1fr; transition:grid-template-rows 300ms ease; }
+    .dr-body.collapsed { grid-template-rows:0fr; }
+    .dr-inner { min-height:0; min-width:0; }
+    .dr-body.collapsed .dr-inner { overflow:hidden; }
+    .text-frame__label {
+      font-family: 'Inter Tight', 'Inter', Arial, sans-serif;
+      font-size: 30px; font-weight: 500; line-height: normal;
+      color: #141414; white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -434,6 +448,19 @@
 
 <div class="accordion-body" id="research-body">
   <div class="accordion-inner">
+
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
+
+    <button class="dr-toggle reveal" id="dr-toggle" aria-expanded="true" aria-controls="dr-body" style="margin-top:72px;">
+      <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+      <span class="text-frame__label">Деск ресерч</span>
+    </button>
+
+    <div class="dr-body" id="dr-body"><div class="dr-inner">
+
+    </div></div><!-- /dr-inner /dr-body -->
+
+    </div><!-- /container 1280 -->
 
   </div><!-- /accordion-inner -->
 </div><!-- /accordion-body#research-body -->
@@ -634,6 +661,18 @@
       if (chevron) chevron.classList.toggle('rotated', !isCollapsed);
     });
   });
+
+  /* Деск ресерч accordion */
+  (function () {
+    var drToggle = document.getElementById('dr-toggle');
+    var drBody   = document.getElementById('dr-body');
+    if (!drToggle || !drBody) return;
+    drToggle.addEventListener('click', function () {
+      var expanded = drToggle.getAttribute('aria-expanded') === 'true';
+      drToggle.setAttribute('aria-expanded', String(!expanded));
+      drBody.classList.toggle('collapsed');
+    });
+  })();
 </script>
 </body>
 </html>
