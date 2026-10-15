@@ -270,13 +270,24 @@
       width: 25.16%;
       transform: translateX(-50%);
       aspect-ratio: 322 / 700;
+      /* Fills Dynamic Island transparent zone (cover-phone y=0–12) with screen colour */
+      background: #453930;
     }
-    /* Lock Screen: inset 0, border-radius 38.448px on 322×700 → 11.94%/5.49% */
+    /*
+      Screen window in storeez-iphone17-frame.png (cover-phone coords):
+        top=40.3px, left≈0, right≈321.8px, bottom≈699.9px, corner r≈18.6px
+      left/right=-5.97% matches frame extension (≈19.2px) so border-radius 20px clip
+      at cover-phone x=0 resolves at y≈0.5px — fills Dynamic Island corner with gif,
+      not cover-phone background. bottom=-2px: 2px overlap under frame bezel.
+    */
     .cover-screen {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: -5.97%;
+      right: -5.97%;
+      bottom: -2px;
       overflow: hidden;
-      border-radius: 11.94% / 5.49%;
+      border-radius: 20px;
       background: #453930;
     }
     .cover-gif {
