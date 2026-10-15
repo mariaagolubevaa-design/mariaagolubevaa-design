@@ -332,6 +332,49 @@
     .dr-side-text.hidden { opacity: 0; }
     .lbr { display: none; }
     @media (min-width: 1200px) { .lbr { display: block; } }
+
+    /* SEGMENT CAPTIONS (hover) */
+    #seg-sam, #seg-umnitsa, #seg-nadzor, #seg-delo, #seg-intellektual {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #seg-sam:hover, #seg-umnitsa:hover, #seg-nadzor:hover,
+    #seg-delo:hover, #seg-intellektual:hover {
+      transform: scale(1.03);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #seg-sam, #seg-umnitsa, #seg-nadzor, #seg-delo, #seg-intellektual {
+        transition: none;
+      }
+      #seg-sam:hover, #seg-umnitsa:hover, #seg-nadzor:hover,
+      #seg-delo:hover, #seg-intellektual:hover {
+        transform: none;
+      }
+    }
+    /* SEGMENT CAPTIONS — in-flow shared container */
+    .seg-caption-slot {
+      width: 190px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #000;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+    .seg-caption-slot.active { opacity: 1; }
+    #seg-captions-outer {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.3s ease;
+    }
+    #seg-captions-outer.open { grid-template-rows: 1fr; }
+    #seg-captions-inner { min-height: 0; }
   </style>
 </head>
 <body>
@@ -602,6 +645,74 @@
       <div id="glubinki-photos" style="margin-top:48px; display:flex; height:322px; border-top:5px solid #141414; border-bottom:5px solid #141414; box-sizing:border-box;">
         <img src="assets/images/tingli-glubinki-photo-1.png" style="flex:0 0 600px; height:100%; display:block;" alt="">
         <img src="assets/images/tingli-glubinki-photo-2.png" style="flex:0 0 600px; height:100%; display:block;" alt="">
+      </div>
+    </div></div>
+
+    <!-- JTBD -->
+    <div class="dr-header" id="jtbd-header" style="margin-top:96px; min-height:0;">
+      <button class="dr-toggle reveal" id="jtbd-toggle" aria-expanded="true" aria-controls="jtbd-body">
+        <svg class="dr-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.657 16.243L19.071 14.829L12.001 7.757L4.929 14.829L6.343 16.243L12 10.586L17.657 16.243Z" fill="#141414"/></svg>
+        <span class="text-frame__label">JTBD</span>
+      </button>
+      <div class="dr-side-text" id="jtbd-side-text">
+        <p>Мы сегментировали респондентов по тому, ради чего они «нанимают»<span class="lbr"></span>обучение. Так получилось 5 сегментов</p>
+      </div>
+    </div>
+    <div class="dr-body" id="jtbd-body"><div class="dr-inner">
+      <div id="segmenty-frame" style="margin-top:2px; display:flex; justify-content:space-between; align-items:flex-start;">
+        <!-- Я – сам! -->
+        <div id="seg-sam" style="display:flex; flex-direction:column; gap:15px; align-items:center; width:190px;">
+          <div style="width:190px; height:220px; background:#93dfff; border-radius:100px 100px 0 0; flex-shrink:0;"></div>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Я – сам!</p>
+        </div>
+        <!-- Умница -->
+        <div id="seg-umnitsa" style="display:flex; flex-direction:column; gap:15px; align-items:center; width:190px;">
+          <div style="width:190px; height:220px; background:#ffc260; border-radius:100px 100px 0 0; flex-shrink:0;"></div>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Умница</p>
+        </div>
+        <!-- Надзор -->
+        <div id="seg-nadzor" style="display:flex; flex-direction:column; gap:15px; align-items:center; width:190px;">
+          <div style="width:190px; height:220px; background:#ff9fbb; border-radius:100px 100px 0 0; flex-shrink:0;"></div>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Надзор</p>
+        </div>
+        <!-- Для дела -->
+        <div id="seg-delo" style="display:flex; flex-direction:column; gap:15px; align-items:center; width:190px;">
+          <div style="width:190px; height:220px; background:#fc6432; border-radius:100px 100px 0 0; flex-shrink:0;"></div>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Для дела</p>
+        </div>
+        <!-- Интеллектуал -->
+        <div id="seg-intellektual" style="display:flex; flex-direction:column; gap:15px; align-items:center; width:190px;">
+          <div style="width:190px; height:220px; background:#bcd54e; border-radius:100px 100px 0 0; flex-shrink:0;"></div>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Интеллектуал</p>
+        </div>
+      </div>
+
+      <!-- Подписи сегментов — в потоке, анимированная высота -->
+      <div id="seg-captions-outer">
+        <div id="seg-captions-inner">
+          <div style="display:flex; justify-content:space-between; padding-top:8px;">
+            <div class="seg-caption-slot" id="seg-caption-sam">возвращается к китайскому ради конкретной цели и хочет сам решать, что для него прогресс</div>
+            <div class="seg-caption-slot" id="seg-caption-umnitsa">влюблена в китайскую культуру, учится ради атмосферы и радости от наград</div>
+            <div class="seg-caption-slot" id="seg-caption-nadzor">загорается быстро, но без внешнего контроля бросает через пару недель</div>
+            <div class="seg-caption-slot" id="seg-caption-delo">готовится к HSK для поступления в китайский вуз, учит под конкретный экзамен</div>
+            <div class="seg-caption-slot" id="seg-caption-intellektual">учит китайский как тренировку для мозга, язык для него инструмент, а не цель</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- НЕ БРАЛИ -->
+      <div id="ne-brali-block" style="margin-top:48px; padding-bottom:64px; display:grid; grid-template-columns:600px 576px; align-items:start;">
+        <p id="ne-brali-heading" style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">Ориентировались на недообслуженные джобы и не брали в работу:</p>
+        <div id="ne-brali-text" style="display:flex; flex-direction:column; gap:16px; width:576px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:16px; flex-shrink:0; margin-top:2px;" alt="">
+            <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">«Для дела» готовятся к экзамену HSK для поступления в китайский вуз. Работа узкая и конечная: сдал экзамен и продукт больше не нужен. Её уже закрывают специализированные курсы. Заказчик был против включения дополнительного курса</p>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:16px; flex-shrink:0; margin-top:2px;" alt="">
+            <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">«Интеллектуал» изучают китайский как тренировку для мозга и профилактику возрастных изменений. Сегмент редкий, и язык для него не цель, а инструмент</p>
+          </div>
+        </div>
       </div>
     </div></div>
 
@@ -910,6 +1021,176 @@
       if (sideText) sideText.classList.toggle('hidden', expanded);
     });
   })();
+
+  /* JTBD accordion + segment captions (in-flow) */
+  (function () {
+    var toggle        = document.getElementById('jtbd-toggle');
+    var body          = document.getElementById('jtbd-body');
+    var sideText      = document.getElementById('jtbd-side-text');
+    var captionsOuter = document.getElementById('seg-captions-outer');
+    if (!toggle || !body) return;
+
+    var segConfig = [
+      { segId: 'seg-sam',          captionId: 'seg-caption-sam' },
+      { segId: 'seg-umnitsa',      captionId: 'seg-caption-umnitsa' },
+      { segId: 'seg-nadzor',       captionId: 'seg-caption-nadzor' },
+      { segId: 'seg-delo',         captionId: 'seg-caption-delo' },
+      { segId: 'seg-intellektual', captionId: 'seg-caption-intellektual' }
+    ];
+
+    var closeTimer = null;
+    var currentCaptionId = null;
+
+    function showCaption(captionId) {
+      clearTimeout(closeTimer);
+      segConfig.forEach(function (cfg) {
+        var el = document.getElementById(cfg.captionId);
+        if (el) el.classList.toggle('active', cfg.captionId === captionId);
+      });
+      if (captionsOuter) captionsOuter.classList.add('open');
+      currentCaptionId = captionId;
+    }
+
+    function closeCaption() {
+      segConfig.forEach(function (cfg) {
+        var el = document.getElementById(cfg.captionId);
+        if (el) el.classList.remove('active');
+      });
+      if (captionsOuter) captionsOuter.classList.remove('open');
+      currentCaptionId = null;
+    }
+
+    segConfig.forEach(function (cfg) {
+      var seg = document.getElementById(cfg.segId);
+      if (!seg) return;
+      seg.addEventListener('mouseenter', function () { showCaption(cfg.captionId); });
+      seg.addEventListener('mouseleave', function () {
+        closeTimer = setTimeout(closeCaption, 80);
+      });
+      /* Touch: toggle caption on tap */
+      seg.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        if (currentCaptionId === cfg.captionId) { closeCaption(); }
+        else { showCaption(cfg.captionId); }
+      }, { passive: false });
+    });
+
+    var SESSION_KEY = 'tingli-jtbd-captions-shown';
+    var autoShowDone = !!sessionStorage.getItem(SESSION_KEY);
+
+    function runAutoShow() {
+      if (autoShowDone) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { autoShowDone = true; return; }
+      autoShowDone = true;
+      sessionStorage.setItem(SESSION_KEY, '1');
+      var delay = 0;
+      segConfig.forEach(function (cfg, i) {
+        setTimeout(function () { showCaption(cfg.captionId); }, delay);
+        if (i === segConfig.length - 1) setTimeout(closeCaption, delay + 1000);
+        delay += 1300;
+      });
+    }
+
+    toggle.addEventListener('click', function () {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      body.classList.toggle('collapsed');
+      if (sideText) sideText.classList.toggle('hidden', expanded);
+      if (!expanded && !autoShowDone) setTimeout(runAutoShow, 350);
+    });
+
+    /* Если секция изначально открыта — показать при первом попадании в viewport */
+    if (!autoShowDone && toggle.getAttribute('aria-expanded') === 'true') {
+      var ioOnce = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { obs.disconnect(); setTimeout(runAutoShow, 400); }
+        });
+      }, { threshold: 0.3 });
+      ioOnce.observe(body);
+    }
+  })();
+
+  /* Замер отступа: низ подписей сегментов → верх «Не брали» + выравнивание */
+  window.measureNebrali = function () {
+    var frame    = document.getElementById('segmenty-frame');
+    var outer    = document.getElementById('seg-captions-outer');
+    var nebrali  = document.getElementById('ne-brali-block');
+    var heading  = document.getElementById('ne-brali-heading');
+    var text     = document.getElementById('ne-brali-text');
+    if (!frame || !nebrali) { console.warn('элементы не найдены'); return; }
+    var fRect = frame.getBoundingClientRect();
+    var oRect = outer ? outer.getBoundingClientRect() : null;
+    var nRect = nebrali.getBoundingClientRect();
+    var hRect = heading ? heading.getBoundingClientRect() : null;
+    var tRect = text    ? text.getBoundingClientRect()    : null;
+    var gapNoHover   = Math.round(nRect.top - fRect.bottom);
+    var gapFromOuter = oRect ? Math.round(nRect.top - oRect.bottom) : '—';
+    console.table([
+      ['', 'Ожидаем', 'Страница'],
+      ['Низ сегментов → верх «Не брали» (без hover)', '48px', gapNoHover + 'px'],
+      ['Низ подписей-контейнера → верх «Не брали»',   '48px', gapFromOuter + 'px'],
+    ]);
+    if (hRect && tRect) {
+      console.table([
+        ['Замер', 'Ожидаем', 'Страница'],
+        ['Левый край текстового блока (от окна)',  '~680px', Math.round(tRect.left) + 'px'],
+        ['Верх заголовка «Не брали в работу»',     '—',      Math.round(hRect.top)  + 'px'],
+        ['Верх текстового блока',                  '—',      Math.round(tRect.top)  + 'px'],
+        ['Разница верхов (должна быть 0)',          '0px',    Math.round(tRect.top - hRect.top) + 'px'],
+      ]);
+    }
+    return { gapNoHover: gapNoHover, gapFromOuter: gapFromOuter };
+  };
+
+  /* Замер отступа JTBD heading → Сегменты frame */
+  window.measureSegmenty = function () {
+    var header = document.getElementById('jtbd-header');
+    var frame  = document.getElementById('segmenty-frame');
+    if (!header || !frame) { console.warn('элементы не найдены'); return; }
+    var hRect = header.getBoundingClientRect();
+    var fRect = frame.getBoundingClientRect();
+    /* hRect.bottom = layout-bottom of JTBD heading (== toggle layout-bottom post-reveal,
+       since .dr-header height equals toggle height with escaped margin-bottom going below). */
+    var gap = Math.round(fRect.top - hRect.bottom);
+    console.log('Отступ низ JTBD → верх Сегменты:', gap + 'px', '(макет: 50px)');
+    console.table([
+      ['', 'Макет', 'Страница'],
+      ['Отступ JTBD → Сегменты', '50px', gap + 'px'],
+      ['Ширина фрейма', '1200px', Math.round(fRect.width) + 'px'],
+      ['Высота фрейма', 'auto', Math.round(fRect.height) + 'px'],
+    ]);
+    return gap;
+  };
+
+  /* Замер выравнивания: верх текстового блока JTBD vs верх заголовка */
+  window.measureJTBD = function () {
+    var heading  = document.getElementById('jtbd-toggle');
+    var sideText = document.getElementById('jtbd-side-text');
+    if (!heading || !sideText) { console.warn('элементы не найдены'); return; }
+    var hRect = heading.getBoundingClientRect();
+    var tRect = sideText.getBoundingClientRect();
+    console.log('Верх заголовка JTBD (toggle.top):', Math.round(hRect.top) + 'px');
+    console.log('Верх текстового блока (sideText.top):', Math.round(tRect.top) + 'px');
+    console.log('Разница (должна быть 0):', Math.round(tRect.top - hRect.top) + 'px');
+    console.log('Левый край текстового блока:', Math.round(tRect.left) + 'px');
+  };
+
+  /* Автозамер «Не брали» при загрузке */
+  window.addEventListener('load', function () {
+    setTimeout(window.measureNebrali, 600);
+  });
+
+  /* Замер отступа: нижний край фото Глубинки → верхний край JTBD */
+  window.measureJTBDGap = function () {
+    var photos  = document.getElementById('glubinki-photos');
+    var header  = document.getElementById('jtbd-header');
+    if (!photos || !header) { console.warn('элементы не найдены'); return; }
+    var pRect = photos.getBoundingClientRect();
+    var hRect = header.getBoundingClientRect();
+    var gap   = Math.round(hRect.top - pRect.bottom);
+    console.log('Отступ нижний край фото → JTBD:', gap + 'px', '(макет: 96px)');
+    return gap;
+  };
 
 </script>
 </body>
