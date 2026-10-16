@@ -356,6 +356,13 @@
       height: 280px;
     }
     .seg-caption-inner { display: none; }
+    #seg-bracket {
+      display: block;
+      margin-top: 24px;
+      pointer-events: none;
+      user-select: none;
+      flex-shrink: 0;
+    }
     #seg-captions-area {
       position: relative;
       overflow: hidden;
@@ -364,7 +371,7 @@
     }
     #seg-desc-display {
       position: absolute;
-      top: 24px;
+      top: 16px;
       transform: translateX(-50%);
       width: 200px;
       font-family: 'Inter Tight', Arial, sans-serif;
@@ -814,7 +821,10 @@
         </div>
       </div>
 
-      <!-- Shared captions (in-flow, pushes «Не брали» on hover) -->
+      <!-- Bracket 1: always visible, 24px below bottom of figures -->
+      <img id="seg-bracket" src="assets/images/tingli-segment-bracket.svg" width="720" height="82" alt="" aria-hidden="true">
+
+      <!-- Shared captions (in-flow, below bracket, pushes «Не брали» on hover) -->
       <div id="seg-captions-area">
         <div id="seg-desc-display"></div>
       </div>
@@ -1170,7 +1180,7 @@
       display.innerHTML = cap.innerHTML;
       display.style.left = segObj.center + 'px';
       var h = display.offsetHeight;
-      area.style.height = (24 + h) + 'px';
+      area.style.height = (16 + h) + 'px';
     }
 
     function hideCaps() {
@@ -1214,20 +1224,27 @@
     });
   })();
 
-  /* Замер hover: низ фигуры до/после и отступ до описания */
+  /* Замер bracket: низ фигур → скобка, скобка → описание, скобка/описание → «Не брали» */
   window.measureSegHover = function () {
-    var seg   = document.getElementById('seg-sam');
-    var shape = seg ? seg.querySelector('.seg-shape') : null;
-    var desc  = seg ? seg.querySelector('.seg-caption-inner') : null;
-    if (!shape || !desc) { console.warn('элементы не найдены'); return; }
+    var seg      = document.getElementById('seg-sam');
+    var shape    = seg ? seg.querySelector('.seg-shape') : null;
+    var bracket  = document.getElementById('seg-bracket');
+    var display  = document.getElementById('seg-desc-display');
+    var nebrali  = document.getElementById('ne-brali-block');
+    if (!shape || !bracket) { console.warn('элементы не найдены'); return; }
     var sRect = shape.getBoundingClientRect();
-    var dRect = desc.getBoundingClientRect();
-    var gap   = Math.round(dRect.top - sRect.bottom);
+    var bRect = bracket.getBoundingClientRect();
+    var dRect = display ? display.getBoundingClientRect() : null;
+    var nRect = nebrali ? nebrali.getBoundingClientRect() : null;
+    var gapFigToBracket = Math.round(bRect.top - sRect.bottom);
+    var gapBracketToDesc = dRect ? Math.round(dRect.top - bRect.bottom) : '—';
+    var gapBracketToNebrali = nRect ? Math.round(nRect.top - bRect.bottom) : '—';
     console.table([
       ['Замер', 'Ожидаем', 'Страница'],
-      ['Высота фигуры', seg.classList.contains('is-active') ? '280px' : '230px', Math.round(sRect.height) + 'px'],
-      ['Низ фигуры (viewport)', '—', Math.round(sRect.bottom) + 'px'],
-      ['Отступ низ фигуры → верх описания', '24px', gap + 'px'],
+      ['Высота фигуры (default/hover)', '230px / 280px', Math.round(sRect.height) + 'px'],
+      ['Низ фигур → верх скобки', '24px', gapFigToBracket + 'px'],
+      ['Низ скобки → верх описания (при hover)', '16px', gapBracketToDesc + 'px'],
+      ['Низ скобки → верх «Не брали» (без hover)', '48px', gapBracketToNebrali + 'px'],
     ]);
   };
 
@@ -1246,14 +1263,18 @@
     var hRect  = heading ? heading.getBoundingClientRect() : null;
     var pRect  = phrase  ? phrase.getBoundingClientRect()  : null;
     var tRect  = text    ? text.getBoundingClientRect()    : null;
+    var bracket      = document.getElementById('seg-bracket');
+    var bRect        = bracket ? bracket.getBoundingClientRect() : null;
+    var gapFromBracket = bRect ? Math.round(nRect.top - bRect.bottom) : '—';
     var gapFromFrame = Math.round(nRect.top - fRect.bottom);
     var capAreaH     = aRect ? Math.round(aRect.height) : '—';
     var gapFromArea  = aRect ? Math.round(nRect.top - aRect.bottom) : '—';
     console.table([
       ['', 'Ожидаем', 'Страница'],
-      ['Низ фигур → верх «Не брали» (без hover)', '48px',          gapFromFrame + 'px'],
-      ['Высота seg-captions-area',                '0 / 24+desc',   capAreaH + 'px'],
-      ['Низ captions-area → верх «Не брали»',     '48px (всегда)', gapFromArea + 'px'],
+      ['Низ скобки → верх «Не брали» (без hover)',  '48px',          gapFromBracket + 'px'],
+      ['Высота seg-captions-area',                  '0 / 16+desc',   capAreaH + 'px'],
+      ['Низ captions-area → верх «Не брали»',       '48px (всегда)', gapFromArea + 'px'],
+      ['Низ фигур → верх «Не брали» (без hover)',   '—',             gapFromFrame + 'px'],
     ]);
     /* Замер позиций относительно фрейма 1280px */
     var frameLeft = nRect.left - 40;
@@ -1268,7 +1289,7 @@
         ['Разница верхов фразы и заголовка',        '0px',   Math.round(pRect.top - hRect.top) + 'px'],
       ]);
     }
-    return { gapNoHover: gapNoHover, gapFromOuter: gapFromOuter };
+    return { gapFromBracket: gapFromBracket, gapFromArea: gapFromArea };
   };
 
   /* Замер отступа JTBD heading → Сегменты frame */
