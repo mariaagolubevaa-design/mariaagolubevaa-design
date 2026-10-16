@@ -394,7 +394,7 @@
       white-space: nowrap;
       opacity: 0;
       transform: translateX(-50%) translateY(8px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .seg-bracket-label.visible {
       opacity: 1;
@@ -402,6 +402,17 @@
     }
     #seg-label-1 { left: 360px; display: inline-flex; align-items: flex-start; gap: 8px; }
     #seg-label-2 { left: 960px; display: inline-flex; align-items: flex-start; gap: 8px; }
+    #vziali-v-rabotu-text,
+    #ne-brali-text {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    #vziali-v-rabotu-text.visible,
+    #ne-brali-text.visible {
+      opacity: 1;
+      transform: none;
+    }
 
     #seg-desc-display {
       position: absolute;
@@ -424,6 +435,12 @@
       .seg-bracket-label {
         opacity: 1;
         transform: translateX(-50%);
+        transition: none;
+      }
+      #vziali-v-rabotu-text,
+      #ne-brali-text {
+        opacity: 1;
+        transform: none;
         transition: none;
       }
     }
@@ -1295,12 +1312,14 @@
     console.log('bRect.top до/после hover должны совпадать — вызовите функцию дважды.');
   };
 
-  /* Bracket labels: animate in once when bracket container enters viewport */
+  /* Bracket labels + text blocks: animate in groups once when bracket container enters viewport */
   (function () {
     var container = document.getElementById('seg-bracket-container');
     var label1    = document.getElementById('seg-label-1');
     var label2    = document.getElementById('seg-label-2');
-    if (!container || !label1 || !label2) return;
+    var text1     = document.getElementById('vziali-v-rabotu-text');
+    var text2     = document.getElementById('ne-brali-text');
+    if (!container || !label1 || !label2 || !text1 || !text2) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var shown = false;
     var io = new IntersectionObserver(function (entries) {
@@ -1308,7 +1327,11 @@
         shown = true;
         io.disconnect();
         label1.classList.add('visible');
-        setTimeout(function () { label2.classList.add('visible'); }, 900);
+        text1.classList.add('visible');
+        setTimeout(function () {
+          label2.classList.add('visible');
+          text2.classList.add('visible');
+        }, 500);
       }
     }, { threshold: 0.3 });
     io.observe(container);
