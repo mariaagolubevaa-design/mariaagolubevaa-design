@@ -334,48 +334,53 @@
     .lbr { display: none; }
     @media (min-width: 1200px) { .lbr { display: block; } }
 
-    /* SEGMENT CAPTIONS (hover) */
+    /* JTBD SEGMENTS — hover height expansion */
     #seg-sam, #seg-umnitsa, #seg-nadzor, #seg-delo, #seg-intellektual {
       position: relative;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      height: 280px;
     }
-    #seg-sam:hover, #seg-umnitsa:hover, #seg-nadzor:hover,
-    #seg-delo:hover, #seg-intellektual:hover {
-      transform: scale(1.03);
+    .seg-shape {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 230px;
+      transition: height 0.3s ease;
     }
-    @media (prefers-reduced-motion: reduce) {
-      #seg-sam, #seg-umnitsa, #seg-nadzor, #seg-delo, #seg-intellektual {
-        transition: none;
-      }
-      #seg-sam:hover, #seg-umnitsa:hover, #seg-nadzor:hover,
-      #seg-delo:hover, #seg-intellektual:hover {
-        transform: none;
-      }
+    #seg-sam:hover .seg-shape, #seg-umnitsa:hover .seg-shape,
+    #seg-nadzor:hover .seg-shape, #seg-delo:hover .seg-shape,
+    #seg-intellektual:hover .seg-shape,
+    #seg-sam.is-active .seg-shape, #seg-umnitsa.is-active .seg-shape,
+    #seg-nadzor.is-active .seg-shape, #seg-delo.is-active .seg-shape,
+    #seg-intellektual.is-active .seg-shape {
+      height: 280px;
     }
-    /* SEGMENT CAPTIONS — in-flow shared container */
-    .seg-caption-slot {
-      width: 240px;
+    .seg-caption-inner { display: none; }
+    #seg-captions-area {
+      position: relative;
+      overflow: hidden;
+      height: 0;
+      transition: height 0.3s ease;
+    }
+    #seg-desc-display {
+      position: absolute;
+      top: 24px;
+      transform: translateX(-50%);
+      width: 200px;
       font-family: 'Inter Tight', Arial, sans-serif;
       font-size: 12px;
       font-weight: 500;
       line-height: 1.4;
-      color: #000;
+      color: #141414;
       text-align: center;
-      opacity: 0;
-      transition: opacity 0.2s ease;
       pointer-events: none;
       user-select: none;
     }
-    .seg-caption-slot.active { opacity: 1; }
-    #seg-captions-outer {
-      display: grid;
-      grid-template-rows: 0fr;
-      overflow: hidden;
-      transition: grid-template-rows 0.3s ease;
+    @media (prefers-reduced-motion: reduce) {
+      #seg-sam .seg-shape, #seg-umnitsa .seg-shape, #seg-nadzor .seg-shape,
+      #seg-delo .seg-shape, #seg-intellektual .seg-shape { transition: none; }
+      #seg-captions-area { transition: none; }
     }
-    #seg-captions-outer.open { grid-template-rows: 1fr; }
-    #seg-captions-inner { min-height: 0; }
 
     /* ── Дизайн-процесс Tingli: cyclic highlight ───────────────── */
     .dp-t__col { display:flex; flex-direction:column; }
@@ -774,42 +779,44 @@
       <div id="segmenty-frame" style="margin-top:2px; display:flex; align-items:flex-start;">
         <!-- Я – сам! -->
         <div id="seg-sam" style="position:relative; width:240px; flex-shrink:0;">
-          <div style="width:240px; height:230px; background:#93dfff; border-radius:1000px 1000px 0 0;"></div>
-          <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Я – сам!</p>
+          <div class="seg-shape" style="width:240px; background:#93dfff; border-radius:1000px 1000px 0 0; overflow:hidden;">
+            <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Я – сам!</p>
+          </div>
+          <div class="seg-caption-inner">возвращается к китайскому ради конкретной цели и хочет сам решать, что для него прогресс</div>
         </div>
         <!-- Умница -->
         <div id="seg-umnitsa" style="position:relative; width:240px; flex-shrink:0;">
-          <div style="width:240px; height:230px; background:#ffc260; border-radius:1000px 1000px 0 0;"></div>
-          <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Умница</p>
+          <div class="seg-shape" style="width:240px; background:#ffc260; border-radius:1000px 1000px 0 0; overflow:hidden;">
+            <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Умница</p>
+          </div>
+          <div class="seg-caption-inner">влюблена в китайскую культуру,<br>учится ради атмосферы<br>и радости от наград</div>
         </div>
         <!-- Надзор -->
         <div id="seg-nadzor" style="position:relative; width:240px; flex-shrink:0;">
-          <div style="width:240px; height:230px; background:#ff9fbb; border-radius:1000px 1000px 0 0;"></div>
-          <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Надзор</p>
+          <div class="seg-shape" style="width:240px; background:#ff9fbb; border-radius:1000px 1000px 0 0; overflow:hidden;">
+            <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Надзор</p>
+          </div>
+          <div class="seg-caption-inner">загорается быстро,<br>но без внешнего контроля<br>бросает через пару недель</div>
         </div>
         <!-- Для дела -->
         <div id="seg-delo" style="position:relative; width:240px; flex-shrink:0;">
-          <div style="width:240px; height:230px; background:#fc6432; border-radius:1000px 1000px 0 0;"></div>
-          <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Для дела</p>
+          <div class="seg-shape" style="width:240px; background:#fc6432; border-radius:1000px 1000px 0 0; overflow:hidden;">
+            <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Для дела</p>
+          </div>
+          <div class="seg-caption-inner">готовится к HSK для поступления<br>в китайский вуз, учит<br>под конкретный экзамен</div>
         </div>
         <!-- Интеллектуал -->
         <div id="seg-intellektual" style="position:relative; width:240px; flex-shrink:0;">
-          <div style="width:240px; height:230px; background:#bcd54e; border-radius:1000px 1000px 0 0;"></div>
-          <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Интеллектуал</p>
+          <div class="seg-shape" style="width:240px; background:#bcd54e; border-radius:1000px 1000px 0 0; overflow:hidden;">
+            <p style="position:absolute; left:50%; top:43px; transform:translate(-50%,-100%); width:240px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; text-align:center; margin:0;">Интеллектуал</p>
+          </div>
+          <div class="seg-caption-inner">учит китайский как тренировку для мозга, язык для него инструмент, а не цель</div>
         </div>
       </div>
 
-      <!-- Подписи сегментов — в потоке, анимированная высота -->
-      <div id="seg-captions-outer">
-        <div id="seg-captions-inner">
-          <div style="display:flex; justify-content:space-between; padding-top:8px;">
-            <div class="seg-caption-slot" id="seg-caption-sam">возвращается к китайскому ради конкретной цели и хочет сам решать, что для него прогресс</div>
-            <div class="seg-caption-slot" id="seg-caption-umnitsa">влюблена в китайскую культуру,<br>учится ради атмосферы<br>и радости от наград</div>
-            <div class="seg-caption-slot" id="seg-caption-nadzor">загорается быстро,<br>но без внешнего контроля<br>бросает через пару недель</div>
-            <div class="seg-caption-slot" id="seg-caption-delo">готовится к HSK для поступления<br>в китайский вуз, учит<br>под конкретный экзамен</div>
-            <div class="seg-caption-slot" id="seg-caption-intellektual">учит китайский как тренировку для мозга, язык для него инструмент, а не цель</div>
-          </div>
-        </div>
+      <!-- Shared captions (in-flow, pushes «Не брали» on hover) -->
+      <div id="seg-captions-area">
+        <div id="seg-desc-display"></div>
       </div>
 
       <!-- НЕ БРАЛИ -->
@@ -1137,118 +1144,119 @@
     });
   })();
 
-  /* JTBD accordion + segment captions (in-flow) */
+  /* JTBD accordion + segment hover (touch support) */
   (function () {
-    var toggle        = document.getElementById('jtbd-toggle');
-    var body          = document.getElementById('jtbd-body');
-    var sideText      = document.getElementById('jtbd-side-text');
-    var captionsOuter = document.getElementById('seg-captions-outer');
+    var toggle   = document.getElementById('jtbd-toggle');
+    var body     = document.getElementById('jtbd-body');
+    var sideText = document.getElementById('jtbd-side-text');
+    var frame    = document.getElementById('segmenty-frame');
+    var area     = document.getElementById('seg-captions-area');
+    var display  = document.getElementById('seg-desc-display');
     if (!toggle || !body) return;
 
-    var segConfig = [
-      { segId: 'seg-sam',          captionId: 'seg-caption-sam' },
-      { segId: 'seg-umnitsa',      captionId: 'seg-caption-umnitsa' },
-      { segId: 'seg-nadzor',       captionId: 'seg-caption-nadzor' },
-      { segId: 'seg-delo',         captionId: 'seg-caption-delo' },
-      { segId: 'seg-intellektual', captionId: 'seg-caption-intellektual' }
+    var segs = [
+      { id: 'seg-sam',          center: 120 },
+      { id: 'seg-umnitsa',      center: 360 },
+      { id: 'seg-nadzor',       center: 600 },
+      { id: 'seg-delo',         center: 840 },
+      { id: 'seg-intellektual', center: 1080 },
     ];
 
-    var closeTimer = null;
-    var currentCaptionId = null;
-
-    function showCaption(captionId) {
-      clearTimeout(closeTimer);
-      segConfig.forEach(function (cfg) {
-        var el = document.getElementById(cfg.captionId);
-        if (el) el.classList.toggle('active', cfg.captionId === captionId);
-      });
-      if (captionsOuter) captionsOuter.classList.add('open');
-      currentCaptionId = captionId;
+    function showCap(segObj) {
+      if (!area || !display) return;
+      var el = document.getElementById(segObj.id);
+      var cap = el ? el.querySelector('.seg-caption-inner') : null;
+      if (!cap) return;
+      display.innerHTML = cap.innerHTML;
+      display.style.left = segObj.center + 'px';
+      var h = display.offsetHeight;
+      area.style.height = (24 + h) + 'px';
     }
 
-    function closeCaption() {
-      segConfig.forEach(function (cfg) {
-        var el = document.getElementById(cfg.captionId);
-        if (el) el.classList.remove('active');
-      });
-      if (captionsOuter) captionsOuter.classList.remove('open');
-      currentCaptionId = null;
+    function hideCaps() {
+      if (!area) return;
+      area.style.height = '0';
     }
 
-    segConfig.forEach(function (cfg) {
-      var seg = document.getElementById(cfg.segId);
+    if (frame && area && display) {
+      segs.forEach(function (s) {
+        var seg = document.getElementById(s.id);
+        if (!seg) return;
+        seg.addEventListener('mouseenter', function () { showCap(s); });
+      });
+      frame.addEventListener('mouseleave', hideCaps);
+    }
+
+    segs.forEach(function (s) {
+      var seg = document.getElementById(s.id);
       if (!seg) return;
-      seg.addEventListener('mouseenter', function () { showCaption(cfg.captionId); });
-      seg.addEventListener('mouseleave', function () {
-        closeTimer = setTimeout(closeCaption, 80);
-      });
-      /* Touch: toggle caption on tap */
       seg.addEventListener('touchstart', function (e) {
         e.preventDefault();
-        if (currentCaptionId === cfg.captionId) { closeCaption(); }
-        else { showCaption(cfg.captionId); }
+        var wasActive = seg.classList.contains('is-active');
+        segs.forEach(function (ss) {
+          var el = document.getElementById(ss.id);
+          if (el) el.classList.remove('is-active');
+        });
+        if (!wasActive) {
+          seg.classList.add('is-active');
+          showCap(s);
+        } else {
+          hideCaps();
+        }
       }, { passive: false });
     });
-
-    var SESSION_KEY = 'tingli-jtbd-captions-shown';
-    var autoShowDone = !!sessionStorage.getItem(SESSION_KEY);
-
-    function runAutoShow() {
-      if (autoShowDone) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { autoShowDone = true; return; }
-      autoShowDone = true;
-      sessionStorage.setItem(SESSION_KEY, '1');
-      var delay = 0;
-      segConfig.forEach(function (cfg, i) {
-        setTimeout(function () { showCaption(cfg.captionId); }, delay);
-        if (i === segConfig.length - 1) setTimeout(closeCaption, delay + 1000);
-        delay += 1300;
-      });
-    }
 
     toggle.addEventListener('click', function () {
       var expanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!expanded));
       body.classList.toggle('collapsed');
       if (sideText) sideText.classList.toggle('hidden', expanded);
-      if (!expanded && !autoShowDone) setTimeout(runAutoShow, 350);
     });
-
-    /* Если секция изначально открыта — показать при первом попадании в viewport */
-    if (!autoShowDone && toggle.getAttribute('aria-expanded') === 'true') {
-      var ioOnce = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { obs.disconnect(); setTimeout(runAutoShow, 400); }
-        });
-      }, { threshold: 0.3 });
-      ioOnce.observe(body);
-    }
   })();
 
-  /* Замер отступа: низ подписей сегментов → верх «Не брали» + выравнивание */
+  /* Замер hover: низ фигуры до/после и отступ до описания */
+  window.measureSegHover = function () {
+    var seg   = document.getElementById('seg-sam');
+    var shape = seg ? seg.querySelector('.seg-shape') : null;
+    var desc  = seg ? seg.querySelector('.seg-caption-inner') : null;
+    if (!shape || !desc) { console.warn('элементы не найдены'); return; }
+    var sRect = shape.getBoundingClientRect();
+    var dRect = desc.getBoundingClientRect();
+    var gap   = Math.round(dRect.top - sRect.bottom);
+    console.table([
+      ['Замер', 'Ожидаем', 'Страница'],
+      ['Высота фигуры', seg.classList.contains('is-active') ? '280px' : '230px', Math.round(sRect.height) + 'px'],
+      ['Низ фигуры (viewport)', '—', Math.round(sRect.bottom) + 'px'],
+      ['Отступ низ фигуры → верх описания', '24px', gap + 'px'],
+    ]);
+  };
+
+  /* Замер отступа: низ сегментов / подписей → верх «Не брали» + выравнивание */
   window.measureNebrali = function () {
     var frame    = document.getElementById('segmenty-frame');
-    var outer    = document.getElementById('seg-captions-outer');
+    var capArea  = document.getElementById('seg-captions-area');
     var nebrali  = document.getElementById('ne-brali-block');
     var heading  = document.getElementById('ne-brali-heading');
     var phrase   = document.getElementById('ne-brali-phrase');
     var text     = document.getElementById('ne-brali-text');
     if (!frame || !nebrali) { console.warn('элементы не найдены'); return; }
-    var fRect = frame.getBoundingClientRect();
-    var oRect = outer ? outer.getBoundingClientRect() : null;
-    var nRect = nebrali.getBoundingClientRect();
-    var hRect = heading ? heading.getBoundingClientRect() : null;
-    var pRect = phrase  ? phrase.getBoundingClientRect()  : null;
-    var tRect = text    ? text.getBoundingClientRect()    : null;
-    var gapNoHover   = Math.round(nRect.top - fRect.bottom);
-    var gapFromOuter = oRect ? Math.round(nRect.top - oRect.bottom) : '—';
+    var fRect  = frame.getBoundingClientRect();
+    var aRect  = capArea ? capArea.getBoundingClientRect() : null;
+    var nRect  = nebrali.getBoundingClientRect();
+    var hRect  = heading ? heading.getBoundingClientRect() : null;
+    var pRect  = phrase  ? phrase.getBoundingClientRect()  : null;
+    var tRect  = text    ? text.getBoundingClientRect()    : null;
+    var gapFromFrame = Math.round(nRect.top - fRect.bottom);
+    var capAreaH     = aRect ? Math.round(aRect.height) : '—';
+    var gapFromArea  = aRect ? Math.round(nRect.top - aRect.bottom) : '—';
     console.table([
       ['', 'Ожидаем', 'Страница'],
-      ['Низ сегментов → верх «Не брали» (без hover)', '48px', gapNoHover + 'px'],
-      ['Низ подписей-контейнера → верх «Не брали»',   '48px', gapFromOuter + 'px'],
+      ['Низ фигур → верх «Не брали» (без hover)', '48px',          gapFromFrame + 'px'],
+      ['Высота seg-captions-area',                '0 / 24+desc',   capAreaH + 'px'],
+      ['Низ captions-area → верх «Не брали»',     '48px (всегда)', gapFromArea + 'px'],
     ]);
     /* Замер позиций относительно фрейма 1280px */
-    var frameLeft = nRect.left - 40; /* container padding 40px отделяет контент от края фрейма */
+    var frameLeft = nRect.left - 40;
     if (hRect && pRect && tRect) {
       console.table([
         ['Замер', 'Ожидаем', 'Страница'],
