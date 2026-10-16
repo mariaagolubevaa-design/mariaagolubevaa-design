@@ -358,20 +358,24 @@
     .seg-caption-inner { display: none; }
     #seg-bracket {
       display: block;
-      margin-top: 24px;
       pointer-events: none;
       user-select: none;
-      flex-shrink: 0;
     }
     #seg-captions-area {
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1200px;
       overflow: hidden;
       height: 0;
       transition: height 0.3s ease;
+      z-index: 2;
+      pointer-events: none;
     }
+    #ne-brali-block { transition: margin-top 0.3s ease; }
     #seg-desc-display {
       position: absolute;
-      top: 16px;
+      top: 0;
       transform: translateX(-50%);
       width: 200px;
       font-family: 'Inter Tight', Arial, sans-serif;
@@ -387,6 +391,7 @@
       #seg-sam .seg-shape, #seg-umnitsa .seg-shape, #seg-nadzor .seg-shape,
       #seg-delo .seg-shape, #seg-intellektual .seg-shape { transition: none; }
       #seg-captions-area { transition: none; }
+      #ne-brali-block { transition: none; }
     }
 
     /* ── Дизайн-процесс Tingli: cyclic highlight ───────────────── */
@@ -821,12 +826,12 @@
         </div>
       </div>
 
-      <!-- Bracket 1: always visible, 24px below bottom of figures -->
-      <img id="seg-bracket" src="assets/images/tingli-segment-bracket.svg" width="720" height="82" alt="" aria-hidden="true">
-
-      <!-- Shared captions (in-flow, below bracket, pushes «Не брали» on hover) -->
-      <div id="seg-captions-area">
-        <div id="seg-desc-display"></div>
+      <!-- Bracket + description: wrapper keeps bracket fixed; description overlaps from top on hover -->
+      <div id="seg-bracket-container" style="position:relative; margin-top:24px; width:1200px; flex-shrink:0;">
+        <img id="seg-bracket" src="assets/images/tingli-segment-bracket.svg" width="720" height="82" alt="" aria-hidden="true">
+        <div id="seg-captions-area">
+          <div id="seg-desc-display"></div>
+        </div>
       </div>
 
       <!-- НЕ БРАЛИ -->
@@ -1162,6 +1167,7 @@
     var frame    = document.getElementById('segmenty-frame');
     var area     = document.getElementById('seg-captions-area');
     var display  = document.getElementById('seg-desc-display');
+    var nebrali  = document.getElementById('ne-brali-block');
     if (!toggle || !body) return;
 
     var segs = [
@@ -1180,12 +1186,14 @@
       display.innerHTML = cap.innerHTML;
       display.style.left = segObj.center + 'px';
       var h = display.offsetHeight;
-      area.style.height = (16 + h) + 'px';
+      area.style.height = h + 'px';
+      if (nebrali) nebrali.style.marginTop = (48 + Math.max(0, h - 82)) + 'px';
     }
 
     function hideCaps() {
       if (!area) return;
       area.style.height = '0';
+      if (nebrali) nebrali.style.marginTop = '48px';
     }
 
     if (frame && area && display) {
@@ -1237,15 +1245,18 @@
     var dRect = display ? display.getBoundingClientRect() : null;
     var nRect = nebrali ? nebrali.getBoundingClientRect() : null;
     var gapFigToBracket = Math.round(bRect.top - sRect.bottom);
-    var gapBracketToDesc = dRect ? Math.round(dRect.top - bRect.bottom) : '—';
+    var gapFigToDesc    = dRect ? Math.round(dRect.top - sRect.bottom) : '—';
+    var gapDescToBracketTop = dRect ? Math.round(dRect.top - bRect.top) : '—';
     var gapBracketToNebrali = nRect ? Math.round(nRect.top - bRect.bottom) : '—';
     console.table([
       ['Замер', 'Ожидаем', 'Страница'],
       ['Высота фигуры (default/hover)', '230px / 280px', Math.round(sRect.height) + 'px'],
       ['Низ фигур → верх скобки', '24px', gapFigToBracket + 'px'],
-      ['Низ скобки → верх описания (при hover)', '16px', gapBracketToDesc + 'px'],
+      ['Низ фигур → верх описания (при hover)', '24px', gapFigToDesc + 'px'],
+      ['Верх описания − верх скобки (hover, должно быть 0)', '0px', gapDescToBracketTop + 'px'],
       ['Низ скобки → верх «Не брали» (без hover)', '48px', gapBracketToNebrali + 'px'],
     ]);
+    console.log('bRect.top до/после hover должны совпадать — вызовите функцию дважды.');
   };
 
   /* Замер отступа: низ сегментов / подписей → верх «Не брали» + выравнивание */
