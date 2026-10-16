@@ -361,11 +361,6 @@
       pointer-events: none;
       user-select: none;
     }
-    #seg-bracket-2 {
-      display: block;
-      pointer-events: none;
-      user-select: none;
-    }
     #seg-captions-area {
       position: absolute;
       top: 0;
@@ -406,7 +401,7 @@
       transform: translateX(-50%) translateY(0);
     }
     #seg-label-1 { left: 360px; display: inline-flex; align-items: flex-start; gap: 8px; }
-    #seg-label-2 { left: 961px; display: inline-flex; align-items: flex-start; gap: 8px; }
+    #seg-label-2 { left: 960px; display: inline-flex; align-items: flex-start; gap: 8px; }
 
     #seg-desc-display {
       position: absolute;
@@ -867,8 +862,7 @@
 
       <!-- Bracket + description: wrapper keeps bracket fixed; description overlaps from top on hover -->
       <div id="seg-bracket-container" style="position:relative; margin-top:24px; width:1200px; flex-shrink:0; height:82px;">
-        <img id="seg-bracket" src="assets/images/tingli-segment-bracket.svg" width="720" height="82" alt="" aria-hidden="true" style="position:absolute; left:0; top:0;">
-        <img id="seg-bracket-2" src="assets/images/tingli-segment-bracket-2.svg" width="481" height="82" alt="" aria-hidden="true" style="position:absolute; left:720px; top:0;">
+        <img id="seg-bracket" src="assets/images/tingli-segment-brackets-combined.svg" width="1201" height="82" alt="" aria-hidden="true" style="position:absolute; left:-0.5px; top:0;">
         <div id="seg-captions-area">
           <div id="seg-desc-display"></div>
         </div>
@@ -879,6 +873,9 @@
         <span id="seg-label-1" class="seg-bracket-label"><img src="assets/images/tingli-check-icon.svg" width="16" height="16" alt="" aria-hidden="true" style="flex-shrink:0;">Взяли в работу</span>
         <span id="seg-label-2" class="seg-bracket-label"><img src="assets/images/tingli-x-icon.svg" width="16" height="16" alt="" aria-hidden="true" style="flex-shrink:0;">Не брали в работу</span>
       </div>
+
+      <!-- Текстовый блок под «Взяли в работу» (макет 2488:18565) -->
+      <p id="vziali-v-rabotu-text" style="margin-top:24px; width:676px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal;">У всех трёх мотивация угасает через несколько недель, а существующие приложения это не решают. Удержание этих пользователей напрямую влияет на длительность сессии и MAU</p>
 
     </div></div>
 
@@ -1348,11 +1345,29 @@
     return gap;
   };
 
+  /* Замер блока «Взяли в работу»: отступ от подписи, left и ширина */
+  window.measureVzialiText = function () {
+    var labels = document.getElementById('seg-bracket-labels');
+    var text   = document.getElementById('vziali-v-rabotu-text');
+    if (!labels || !text) { console.warn('элементы не найдены'); return; }
+    var lRect = labels.getBoundingClientRect();
+    var tRect = text.getBoundingClientRect();
+    var gap   = Math.round(tRect.top - lRect.bottom);
+    console.table([
+      ['', 'Макет', 'Страница'],
+      ['Отступ низ «Взяли в работу» → верх блока', '24px',  gap + 'px'],
+      ['Left блока от viewport',                    '40px',  Math.round(tRect.left) + 'px'],
+      ['Ширина блока',                              '676px', Math.round(tRect.width) + 'px'],
+    ]);
+    return { gap: gap, left: Math.round(tRect.left), width: Math.round(tRect.width) };
+  };
+
   /* Автозамер после завершения анимации .reveal */
   window.addEventListener('load', function () {
     setTimeout(window.measureNebrali, 600);
     /* 500ms — длительность .reveal transition + запас */
     setTimeout(window.measureDesignProcess, 1100);
+    setTimeout(window.measureVzialiText, 700);
   });
 
   /* Дизайн-процесс Tingli: cyclic highlight 1→2→3→1 */
