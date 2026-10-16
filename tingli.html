@@ -375,6 +375,37 @@
     }
     #seg-captions-outer.open { grid-template-rows: 1fr; }
     #seg-captions-inner { min-height: 0; }
+
+    /* ── Дизайн-процесс Tingli: cyclic highlight ───────────────── */
+    .dp-t__col { display:flex; flex-direction:column; }
+    .dp-t__title {
+      font-family:'Inter Tight',Arial,sans-serif;
+      font-size:30px; font-weight:500; line-height:normal; margin:0;
+      transition:color 0.4s ease;
+    }
+    .dp-t__col--active  .dp-t__title { color:#141414; }
+    .dp-t__col--inactive .dp-t__title { color:#9b9b9b; }
+    .dp-t__line-wrap {
+      margin:12px 0 1px; height:3px;
+      position:relative; overflow:hidden; flex-shrink:0;
+    }
+    .dp-t__line {
+      position:absolute; left:0; top:0;
+      height:100%; width:0;
+      background:#141414;
+      transition:width 0.4s ease;
+    }
+    .dp-t__col--active .dp-t__line { width:100%; }
+    .dp-t__desc {
+      font-family:'Inter Tight',Arial,sans-serif;
+      font-size:16px; font-weight:500; line-height:normal; margin:0;
+      transition:color 0.4s ease;
+    }
+    .dp-t__col--active  .dp-t__desc { color:#141414; }
+    .dp-t__col--inactive .dp-t__desc { color:#9b9b9b; }
+    @media (prefers-reduced-motion: reduce) {
+      .dp-t__title, .dp-t__desc, .dp-t__line { transition:none; }
+    }
   </style>
 </head>
 <body>
@@ -555,20 +586,27 @@
   <div class="accordion-inner">
 
 <!-- ДИЗАЙН-ПРОЦЕСС FRAME -->
-<div id="design-process-frame" style="max-width:1280px; margin:72px auto 0; padding:0 40px;">
+<div id="design-process-frame" class="reveal" style="max-width:1280px; margin:72px auto 0; padding:0 40px;">
   <div style="display:flex; gap:46px; align-items:flex-start;">
-    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; line-height:normal; color:#141414; margin:0;">01 Исследование</p>
-    <p style="width:334px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">02 Дизайн</p>
-    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">03 Тестирование</p>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:12px 0 1px;">
-    <div style="width:387px; flex-shrink:0; height:3px; background:#141414;"></div>
-    <div style="flex:1; height:2px; background:#9b9b9b;"></div>
-  </div>
-  <div style="display:flex; gap:46px; align-items:flex-start;">
-    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:normal; color:#141414; margin:0;">Деск ресерч, гипотезы, глубинки, полевые и дневниковые исследования, JTBD</p>
-    <p style="width:334px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">Приоритизация по JTBD, генерация идей, Юзерфлоу, Вайрфреймы, Экраны, Генерация инфографики, Прототипирование</p>
-    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">ЮТ, Развитие решений, Итоги</p>
+
+    <div class="dp-t__col dp-t__col--active" style="width:387px; flex-shrink:0;">
+      <p class="dp-t__title">01 Исследование</p>
+      <div class="dp-t__line-wrap"><div class="dp-t__line"></div></div>
+      <p class="dp-t__desc">Деск ресерч, гипотезы, глубинки, полевые <span class="lbr"></span>и дневниковые исследования, JTBD</p>
+    </div>
+
+    <div class="dp-t__col dp-t__col--inactive" style="width:334px; flex-shrink:0;">
+      <p class="dp-t__title">02 Дизайн</p>
+      <div class="dp-t__line-wrap"><div class="dp-t__line"></div></div>
+      <p class="dp-t__desc">Приоритизация по JTBD, генерация идей, Юзерфлоу, Вайрфреймы, Экраны, <span class="lbr"></span>Генерация инфографики, Прототипирование</p>
+    </div>
+
+    <div class="dp-t__col dp-t__col--inactive" style="width:387px; flex-shrink:0;">
+      <p class="dp-t__title">03 Тестирование</p>
+      <div class="dp-t__line-wrap"><div class="dp-t__line"></div></div>
+      <p class="dp-t__desc">ЮТ, Развитие решений, Итоги</p>
+    </div>
+
   </div>
 </div>
 
@@ -1222,6 +1260,36 @@
     setTimeout(window.measureNebrali, 600);
     setTimeout(window.measureDesignProcess, 700);
   });
+
+  /* Дизайн-процесс Tingli: cyclic highlight 1→2→3→1 */
+  (function () {
+    var frame = document.getElementById('design-process-frame');
+    if (!frame) return;
+    var cols = frame.querySelectorAll('.dp-t__col');
+    if (cols.length !== 3) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var active = 0, timer = null;
+
+    function next() {
+      cols[active].classList.remove('dp-t__col--active');
+      cols[active].classList.add('dp-t__col--inactive');
+      active = (active + 1) % 3;
+      cols[active].classList.remove('dp-t__col--inactive');
+      cols[active].classList.add('dp-t__col--active');
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        if (!timer) timer = setInterval(next, 2500);
+      } else {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+    }, { threshold: 0 });
+
+    io.observe(frame);
+  })();
 
   /* Замер отступа: нижний край фото Глубинки → верхний край JTBD */
   window.measureJTBDGap = function () {
