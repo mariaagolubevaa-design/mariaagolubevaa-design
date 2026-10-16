@@ -378,6 +378,38 @@
       pointer-events: none;
     }
     #ne-brali-block { transition: margin-top 0.3s ease; }
+
+    /* Bracket labels (animate on viewport entry, once) */
+    #seg-bracket-labels {
+      position: relative;
+      width: 1200px;
+      flex-shrink: 0;
+      margin-top: 12px;
+      height: 20px;
+      z-index: 3;
+      pointer-events: none;
+      user-select: none;
+    }
+    .seg-bracket-label {
+      position: absolute;
+      top: 0;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1;
+      color: #141414;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-50%) translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .seg-bracket-label.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    #seg-label-1 { left: 360px; display: inline-flex; align-items: flex-start; gap: 8px; }
+    #seg-label-2 { left: 961px; }
+
     #seg-desc-display {
       position: absolute;
       top: 0;
@@ -397,6 +429,11 @@
       #seg-delo .seg-shape, #seg-intellektual .seg-shape { transition: none; }
       #seg-captions-area { transition: none; }
       #ne-brali-block { transition: none; }
+      .seg-bracket-label {
+        opacity: 1;
+        transform: translateX(-50%);
+        transition: none;
+      }
     }
 
     /* ── Дизайн-процесс Tingli: cyclic highlight ───────────────── */
@@ -838,6 +875,12 @@
         <div id="seg-captions-area">
           <div id="seg-desc-display"></div>
         </div>
+      </div>
+
+      <!-- Bracket labels -->
+      <div id="seg-bracket-labels">
+        <span id="seg-label-1" class="seg-bracket-label"><img src="assets/images/tingli-check-icon.svg" width="16" height="16" alt="" aria-hidden="true" style="flex-shrink:0;">Взяли в работу</span>
+        <span id="seg-label-2" class="seg-bracket-label">Не брали в работу</span>
       </div>
 
       <!-- НЕ БРАЛИ -->
@@ -1308,6 +1351,25 @@
     }
     return { gapFromBracket: gapFromBracket, gapFromArea: gapFromArea };
   };
+
+  /* Bracket labels: animate in once when bracket container enters viewport */
+  (function () {
+    var container = document.getElementById('seg-bracket-container');
+    var label1    = document.getElementById('seg-label-1');
+    var label2    = document.getElementById('seg-label-2');
+    if (!container || !label1 || !label2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var shown = false;
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting && !shown) {
+        shown = true;
+        io.disconnect();
+        label1.classList.add('visible');
+        setTimeout(function () { label2.classList.add('visible'); }, 900);
+      }
+    }, { threshold: 0.3 });
+    io.observe(container);
+  })();
 
   /* Замер отступа JTBD heading → Сегменты frame */
   window.measureSegmenty = function () {
