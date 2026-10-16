@@ -361,6 +361,11 @@
       pointer-events: none;
       user-select: none;
     }
+    #seg-bracket-2 {
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
     #seg-captions-area {
       position: absolute;
       top: 0;
@@ -827,8 +832,9 @@
       </div>
 
       <!-- Bracket + description: wrapper keeps bracket fixed; description overlaps from top on hover -->
-      <div id="seg-bracket-container" style="position:relative; margin-top:24px; width:1200px; flex-shrink:0;">
-        <img id="seg-bracket" src="assets/images/tingli-segment-bracket.svg" width="720" height="82" alt="" aria-hidden="true">
+      <div id="seg-bracket-container" style="position:relative; margin-top:24px; width:1200px; flex-shrink:0; height:82px;">
+        <img id="seg-bracket" src="assets/images/tingli-segment-bracket.svg" width="720" height="82" alt="" aria-hidden="true" style="position:absolute; left:0; top:0;">
+        <img id="seg-bracket-2" src="assets/images/tingli-segment-bracket-2.svg" width="481" height="82" alt="" aria-hidden="true" style="position:absolute; left:720px; top:0;">
         <div id="seg-captions-area">
           <div id="seg-desc-display"></div>
         </div>
