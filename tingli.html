@@ -387,15 +387,17 @@
     .dp-t__col--inactive .dp-t__title { color:#9b9b9b; }
     .dp-t__line-wrap {
       margin:12px 0 1px; height:3px;
-      position:relative; overflow:hidden; flex-shrink:0;
+      flex-shrink:0;
     }
-    .dp-t__line {
-      position:absolute; left:0; top:0;
-      height:100%; width:0;
-      background:#141414;
-      transition:width 0.4s ease;
+    .dp-t__shared-lines {
+      position:absolute; left:0; right:0; top:48px; height:3px;
+      pointer-events:none;
     }
-    .dp-t__col--active .dp-t__line { width:100%; }
+    .dp-t__gray-line { position:absolute; inset:0; background:#9b9b9b; }
+    .dp-t__black-line {
+      position:absolute; top:0; height:100%; background:#141414;
+      transition:left 0.4s ease, width 0.4s ease;
+    }
     .dp-t__desc {
       font-family:'Inter Tight',Arial,sans-serif;
       font-size:16px; font-weight:500; line-height:normal; margin:0;
@@ -404,7 +406,7 @@
     .dp-t__col--active  .dp-t__desc { color:#141414; }
     .dp-t__col--inactive .dp-t__desc { color:#9b9b9b; }
     @media (prefers-reduced-motion: reduce) {
-      .dp-t__title, .dp-t__desc, .dp-t__line { transition:none; }
+      .dp-t__title, .dp-t__desc, .dp-t__black-line { transition:none; }
     }
   </style>
 </head>
@@ -480,23 +482,21 @@
 <div class="accordion-body" id="context-body">
   <div class="accordion-inner">
 <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
-  <div style="margin-top:40px; width:1200px; height:620px; border-radius:48px; background:#CABEFF; position:relative; overflow:hidden;">
-    <!-- Background blob -->
-    <div style="position:absolute; width:1130px; height:540px; left:calc(50% + 5px); top:26px; transform:translateX(-50%); overflow:visible; pointer-events:none;">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="position:absolute; top:-6.8%; left:-3.54%; width:108.62%; height:114.22%; max-width:none; display:block;" alt="">
+  <div style="margin-top:40px; width:calc(100% + 80px); margin-left:-40px; height:839px; border-radius:0; background:#CABEFF; position:relative; overflow:hidden;">
+    <!-- Vector background (1182.24×616.222px, positions from Figma node 575:15048) -->
+    <img src="assets/images/tingli-context-vector-bg.svg" alt="" aria-hidden="true" style="position:absolute; left:35px; top:-11px; width:1182.24px; height:616.222px; max-width:none; display:block; pointer-events:none;">
+    <!-- Phone 1 (left, Мой трек): left:101px top:48px 322×700px -->
+    <div style="position:absolute; left:101px; top:48px; width:322px; height:700px; border:3px solid white; border-radius:48px; overflow:hidden; box-sizing:border-box;">
+      <img src="assets/images/tingli-context-phone-left.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="">
     </div>
-    <!-- Phone 1 (left) -->
-    <div style="position:absolute; left:145px; top:32px; width:210px; height:460px; border-radius:30px; border:3px solid white; overflow:hidden;">
+    <!-- Phone 2 (center, outline): left:479px top:48px 322×700px -->
+    <div style="position:absolute; left:479px; top:48px; width:322px; height:700px; border:1.977px solid rgba(250,250,250,1); border-radius:48px; box-sizing:border-box;"></div>
+    <!-- Phone 3 (right, ИИ диалоги): left:857px top:47px 322×700px -->
+    <div style="position:absolute; left:857px; top:47px; width:322px; height:700px; border-radius:48px; overflow:hidden;">
       <img src="assets/images/tingli-context-phone-1.png" style="width:100%; height:100%; object-fit:cover; display:block;" alt="">
     </div>
-    <!-- Phone 2 (center, video placeholder) -->
-    <div style="position:absolute; left:50%; top:32px; width:212px; height:460px; border-radius:30px; border:2px solid white; transform:translateX(-50%);"></div>
-    <!-- Phone 3 (right) -->
-    <div style="position:absolute; left:845px; top:32px; width:210px; height:460px; border-radius:30px; overflow:hidden;">
-      <img src="assets/images/tingli-context-phone-2.jpeg" style="width:100%; height:100%; object-fit:cover; display:block;" alt="">
-    </div>
-    <!-- Caption -->
-    <p style="position:absolute; left:50%; top:536px; transform:translateX(-50%); white-space:nowrap; font-family:'Gilroy',Arial,sans-serif; font-size:24px; font-weight:500; color:rgba(255,255,255,0.8); line-height:normal; margin:0;">*cейчас приложение выглядит так, но находится в стадии редизайна</p>
+    <!-- Caption (Bubble): centered top:780px -->
+    <p style="position:absolute; left:50%; top:780px; transform:translateX(-50%); white-space:nowrap; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:rgba(255,255,255,0.8); line-height:normal; margin:0; border-radius:0 14px 14px 14px;">приложение выглядит в марте 2026 года, но находится в стадии редизайна</p>
   </div>
 
 </div>
@@ -587,31 +587,36 @@
 
 <!-- ДИЗАЙН-ПРОЦЕСС FRAME -->
 <div id="design-process-frame" class="reveal" style="max-width:1280px; margin:72px auto 0; padding:0 40px;">
-  <div style="display:flex; gap:46px; align-items:flex-start;">
+  <div style="display:flex; gap:46px; align-items:flex-start; position:relative;">
 
     <div class="dp-t__col dp-t__col--active" style="width:387px; flex-shrink:0;">
       <p class="dp-t__title">01 Исследование</p>
-      <div class="dp-t__line-wrap"><div class="dp-t__line"></div></div>
+      <div class="dp-t__line-wrap"></div>
       <p class="dp-t__desc">Деск ресерч, гипотезы, глубинки, полевые <span class="lbr"></span>и дневниковые исследования, JTBD</p>
     </div>
 
     <div class="dp-t__col dp-t__col--inactive" style="width:334px; flex-shrink:0;">
       <p class="dp-t__title">02 Дизайн</p>
-      <div class="dp-t__line-wrap"><div class="dp-t__line"></div></div>
+      <div class="dp-t__line-wrap"></div>
       <p class="dp-t__desc">Приоритизация по JTBD, генерация идей, Юзерфлоу, Вайрфреймы, Экраны, <span class="lbr"></span>Генерация инфографики, Прототипирование</p>
     </div>
 
     <div class="dp-t__col dp-t__col--inactive" style="width:387px; flex-shrink:0;">
       <p class="dp-t__title">03 Тестирование</p>
-      <div class="dp-t__line-wrap"><div class="dp-t__line"></div></div>
+      <div class="dp-t__line-wrap"></div>
       <p class="dp-t__desc">ЮТ, Развитие решений, Итоги</p>
+    </div>
+
+    <div class="dp-t__shared-lines">
+      <div class="dp-t__gray-line"></div>
+      <div class="dp-t__black-line" id="dp-t-black-line"></div>
     </div>
 
   </div>
 </div>
 
 <!-- ИССЛЕДОВАНИЕ -->
-<div id="research" style="max-width:1280px; margin:95px auto 0; padding:0 80px 0 40px;">
+<div id="research" style="max-width:1280px; margin:128px auto 0; padding:0 80px 0 40px;">
   <div class="accordion-toggle" data-target="research-body" style="display:flex; align-items:center; gap:24px;">
     <p style="font-family:'Inter Tight', Arial, sans-serif; font-weight:500; font-size:40px; color:#141414; line-height:normal; white-space:nowrap; margin:0;">Исследование</p>
     <img src="assets/images/tingli-chevron.svg" class="accordion-chevron" width="24" height="24" alt="">
@@ -1240,25 +1245,26 @@
     console.log('Левый край текстового блока:', Math.round(tRect.left) + 'px');
   };
 
-  /* Замер отступа: низ заголовка «Дизайн-процесс» → верх фрейма */
+  /* Замер отступа: низ фрейма «Дизайн-процесс» → верх заголовка «Исследование» */
   window.measureDesignProcess = function () {
-    var heading = document.querySelector('#process h2.section-title');
-    var frame   = document.getElementById('design-process-frame');
-    if (!heading || !frame) { console.warn('элементы не найдены'); return; }
-    var hRect = heading.getBoundingClientRect();
+    var frame    = document.getElementById('design-process-frame');
+    var research = document.querySelector('#research p');
+    if (!frame || !research) { console.warn('элементы не найдены'); return; }
     var fRect = frame.getBoundingClientRect();
-    var gap   = Math.round(fRect.top - hRect.bottom);
+    var rRect = research.getBoundingClientRect();
+    var gap   = Math.round(rRect.top - fRect.bottom);
     console.table([
       ['', 'Макет', 'Страница'],
-      ['Отступ низ заголовка → верх фрейма', '72px', gap + 'px'],
+      ['Низ фрейма Дизайн-процесс → верх заголовка Исследование', '128px', gap + 'px'],
     ]);
     return gap;
   };
 
-  /* Автозамер «Не брали» при загрузке */
+  /* Автозамер после завершения анимации .reveal */
   window.addEventListener('load', function () {
     setTimeout(window.measureNebrali, 600);
-    setTimeout(window.measureDesignProcess, 700);
+    /* 500ms — длительность .reveal transition + запас */
+    setTimeout(window.measureDesignProcess, 1100);
   });
 
   /* Дизайн-процесс Tingli: cyclic highlight 1→2→3→1 */
@@ -1267,6 +1273,22 @@
     if (!frame) return;
     var cols = frame.querySelectorAll('.dp-t__col');
     if (cols.length !== 3) return;
+    var blackLine = document.getElementById('dp-t-black-line');
+    if (!blackLine) return;
+
+    /* left/width чёрной полосы для каждой колонки (px от левого края flex) */
+    var colPos = [
+      { left: 0,   width: 387 },
+      { left: 433, width: 334 },
+      { left: 813, width: 387 }
+    ];
+
+    function setLine(idx) {
+      blackLine.style.left  = colPos[idx].left  + 'px';
+      blackLine.style.width = colPos[idx].width + 'px';
+    }
+
+    setLine(0);
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -1278,6 +1300,7 @@
       active = (active + 1) % 3;
       cols[active].classList.remove('dp-t__col--inactive');
       cols[active].classList.add('dp-t__col--active');
+      setLine(active);
     }
 
     var io = new IntersectionObserver(function (entries) {
