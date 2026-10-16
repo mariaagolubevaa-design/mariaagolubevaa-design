@@ -747,6 +747,17 @@
         <img src="assets/images/tingli-glubinki-photo-1.png" style="flex:0 0 600px; height:100%; display:block;" alt="">
         <img src="assets/images/tingli-glubinki-photo-2.png" style="flex:0 0 600px; height:100%; display:block;" alt="">
       </div>
+
+      <!-- ИНСАЙТЫ -->
+      <div id="insayty-block" style="margin-top:72px; display:flex; align-items:flex-start;">
+        <p id="insayty-heading" style="font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; color:#141414; line-height:normal; margin:0; flex:0 0 600px; white-space:nowrap;">Инсайты</p>
+        <div id="insayty-text" style="display:flex; flex-direction:column; gap:12px; width:600px;">
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">[1] Мало материалов и инструментов;</p>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">[2] Мало возможностей для языковой практики;</p>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">[3] Китайский как неотъемлимая часть жизни;</p>
+          <p style="font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal; margin:0;">[4] Чувство исключительности</p>
+        </div>
+      </div>
     </div></div>
 
     <!-- JTBD -->
@@ -1460,6 +1471,27 @@
     });
     console.table(rows);
     return rows;
+  };
+
+  /* Замер блока «Инсайты»: отступ от фото, left заголовка и текста, разница по верху */
+  window.measureInsayty = function () {
+    var photos   = document.getElementById('glubinki-photos');
+    var heading  = document.getElementById('insayty-heading');
+    var text     = document.getElementById('insayty-text');
+    if (!photos || !heading || !text) { console.warn('элементы не найдены'); return; }
+    var pRect = photos.getBoundingClientRect();
+    var hRect = heading.getBoundingClientRect();
+    var tRect = text.getBoundingClientRect();
+    var frameLeft = pRect.left - 40; /* 40px padding компенсирует container */
+    var gap   = Math.round(hRect.top - pRect.bottom);
+    console.table([
+      ['Замер', 'Ожидаем', 'Страница'],
+      ['Отступ низ фото → верх заголовка «Инсайты»', '72px',  gap + 'px'],
+      ['left заголовка от фрейма 1280px',             '40px',  Math.round(hRect.left - frameLeft) + 'px'],
+      ['left текстового блока от фрейма 1280px',      '640px', Math.round(tRect.left - frameLeft) + 'px'],
+      ['Разница верхов заголовка и текста',           '0px',   Math.round(tRect.top - hRect.top) + 'px'],
+    ]);
+    return { gap, headingLeft: Math.round(hRect.left - frameLeft), textLeft: Math.round(tRect.left - frameLeft), topDiff: Math.round(tRect.top - hRect.top) };
   };
 
   /* Замер отступа: нижний край фото Глубинки → верхний край JTBD */
