@@ -554,6 +554,24 @@
 <div class="accordion-body" id="process-body">
   <div class="accordion-inner">
 
+<!-- ДИЗАЙН-ПРОЦЕСС FRAME -->
+<div id="design-process-frame" style="max-width:1280px; margin:72px auto 0; padding:0 40px;">
+  <div style="display:flex; gap:46px; align-items:flex-start;">
+    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; line-height:normal; color:#141414; margin:0;">01 Исследование</p>
+    <p style="width:334px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">02 Дизайн</p>
+    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:30px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">03 Тестирование</p>
+  </div>
+  <div style="display:flex; align-items:flex-start; margin:12px 0 1px;">
+    <div style="width:387px; flex-shrink:0; height:3px; background:#141414;"></div>
+    <div style="flex:1; height:2px; background:#9b9b9b;"></div>
+  </div>
+  <div style="display:flex; gap:46px; align-items:flex-start;">
+    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:normal; color:#141414; margin:0;">Деск ресерч, гипотезы, глубинки, полевые и дневниковые исследования, JTBD</p>
+    <p style="width:334px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">Приоритизация по JTBD, генерация идей, Юзерфлоу, Вайрфреймы, Экраны, Генерация инфографики, Прототипирование</p>
+    <p style="width:387px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; line-height:normal; color:#9b9b9b; margin:0;">ЮТ, Развитие решений, Итоги</p>
+  </div>
+</div>
+
 <!-- ИССЛЕДОВАНИЕ -->
 <div id="research" style="max-width:1280px; margin:95px auto 0; padding:0 80px 0 40px;">
   <div class="accordion-toggle" data-target="research-body" style="display:flex; align-items:center; gap:24px;">
@@ -1184,9 +1202,25 @@
     console.log('Левый край текстового блока:', Math.round(tRect.left) + 'px');
   };
 
+  /* Замер отступа: низ заголовка «Дизайн-процесс» → верх фрейма */
+  window.measureDesignProcess = function () {
+    var heading = document.querySelector('#process h2.section-title');
+    var frame   = document.getElementById('design-process-frame');
+    if (!heading || !frame) { console.warn('элементы не найдены'); return; }
+    var hRect = heading.getBoundingClientRect();
+    var fRect = frame.getBoundingClientRect();
+    var gap   = Math.round(fRect.top - hRect.bottom);
+    console.table([
+      ['', 'Макет', 'Страница'],
+      ['Отступ низ заголовка → верх фрейма', '72px', gap + 'px'],
+    ]);
+    return gap;
+  };
+
   /* Автозамер «Не брали» при загрузке */
   window.addEventListener('load', function () {
     setTimeout(window.measureNebrali, 600);
+    setTimeout(window.measureDesignProcess, 700);
   });
 
   /* Замер отступа: нижний край фото Глубинки → верхний край JTBD */
