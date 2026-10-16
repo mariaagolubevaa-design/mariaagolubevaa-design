@@ -874,8 +874,25 @@
         <span id="seg-label-2" class="seg-bracket-label"><img src="assets/images/tingli-x-icon.svg" width="16" height="16" alt="" aria-hidden="true" style="flex-shrink:0;">Не брали в работу</span>
       </div>
 
-      <!-- Текстовый блок под «Взяли в работу» (макет 2488:18565) -->
-      <p id="vziali-v-rabotu-text" style="margin-top:24px; width:676px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal;">У всех трёх мотивация угасает через несколько недель, а существующие приложения<span class="lbr"></span>это не решают. Удержание этих пользователей напрямую влияет на длительность сессии<span class="lbr"></span>и MAU</p>
+      <div style="display:flex; align-items:flex-start;">
+        <!-- Текстовый блок под «Взяли в работу» (макет 2488:18565) -->
+        <p id="vziali-v-rabotu-text" style="margin-top:24px; width:676px; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal;">У всех трёх мотивация угасает через несколько недель, а существующие приложения<span class="lbr"></span>это не решают. Удержание этих пользователей напрямую влияет на длительность сессии<span class="lbr"></span>и MAU</p>
+
+        <!-- Текстовый блок под «Не брали в работу» (макет 2484:18516) -->
+        <div id="ne-brali-text" style="margin-top:24px; margin-left:44px; width:480px; flex-shrink:0; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; line-height:normal;">
+          <p style="margin:0 0 12px 0;">Ориентировались на недообслуженные джобы и не брали:</p>
+          <div style="position:relative; height:164px;">
+            <div style="position:absolute; left:0; top:0; display:flex; gap:16px; align-items:flex-start; width:480px;">
+              <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:16px; flex-shrink:0;" alt="">
+              <p style="margin:0; width:450px;">«Для дела» готовятся к экзамену HSK для поступления в китайский вуз. Работа узкая и конечная: сдал экзамен и продукт больше не нужен. Её уже закрывают специализированные курсы. Заказчик был против включения дополнительного курса</p>
+            </div>
+            <div style="position:absolute; left:0; top:103px; display:flex; gap:16px; align-items:flex-start; width:480px;">
+              <img src="assets/images/tingli-myrole-star.svg" style="width:14px; height:16px; flex-shrink:0;" alt="">
+              <p style="margin:0; width:450px;">«Интеллектуал» изучают китайский как тренировку для мозга и профилактику возрастных изменений. Сегмент редкий, и язык для него не цель, а инструмент</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div></div>
 
@@ -1343,6 +1360,28 @@
       ['Низ фрейма Дизайн-процесс → верх заголовка Исследование', '128px', gap + 'px'],
     ]);
     return gap;
+  };
+
+  /* Замер блока «Не брали в работу»: отступ 24px, left, разница по верху с соседним.
+     Отступ считается от низа #seg-bracket-labels (аналогично measureVzialiText),
+     т.к. seg-label-2 использует position:absolute + CSS transform, что искажает getBoundingClientRect. */
+  window.measureNebrali = function () {
+    var labels  = document.getElementById('seg-bracket-labels');
+    var nebrali = document.getElementById('ne-brali-text');
+    var vziali  = document.getElementById('vziali-v-rabotu-text');
+    if (!labels || !nebrali || !vziali) { console.warn('элементы не найдены'); return; }
+    var lRect = labels.getBoundingClientRect();
+    var nRect = nebrali.getBoundingClientRect();
+    var vRect = vziali.getBoundingClientRect();
+    var gap     = Math.round(nRect.top - lRect.bottom);
+    var topDiff = Math.round(nRect.top - vRect.top);
+    console.table([
+      ['', 'Макет', 'Страница'],
+      ['Отступ низ «Не брали в работу» → верх блока', '24px',  gap + 'px'],
+      ['Left блока от viewport (при 1280px)',          '760px', Math.round(nRect.left) + 'px'],
+      ['Разница верхов (Не брали − Взяли)',            '0px',   topDiff + 'px'],
+    ]);
+    return { gap, left: Math.round(nRect.left), topDiff };
   };
 
   /* Замер блока «Взяли в работу»: отступ от подписи, left и ширина */
