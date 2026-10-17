@@ -516,9 +516,17 @@
       display: flex;
       gap: 48px;
       padding-left: max(40px, calc((100vw - 1280px) / 2 + 40px));
+      padding-right: 40px;
       padding-top: 80px;
       padding-bottom: 4px;
+      overflow-x: scroll;
+      cursor: grab;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      user-select: none;
     }
+    .raboty-row::-webkit-scrollbar { display: none; }
+    .raboty-row.is-dragging { cursor: grabbing; }
     .raboty-card {
       position: relative;
       width: 326px;
@@ -1572,6 +1580,43 @@
     ]);
     return { gap: gap, left: Math.round(tRect.left), width: Math.round(tRect.width) };
   };
+
+  /* Работы: drag-to-scroll */
+  (function () {
+    var row = document.querySelector('.raboty-row');
+    if (!row) return;
+    var isDown = false, startX = 0, scrollLeft = 0, hasDragged = false;
+    var THRESH = 5;
+
+    row.addEventListener('mousedown', function (e) {
+      if (e.button !== 0) return;
+      isDown = true;
+      hasDragged = false;
+      startX = e.pageX;
+      scrollLeft = row.scrollLeft;
+      row.classList.add('is-dragging');
+      /* no preventDefault — CSS user-select:none handles selection;
+         preventing default blocks click events in Chromium */
+    });
+
+    document.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      var dx = e.pageX - startX;
+      if (Math.abs(dx) > THRESH) hasDragged = true;
+      row.scrollLeft = scrollLeft - dx;
+    });
+
+    document.addEventListener('mouseup', function () {
+      if (!isDown) return;
+      isDown = false;
+      row.classList.remove('is-dragging');
+    });
+
+    /* Capture-phase click: eat the click if user was dragging */
+    row.addEventListener('click', function (e) {
+      if (hasDragged) { e.stopPropagation(); e.preventDefault(); hasDragged = false; }
+    }, true);
+  })();
 
   /* Автозамер после завершения анимации .reveal */
   window.addEventListener('load', function () {
