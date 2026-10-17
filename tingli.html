@@ -510,6 +510,48 @@
       .myrole-slide { transition: none; }
       .myrole-caption { transition: none; }
     }
+
+    /* РАБОТЫ block */
+    .raboty-row {
+      display: flex;
+      gap: 48px;
+      padding-left: max(40px, calc((100vw - 1280px) / 2 + 40px));
+      padding-top: 80px;
+      padding-bottom: 4px;
+    }
+    .raboty-card {
+      position: relative;
+      width: 326px;
+      height: 360px;
+      flex-shrink: 0;
+    }
+    .raboty-card__bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .raboty-card__bg img {
+      position: absolute;
+      width: 100.12%;
+      height: 113.33%;
+      left: -0.06%;
+      top: 0;
+      max-width: none;
+      display: block;
+    }
+    .raboty-card__text {
+      position: absolute;
+      left: 19px;
+      top: 60px;
+      width: 287px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      font-family: 'Inter Tight', Arial, sans-serif;
+      font-weight: 500;
+      color: #141414;
+    }
   </style>
 </head>
 <body>
@@ -920,6 +962,107 @@
     </div></div>
 
     </div><!-- /container 1280 -->
+
+    <!-- РАБОТЫ -->
+    <div style="margin-top:48px; overflow:hidden;">
+      <div class="raboty-row">
+
+        <!-- Card 1: Видимый прогресс / Я – сам! -->
+        <div class="raboty-card">
+          <div class="raboty-card__bg"><img src="assets/images/tingli-raboty-bg.png" alt=""></div>
+          <img src="assets/images/tingli-raboty-line.svg" alt="" aria-hidden="true" style="position:absolute; left:0; top:138px; width:326px; height:1px; display:block;">
+          <div class="raboty-card__text">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <p style="font-size:30px; line-height:normal; margin:0;">Видимый прогресс</p>
+              <p style="font-size:16px; line-height:normal; margin:0;">Работа 1&nbsp;&nbsp;—&nbsp;&nbsp;Главная работа</p>
+            </div>
+            <p style="font-size:16px; line-height:normal; margin:0; width:290px;">Когда Маша смотрит данные по своему прогрессу, она хочет видеть не абстрактные очки, а как растут мои навыки и сколько осталось до цели, чтобы чувствовать, что провожу время с пользой</p>
+          </div>
+          <img src="assets/images/tingli-raboty-stamp-sam.png" alt="" aria-hidden="true" style="position:absolute; left:102px; top:-61px; width:121px; height:121px; display:block;">
+          <div style="position:absolute; left:226px; top:268px; width:128px; height:92px; display:flex; align-items:center; justify-content:center;">
+            <img src="assets/images/tingli-raboty-star-outer.svg" alt="" aria-hidden="true" style="position:absolute; width:114px; height:64px; transform:rotate(-6deg); display:block;">
+            <img src="assets/images/tingli-raboty-star-inner.svg" alt="" aria-hidden="true" style="position:absolute; width:96px; height:55px; transform:rotate(-6deg); display:block;">
+            <p style="position:relative; z-index:1; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; white-space:nowrap; margin:0; transform:rotate(-6deg);">Я - САМ!</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Кастомная цель / Я – сам! -->
+        <div class="raboty-card">
+          <div class="raboty-card__bg"><img src="assets/images/tingli-raboty-bg.png" alt=""></div>
+          <img src="assets/images/tingli-raboty-line.svg" alt="" aria-hidden="true" style="position:absolute; left:0; top:138px; width:326px; height:1px; display:block;">
+          <div class="raboty-card__text">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <p style="font-size:30px; line-height:normal; margin:0;">Кастомная цель</p>
+              <p style="font-size:16px; line-height:normal; margin:0;">Работа 2</p>
+            </div>
+            <p style="font-size:16px; line-height:normal; margin:0; width:290px;">Когда я учу китайский ради своей цели, я хочу сама определять, что для меня значит «прогресс», и иметь возможность ставить и отслеживать свои кастомные цели, чтобы видеть реальные результаты своих усилий</p>
+          </div>
+          <img src="assets/images/tingli-raboty-stamp-sam.png" alt="" aria-hidden="true" style="position:absolute; left:102px; top:-61px; width:121px; height:121px; display:block;">
+          <div style="position:absolute; left:226px; top:268px; width:128px; height:92px; display:flex; align-items:center; justify-content:center;">
+            <img src="assets/images/tingli-raboty-star-outer.svg" alt="" aria-hidden="true" style="position:absolute; width:114px; height:64px; transform:rotate(-6deg); display:block;">
+            <img src="assets/images/tingli-raboty-star-inner.svg" alt="" aria-hidden="true" style="position:absolute; width:96px; height:55px; transform:rotate(-6deg); display:block;">
+            <p style="position:relative; z-index:1; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; white-space:nowrap; margin:0; transform:rotate(-6deg);">Я - САМ!</p>
+          </div>
+        </div>
+
+        <!-- Card 3: В одном месте / Я – сам! -->
+        <div class="raboty-card">
+          <div class="raboty-card__bg"><img src="assets/images/tingli-raboty-bg.png" alt=""></div>
+          <img src="assets/images/tingli-raboty-line.svg" alt="" aria-hidden="true" style="position:absolute; left:0; top:138px; width:326px; height:1px; display:block;">
+          <div class="raboty-card__text">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <p style="font-size:30px; line-height:normal; margin:0;">В одном месте</p>
+              <p style="font-size:16px; line-height:normal; margin:0;">Работа 3</p>
+            </div>
+            <p style="font-size:16px; line-height:normal; margin:0; width:290px;">Когда Маша встречает новую лексику, она хочет быстро и без усилий сохранить её в одном месте, чтобы в любой момент иметь возможность вернуться и повторить всё, что накопилось</p>
+          </div>
+          <img src="assets/images/tingli-raboty-stamp-sam.png" alt="" aria-hidden="true" style="position:absolute; left:102px; top:-61px; width:121px; height:121px; display:block;">
+          <div style="position:absolute; left:226px; top:268px; width:128px; height:92px; display:flex; align-items:center; justify-content:center;">
+            <img src="assets/images/tingli-raboty-star-outer.svg" alt="" aria-hidden="true" style="position:absolute; width:114px; height:64px; transform:rotate(-6deg); display:block;">
+            <img src="assets/images/tingli-raboty-star-inner.svg" alt="" aria-hidden="true" style="position:absolute; width:96px; height:55px; transform:rotate(-6deg); display:block;">
+            <p style="position:relative; z-index:1; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; white-space:nowrap; margin:0; transform:rotate(-6deg);">Я - САМ!</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Язык через культуру / Умница -->
+        <div class="raboty-card">
+          <div class="raboty-card__bg"><img src="assets/images/tingli-raboty-bg.png" alt=""></div>
+          <img src="assets/images/tingli-raboty-line.svg" alt="" aria-hidden="true" style="position:absolute; left:0; top:138px; width:326px; height:1px; display:block;">
+          <div class="raboty-card__text">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <p style="font-size:30px; line-height:normal; margin:0;">Язык через культуру</p>
+              <p style="font-size:16px; line-height:normal; margin:0;">Работа 4</p>
+            </div>
+            <p style="font-size:16px; line-height:normal; margin:0; width:290px;">Когда Катя учит новые слова, она хочет узнавать, как они связаны с культурой Китая, чтобы язык оживал, а не оставался набором правил</p>
+          </div>
+          <img src="assets/images/tingli-raboty-stamp-umnitsa.png" alt="" aria-hidden="true" style="position:absolute; left:87px; top:-76px; width:151px; height:151px; display:block;">
+          <div style="position:absolute; left:210px; top:265px; width:136px; height:96px; display:flex; align-items:center; justify-content:center;">
+            <img src="assets/images/tingli-raboty-ellipse-umnitsa.svg" alt="" aria-hidden="true" style="position:absolute; width:120px; height:58px; transform:rotate(-5.44deg) skewX(1.18deg); display:block;">
+            <p style="position:relative; z-index:1; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; white-space:nowrap; margin:0; transform:rotate(-5.44deg) skewX(1.18deg);">УМНИЦА</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Ценитель культуры / Надзор -->
+        <div class="raboty-card">
+          <div class="raboty-card__bg"><img src="assets/images/tingli-raboty-bg.png" alt=""></div>
+          <img src="assets/images/tingli-raboty-line.svg" alt="" aria-hidden="true" style="position:absolute; left:0; top:138px; width:326px; height:1px; display:block;">
+          <div class="raboty-card__text">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <p style="font-size:30px; line-height:normal; margin:0;">Ценитель культуры</p>
+              <p style="font-size:16px; line-height:normal; margin:0;">Работа 5</p>
+            </div>
+            <p style="font-size:16px; line-height:normal; margin:0; width:290px;">Когда Оля теряет мотивацию к изучению китайского, она хочет регулярно отчитываться перед кем-то ответственным, чтобы продолжать заниматься, несмотря на лень и усталость после работы</p>
+          </div>
+          <img src="assets/images/tingli-raboty-stamp-nadzor.png" alt="" aria-hidden="true" style="position:absolute; left:87px; top:-76px; width:151px; height:151px; display:block;">
+          <div style="position:absolute; left:220px; top:265px; width:130px; height:96px; display:flex; align-items:center; justify-content:center;">
+            <img src="assets/images/tingli-raboty-ellipse-nadzor-outer.svg" alt="" aria-hidden="true" style="position:absolute; width:112px; height:52px; transform:rotate(-6deg) skewX(2.67deg); display:block;">
+            <img src="assets/images/tingli-raboty-ellipse-nadzor-inner.svg" alt="" aria-hidden="true" style="position:absolute; width:104px; height:46px; transform:rotate(-6deg) skewX(2.67deg); display:block;">
+            <p style="position:relative; z-index:1; font-family:'Inter Tight',Arial,sans-serif; font-size:16px; font-weight:500; color:#141414; white-space:nowrap; margin:0; transform:rotate(-6deg) skewX(2.67deg);">НАДЗОР</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
   </div><!-- /accordion-inner -->
 </div><!-- /accordion-body#research-body -->
