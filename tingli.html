@@ -1581,11 +1581,13 @@
     return { gap: gap, left: Math.round(tRect.left), width: Math.round(tRect.width) };
   };
 
-  /* Работы: drag-to-scroll */
+  /* Работы: drag-to-scroll + autoscroll */
   (function () {
     var row = document.querySelector('.raboty-row');
     if (!row) return;
-    var isDown = false, startX = 0, scrollLeft = 0, hasDragged = false;
+
+    /* ── drag ── */
+    var isDown = false, startX = 0, dragScrollLeft = 0, hasDragged = false;
     var THRESH = 5;
 
     row.addEventListener('mousedown', function (e) {
@@ -1593,29 +1595,129 @@
       isDown = true;
       hasDragged = false;
       startX = e.pageX;
-      scrollLeft = row.scrollLeft;
+      dragScrollLeft = row.scrollLeft;
       row.classList.add('is-dragging');
-      /* no preventDefault — CSS user-select:none handles selection;
-         preventing default blocks click events in Chromium */
+      pauseAuto('drag');
     });
 
     document.addEventListener('mousemove', function (e) {
       if (!isDown) return;
       var dx = e.pageX - startX;
       if (Math.abs(dx) > THRESH) hasDragged = true;
-      row.scrollLeft = scrollLeft - dx;
+      row.scrollLeft = dragScrollLeft - dx;
     });
 
     document.addEventListener('mouseup', function () {
       if (!isDown) return;
       isDown = false;
       row.classList.remove('is-dragging');
+      resumeAuto('drag');
     });
 
     /* Capture-phase click: eat the click if user was dragging */
     row.addEventListener('click', function (e) {
-      if (hasDragged) { e.stopPropagation(); e.preventDefault(); hasDragged = false; }
+      if (hasDragged) { e.stopPropagation(); e.preventDefault(); hasDragged = false; return; }
+      pauseAuto('click');
+      resumeAuto('click');
     }, true);
+
+    /* ── autoscroll ── */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var SPEED = 15;          /* px/s */
+    var RESUME_DELAY = 3000; /* ms */
+    var REWIND_SPEED = 400;  /* px/s for smooth return */
+
+    var rafId = null;
+    var lastTs = null;
+    var inViewport = false;
+    var paused = true;
+    var resumeTimer = null;
+    var rewinding = false;
+    var pauseReasons = {};
+
+    function pauseAuto(reason) {
+      pauseReasons[reason] = true;
+      paused = true;
+      lastTs = null;
+      clearTimeout(resumeTimer);
+    }
+
+    function resumeAuto(reason) {
+      delete pauseReasons[reason];
+      if (Object.keys(pauseReasons).length > 0) return;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () {
+        if (!inViewport) return;
+        paused = false;
+        lastTs = null;
+        if (!rafId) tick();
+      }, RESUME_DELAY);
+    }
+
+    function maxScroll() {
+      return row.scrollWidth - row.clientWidth;
+    }
+
+    function tick(ts) {
+      rafId = requestAnimationFrame(tick);
+      if (paused || !inViewport) { lastTs = null; return; }
+
+      if (!lastTs) { lastTs = ts; return; }
+      var dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+
+      if (rewinding) {
+        var step = REWIND_SPEED * dt;
+        if (row.scrollLeft <= step) {
+          row.scrollLeft = 0;
+          rewinding = false;
+        } else {
+          row.scrollLeft -= step;
+        }
+        return;
+      }
+
+      var max = maxScroll();
+      if (max <= 0) return;
+
+      row.scrollLeft += SPEED * dt;
+
+      if (row.scrollLeft >= max - 1) {
+        rewinding = true;
+      }
+    }
+
+    /* IntersectionObserver: start/stop by viewport */
+    var observer = new IntersectionObserver(function (entries) {
+      inViewport = entries[0].isIntersecting;
+      if (inViewport) {
+        if (!rafId) {
+          paused = false;
+          lastTs = null;
+          tick();
+        }
+      } else {
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        lastTs = null;
+      }
+    }, { threshold: 0.1 });
+    observer.observe(row);
+
+    /* pause on hover */
+    row.addEventListener('mouseenter', function () { pauseAuto('hover'); });
+    row.addEventListener('mouseleave', function () { resumeAuto('hover'); });
+
+    /* pause on touch */
+    row.addEventListener('touchstart', function () { pauseAuto('touch'); }, { passive: true });
+    row.addEventListener('touchend',   function () { resumeAuto('touch'); }, { passive: true });
+    row.addEventListener('touchcancel',function () { resumeAuto('touch'); }, { passive: true });
+
+    /* pause on wheel/touchpad scroll inside the row */
+    row.addEventListener('wheel', function () {
+      pauseAuto('wheel');
+      resumeAuto('wheel');
+    }, { passive: true });
   })();
 
   /* Автозамер после завершения анимации .reveal */
