@@ -524,6 +524,8 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
       user-select: none;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
     }
     .raboty-row::-webkit-scrollbar { display: none; }
     .raboty-row.is-dragging { cursor: grabbing; }
@@ -1611,6 +1613,7 @@
       if (!isDown) return;
       isDown = false;
       row.classList.remove('is-dragging');
+      pos = row.scrollLeft;  /* sync float pos after drag */
       resumeAuto('drag');
     });
 
@@ -1635,6 +1638,7 @@
     var resumeTimer = null;
     var rewinding = false;
     var pauseReasons = {};
+    var pos = 0;  /* float scroll position — never read scrollLeft back */
 
     function pauseAuto(reason) {
       pauseReasons[reason] = true;
@@ -1669,11 +1673,13 @@
 
       if (rewinding) {
         var step = REWIND_SPEED * dt;
-        if (row.scrollLeft <= step) {
+        if (pos <= step) {
+          pos = 0;
           row.scrollLeft = 0;
           rewinding = false;
         } else {
-          row.scrollLeft -= step;
+          pos -= step;
+          row.scrollLeft = pos;
         }
         return;
       }
@@ -1681,9 +1687,11 @@
       var max = maxScroll();
       if (max <= 0) return;
 
-      row.scrollLeft += SPEED * dt;
+      pos += SPEED * dt;
+      row.scrollLeft = pos;
 
-      if (row.scrollLeft >= max - 1) {
+      if (pos >= max - 1) {
+        pos = max;
         rewinding = true;
       }
     }
@@ -1716,6 +1724,7 @@
     /* pause on wheel/touchpad scroll inside the row */
     row.addEventListener('wheel', function () {
       pauseAuto('wheel');
+      pos = row.scrollLeft;  /* sync float pos after wheel scroll */
       resumeAuto('wheel');
     }, { passive: true });
   })();
